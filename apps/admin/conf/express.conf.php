@@ -1,0 +1,22 @@
+<?php
+return array(
+    array('code' => 'shunfeng' , 'name' => '顺丰速递'),
+    array('code' => 'jingdong' , 'name' => '京东快递'),
+    array('code' => 'yuantong' , 'name' => '圆通速递'),
+    array('code' => 'shentong' , 'name' => '申通快递'),
+    array('code' => 'zhongtong' , 'name' => '中通速递'),
+    array('code' => 'yunda' , 'name' => '韵达快运'),
+    array('code' => 'huitongkuaidi' , 'name' => '百世汇通'),
+    array('code' => 'tiantian' , 'name' => '天天快递'),
+    array('code' => 'kuaijie' , 'name' => '快捷速递'),
+    array('code' => 'quanfeng' , 'name' => '全峰快递'),
+    array('code' => 'ems' , 'name' => 'EMS'),
+    array('code' => 'youzhengguonei' , 'name' => '邮政'),
+    array('code' => 'guotong' , 'name' => '国通快递'),
+    array('code' => 'zhaijisong' , 'name' => '宅急送'),
+    array('code' => 'debang' , 'name' => '德邦物流'),
+    array('code' => 'sure' , 'name' => '速尔物流'),
+    array('code' => 'jiaji' , 'name' => '佳吉物流'),
+    array('code' => 'yousutongda' , 'name' => '优速通达'),
+    array('code' => 'rufeng' , 'name' => '如风达快递'),
+);

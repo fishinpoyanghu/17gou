@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>微信扫码支付</title>
+    
+</head>
+<body>
+  <h3 style="color:#333;text-align:center;font-size:20px;margin-top:50px;font-weight:bold;">微信扫码支付</h3>
+  <div style="text-align:center;padding:30px 0;">
+    <img id="img" src="" alt="">
+  </div>
+  <p style="color:#333;text-align:center;font-size:16px;margin-top:30px;">在微信内长按上方二维码识别后支付</p>
+  <p style="color:#333;text-align:center;font-size:16px;">或用微信客户端扫描上方二维码支付</p>
+
+  <script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+        var num = /\d+/;
+      if(num.test(GetQueryString('order'))){
+          document.getElementById('img').src = '/apps/api/www/?c=nc_pay&a=wx_pay3&order_num='+GetQueryString('order');
+      }
+
+  </script>
+</body>
+</html>

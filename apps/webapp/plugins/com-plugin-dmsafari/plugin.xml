@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-plugin-dmsafari" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>DMSafari</name>
+    <js-module name="DMSafari" src="www/DMSafari.js">
+        <clobbers target="cordova.plugins.DMSafari" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="DMSafari">
+                <param name="ios-package" value="DMSafari" />
+            </feature>
+        </config-file><source-file src="src/ios/DMSafari.m" />
+
+        <!-- 添加回调注册Target -->
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleURLName</key>
+                    <string>com.github.dmsafari</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>dmsafariYunke</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+
+        <info>
+            跳转到指定的连接的网页...
+        </info>
+
+    </platform>
+</plugin>

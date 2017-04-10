@@ -1,0 +1,58 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com-plugin-dmdevice": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "com-plugin-dmsafari": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "com.damai.damaiwechat": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.damaiapp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.damaiapp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.damaiapp"
+        }
+    }
+}

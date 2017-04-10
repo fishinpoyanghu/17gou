@@ -1,0 +1,55 @@
+<ion-view view-title="快递查询" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content has-bouncing="false" padding="false" >
+
+    <!--<ion-refresher
+      pulling-text="下拉刷新"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="refresh()"
+      >
+    </ion-refresher>-->
+
+		<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+
+		<div class="kuaidi_chaxun clear">
+            <div class="good_img fl">
+                <!--<div class="text_bg">
+                    <h2>1件商品</h2>
+                </div>-->
+             <img ng-src="{{logistics_goods_img}}"  alt=""> 
+            </div>
+            <div class="wuliu_zhuangtai fl">
+                <h1>物流状态 <em class="green">{{express_status.text}}</em></h1>
+                <p>承运公司：{{express.showapi_res_body.expTextName}}</p>
+                <p>运单编号：{{express.showapi_res_body.mailNo}}</p>
+                <p>官方电话：<em class="blue">{{express.showapi_res_body.tel}}</em></p>
+            </div>
+        </div>
+
+      <div class="wuliu_xiansuo clear">
+          <div class="kd_list">
+              <div class="logo_icon fl">
+                  <img src="img/logo-small2.png" alt="">
+              </div>
+              <h2 class="fl">本数据由<em class="blue2">亿七购</em>提供</h2>
+              <!--<i class="dp-button button-icon ion-chevron-right fr" style="line-height: 40px;"></i>-->
+          </div>
+      </div>
+      <ul class="kuaidi_ing clear">
+          <li ng-repeat="kuaidi in express.showapi_res_body.data">
+             <div class="text_right">
+                 <p>{{kuaidi.context}}</p>
+                 <p class="font_size-16px">{{kuaidi.time}}</p>
+             </div>
+          </li>
+      </ul>
+  </ion-content>
+</ion-view>
+
+
+

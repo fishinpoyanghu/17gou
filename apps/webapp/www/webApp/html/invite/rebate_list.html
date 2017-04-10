@@ -1,0 +1,29 @@
+<ion-view view-title="返利详情" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content >
+
+      <div class="dp-content">
+          <table>
+              <tr>
+                  <th>好友充值日期</th>
+                  <th>充值金额</th>
+                  <th>获得返利</th>
+              </tr>
+              <tr ng-repeat="rebate in  rebateList">
+                  <td>{{::rebate.pay_time}}</td>
+                  <td>{{::rebate.pay_money}}元</td>
+                  <td><span class="red">{{::rebate.rebate_money}}元</span></td>
+              </tr>
+
+          </table>
+      </div>
+    <!--<button ng-click="getRebateList()">获取返利详情</button>-->
+
+  </ion-content>
+
+</ion-view>

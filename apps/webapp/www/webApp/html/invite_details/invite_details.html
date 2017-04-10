@@ -1,0 +1,31 @@
+<ion-view view-title="邀请好友明细" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false" overflow-scroll="true">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list ">
+            <div class="item p-10">
+                <div class="row row-center p-0 c-3 f-28">
+                    <div class="col text-left">用户名</div>
+                    <div class="col text-center">时间</div>
+                    <div class="col text-right">级别</div>
+                </div>
+            </div>
+            <div ng-show="inviteUserData.length > 0">
+                <div class="item p-10" ng-repeat="user in inviteUserData">
+                    <div class="row row-center p-0 c-3 f-28">
+                        <div class="col text-left">{{::user.nick}}</div>
+                        <div class="col text-center">{{::user.rt*1000 | date:'yyyy-MM-dd'}}</div>
+                        <div class="col text-right">{{::user.level}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-item-wrap c-9 " ng-show="isLoadFinished && !moreDataCanBeLoaded && inviteUserData.length == 0" >
+            <p  class="dp-more dp-more--bottom mt-40" >暂无邀请好友明细，赶紧去邀请好友吧~</p>
+        </div>
+    </ion-content>
+</ion-view>

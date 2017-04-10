@@ -1,0 +1,62 @@
+<style>
+  .avater {
+    border-radius: 50%;
+  }
+</style>
+
+
+<ion-view view-title="往期揭晓" hide-nav-bar="isHideNaviBar" on-swipe-right="back()">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content style="bottom: 50px">
+    <div ng-if="redPacketList.length > 0">
+      <div class="dp-itemList has_published">
+        <div ng-repeat="publish in redPacketList">
+          <div class="dp-itemList__li">
+            <div class="dp-itemList__openTime">
+              <span class="num">第{{::publish.activity_id}}期</span> 揭晓时间：{{::publish.ut*1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+            </div>
+            <div class="dp-itemList__content">
+              <div class="dp-itemList__img1">
+                <img class="avater"  onerror="this.src='img/default_icon.png'" ng-src="{{::publish.icon || 'img/default_icon.png'}}" alt="" ng-click="gotoHisPage(publish)"/></div>
+              <div class="dp-itemList__desc">
+
+                <p>获&nbsp; 奖 者： <em class="blue">{{::publish.nick}}</em> （{{::publish.ip.country}}）</p>
+
+                <p>幸运号码： {{::publish.result_num}}</p>
+
+                <p>本期参与： <em class="red">{{::publish.need_num}}</em> 人次</p>
+
+                <!-- <p>累计参与： <em class="red">{{::publish.result_num}}</em> 人次</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p ng-if="!hasMoreData" class="dp-more dp-more--bottom">没有更多啦~</p>
+    </div>
+
+    <div class="dp-emptyBlock" ng-if="isLoadFinished && redPacketList.length == 0">
+      <div class="dp-emptyBlock__container">
+        <p>这里空空的什么也没留下~</p>
+      </div>
+    </div>
+      <ion-infinite-scroll
+              ng-if="hasMoreData"
+              on-infinite="getRedPacketLastPublished()"
+              icon="ion-loading-c"
+              immediate-check='false'
+              distance="1%">
+      </ion-infinite-scroll>  
+  </ion-content>
+
+  
+
+
+</ion-view>
+
+

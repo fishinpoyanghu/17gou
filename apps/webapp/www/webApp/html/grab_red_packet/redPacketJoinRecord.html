@@ -1,0 +1,48 @@
+<style>
+.dp-itemList__li {
+    margin-bottom: 0 !important;
+    border-bottom: 0;
+}
+
+.dp-itemList__li:nth-child(even) {
+    background-color: transparent;
+}
+
+.dp-itemList__li:nth-child(even) .dp-itemList__content {
+    background-color: transparent;
+}
+
+.avater {
+    border-radius: 50%;
+}
+</style>
+<ion-view view-title="参与记录" hide-nav-bar="isHideNaviBar" on-swipe-right="back()">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false" overflow-scroll="true">
+        <div ng-if="joinRecordList.length > 0">
+            <div class="dp-itemList has_published" ng-repeat="joinRecordItem in joinRecordList">
+                <div class="dp-itemList__li">
+                    <div class="dp-itemList__content">
+                        <div class="dp-itemList__img1">
+                            <img class="avater" ng-src="{{::joinRecordItem.icon || 'img/default_icon.png'}}" onerror="this.src='img/default_icon.png'" />
+                        </div>
+                        <div class="dp-itemList__desc">
+                            <p><em class="blue">{{::joinRecordItem.nick}}</em> （{{::joinRecordItem.ip.country}}）</p>
+                            <p>参与时间： {{::joinRecordItem.ut*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                            <p>他的幸运号： <em class="red">{{::joinRecordItem.lucky_num}}</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dp-emptyBlock" ng-if="joinRecordList.length == 0">
+            <div class="dp-emptyBlock__container">
+                <p>暂时没有红包记录~</p>
+            </div>
+        </div>
+    </ion-content>
+    
+</ion-view>

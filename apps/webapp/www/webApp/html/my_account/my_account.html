@@ -1,0 +1,30 @@
+<ion-view view-title="我的余额" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+ <ion-nav-buttons side="right">
+    <a class="dp-button  button-clear" href="#/chongzhi">
+      充值
+    </a>
+  </ion-nav-buttons>
+    <ion-content scrollbar-y="false" overflow-scroll="true">
+      <div class="no-item-wrap c-9 ">
+        <div class=" text-center">
+          <div class="my-point" style="background:#f16c4b;">
+            <div>余额</div>
+            <div class="dm-nowrap" >&#165; {{::money}}</div>
+          </div>
+        </div>
+        <div class="block mt-40 text-center">
+          <a class="f-26 c-9 my-point-details" href="#/myAccountDetails">
+        </div>
+        余额明细</a>
+      </div>
+
+
+    </ion-content>
+  
+</ion-view>
+

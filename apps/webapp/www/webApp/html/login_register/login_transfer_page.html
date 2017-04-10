@@ -1,0 +1,41 @@
+<ion-view view-title="绑定邀请码" hide-nav-bar="!isShowBindInviteDialog">
+
+    <style>
+        @media screen and (max-height: 350px) {
+            .bottomBar {
+                display: none;
+            }
+        }
+    </style>
+    <ion-content scroll="false" ng-show="isShowBindInviteDialog">
+        <div class="dp-blank20"></div>
+
+        <div class="dp-inputbox__container">
+
+            <div class="dp-inputbox dp-inputbox--icon">
+                <div class="dp-inputbox__title">
+                    <i class="icon iconfont-ver"></i>
+                </div>
+                <div class="dp-inputbox__main">
+                    <input type="text" placeholder="填写邀请码" maxlength="8" ng-model="inviteCode.code"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="padding">
+            <button class="button-block dp-button dp-button--red" ng-click="toBindInviteCode()">
+                绑定
+            </button>
+            <!--<p style="margin: 1em 0; text-align: left;">邀请码可以向推荐您注册“一元云购”的朋友索取，绑定后对方可以按照您的云购金额获得相应回报。</p>-->
+        </div>
+        <div class="padding bottomBar" style="position:absolute; bottom: 0; left: 0; width: 100%;">
+            <button class="button-block dp-button dp-button--redOutline" ng-click="closeBindInviteDialog()">
+                我没有这玩意
+            </button>
+        </div>
+
+
+    </ion-content>
+
+</ion-view>

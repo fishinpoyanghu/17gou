@@ -1,0 +1,81 @@
+<ion-view view-title="红包详情" > 
+    <!-- hide-nav-bar="isHideNaviBar" -->
+  <ion-nav-buttons side="right">
+    <button class="dp-button    " ui-sref="redPacketRule">
+      玩法
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+    </button>
+  </ion-nav-buttons>
+    <ion-content scrollbar-y="false" overflow-scroll="true" class="grap-packet-page">
+        <ion-refresher
+          pulling-text="下拉刷新"
+          on-refresh="doRefresh()"
+          >
+        </ion-refresher>
+        <div class="announce">
+            <div ng-if="redPacket.flag == 1">
+              <h3 class="announce-title">揭晓倒计时</h3>
+              <div class="dm-counter text-center counter-wrap"  remain-time="{{redPacket.remain_time}}" activity_id="{{::redPacket.activity_id}}"></div>
+            </div>
+            <h3 class="announce-title" ng-if="redPacket.flag == 0">进行中...</h3>
+            <h3 class="announce-title" ng-if="redPacket.flag == 2">已揭晓</h3>
+        </div>
+        <div class="packet-wrap">
+          <img src="img/z3.png"  class="packet">
+          <div class="img-price-wrap">
+            <img src="img/z1.png"  class="packet">
+            <div class="price">{{::redPacket.price}}&nbsp;<span style="font-size:15px;">元</span></div>
+          </div>
+          <img src="img/z2.png"  class="packet">
+          <p class="mt-10 c-3 text-left f-28">（第{{::redPacket.activity_id}}期）{{::redPacket.title}}{{::redPacket.price}}元</p>
+          <p class=" c-3 text-left f-28">【{{::redPacket.sub_title}}】</p>
+        </div>
+        <div class="join-wrap row row-center" ng-if="redPacket.flag==0 || redPacket.flag==1">
+            <div class="col text-center join-num">
+              <p>目前参与人数：{{redPacket.user_num}}</p>
+              <p ng-if="redPacket.already == 0 && redPacket.flag == 0 ">您暂未参与，快来抢购吧</p>
+              <p ng-if="redPacket.already == 1">您已参与，您的幸运号：{{redPacket.lucky_num}}</p>
+            </div>
+            <button class="button button-assertive"  ng-click="join(redPacket)" style="{{redPacket.flag != 0 ? 'background:#ccc;border-color:#ccc;' : ''}} padding:6px 5px;" ><span style="font-size:14px;">参与需要 {{redPacket.point.point}} 积分</span><br>立即参与</button>
+        </div>
+
+        <div ng-if="redPacket.flag==2">
+            <div class="dp-itemList__li" style="border: 1px solid #ececec; margin-bottom: 10px;height:70px;">
+                <div class="dp-itemList__content">
+                    <div class="dp-itemList__img" style="height:50px;">
+                        <img ng-src="{{redPacket.lucky_uicon}}" style="width: 45px; height: 45px;" alt=""/></div>
+                    <div class="dp-itemList__desc">
+                        <a>
+                            <p style="line-height: 50px;">获 奖 者： <em class="blue">{{redPacket.lucky_unick}}</em>（{{redPacket.lucky_uip.country}}） </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="red_mark">获奖者</div>
+            </div>
+            <div class="dp-detailBox__orgBox">
+                <p style="line-height:36px;">幸运号码： {{redPacket.result_num}}</p>
+            </div>
+        </div>
+
+
+        <div class="weui_cells weui_cells_access">
+              <a class="weui_cell" href="#/redPacketLastPublished/{{::redPacket.red_id}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                  <p>往期揭晓</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+              </a>
+              <a class="weui_cell" href="#/redPacketJoinRecord/{{::redPacket.activity_id}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                  <p>参与记录</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+              </a>
+            </div>
+    </ion-content>
+   
+</ion-view>
+

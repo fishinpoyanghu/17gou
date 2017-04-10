@@ -1,0 +1,63 @@
+<ion-view view-title="邀请有礼" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false">
+        <style>
+            .dp-content{ background: #f44336 url("img/invite_bg.jpg") no-repeat;
+                height: 161px; background-size: 100% auto; color: #ffffff;text-align: center; }
+        </style>
+
+        <div class="dp-content padding" style="display: none;">
+            <span style="font-size: 16px;">累计返利</span> <br/>
+            <span style="font-size: 16px;"><em class="yellow" style="font-size: 36px; font-weight: bold;">{{rebateInfo.rebate_money}}</em>元</span>
+            <br/>
+            <span>邀请好友在注册时填写您的邀请码即可完成绑定 </span><br/> <span>您将获得绑定好友购买金额4%的红包返利</span>
+        </div>
+        <!--没有累计返利时-->
+        <img src="img/invite.jpg" style=" height: 161px; margin: auto;" width="100%" alt=""/>
+        <div class="tac" style="padding: 20px;">
+            <p style="color: #444444; font-size: 18px; margin-bottom: 10px;">我的邀请码：{{rebateInfo.invite_code}}</p>
+            <button class="dp-button dp-button--yellow" data-clipboard-text="{{mLink}}" ng-click="shareToWechat()" style="width: 170px; text-align: center;">邀请好友</button>
+            <p style="color: #444444; font-size: 18px; margin-bottom: 5px; margin-top: 20px;">扫码体验网页版</p>
+            <img ng-src="{{rebateInfo.qrcode}}" width="138" height="138" alt=""/>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+<!--消失时要去掉 weui_fade_toggle,show,weui_actionsheet_toggle这些类-->
+<div id="actionSheet_wrap" ng-show="isShowShare">
+    <div class="weui_mask_transition weui_fade_toggle show" id="mask" ></div>
+    <div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+        <h3 class="dp-grid__head tac" style="background-color: #ffffff">分享到</h3>
+        <div class="dp-grid dp-grid--3" style="padding: 0 10%;">
+
+            <a class="dp-grid__link" data-clipboard-text="{{mLink}}" href="" ng-click="shareToFriendsCircle()">
+                <img class="dp-grid__img" src="img/pengyouquan_logo.png" alt=""/>
+                <p class="dp-grid__title">朋友圈</p>
+            </a>
+            <a class="dp-grid__link"  data-clipboard-text="{{mLink}}" href="" ng-click="shareToFriends()">
+                <img class="dp-grid__img" src="img/weixin_logo.png" alt=""/>
+                <p class="dp-grid__title">微信好友</p>
+            </a>
+            <a class="dp-grid__link" data-clipboard-text="{{mLink}}"  href="" ng-click="copyLink()">
+                <img class="dp-grid__img" src="img/link_logo.png" alt="Copy to clipboard"/>
+                <p class="dp-grid__title">复制链接</p>
+            </a>
+        </div>
+        <div class="weui_actionsheet_action" ng-click="hidePop()">
+            <div class="weui_actionsheet_cell" id="actionsheet_cancel" style="color: #888;">取消</div>
+        </div>
+    </div>
+</div>
+
+<!--分享文字-->
+<div id="guidepop" class="pop-wp"  style="display:none">
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>

@@ -1,0 +1,119 @@
+
+<ion-view view-title="邀请注册" hide-nav-bar="isHideNaviBar">
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+	</ion-nav-buttons>
+    <style>
+        .invite-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .invite-friends .item {
+            padding: 10px 16px;
+            font-size: 12px;
+        }
+
+        .invite-friends .item .icon {
+            font-size: 20px;
+            right: 5px;
+        }
+
+        .invite-friends .invite-info-wrap {
+            height: auto;
+        }
+
+        .invite-friends .friends-num,
+        .invite-friends .commission {
+            margin-top: 0;
+            font-size: 14px;
+        }
+
+        .invite-friends .gap {
+            top: 5px;
+            height: 40px;
+        }
+    </style>
+	<ion-content id="invite_friends" scrollbar-y="false">
+		<div class="invite_logo">
+			<img src="img/logo/inviteFriends_logo.jpg" />
+		</div>
+		<div class="invite-friends">
+			<div class="invite-info-wrap">
+				<div class="row row-center">
+					<div class="col text-center pos-r">
+						<div class="f-24">邀请注册</div>
+						<div class="friends-num">{{::inviteMoneyData.users}}个</div>
+						<div class="gap"></div>
+					</div>
+					<div class="col text-center">
+						<div class="c- f-24">本月收益</div>
+						<div class="commission">{{::inviteMoneyData.money}}元</div>
+					</div>
+				</div>
+			</div>
+			<div class="list mt-40 ">
+				<!--<a class="item item-icon-right c-6 f-26" ui-sref="inviteDetails">
+              邀请好友明细
+              <i class="icon c-9 ion-ios-arrow-right"></i>
+            </a>-->
+				<a class="item item-icon-right c-6 f-26" ui-sref="commissionDetails">
+					邀请收益明细
+					<i class="icon c-9 ion-ios-arrow-right"></i>
+				</a>
+				<a class="item item-icon-right c-6 f-26" ui-sref="applyWithdrawCash">
+					收益提现申请
+					<i class="icon c-9 ion-ios-arrow-right"></i>
+				</a>
+				<a class="item item-icon-right c-6 f-26" ui-sref="withdrawCashRecord">
+					收益提现明细
+					<i class="icon c-9 ion-ios-arrow-right"></i>
+				</a>
+			</div>
+			<p style="color: #444444;font-size: 14px;text-align:center;">我的邀请码：{{rebateInfo.invite_code}}</p>
+			<div class="qr-code-wrap">
+                <img ng-if="code.showCode" on-hold="showDisabled()" on-swipe-up="hideDisabled()" on-swipe-down="hideDisabled()" ng-src="{{rebateInfo.qrcode}}" alt="" class="invitation-code-img qrcode">
+                <img ng-if="!code.showCode"  on-swipe-up="hideDisabled()" on-swipe-down="hideDisabled()"  data-tap-disabled='true' ng-src="{{rebateInfo.qrcode}}" alt="" class="invitation-code-img qrcode">
+			</div>
+			<p class="mt-30 text-center c-3 f-26">推荐好友注册，永久获得消费返佣</p>
+			<div class="copy-link">
+				<button class="button button-balanced dp-button--yellow" data-clipboard-text="{{mLink}}" ng-click="shareToWechat()">邀请有礼</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+<!--消失时要去掉 weui_fade_toggle,show,weui_actionsheet_toggle这些类-->
+<div id="actionSheet_wrap" ng-show="isShowShare">
+	<div class="weui_mask_transition weui_fade_toggle show" id="mask"></div>
+	<div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+		<h3 class="dp-grid__head tac" style="background-color: #ffffff">分享到</h3>
+		<div class="dp-grid dp-grid--3" style="padding: 0 10%;">
+
+			<a class="dp-grid__link" data-clipboard-text="{{mLink}}" href="" ng-click="shareToFriendsCircle()">
+				<img class="dp-grid__img" src="img/pengyouquan_logo.png" alt="" />
+				<p class="dp-grid__title">朋友圈</p>
+			</a>
+			<a class="dp-grid__link" data-clipboard-text="{{mLink}}" href="" ng-click="shareToFriends()">
+				<img class="dp-grid__img" src="img/weixin_logo.png" alt="" />
+				<p class="dp-grid__title">微信好友</p>
+			</a>
+			<a class="dp-grid__link" data-clipboard-text="{{mLink}}" href="" ng-click="copyLink()">
+				<img class="dp-grid__img" src="img/link_logo.png" alt="Copy to clipboard" />
+				<p class="dp-grid__title">复制链接</p>
+			</a>
+		</div>
+		<div class="weui_actionsheet_action" ng-click="hidePop()">
+			<div class="weui_actionsheet_cell" id="actionsheet_cancel" style="color: #888;">取消</div>
+		</div>
+	</div>
+</div>
+
+<!--分享文字-->
+<div id="guidepop" class="pop-wp" style="display:none" ng-click="hideGuide1()">
+	<div class="pop pop--share">
+		<img src="img/yaoqing.png" width="248" height="120" alt="" />
+	</div>
+	<div class="mask"></div>
+</div>

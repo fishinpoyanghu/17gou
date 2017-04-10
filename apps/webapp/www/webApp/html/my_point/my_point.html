@@ -1,0 +1,40 @@
+<ion-view view-title="我的积分">
+     <!-- hide-nav-bar="isHideNaviBar" -->
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear   " ui-sref="pointRule">
+            积分玩法&nbsp;
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="true" overflow-scroll="true">
+        <div class="text-center mt-30 c-9 ">
+            <div class="text-center">
+                <div class="my-point">
+                    <div>积分</div>
+                    <div class="dm-nowrap" ng-bind="data.point ? data.point : '0'"></div>
+                </div>
+            </div>
+            <button class="button button-assertive button-small my-point-sign-btn {{hasSign ? 'signed' : ''}} mt-20" ng-click="sign()">{{hasSign ? '已签到' : '签到'}}</button>
+            <div class="block  text-center mt-20" >
+                <a class="f-26 c-9 my-point-details" href="#/pointDetails">积分明细</a>
+            </div>
+        </div>
+        <div style="margin-top:20px;">
+          <view-sign date-list="{{signList}}"></view-sign>
+        </div>
+        <div style="padding:30px;"></div>
+    </ion-content>
+    <ion-footer-bar style="height:70px;">
+        <div class="row row-center my-point-footer">
+            <div class="col">
+                <button class=" button button-block  button-positive" ui-sref="turntable">去抽奖</button>
+            </div>
+            <div class="col">
+                <button class=" button button-block  button-assertive" ui-sref="redPacketList">抢红包</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

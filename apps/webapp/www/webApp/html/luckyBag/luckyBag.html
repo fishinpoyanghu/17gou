@@ -1,0 +1,97 @@
+<ion-view view-title="福袋" hide-nav-bar="isHideNaviBar">
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+	</ion-nav-buttons>
+	<ion-content scrollbar-y="false">
+		<!--<ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+		</ion-refresher>-->
+		<div id="lucky_bag_count">
+			<!--福袋-->
+			<div class="bg_img2">
+				<div class="center_box">
+					<p class="one_h">你的福袋（个）</p>
+					<!--没有产生任何云购订单-->
+					<!--<h1 ng-if="diskData.orderstatus==0" class="two_h">00.00</h1>-->
+					<!--有产生云购消费订单-->
+					<h1 class="two_h">{{luckyBagNum}}</h1>
+					<!--<button class="fd_btn">
+                        开福袋
+                    </button>-->
+					<div class="go_buy2 clearfix">
+						<span ng-click="go_luckyBag_imgText()">福袋来袭，惊喜领先看</span>
+						<i class="icon ion-ios-arrow-right icon_right2"></i>
+					</div>
+				</div>
+			</div>
+			<!--提现-->
+			<div class="two_col">
+				<a class="item  item-icon-right user-list-item f-32 " href="#/chongzhi/2">
+					<img src="img/public_offer/fudai.png" class="tx_img" alt="">
+					<span class="left_tx">购买福袋</span>
+					<i class="icon ion-ios-arrow-right c-9 icon_right"></i>
+				</a>
+			</div>
+			<!--动态-->
+			<div id="lucky_bag_news">
+				<div class="news_title clearfix" style="margin-top: 10px;">
+					<h3 class="news_text" style="border-bottom:none">福袋动态</h3>
+				</div>
+				<ul class="news_content">
+					<li class="list_col2" ng-repeat="luckyBag in luckyBags">
+						<div class="f_d_data clearfix">
+							<i class="round fl"></i>
+							<div class="fl news_notice" ng-if="luckyBag.type==1">
+								<span>您邀请注册的</span>
+								<span class="nick">{{luckyBag.content.invite_nick}}</span>
+								<span>成功绑定了手机,恭喜您获得了</span>
+								<span class="num">{{luckyBag.num}}</span>
+								<span>个福袋。</span>
+							</div>
+							<div class="fl news_notice" ng-if="luckyBag.type==2">
+								<span>您邀请的</span>
+								<span class="nick">{{luckyBag.content.invite_nick}}</span>
+								<span>成功参与了</span>
+								<span class="nick">{{luckyBag.content.goods_name}}</span>
+								<span>云购，恭喜您获得了</span>
+								<span class="num">{{luckyBag.num}}</span>
+								<span>个福袋，继续邀请吧！</span>
+							</div>
+							<div class="fl news_notice" ng-if="luckyBag.type==3">
+								<span>您的开团商品</span>
+								<span class="nick">{{luckyBag.content.goods_name}}</span>
+								<span>等到另一半了，完美拼团，恭喜您获得了</span>
+								<span class="num">{{luckyBag.num}}</span>
+								<span>个福袋。</span>
+							</div>
+							<div class="fl news_notice" ng-if="luckyBag.type==4">
+								<span>土豪，您成功购买了</span>
+								<span class="num">{{luckyBag.num}}</span>
+								<span>个福袋。额外赠送</span>
+								<span class="num">{{luckyBag.content.give_count}}</span>
+								<span>个福袋。</span>
+							</div>
+							<div class="fl news_notice" ng-if="luckyBag.type==5">
+								<span>成功打开一个福袋，惊喜降临，您获得了</span>
+								<span class="num">{{luckyBag.content.goods_name}}</span>
+								<span class="num">{{luckyBag.content.count}}</span>
+								<span>{{luckyBag.content.luckynum}}次云购幸运码。</span>
+							</div>
+						</div>
+						<div class="f_d_data clearfix">
+							<div class="fr">
+								<span>{{::luckyBag.rt}}</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<p ng-if="loadFinished" class="dp-more dp-more--bottom">{{endNoticeInfo}}~~</p>
+<ion-infinite-scroll ng-if='!loadFinished' on-infinite="loadMore()">
+</ion-infinite-scroll>
+					<!--<p ng-show="isLoadFinished && !moreDataCanBeLoaded && li    stData.length > 0" class="dp-more dp-more--bottom">没有更多啦~</p>-->
+		</div>
+				<!--<ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check='false' distance="1%" on-infinite="getData()">
+        </ion-infinite-scroll>-->
+	</ion-content>
+</ion-view>

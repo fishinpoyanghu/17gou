@@ -1,0 +1,22 @@
+<ion-view view-title="编辑昵称" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <!--<ion-nav-buttons side="right">-->
+        <!--<button class="dp-button" ng-click="modifyNickname()">-->
+            <!--确定-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+    <ion-content scroll="false">
+        <view-input type="nickname" dp-input-model="account.nickname" dp-input-max-length="20"></view-input>
+        <div class="padding">
+            <button class="dp-button dp-button--red button-block" ng-click="modifyNickname()">确定</button>
+        </div>
+
+    </ion-content>
+
+</ion-view>

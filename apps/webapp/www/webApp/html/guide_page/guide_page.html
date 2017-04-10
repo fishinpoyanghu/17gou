@@ -1,0 +1,36 @@
+<style>
+    .guide-dot {
+       background:#fff;width:10px;height:10px;border-radius:100%;display:inline-block;margin:0 5px;vertical-align: middle;opacity:.7;
+    }
+    .guide-dot.current {
+        width:12px;height:12px;opacity:1;
+    }
+    .guide-img-wrap {
+        position:absolute;height:100%;width:100%;padding:0;overflow:hidden;margin:0;border:0;vertical-align:middle;
+    }
+    .guide-img {
+        height:100%;width:100%;padding:0;border:0;
+    }
+</style>
+<ion-view  hide-nav-bar="isHideNaviBar">
+    <ion-content scrollbar-y="false" overflow-scroll="true" padding='false' scrollbar-y="false" on-swipe-left="swipeLeft($event)" on-swipe-right="swipeRight($event)">
+        <div class="guide-img-wrap">
+
+            <img ng-src="{{getPrevImg()}}" class="guide-img">
+        </div>
+        
+    </ion-content>
+</ion-view>
+
+<script id="guide_page_modal.html" type="text/ng-template">   
+  <ion-modal-view>
+    
+    <ion-content  has-bouncing="false"  overflow-scroll="true" padding='false' scrollbar-y="false" on-swipe-left="swipeLeft($event)" on-swipe-right="swipeRight($event)">
+         <div class="guide-img-wrap">
+            <img ng-src="{{getCurrendImg()}}" class="guide-img" ng-click="changePage()">
+        </div>
+
+    </ion-content>
+    
+  </ion-modal-view>
+</script>

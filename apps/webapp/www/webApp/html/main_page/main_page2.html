@@ -1,0 +1,313 @@
+<ion-view view-title="亿七购" hide-nav-bar="isHideNaviBar"  >
+
+    <!--<ion-nav-buttons side="left">
+      <a class="dp-button button-icon iconfont-search-outline" style="font-size: 2rem; z-index:-1" href="#/search"></a>
+    </ion-nav-buttons>-->
+
+    <style>
+        .limit-flag {
+            display: block;
+            height: 19px;
+            margin-left: 5px;
+            line-height: 20px;
+            background-color: #2af;
+            color: #fff;
+            padding: 0 3px;
+            border-radius: 2px;
+            position: absolute;
+            top: 124px;
+            right: 3px;
+        }
+        .limit-flag::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 5px 10px;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom-color: #2af;
+            position: absolute;
+            bottom: 0;
+            left: -5px;
+        }
+
+    </style>
+
+    <!--<div style="top:{{inWechatB ? '0' : '44px'}};display: block;height: 32px;line-height:32px;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 1;color:#fff;padding-left:10px;" class="clearfix" ng-if="show_attention" ng-click="go_attention()">
+         <img src="img/logo-small2.png" alt="" style="width:28px;vertical-align:middle;background-size: cover;">
+         <span style="vertical-align: middle;margin-left: 8px;">点击关注亿七购官方微信</span>
+         <span class="fr" style="padding: 0 15px;display: inline-block;font-size: 16px;vertical-align:middle;" ng-click="close_attention($event)">X</span>
+     </div>-->
+    <!--顶部的导航-->
+    <div id="top_tab" class="bar" style="{{inWechatB ? 'top:0;' : 'top:44px' }};display: none; height: 40px;">
+        <div class="row  row-center dm-goods-classify" style="height: 40px;line-height: 40px;border-top: none; ">
+            <div class="col nav-col {{pageConfig[0].order_key == 'weight' ? 'active' : ''}}" ng-click="changeActive('weight','none',pageConfig[0])">
+                <span class="nav-item {{pageConfig[0].order_key == 'weight' ? 'active' : ''}}">最热</span>
+            </div>
+            <div class="col nav-col {{pageConfig[0].order_key == 'ing' ? 'active' : ''}}" ng-click="changeActive('ing','none',pageConfig[0])">
+                <span class="nav-item {{pageConfig[0].order_key == 'ing' ? 'active' : ''}}" style="padding:0;">即将揭晓</span>
+            </div>
+
+            <div class="col nav-col {{pageConfig[0].order_key == 'time' ? 'active' : ''}}" ng-click="changeActive('time','none',pageConfig[0])">
+                <span class="nav-item {{pageConfig[0].order_key == 'time' ? 'active' : ''}}">最新</span>
+            </div>
+
+            <!--<div class=" nav-col col " ng-click="changeActive('num',pageConfig[0].order_type,pageConfig[0])">
+                <div class="nav-item clearfix {{pageConfig[0].order_key == 'num' ? 'active' : ''}}">
+                    <span class="fl ">价格</span>
+                    <div class="arrow-icon fl">
+                        <i class="icon iconfont-arrow-down arrow-up" style="{{pageConfig[0].order_key == 'num' && pageConfig[0].order_type == 'desc' ? 'color:#333;' : ''}}"></i>
+                        <i class="icon iconfont-arrow-down arrow-down" style="{{pageConfig[0].order_key == 'num' && pageConfig[0].order_type == 'asc' ? 'color:#333;' : ''}}"></i>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+
+    <ion-content id="ionContent" has-bouncing="false" padding="false" scrollbar-y="true" on-scroll="scroll()">
+        <!--<ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+
+        </ion-refresher>-->
+
+
+        <!--<div id="search" class="clearfix" ng-click="go_search()">-->
+        <div id="search" class="clearfix">
+
+            <div class="shuru fl" ng-click="go_search()">
+                <!--<a href="#/classification_details">
+                    <img class="search_img" src="img/search/search.png" alt="">
+                    <span>搜索商品名称</span>
+                </a>-->
+                <div class="sosuo">
+                    <img class="search_img" src="img/search/search2.png" alt="">
+                    <span class="search_name">搜索商品名称</span>
+                </div>
+            </div>
+            <div class="two_xing fr" ng-click="goNews()">
+                <a  ng-mousedown="bell_news = 0">
+                    <div class="icon2 xinxi_icon">
+                        <img class="ic2" src="img/icon/c5.png"  />
+                    </div>
+                    <span class="badge badge-assertive" ng-if="bell_news > 0"></span>
+                </a>
+            </div>
+            <!--<div class="fr">
+                <a href="#/attention">
+                    <img class="erweima_img" src="img/search/erweima.png" alt="">
+                </a>
+            </div>-->
+        </div>
+            <div style="height: 1px;width: 100%;background-color: #ccc;"></div>
+        <!--轮播-->
+        <view-slide-box class="clearfix" comp-id="'1-1-001'" type="title" dp-slides="slides" ></view-slide-box>
+        <p class="text-center" style="color: #f72331;padding: 5px;font-size: 12px;border: 1px solid #ededed;" ng-show="isIosApp">本活动和苹果公司无关，解释权归本公司所有</p>
+        <!--<view-text-scoll interval="3000" scoller-height="24" text-list={{getLuckyData}} ng-if="getLuckyData.length > 0"></view-text-scoll>-->
+
+        <!--添加一个div-->
+        <div id="shengdan_white" style="display: none;">
+            <div class="row">
+                <div class="col">
+                    <a href="#/nian_huo">
+                        <img src="img/baituan/c1.png" alt="">
+                        <span>年货专区</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#/pintuan">
+                        <img src="img/baituan/c2.png" alt="">
+                        <span>百团大战</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#/two_men_together">
+                        <img src="img/baituan/c3.png" alt="">
+                        <span>二人拼团</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <!--<a  href="#/return_cash">-->
+                    <a ng-click="gotoReturnCash()" href="">
+                        <img src="img/baituan/c4.png" alt="">
+                        <span>返现购</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div ng-if="newPublish.length" style="display: none">
+
+            <div class="list" style="margin-bottom:0;clear: both;">
+                <a class="item  item-icon-right user-list-item f-32 " href="#/publish" style="padding:10px 15px 4px 0px;color:#333;">
+                    <img class="zuixinjiexiao" src="img/baituan/zuijinjiexiao.png" alt="">
+                    <span style="float: right;margin-right: 16px;margin-top: 4px;color: #5F5A5A;">更多</span>
+                    <i class="icon ion-ios-arrow-right arrow c-9 "></i>
+                </a>
+            </div>
+            <div class="dp-broad dp-broad--bigImg clearfix" style=" background-color: #ffffff; ">
+                <div class="dp-broad__li"  style="width: 33.333333%;margin-top:-1px;border-bottom: 1px solid #ededed;padding: 2px 4px;" ng-repeat="activity in newPublish">
+                    <a class="block" href="javascript:;" ng-click="gotoDetail(activity.activity_id)">
+                        <div class="dp-broad__img main-page-goods-img" style="height:90px;">
+                            <img ng-src="{{activity.goods_img}}" />
+                        </div>
+                        <h3 class="dp-broad__title " style="height:16px;    white-space: nowrap;">{{activity.goods_title}}</h3>
+                    </a>
+                    <div class="text-center dm-nowrap" style="color:#f72331;font-size:14px;" ng-if="activity.status==1">
+                        <span class="remain_time iconfont-clock" view-countdown remain-time="{{activity.remain_time}}" timeout-callback="timeoutCallback(activity)"></span>
+                    </div>
+                    <div class="text-center dm-nowrap" style="color:#f72331;font-size:12px;min-height: 22px;" ng-if="activity.status==2">
+                        获奖者:{{activity.lucky_unick}}
+                    </div>
+                    <img src="img/Calculation_details.jpg"  alt="" ng-click="gotoCountDetail(activity.activity_id)" style="background-size: 100%;display: block;width: 60%;margin: 1px auto 7px;">
+
+                    <!--<div class="dp-detailBox__orgBox" style="height: 55px;text-align: center;">
+                        <button class="dp-button dp-button--white dp-button2" ng-click="gotoCountDetail(activity.activity_id)">计算详情</button>
+                    </div>-->
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <div class="list" style="margin-bottom:0px;margin-top:10px;">
+
+                <a class="clearfix" href="#/publish" style="padding:0px;display: block;">
+                    <img src="img/index/title.png" alt="" style="display: block;">
+                </a>
+                <a class="item  item-icon-right user-list-item f-32 " href="#/commodity_classification" style="padding:0px;color:#333;border-bottom:none;">
+                    <!--<img class="shangpinzhuanqu" src="img/baituan/shangpinzhuanqu.png" alt="">-->
+                    <div style="font-size: 16px;padding-left: 10px;line-height: 40px;float: left;">“好货精品，有你“购”完美”</div>
+                    <div class="go_classify">
+                        <span class="classify_word" style="line-height: 40px;">分类</span>
+                        <i class="icon ion-ios-arrow-right arrow c-9 "></i>
+                    </div>
+
+                </a>
+            </div>
+
+            <div id="content_tab">
+                <div class="row  row-center dm-goods-classify" style="height: 40px;line-height: 40px;">
+                    <div class="col nav-col {{pageConfig[0].order_key == 'weight' ? 'active' : ''}}" ng-click="changeActive('weight','none',pageConfig[0])">
+                        <span class="nav-item {{pageConfig[0].order_key == 'weight' ? 'active' : ''}}">最热</span>
+                    </div>
+                    <div class="col nav-col {{pageConfig[0].order_key == 'ing' ? 'active' : ''}}" ng-click="changeActive('ing','none',pageConfig[0])">
+                        <span class="nav-item {{pageConfig[0].order_key == 'ing' ? 'active' : ''}}" style="padding:0;">即将揭晓</span>
+                    </div>
+
+                    <div class="col nav-col {{pageConfig[0].order_key == 'time' ? 'active' : ''}}" ng-click="changeActive('time','none',pageConfig[0])">
+                        <span class="nav-item {{pageConfig[0].order_key == 'time' ? 'active' : ''}}">最新</span>
+                    </div>
+
+                    <!--<div class=" nav-col col " ng-click="changeActive('num',pageConfig[0].order_type,pageConfig[0])">
+                        <div class="nav-item clearfix {{pageConfig[0].order_key == 'num' ? 'active' : ''}}">
+                            <span class="fl ">价格</span>
+                            <div class="arrow-icon fl">
+                                <i class="icon iconfont-arrow-down arrow-up" style="{{pageConfig[0].order_key == 'num' && pageConfig[0].order_type == 'desc' ? 'color:#333;' : ''}}"></i>
+                                <i class="icon iconfont-arrow-down arrow-down" style="{{pageConfig[0].order_key == 'num' && pageConfig[0].order_type == 'asc' ? 'color:#333;' : ''}}"></i>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+            </div>
+            <ion-spinner icon="dots" class="dp-spinner spinner-dark spinner spinner-dots ng-hide mt-20" ng-show="pageConfig[0].isLoading " style="">
+                <svg viewBox="0 0 64 64">
+                    <g>
+                        <circle cx="16" cy="32" stroke-width="0" r="3">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".5;.6;.8;1;.8;.6;.5;.5" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="3;3;4;5;6;5;4;3" repeatCount="indefinite"></animate>
+                        </circle>
+                        <circle cx="32" cy="32" stroke-width="0" r="3.2239">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".5;.5;.6;.8;1;.8;.6;.5" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="4;3;3;4;5;6;5;4" repeatCount="indefinite"></animate>
+                        </circle>
+                        <circle cx="48" cy="32" stroke-width="0" r="4.2239">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".6;.5;.5;.6;.8;1;.8;.6" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="5;4;3;3;4;5;6;5" repeatCount="indefinite"></animate>
+                        </circle>
+                    </g>
+                </svg>
+            </ion-spinner>
+
+            <div class="dp-broad dp-broad--leftImg pos-r" id="class_details" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]" >
+                <div class="dp-broad__li clearfix" ng-repeat="broad in pageConfig[0].data track by $index" style="margin-top: 0;padding:10px;">
+                    <!--<div class="dp-broad__img" style="width: 75px;" ng-click="gotoDetail(broad.activity_id,broad.activity_type)">-->
+                    <div class="dp-broad__img" style="width: 30%;" ng-click="gotoDetail(broad.activity_id)">
+                        <img ng-src="{{broad.title_img}}"/>
+                    </div>
+
+                    <!--<div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id,broad.activity_type)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">-->
+                    <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 0px;  padding-left: 10px;overflow: hidden; ">
+                        <h3 class="dm-nowrap-2 h3_title">{{broad.goods_title}}</h3>
+                        <div class="row p-0 row-center" style="margin-top: 8px;">
+                            <div class="col p-0 relative">
+                                <span class="price1 relative">￥{{broad.need_num}}<i class="line_througn_strong"></i></span>
+                                <!--<span class="price2">￥{{broad.need_num}}</span>-->
+                            </div>
+                            <button ng-if="broad.activity_type == 4" style="width: 75px;height: 30px;font-size: 14px;font-weight: 500;border-radius: 10px;color: white;border: 1px solid #DD2726;background-color: #DD2726;">二人购</button>
+                            <button ng-if="broad.activity_type == 2" style="width: 75px;height: 30px;font-size: 14px;font-weight: 500;border-radius: 10px;color: white;border: 1px solid #DD2726;background-color: #DD2726;">十元购</button>
+                            <button ng-if="broad.activity_type == 6" style="width: 75px;height: 30px;font-size: 14px;font-weight: 500;border-radius: 10px;color: white;border: 1px solid #DD2726;background-color: #DD2726;">幸运购</button>
+                            <button ng-if="broad.activity_type == 7" style="width: 75px;height: 30px;font-size: 14px;font-weight: 500;border-radius: 10px;color: white;border: 1px solid #DD2726;background-color: #DD2726;">返现购</button>
+                            <button ng-if="broad.activity_type != 6 && broad.activity_type != 4 && broad.activity_type != 2 && broad.activity_type != 7" style="width: 75px;height: 30px;font-size: 12px;font-weight: 500;border-radius: 10px;color: white;border: 1px solid #DD2726;background-color: #DD2726;padding: 0;">一元GO</button>
+                        </div>
+                        <div class="row p-0 row-center" >
+                            <div class="col p-0">
+                                <div class="row p-0 row-center" style="margin-top: 10px;">
+                                    <div class="col p-0">
+                                        <div class="progress_box" style="color: #888888; float:none;">
+
+                                            <div class="progress border-radius-10" style="width: 100%; margin-bottom: 5px;"><span class="num border-radius-10" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+                                            <!--  <span >参与人数 <em style="color: #519fff;">{{broad.need_num - broad.remain_num}}/{{broad.need_num}}</em></span> -->
+                                        </div>
+
+                                    </div>
+                                    <!--<div style="padding:0 8px;font-size:10px;color:#666;">
+                                        {{((broad.need_num - broad.remain_num) / broad.need_num) * 100 | number:2}} %
+                                    </div>-->
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row p-0 row-center" style="margin-top: 10px;">
+                            <div class="col p-0">
+                                <span class="activity_id">{{broad.activity_id}}期</span>
+                            </div>
+
+                            <div class="col p-0 work_off">
+                                <span>已售出{{broad.need_num-broad.remain_num}}份</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<i class="dp-hot_sale red_tag" ng-if="::(pageConfig[0].order_key == 'weight' && broad.activity_type == 1)"></i>-->
+                    <i class="dp-broad__tag blue_tag" ng-if="::(broad.activity_type == 2)"></i>
+                    <span class="limit-flag" ng-if="(broad.activity_type == 3)" style="top:3px;right: 6px;">限购10人次</span>
+                    <!--下面是我添加二人云购图标的-->
+                    <i class="two_people__tag red_tag" ng-if="(broad.activity_type == 4)"></i>
+                    <div id="hot_bq" ng-if="::(pageConfig[0].order_key == 'weight')" style="top:3px;z-index:22222;">
+                        <img src="img/pintuan_icon/hot.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <p ng-show="!pageConfig[0].isLoading && pageConfig[0].pageOver" class="dp-more dp-more--bottom">没有更多啦！</p>
+        </div>
+
+        <ion-infinite-scroll  ng-if="!pageConfig[0].pageOver" immediate-check='false'  on-infinite="getMoreData()" >
+        </ion-infinite-scroll>
+    </ion-content>
+    <a id="index_icon_top" ng-click="scrollTop()" style="display: none;">
+		<img src="img/icon/top_icon.png" />
+	</a>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

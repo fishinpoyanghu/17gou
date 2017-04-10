@@ -1,0 +1,82 @@
+<!--<ion-view view-title="注册" hide-nav-bar="false">-->
+<ion-view view-title="注册" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scroll="false">
+
+        <div class="dp-blank20"></div>
+
+        <div class="dp-inputbox__container">
+
+          <view-input type="phone" dp-input-hint="registerPageInputHint.phoneNumberHint"
+                      dp-input-model="registerInfo.phoneNumber" dp-input-max-length="11"></view-input>
+         <div class="dp-inputbox dp-inputbox--icon">
+            <div class="dp-inputbox__title">
+              <img src="img/code-icon.png" alt="" style="width: 22px;height: 22px;margin-top: 11px;margin-left: 5px;display: inline-block;">
+            </div>
+            <div class="dp-inputbox__main" id="inputContain">
+              <input type="text" placeholder="请输入右边的验证码" ng-model="security.code" class="ng-pristine ng-untouched   ">
+            </div>
+            <div class="dp-inputbox__buttons" style="display: block;right:0;top:14px;height:42px;width:110px;" ng-click="changeGetCodeUrl()">
+                <img ng-src="{{security.params}}" alt="图形验证码">
+            </div>
+          </div>
+
+          <view-input type="verify" dp-input-model="registerInfo.verificationCode" dp-input-max-length="6"
+                      dp-input-verify-click="sendSmsVerificationCode()"
+                      dp-input-verify-txt="registerInfo.verificationButtonText" ></view-input>
+            <!--<view-input type="nickname" dp-input-model="registerInfo.nickname" dp-input-max-length="20"></view-input>-->
+            <div style="position: relative">
+                <!--<view-input type="password" dp-input-hint="registerPageInputHint.passwordHint"
+                            dp-input-model="registerInfo.password" dp-input-max-length="15" ng-mouseover="pwd_focus()" ng-mouseout="pwd_hide()"></view-input>-->
+                <!--<i style="width: 10px;height: 10px;background: #F2F43D;position: absolute;z-index: 1;transform: rotate(45deg);border-radius: 1px;top: 34.5%;left: 48%;" ng-if="pwd_box"></i>
+                <div style="width: 50%;height: 30px; background: #F2F43D;position: absolute;z-index: 3; left: 50%;transform: translateX(-50%);text-align: center; top: 35.2%; border-radius: 5px;" ng-if="pwd_box">-->
+                <i style="width: 10px;height: 10px;background: #F2F43D;position: absolute;z-index: 1;transform: rotate(45deg);border-radius: 1px;top: 86.5%;left: 48%;" ng-if="pwd_box"></i>
+                <div style="width: 55%;height: 30px; background: #F2F43D;position: absolute;z-index: 3; left: 50%;transform: translateX(-50%);text-align: center; top: 97.5%; border-radius: 5px;" ng-if="pwd_box">
+
+                <span style="color:red; font-size: 14px;line-height: 30px;">
+                    密码必须由数字和字母组成
+                </span>
+                </div>
+            </div>
+
+
+          <!--<view-input type="password" dp-input-hint="registerPageInputHint.passwordAgainHint"
+                      dp-input-model="registerInfo.passwordAgain" dp-input-max-length="15"></view-input>-->
+          <!--<view-input type="invite" dp-input-hint="registerPageInputHint.inviteCodeHint"
+                      dp-input-model="registerInfo.inviteCode" dp-input-max-length="10" dp-read-only="{{isReadOnly()}}"></view-input>-->
+
+          <!--<input type='hidden' dp-input-hint="registerPageInputHint.inviteCodeHint"
+                      dp-input-model="registerInfo.inviteCode" dp-input-max-length="10" dp-read-only="{{isReadOnly()}}">-->
+
+
+        </div>
+
+        <div>
+            <img class="wenhao fl" src="img/icon/wenhao.png" alt="">
+            <div class="wxts2">
+                <span>温馨提示：</span>
+                密码将随验证码发送到您的手机
+            </div>
+
+        </div>
+
+        <div class="padding-44">
+            <button class="button button-block dp-button dp-button2"
+                    ng-class="{true:'dp-button--on2',false:'dp-button--off2'}[isEnableRegister()]"
+                    ng-click="registerNext()" ng-disabled="!isEnableRegister()" style="border-radius: 15px; opacity: 1;margin-top: -37px; margin-bottom: 20px;">注册</button>
+
+            <div class="dp-agreement tac" ng-click="clickAgreement()">
+                <i class="icon " ng-class="{true:'clicked',false:''}[agreement]"></i>
+              <a href="#/question/term_of_service" class="text">我已阅读并同意《用户服务协议》</a>
+            </div>
+        </div>
+
+    </ion-content>
+
+
+</ion-view>

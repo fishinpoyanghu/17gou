@@ -1,0 +1,193 @@
+<ion-view view-title="推荐消费详情" hide-nav-bar="isHideNaviBar"  >
+
+    <div>
+        <div id="line_chart_share2" class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }}"  ng-click="show_aside()">
+            <div class="h3_title">
+                <span>邀请注册</span>
+                <i ng-if="down_icon" class="ion-chevron-down down_icon"></i>
+                <i ng-if="up_icon" ng-click="closeClass()" class="ion-chevron-up down_icon"></i>
+            </div>
+
+        </div>
+        <div ng-if="aside" id="line_chart_aside" style="top:{{leftBarTop}};" ng-click="close_aside()">
+            <div class="white_bg">
+                <ul class="clear">
+                    <li class="{{type == '1' ? 'active' : ''}}" ng-click="changeList('1')">
+                        <span class="nav-item {{type == '1' ? 'active' : ''}} ">邀请注册收益报表</span>
+                    </li>
+                    <li class="{{type == '2' ? 'active' : ''}} " ng-click="changeList('2')">
+                        <span class="nav-item {{type == '2' ? 'active' : ''}} ">邀请注册下级数表</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ion-content scrollbar-y="true" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:88px;' : 'top:88px;') }}">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+
+
+        <div id="line_chart">
+            <!--显示邀请注册收益报表-->
+            <div ng-show="type==1">
+                <div>
+                    <!--月份-->
+                    <div id="yuefen" ng-click="show_month()">
+                        <div class="h3_title">
+                        <span>
+                            {{dd.year}}年-{{dd.month}}月份
+                            <i ng-if="down_icon_month" class="ion-chevron-down down_icon"></i>
+                        <i ng-if="up_icon_month" ng-click="closeClass()" class="ion-chevron-up down_icon"></i></span>
+
+                        </div>
+
+                    </div>
+                    <div ng-if="month_box" id="yuefen_aside" ng-click="close_month()">
+                        <div class="white_bg">
+                            <ul class="clear">
+                                <li ng-click="changeMon(ym.year,ym.month)" ng-repeat="ym in yms">
+                                    <span class="nav-item">{{ym.year}}-{{ym.month}}月度</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--说明的标签-->
+                <div id="bg_line" class="row">
+                    <div class="col wg-hg">合计收益</div>
+                    <div class="col wg-hg">一级收益</div>
+                    <div class="col wg-hg">二级收益</div>
+                    <div class="col wg-hg">三级收益</div>
+                </div>
+
+
+                <!--收益流水图-->
+                <div class="line_tu">
+                    <div class="yuan_word">（元）</div>
+                    <canvas id="myChart" height="250"></canvas>
+                    <div class="tian_word">（天）</div>
+                </div>
+                <!--加载中toast-->
+                <div ng-if="toast" id="loadingToast" class="weui_loading_toast" >
+                    <div class="weui_mask_transparent"></div>
+                    <div class="weui_toast">
+                        <div class="weui_loading">
+                            <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+                            <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+                        </div>
+                        <p id="loadingTips" class="weui_toast_content">用户，很抱歉，加载有点慢，请耐心等待~~</p>
+                    </div>
+                </div>
+                <!--收益流水记录-->
+                <div ng-if="lineChart" id="earnings_water">
+                    <div class="row top_row">
+                        <div class="col">日期</div>
+                        <div class="col">收益</div>
+                        <div class="col">来源</div>
+                    </div>
+                    <div class="row bot_row" ng-repeat="datelist in sydata.datelist">
+                        <div class="col txt_left">
+                            <span class="pd_left">{{format(datelist.ut)}}</span>
+                        </div>
+                        <div class="col txt_center">{{datelist.money}}</div>
+                        <div class="col txt_center">{{datelist.lev}}</div>
+                    </div>
+                </div>
+
+                <!--温馨提示-->
+                <p class="wxts">温馨提示：XXXXXXXXXXXXXXXXXX</p>
+            </div>
+
+            <!--显示邀请注册下级数表-->
+            <div ng-show="type==2">
+
+                <div>
+                    <!--月份-->
+                    <div id="yuefen" ng-click="show_month()">
+                        <div class="h3_title">
+                        <span>
+                            {{dd.year}}年-{{dd.month}}月份
+                            <i ng-if="down_icon_month" class="ion-chevron-down down_icon"></i>
+                        <i ng-if="up_icon_month" ng-click="closeClass()" class="ion-chevron-up down_icon"></i></span>
+
+                        </div>
+
+                    </div>
+                    <div ng-if="month_box" id="yuefen_aside" ng-click="close_month()">
+                        <div class="white_bg">
+                            <ul class="clear">
+                                <li ng-click="changeMon(ym.year,ym.month)" ng-repeat="ym in yms">
+                                    <span class="nav-item">{{ym.year}}-{{ym.month}}月度</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--说明的标签-->
+                <div id="bg_line" class="row">
+                    <div class="col wg-hg">一级收益</div>
+                    <div class="col wg-hg">二级收益</div>
+                    <div class="col wg-hg">三级收益</div>
+                </div>
+
+
+                <!--收益流水图-->
+                <div class="line_tu">
+                    <div class="yuan_word">（人）</div>
+                    <canvas id="myChart2" height="250"></canvas>
+                    <div class="tian_word">（天）</div>
+                </div>
+
+                <!--收益流水记录-->
+                <div id="earnings_water">
+                    <div class="row top_row">
+                        <div class="col">日期</div>
+                        <div class="col">人数</div>
+                        <div class="col">来源</div>
+                    </div>
+                    <div class="row bot_row" ng-repeat="datelist in sydata.datelist">
+                        <div class="col txt_left">
+                            <span class="pd_left">{{format(datelist.ut)}}</span>
+                        </div>
+                        <div class="col txt_center">{{datelist.money}}</div>
+                        <div class="col txt_center" ng-if="datelist.type==0">{{datelist.nick}}(手机号)</div>
+                        <div class="col txt_center" ng-if="datelist.type==1">{{datelist.nick}}(微信号)</div>
+                    </div>
+                </div>
+
+                <!--温馨提示-->
+                <p class="wxts">温馨提示：asdfasdfasdfasd</p>
+            </div>
+            <!--<p ng-if="loadFinished" class="dp-more dp-more&#45;&#45;bottom">{{endNoticeInfo}}~~</p>
+            <ion-infinite-scroll ng-if='!loadFinished' on-infinite="loadMore()">
+            </ion-infinite-scroll>-->
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

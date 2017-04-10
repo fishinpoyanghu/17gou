@@ -1,0 +1,133 @@
+<ion-view view-title="TA的购买记录" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+  <style>
+    .mydispage-page .tabs {
+        top:0 !important;
+    }
+  </style>
+  
+
+  <ion-content class="mydispage-page">
+      <div id="other_indiana_record">
+          <div class="dp-account" style="height: 215px;">
+              <div class="dp-account__img">
+                  <img src="{{uicon}}" alt="" onerror="this.src='img/default_icon.png'"/>
+              </div>
+              <div class="dp-account__name">{{unick}}</div>
+          </div>
+
+      </div>
+
+
+    <!--162 47 20-->
+
+    <div id="other_indiana_record2" style="position:absolute; top: 162px; left: 0; right: 0; bottom: 0;">
+      <ion-tabs class="tabs-top dp-tabs dp-tabs--border">
+        <ion-tab title="Ta购买过的商品">
+          <view-list-view type="infinite"
+                          dp-request-url="{{::indianaRequestUrl}}"
+                          dp-request-params="::indianaRequestParams"
+                          dp-per-request-size="10"
+                          dp-call-back="indianaCallBack">
+            <view-list-item ng-repeat="activity in indianaList">
+              <view-indiana-record-item activity="::activity" ng-hide="activity.goods_title==null"
+                                        callback="itemCallBack" type="others"></view-indiana-record-item>
+            </view-list-item>
+          </view-list-view>
+
+          <!--跟买-->
+          <view-buy-pop head-title="跟买购买次数" button-text="buttonText" ng-init="buttonText='跟买购买'"></view-buy-pop>
+
+        </ion-tab>
+
+        <ion-tab title="Ta的晒单">
+          <view-list-view type="infinite" dp-request-url="{{::ShareRequestUrl}}"
+                          dp-request-params="::winRequestParams"
+                          dp-per-request-size="10" dp-call-back="winCallBack">
+              <div class="dp-postList__li" ng-repeat="hisWinRecord in winList">
+
+                  <div class="dp-postList__link" ng-click="goToHisPage(hisWinRecord.uicon,hisWinRecord.unick,hisWinRecord.uid)">
+                      <div class="dp-postList__user">
+                          <img class="user_avatar" ng-src="{{::hisWinRecord.uicon}}" ng-click="goToHisPage(hisWinRecord.uicon,hisWinRecord.unick,hisWinRecord.uid)" />
+
+                          <div class="user_info">
+                              <!--<span class="user_info_time">{{order.show_time}}</span>-->
+                              <h3 class="user_info_name">{{::hisWinRecord.unick}}</h3>
+                              <span class="user_info_id">{{::hisWinRecord.show_time}}</span>
+                          </div>
+                      </div>
+                      <div class="dp-postList__content">
+                          <a ng-href="#/shareDetails/{{::hisWinRecord.show_id}}">
+                              <h3 class="content_title">{{::hisWinRecord.show_title}}</h3>
+                              <h2 style="color: #888888;"> 奖品：{{::hisWinRecord.goods_title}}</h2>
+                              <!--<h2 style="color: #888888;"> {{order.goods_subtitle}}</h2>-->
+                              <h2 style="color: #888888;"> 期号：{{::hisWinRecord.activity_id}}</h2>
+                              <p class="content_desc">{{::hisWinRecord.show_desc}}</p>
+                          </a>
+
+                          <view-image-list dp-data="hisWinRecord.show_imgs" dp-toggle="true"></view-image-list>
+                          <div class="row row-center p-0">
+                              <div class="col text-right" style="padding-right:20px;">
+                                  <button class="button button-small button-clear" style="{{order.is_zan ? 'color:#f44336;' : ''}}" ng-click="zan(hisWinRecord)">
+                                      <i class="icon iconfont-like"></i> <span>{{hisWinRecord.zans}}</span>
+                                  </button>
+
+                              </div>
+
+                              <a class="button button-small button-clear" href="#/commentDetails/{{::hisWinRecord.show_id}}">
+                                  <i class="icon iconfont-comment" style="vertical-align: middle;"></i> <span>{{::hisWinRecord.comments}}</span>
+                              </a>
+
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+            <!--<div class="dp-itemList__li" ng-repeat="hisWinRecord in winList"
+                 ng-hide="hisWinRecord.goods_title==null">
+              <div class="dp-itemList__content" ng-click="gotoDetail(hisWinRecord.activity_id)">
+                <div class="dp-itemList__img">
+                  <img ng-src="{{::hisWinRecord.goods_img}}"/>
+
+                </div>
+                <div class="dp-itemList__title">{{::hisWinRecord.goods_title}}</div>
+                <div class="dp-itemList__desc">
+                  <p>期号： <em class="blue">{{::hisWinRecord.activity_id}}</em></p>
+
+                  <p>总需：{{::hisWinRecord.need_num}} 人次</p>
+
+                  <p>幸运号码： {{::hisWinRecord.lucky_num}}</p>
+
+                  <p>本期参与： {{::hisWinRecord.user_num}} 人次</p>
+                </div>
+              </div>
+            </div>-->
+
+            <!--参与纪录为空时-->
+            <div class="dp-emptyBlock" style="display: block;" ng-show="isWinRecordEmpty">
+              <div class="dp-emptyBlock__container">
+                <img src="img/ic_head3.png" width="109" class="img" alt=""/>
+
+                <p>TA还没有中奖，说不定下次就中了呢</p>
+                <button class="dp-button dp-button--yellow" ng-click="startToMainPage()"
+                        style="margin: auto; margin-top: 40px; width: 130px; ">立即购买
+                </button>
+              </div>
+            </div>
+          </view-list-view>
+
+        </ion-tab>
+      </ion-tabs>
+    </div>
+  </ion-content>
+
+  <!--查看亿七购号码-->
+  <view-buy-number-pop comp-id="1-4-1" title="他的号码"></view-buy-number-pop>
+
+
+</ion-view>
+

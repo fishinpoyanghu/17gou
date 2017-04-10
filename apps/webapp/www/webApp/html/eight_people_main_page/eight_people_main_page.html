@@ -1,0 +1,135 @@
+<ion-view view-title="团长免费首页" hide-nav-bar="isHideNaviBar"  >
+
+    <!--<ion-nav-buttons side="left">
+      <a class="dp-button button-icon iconfont-search-outline" style="font-size: 2rem; z-index:-1" href="#/search"></a>
+    </ion-nav-buttons>-->
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+    <style>
+        .limit-flag {
+            display: block;
+            height: 19px;
+            margin-left: 5px;
+            line-height: 20px;
+            background-color: #2af;
+            color: #fff;
+            padding: 0 3px;
+            border-radius: 2px;
+            position: absolute;
+            top: 124px;
+            right: 3px;
+        }
+
+        .limit-flag::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 5px 10px;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom-color: #2af;
+            position: absolute;
+            bottom: 0;
+            left: -5px;
+        }
+        .search_img{
+            width: 32px;
+            background-size: 100%;
+            margin-top: -4px;
+            margin-left: 10px;
+        }
+
+        .erweima_img{
+            width: 32px;
+            background-size: 100%;
+            margin-top: 3px;
+            margin-right: 10px;
+        }
+
+
+
+    </style>
+
+
+    <!--<div style="top:{{inWechatB ? '0' : '44px'}};display: block;height: 32px;line-height:32px;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 1;color:#fff;padding-left:10px;" class="clearfix" ng-if="show_attention" ng-click="go_attention()">
+         <img src="img/logo-small2.png" alt="" style="width:28px;vertical-align:middle;background-size: cover;">
+         <span style="vertical-align: middle;margin-left: 8px;">点击关注亿七购官方微信</span>
+         <span class="fr" style="padding: 0 15px;display: inline-block;font-size: 16px;vertical-align:middle;" ng-click="close_attention($event)">X</span>
+     </div>-->
+
+
+
+    <ion-content has-bouncing="false" padding="false" scrollbar-y="true">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <!--轮播-->
+        <!--<view-slide-box comp-id="'1-1-001'" type="title" dp-slides="slides" ></view-slide-box>-->
+        <img src="img/pintuan/barentuan.jpg" alt="">
+        <p class="text-center" style="color: #f72331;padding: 5px;font-size: 12px;border: 1px solid #ededed;" ng-show="isIosApp">本活动和苹果公司无关，解释权归本公司所有</p>
+        <!--<view-text-scoll interval="3000" scoller-height="24" text-list={{getLuckyData}} ng-if="getLuckyData.length > 0"></view-text-scoll>-->
+
+            <div id="pintuan_list" class="dp-broad dp-broad--leftImg pos-r" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]" style="margin-top: -5px;">
+                <div class="dp-broad__li clearfix  center margin-bottom-8px" ng-repeat="broad in pageConfig[0].data track by $index" style="margin-top: 0;padding:10px;">
+                    <!--<div class="dp-broad__img" style="width: 75px;" ng-click="gotoDetail(broad.activity_id,broad.activity_type)">-->
+                    <div class="dp-broad__img new_img" ng-click="gotoPintuan_Detail(broad.goods_id)">
+                        <img ng-src="{{broad.main_img}}"/>
+                        <!--<img src="img/pintuan_icon/index2.jpg" alt="">-->
+                    </div>
+
+                    <!--<div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id,broad.activity_type)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">-->
+                    <div class="dp-broad__content" ng-click="gotoPintuan_Detail(broad.goods_id)" style="position:relative;overflow: hidden; ">
+                        <h3 class="dm-nowrap-2 f-28 font-size-16">{{broad.title}}</h3>
+
+                        <div class="row p-0 row-center" >
+                            <div class="col p-0">
+                                <!--<div class="row p-0 row-center" style="margin-top: 10px;">
+                                    <div class="col p-0">
+                                        <div class="progress_box" style="color: #888888; float:none;">
+
+                                            <div class="progress" style="width: 100%; margin-bottom: 5px;"><span class="num" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+
+                                        </div>
+
+                                    </div>
+                                    <div style="padding:0 8px;font-size:10px;color:#666;">
+                                        {{((broad.need_num - broad.remain_num) / broad.need_num) * 100 | number:2}} %
+                                    </div>
+                                </div>-->
+                                <!--拼团价-->
+                                <div class="col p-0 text-align-left">
+                                    <span class="pintuan_price1"><i style="color:#B52A2F;">￥</i><em class="font-30">{{broad.price}}</em></span>
+                                    <span class="pintuan_price2">￥{{broad.original_price}}</span>
+                                </div>
+                            </div>
+                            <button  class="barpeople_button_red2"><em class="baren_btn">{{broad.people_num}}人团</em><span class="tzmf_btn">团长免费</span></button>
+                        </div>
+                    </div>
+                    <!--<i class="dp-hot_sale red_tag" ng-if="::(pageConfig[0].order_key == 'weight' && broad.activity_type == 1)"></i>
+                    <i class="dp-broad__tag blue_tag" ng-if="::(broad.activity_type == 2)"></i>
+                    <span class="limit-flag" ng-if="(broad.activity_type == 3)" style="top:3px;right: 6px;">限购10人次</span>-->
+                    <!--下面是我添加二人云购图标的-->
+                   <!-- <i class="two_people__tag red_tag" ng-if="(broad.activity_type == 4)"></i>-->
+
+                </div>
+
+            </div>
+
+
+            <p ng-show="!pageConfig[0].isLoading && pageConfig[0].pageOver" class="dp-more dp-more--bottom">没有更多啦～</p>
+        </div>
+
+        <ion-infinite-scroll  ng-if="!pageConfig[0].pageOver" immediate-check='false'  on-infinite="getMoreData()" >
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

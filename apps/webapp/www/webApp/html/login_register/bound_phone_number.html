@@ -1,0 +1,94 @@
+<style>
+    .footer_tab{
+        width: 100%;
+        height: 49px;
+        color: #888888;
+        z-index: 1;
+        background-color: #fefefe;
+    }
+    .icon_pic{
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #d4d4d4;
+    }
+    .icon_pic li{
+        width: 20%;
+        float: left;
+        display: block;
+    }
+    .bar-title{
+        margin-top: -11px;
+        display: block;
+    }
+</style>
+
+<!--<ion-view view-title="注册" hide-nav-bar="false">-->
+<ion-view view-title="绑定手机号码" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <!--<ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>-->
+
+    <ion-content scroll="false" style="margin-bottom: 50px;">
+
+        <div class="dp-blank20"></div>
+
+        <div class="dp-inputbox__container">
+
+          <view-input type="phone" dp-input-hint="registerPageInputHint.phoneNumberHint"
+                      dp-input-model="registerInfo.phoneNumber" dp-input-max-length="11"></view-input>
+         <div class="dp-inputbox dp-inputbox--icon">
+            <div class="dp-inputbox__title">
+              <img src="img/code-icon.png" alt="" style="width: 22px;height: 22px;margin-top: 11px;margin-left: 5px;display: inline-block;">
+            </div>
+            <div class="dp-inputbox__main" id="inputContain">
+              <input type="text" placeholder="请输入右边的验证码" ng-model="security.code" class="ng-pristine ng-untouched">
+            </div>
+            <div class="dp-inputbox__buttons" style="display: block;right:0;top:14px;height:42px;width:110px;" ng-click="changeGetCodeUrl()">
+                <img ng-src="{{security.params}}" alt="图形验证码">
+            </div>
+          </div>
+          <view-input type="verify" dp-input-model="registerInfo.verificationCode" dp-input-max-length="6"
+                      dp-input-verify-click="sendSmsVerificationCode()"
+                      dp-input-verify-txt="registerInfo.verificationButtonText" ></view-input>
+
+           
+
+        </div>
+
+        <div class="padding">
+            <button class="button button-block dp-button"
+                    ng-class="{true:'dp-button--on',false:'dp-button--off'}[isEnableRegister()]"
+                    ng-click="bindphone()" ng-disabled="!isEnableRegister()" style="font-size: 18px;">确定</button>
+
+
+        </div>
+
+    </ion-content>
+
+<!--    <ion-footer-bar id="footer_tab">
+        <div class="row pd-0 red-circle">
+            <div class="col pd-0" ui-sref="tab.mainpage">
+                <div class="ion-ios-home-outline font-30" style="margin-top: -5px;"></div>
+                <span class="bar-title">首页</span>
+            </div>
+            <div class="col pd-0" ui-sref="tab.preferential_activities">
+                <img class="img_icon" src="img/icon/preferential_line.png" alt="">
+                <span class="bar-title">活动专区</span>
+            </div>
+            <div class="col pd-0" ui-sref="tab.shareOrder">
+                <img class="img_icon2" src="img/icon/shaidan_line.png" alt="">
+                <span class="bar-title">幸运晒单</span>
+            </div>
+
+            <div class="col pd-0" ui-sref="tab.account2">
+                <div class="iconfont-person-outline font-30" style="margin-top: -3px;margin-bottom: 6px;font-size: 25px;"></div>
+                <span class="bar-title" style="margin-top: -11px;">我</span>
+            </div>
+
+        </div>
+    </ion-footer-bar>-->
+
+    <view-nav-footer activity="activity"></view-nav-footer>
+</ion-view>

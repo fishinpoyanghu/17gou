@@ -1,0 +1,57 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com-plugin-dmdevice": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "com-plugin-dmsafari": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "com.damai.damaiwechat": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.damaiapp.yunke"
+        }
+    },
+    "dependent_plugins": {}
+}

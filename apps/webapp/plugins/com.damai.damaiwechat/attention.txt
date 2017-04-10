@@ -1,0 +1,48 @@
+//-------------------支付注意事项-----------------------------
+
+1、  修改WXEntryActivity.java的package名
+
+2、  修改WXPayEntryActivity的package名
+
+3、  修改plugin.xml包中的路径WXEntryActivity.java和WXPayEntryActivity.java 的  <config-file -activity -路径
+	eg：应用包名+.wxapi.WXEntryActivity   and  应用包名+.wxapi.WXEntryActivity
+
+
+4、  修改plugin.xml包中的路径WBShareActivity.java <config-file -activity -路径
+
+
+5、 修改 WXEntryActivity  WXPayEntryActivity  WBShareActivity 的映射文件 <source-file src 
+	eg：<source-file src="src/android/WXEntryActivity.java" 				target-dir="src/com/kangbm/kbmapp/doctor/wxapi" />
+
+
+6、修改WXPayEntryActivity.java文件中的R文件  
+	格式：包名+.R
+	eg：import com.kangbm.kbmapp.doctor.R;
+
+
+//-------------------登录分享事项-----------------------------
+
+1、微博后台配置注意事项 包名+签名
+
+新浪登录回调key ：wb_uid  、 access_token
+
+
+2、微信后台配置注意事项 包名+签名
+	回调key ：code
+
+3、qq后台配置注意事项 包名+签名
+  回调key ：open_id   、 access_token
+
+4、修改plugin.xml的scheme
+		格式为：tencent + app_id
+	  <data android:scheme="tencent100424468" />  
+
+ 
+
+
+
+
+
+
+
+

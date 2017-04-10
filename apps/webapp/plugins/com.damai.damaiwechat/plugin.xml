@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.damai.damaiwechat" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>dmwechat</name>
+	<js-module name="dmwechat" src="www/dmwechat.js">
+		<clobbers target="cordova.plugins.dmwechat" />
+	</js-module>
+
+    <!-- android平台 -->
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="dmwechat">
+				<param name="android-package" value="com.damai.damaiwechat.dmwechat" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml" />
+
+        <!-- 添加权限 -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_LOGS" />
+            <uses-permission android:name="android.permission.CALL_PHONE" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.GET_TASKS" />
+            <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+            <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+            <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+            <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+            <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+        </config-file>
+
+        <!-- 添加activity -->
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<meta-data
+				android:name="UMENG_APPKEY"
+				android:value="574e54c0e0f55a1c770028ce" ></meta-data>
+				
+            <!-- 友盟 -->
+            <activity
+                android:name="com.umeng.socialize.editorpage.ShareActivity"
+                android:theme="@style/Theme.UMDefault"
+                android:excludeFromRecents="true" />
+            
+            <!-- 微信 -->
+            <activity
+                android:name="com.damaiapp.yunke.wxapi.WXEntryActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+            <!-- 微博 -->
+            <activity
+                android:name="com.damaiapp.yunke.WBShareActivity"
+                android:configChanges="keyboardHidden|orientation"
+                android:screenOrientation="portrait" >
+                <intent-filter>
+                    <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                </intent-filter>
+            </activity> 
+            <activity
+                android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+                android:configChanges="keyboardHidden|orientation"
+                android:windowSoftInputMode="adjustResize"
+                android:exported="false" >
+            </activity>
+			<service 
+                android:name="com.sina.weibo.sdk.net.DownloadService"
+                android:exported="false">
+            </service>
+
+            <!-- QQ，Qzone -->
+            <activity
+              android:name="com.tencent.tauth.AuthActivity"
+              android:launchMode="singleTask"
+              android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+            </activity>
+            <activity          
+                android:name="com.tencent.connect.common.AssistActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />  
+			<!-- 微信支付-->
+			<activity
+				android:name="com.damaiapp.yunke.wxapi.WXPayEntryActivity"
+				android:exported="true"
+				android:launchMode="singleTop" />
+			<!-- 支付宝网页支付-->	
+			<activity
+				android:name="com.alipay.sdk.app.H5PayActivity"
+				android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+				android:exported="false"
+				android:screenOrientation="behind"
+				android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        </config-file>
+
+        <!-- Plugin source code -->
+		<!-- <source-file src="src/android/dmwechat.java" target-dir="src/com/damai/damaiwechat" /> -->
+
+        <info>
+            *  注意：需要自己添加一下插件中的lib文件夹(即使用group引用，参与编译)...下周写个脚本
+            *　　　　　　　　┏┓　　　┏┓+ +
+            *　　　　　　　┏┛┻━━━┛┻┓ + +
+            *　　　　　　　┃　　　　　　　┃ 　
+            *　　　　　　　┃　　　━　　　┃ ++ + + +
+            *　　　　　　 ████━████ ┃+
+            *　　　　　　　┃　　　　　　　┃ +
+            *　　　　　　　┃　　　┻　　　┃
+            *　　　　　　　┃　　　　　　　┃ + +
+            *　　　　　　　┗━┓　　　┏━┛
+            *　　　　　　　　　┃　　　┃　　　　　　　　　　　
+            *　　　　　　　　　┃　　　┃ + + + +
+            *　　　　　　　　　┃　　　┃　　　　　
+            *　　　　　　　　　┃　　　┃ + 　　　　
+            *　　　　　　　　　┃　　　┃
+            *　　　　　　　　　┃　　　┃　　+　　　　　　　　　
+            *　　　　　　　　　┃　 　　┗━━━┓ + +
+            *　　　　　　　　　┃ 　　　　　　　┣┓
+            *　　　　　　　　　┃ 　　　　　　　┏┛
+            *　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
+            *　　　　　　　　　　┃┫┫　┃┫┫
+            *　　　　　　　　　　┗┻┛　┗┻┛+ + + +
+            *       Code is far away from bug with the animal protecting　　　　　　
+        </info>
+		    
+		<!-- src -->
+		<source-file src="src/android/dmwechat.java" target-dir="src/com/damai/damaiwechat" />
+		<!--<source-file src="src/android/WBShareActivity.java" target-dir="src/com/damai/damaiwechat" />-->
+		<!--<source-file src="src/android/WXEntryActivity.java" target-dir="src/com/kangbm/kbmapp/doctor/wxapi" />-->
+		<source-file src="src/android/WXEntryActivity.java" target-dir="src/com/damaiapp/yunke/wxapi" />
+		<source-file src="src/android/WXPayEntryActivity.java" target-dir="src/com/damaiapp/yunke/wxapi" />
+		<source-file src="src/android/WBShareActivity.java" target-dir="src/com/damaiapp/yunke" />
+		
+		<!-- pay -->
+		<source-file src="src/android/pay/PayManager.java" target-dir="src/com/damai/damaiwechat/pay" />
+		<source-file src="src/android/pay/alipay/AlipayResultListener.java" target-dir="src/com/damai/damaiwechat/pay/alipay" />
+		<source-file src="src/android/pay/alipay/AlipayUtil.java" target-dir="src/com/damai/damaiwechat/pay/alipay" />
+		<source-file src="src/android/pay/alipay/Base64.java" target-dir="src/com/damai/damaiwechat/pay/alipay" />
+		<source-file src="src/android/pay/alipay/PayResult.java" target-dir="src/com/damai/damaiwechat/pay/alipay" />
+		<source-file src="src/android/pay/wx/AppRegister.java" target-dir="src/com/damai/damaiwechat/pay/wx" />
+		<source-file src="src/android/pay/wx/Constants.java" target-dir="src/com/damai/damaiwechat/pay/wx" />
+		<source-file src="src/android/pay/wx/WXPayUtil.java" target-dir="src/com/damai/damaiwechat/pay/wx" />
+		<source-file src="src/android/pay/wx/WXRequestData.java" target-dir="src/com/damai/damaiwechat/pay/wx" />
+		
+	   
+		<!-- <source-file src="src/android/res" weak="false" target-dir="res"/> -->
+		<!-- <source-file src="src/android/libs" weak="false" target-dir="libs"/> -->
+		<!-- libs -->
+		<source-file src="src/android/libs/arm64-v8a/libweibosdkcore.so" target-dir="libs/arm64-v8a"/>
+		<source-file src="src/android/libs/armeabi/libweibosdkcore.so" target-dir="libs/armeabi"/>
+		<source-file src="src/android/libs/x86/libweibosdkcore.so" target-dir="libs/x86"/>
+		<!-- <source-file src="src/android/libs/armeabi-v7a/libweibosdkcore.so" target-dir="libs/armeabi-v7a"/>
+		<source-file src="src/android/libs/mips/libweibosdkcore.so" target-dir="libs/mips"/>
+		<source-file src="src/android/libs/mips64/libweibosdkcore.so" target-dir="libs/mips64"/>	
+		<source-file src="src/android/libs/x86_64/libweibosdkcore.so" target-dir="libs/x86_64"/>-->
+		<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/httpmime-4.1.3.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/mta-sdk-1.6.2.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/open_sdk_r5509.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_QQZone_3.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_Sina.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_tencentWB_1.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_tencentWB_2.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_tencentWB_3.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_WeiXin_1.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/SocialSDK_WeiXin_2.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/umeng_social_sdk.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/weiboSDKCore_3.1.2.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/alipaySDK-20150818.jar" target-dir="libs"/>
+		<!-- umeng已集成了这个包 -->
+		<!-- <source-file src="src/android/libs/libammsdk.jar" target-dir="libs"/> -->
+		   
+		<!-- res/values-->
+		<source-file src="src/android/res/values/umeng_socialize_colors.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/umeng_socialize_strings.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values/umeng_socialize_style.xml" target-dir="res/values"/>
+		
+		<!-- res/drawable-->
+		<source-file src="src/android/res/drawable/umeng_socialize_action_back.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_action_back_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_action_back_selected.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_at_button.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_at_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_at_selected.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_bind_bg.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_blue.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_grey.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_grey_blue.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_login.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_login_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_login_pressed.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_red.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_red_blue.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_white.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_button_white_blue.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_default_avatar.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_douban_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_douban_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_facebook.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_fetch_image.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_follow_check.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_follow_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_follow_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_google.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_light_bar_bg.9.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_location_ic.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_location_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_location_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_nav_bar_bg.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_oauth_check.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_oauth_check_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_oauth_check_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_qq_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_qq_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_qzone_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_qzone_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_refersh.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_renren_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_renren_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_search_icon.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_shape_solid_black.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_shape_solid_grey.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_shareboard_item_background.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_share_to_button.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_share_transparent_corner.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_sidebar_normal.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_sidebar_selected.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_sidebar_selector.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_sina_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_sina_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_back_bt.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_back_bt_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_back_bt_selected.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_right_bt.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_right_bt_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_right_bt_selected.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_button_left.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_button_right.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_left_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_left_pressed.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_right_normal.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_title_tab_right_pressed.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_twitter.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_tx_off.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_tx_on.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_wechat.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_wechat_gray.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_window_shadow_pad.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_wxcircle.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_wxcircle_gray.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/umeng_socialize_x_button.png" target-dir="res/drawable"/>
+		
+		<!-- res/drawable-hdpi-->
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_light_bar_bg_pad.9.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_nav_bar_bg_pad.9.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_oauth_check_off.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_oauth_check_on.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_music.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_pic.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/umeng_socialize_share_video.png" target-dir="res/drawable-hdpi"/>
+
+		<!-- res/anim-->
+		<source-file src="src/android/res/anim/umeng_socialize_fade_in.xml" target-dir="res/anim"/>
+		<source-file src="src/android/res/anim/umeng_socialize_fade_out.xml" target-dir="res/anim"/>
+		<source-file src="src/android/res/anim/umeng_socialize_shareboard_animation_in.xml" target-dir="res/anim"/>
+		<source-file src="src/android/res/anim/umeng_socialize_shareboard_animation_out.xml" target-dir="res/anim"/>
+		<source-file src="src/android/res/anim/umeng_socialize_slide_in_from_bottom.xml" target-dir="res/anim"/>
+		<source-file src="src/android/res/anim/umeng_socialize_slide_out_from_bottom.xml" target-dir="res/anim"/>
+		
+		<!-- res/layout-->
+		<source-file src="src/android/res/layout/umeng_bak_at_list.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_bak_at_list_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_bak_platform_item_simple.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_bak_platform_selector_dialog.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_base_alert_dialog.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_base_alert_dialog_button.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_bind_select_dialog.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_failed_load_page.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_full_alert_dialog.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_full_alert_dialog_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_full_curtain.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_oauth_dialog.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_post_share.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_shareboard_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_simple_spinner_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/umeng_socialize_titile_bar.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/activity_wx_pay_result.xml" target-dir="res/layout"/>
+		
+		<!-- res/layout-sw550dp-large-->
+		<source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_full_alert_dialog.xml" target-dir="res/layout-sw550dp-large"/>
+		<source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_oauth_dialog.xml" target-dir="res/layout-sw550dp-large"/>
+		<source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_post_share.xml" target-dir="res/layout-sw550dp-large"/>
+		<source-file src="src/android/res/layout-sw550dp-large/umeng_socialize_titile_bar.xml" target-dir="res/layout-sw550dp-large"/>
+		
+	</platform>
+
+    <!-- iOS平台 -->
+	<platform name="ios">
+            <config-file parent="/*" target="config.xml">
+                <feature name="dmwechat"><param name="ios-package" value="dmwechat" /></feature>
+	    </config-file>
+
+	    <!-- 添加回调注册Target -->
+	    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+	        <array>
+	            <string>weixin</string>
+	            <string>wechat</string>
+	            <string>sinaweibohd</string>
+	            <string>sinaweibo</string>
+	            <string>sinaweibosso</string>
+	            <string>weibosdk</string>
+	            <string>weibosdk2.5</string>
+	            <string>sqqapi</string>
+                <string>mqq</string>
+                <string>mqqapi</string>
+	            <string>mqqOpensdkSSologin</string>
+	            <string>wtloginmqq2</string>
+	            <string>mqqopensdkapiV3</string>
+	            <string>mqqopensdkapiV2</string>
+	        </array>
+	    </config-file>
+	    <!-- 防止Https问题，貌似默认添加了 -->
+	    <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+	        <dict>
+	            <key>NSAllowsArbitraryLoads</key>
+	            <true/>
+	        </dict>
+	    </config-file>
+
+        <!-- Plugin source code -->
+        <source-file src="src/ios/dmwechat.m" />
+
+        <info>
+            注意：需要自己添加一下插件中的lib文件夹(即使用group引用，参与编译)...
+            貌似可以写脚本自动生成...
+            还有需要修改info中的一些key值（自己配置，分享用）...
+            这里一开始，我是想所有文件手动写进来，添加的...写了好久...
+            然后，最后还是没有什么卵用...TM的...主要是，出现了一些奇奇怪怪的问题，也不想解决了...想到后面还要这样添加...
+            写了满满的一页，想到还有其他的插件，还有Android版本,就很奔溃了...
+            又回到原点，怎么样添加整个文件...尝试了很多方法....还是不行...
+            决定先放一下...需要用到这个插件的同学，自己手动添加....
+            或者有更好的方法...请一定告知我：qq.542136758...
+            官网参考：https://cordova.apache.org/docs/en/4.0.0/plugin_ref/spec.html
+        </info>
+        <source-file src="src/ios/lib" weak="false" />
+
+        <!-- 云信 -->
+
+        <!-- Other required frameworks -->
+        <framework src="libz.tbd" />
+        <framework src="libstdc++.tbd" />
+        <framework src="libsqlite3.tbd" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="ImageIO.framework" />
+        <framework src="Security.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CoreMotion.framework" />
+        
+        <!-- 添加URL Type 需要用户自己修改 懒得弄...国内的很多平台的跳转id... 还要修改.m文件下的支付包配置-->
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>com.damaiapp.yunke</string>
+                    </array>
+                </dict>
+
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>wxc09121ee3a4bf2ea</string>
+                    </array>
+                </dict>
+                
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>QQ41e1d32a</string>
+                    </array>
+                </dict>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>tencent1105435002</string>
+                    </array>
+                </dict>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>wb989077055</string>
+                    </array>
+                </dict>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>sina.56ea4f1867e58e4242001361</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+
+     </platform>
+
+
+</plugin>

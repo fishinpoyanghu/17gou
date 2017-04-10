@@ -1,0 +1,17 @@
+<div id="pintuan_footer" class="bar bar-footer">
+	<div class="row">
+		<ul ng-click="gotopintuanApply(4)" class="col pintuan_firstpage">
+			<li>￥{{activity.singleprice}}</li>
+			<li>单独购买</li>
+		</ul>
+		<ul ng-click="gotopintuanApply(3)" class="col pintuan_inviteFriend">
+			<li>￥{{activity.price}}</li>
+			<li>{{activity.peoplenum}}人团购</li>
+		</ul>
+		<div class="col-20 collect" ng-click="collectGoods(activity.goods_id)">
+			<div class="collect_img" style="{{isCollect&&'background-image: url(img/icon/collecting.png);'}}"></div>
+		</div>
+	</div>
+</div>
+<!--<view-buy-pop  head-title="选择购买次数" button-text="buttonText"></view-buy-pop>-->
+<view-buy-nature-pop></view-buy-nature-pop>

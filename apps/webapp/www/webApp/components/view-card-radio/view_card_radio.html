@@ -1,0 +1,23 @@
+<style>
+  /*隐藏number型输入框的上下箭头*/
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+</style>
+
+
+<div class="dp-selectMoney">
+  <p style="margin-bottom: 10px;">选择充值金额：</p>
+  <ul class="money_list clearfix">
+    <li ng-click="select($index)" ng-repeat="num in data">{{num}}</li>
+    <li ng-click="select(data.length)">
+      <input type="text" placeholder="其他金额" style="color: #666666;"
+             ng-model="inputMoney" ng-change="onInputChange()"/>
+    </li>
+  </ul>
+</div>
+

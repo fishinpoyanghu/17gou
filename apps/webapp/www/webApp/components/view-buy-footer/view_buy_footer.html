@@ -1,0 +1,38 @@
+<!--可以购买-->
+<div ng-show="ready()">
+  <div ng-if="activity.status===0">
+    <div id="buy_foot" class="dp-detailBox__btBar row">
+      <!--<div class="shop_car iconfont-shopping-outline" ng-click="gotoTrolley()">-->
+        <!--&lt;!&ndash;小红点&ndash;&gt;-->
+        <!--<i class="red_barge" ng-hide="isTrolleyEmpty"></i>-->
+      <!--</div>-->
+      <div class="col-40 dp-button--yellow">
+	      <button ng-if="activity.activity_type != 6" class="dp-button dp-button--yellow" ng-click="addToCart()">加入购物车</button>
+      </div>
+      <div class="col-40 dp-button--red">
+	      <button class="dp-button dp-button--red" ng-click="showSelection()">立即购买</button>
+      </div>
+      <div class="col-20"  ng-click="gotoTrolley()">
+	      <div class="shop_car iconfont-shopping-outline">
+	      <!--<div class="iconfont-shopping-outline col-10" ng-click="gotoTrolley()">-->
+	        <!--小红点-->
+	        <i id="Badge2" class="badge badge-assertive" ng-show="trolleySum()">{{trolleySum()}}</i>
+	      </div>
+	      <span class="shop_car_font">购物车</span>
+      </div>
+      <!--<button ng-if="activity.activity_type!=4" class="dp-button dp-button--yellow" ng-click="addToCart()">加入购物车</button>-->
+    </div>
+  </div>
+
+
+  <!--前往新一期-->
+  <div ng-if="activity.status!==0">
+    <div class="dp-detailBox__btBar" style="background-color: #e3e3e3;">
+      <button style="background-color: #D8302A;" class="dp-button dp-button--black fr" ng-click="gotoNewActivity()">立即前往</button>
+      <span style="color: #666666; line-height:34px;">新的一期正在火热进行中~~</span>
+    </div>
+  </div>
+
+  <view-buy-pop  head-title="选择购买次数" button-text="buttonText"></view-buy-pop>
+
+</div>

@@ -1,0 +1,50 @@
+<ion-content has-bouncing="true" padding="false" scrollbar-y="false" style="top: 0">
+    <ion-refresher
+            pulling-text="下拉刷新..."
+            pulling-icon="ion-arrow-down-c"
+            on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="dp-postList__li" ng-repeat="order in orderlist">
+
+        <a class="dp-postList__link">
+            <div class="dp-postList__user">
+                <img class="user_avatar" ng-src="{{order.uicon}}"/>
+
+                <div class="user_info">
+                    <span class="user_info_time">{{order.show_time}}</span>
+                    <h3 class="user_info_name">{{order.unick}}</h3>
+                    <span class="user_info_id">ID：1345531</span>
+                </div>
+            </div>
+            <div class="dp-postList__content">
+                <h3 class="content_title">只花一元就中奖啦</h3>
+                <h2 style="color: #888888;"> 奖品：{{order.goods_title}}</h2>
+                <!--<h2 style="color: #888888;"> {{order.goods_subtitle}}</h2>-->
+                <h2 style="color: #888888;"> 期号：{{order.activity_id}}</h2>
+                <p class="content_desc">{{order.show_desc}}</p>
+              <view-image-list dp-data="order.show_imgs" dp-toggle="false"></view-image-list>
+
+            </div>
+        </a>
+
+    </div>
+
+  <ion-spinner icon="dots" class="spinner-dark dp-spinner" ng-if="isMoreData && !hasNextPage">加载中</ion-spinner>
+
+
+  <div class="dp-emptyBlock" ng-if="orderlist.length==0">
+    <div class="dp-emptyBlock__container">
+      <i class="icon iconfont-chatbubble-outline"></i>
+      <p>还没有晒单哟~</p>
+    </div>
+  </div>
+    <ion-infinite-scroll
+            ng-if="isMoreData && !hasNextPage"
+            on-infinite="loadMore()"
+            icon="ion-loading-c"
+            distance="1%">
+    </ion-infinite-scroll>
+
+
+</ion-content>

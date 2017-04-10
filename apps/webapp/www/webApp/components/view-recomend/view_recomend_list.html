@@ -1,0 +1,22 @@
+<div class="dm-recomend-bolck">
+    <h3 class="r-title">{{::title}}</h3>
+    <ion-scroll direction="x" scrollbar-x="false" on-swipe-left="prevenP($event)" on-swipe-right="prevenP($event)">
+        <div class="goods-list clearfix">
+            <a class="goods-item" ng-repeat="goods in recomentGoods" href="#/{{::detailsUrl}}/{{::goods.activity_id}}" >
+                <div class="img-wrap">
+                    <img lazyload lazy-src="{{::goods.goods_img}}" alt="">
+                </div>
+                <h3 class="dm-nowrap-2 goods-title">
+                          {{::goods.goods_title}}      
+                </h3>
+                <div class="dp-broad__content">
+                   <!--  <div class="content_btn btn iconfont-shopcart-outline" ng-click="addToCart(broad)" ontouchstart="domController.changeAddCartState(this,true)" ontouchend="domController.changeAddCartState(this,false)"></div> -->
+                    <div class="progress_box">
+                        <!-- <span class="text">开奖进度 <em class="ng-binding">0%</em></span> -->
+                        <div class="progress"><span class="num" view-progress="" progress="::(((goods.need_num - goods.remain_num) / goods.need_num))" ></span></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ion-scroll>
+</div>

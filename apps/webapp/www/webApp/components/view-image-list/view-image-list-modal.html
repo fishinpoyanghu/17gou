@@ -1,0 +1,12 @@
+<div class="dp-viewImage">
+    <!--<div class="dp-viewImage__backBtn">
+        <button class="button-icon ion-chevron-left" ng-click="closeModal()"> 返回</button>
+    </div>-->
+    <ion-slide-box style="width: 100%;height: 100%;" show-pager="true" delegate-handle="image-slide">
+        <ion-slide ng-repeat="img in dpLargeData track by $index" ng-click="closeModal()">
+            <div class="dp-viewImage__imgBox">
+                <img  ng-src="{{::img}}" style="width:100%;">
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+</div>

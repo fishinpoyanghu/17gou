@@ -1,0 +1,26 @@
+<!--选择地区-->
+<div ng-class="{true:'backdrop visible active',false:'backdrop'}[dpIsShow]" ng-if="dpIsShow"></div>
+<div ng-class="{true:'popup-container popup-showing active',false:'popup-container'}[dpIsShow]" style="top: 44px;" ng-if="dpIsShow">
+  <div class="popup">
+    <!--选择市和地区样式一样，只改变title文字-->
+    <div class="popup-head" style="position: relative; padding: 20px;">
+        <h3 class="popup-title" style="position: absolute; left: 10px; top: 50%; line-height: 20px; margin-top: -10px;">--请选择--</h3>
+    </div>
+    <div class="popup-body" style="padding:0">
+      <div class="weui_cells weui_cells_checkbox" style="margin-bottom: 0; background-color: transparent;overflow-y: auto;">
+
+        <label class="weui_cell weui_check_label" ng-repeat="area in areaData.data">
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>{{area}}</p>
+          </div>
+          <div class="weui_cell_ft">
+            <input type="radio" class="weui_check" name="radio1" value="{{area}}" ng-model="areaData.value"
+                   ng-click="selectChange()">
+            <span class="weui_icon_checked"></span>
+          </div>
+        </label>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="dp-inputbox dp-inputbox--icon" >
+  <div class="dp-inputbox__title">
+    <i class="icon iconfont-phone"></i>
+  </div>
+  <div class="dp-inputbox__main" id="inputContain">
+    <input type="tel" placeholder="{{inputHintPhone}}" ng-model="dpInputModel"
+           minlength="{{dpInputMinLength}}" maxlength="{{dpInputMaxLength}}" />
+  </div>
+  <div class="dp-inputbox__buttons" ng-show="isNotEmpty()">
+    <i class="icon iconfont-close-round-outline" ng-click="clearInput()"></i>
+  </div>
+</div>

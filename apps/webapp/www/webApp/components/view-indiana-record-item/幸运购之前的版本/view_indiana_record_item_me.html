@@ -1,0 +1,134 @@
+<!--0：还未结束-->
+<style>
+  .record-page .limit-flag {
+      display: block;
+      height: 19px;
+      margin-left: 5px;
+      line-height: 20px;
+      background-color: #2af;
+      color: #fff;
+      padding: 0 3px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+  }
+  
+  .record-page .limit-flag::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 5px 10px;
+      border-style: solid;
+      border-color: transparent;
+      border-bottom-color: #2af;
+      position: absolute;
+      bottom: 0;
+      left: -5px;
+  }
+</style>
+<div class="record-page">
+    <div ng-if="activity.status==0">
+      <div class="dp-itemList__li">
+        <div class="dp-itemList__content">
+          <div class="dp-itemList__img" ng-click="gotoDetail(activity.activity_id)">
+            <img lazyload lazy-src="{{::activity.goods_img}}" default-img="img/goods_default.jpg"
+                 error-img="img/goods_default.jpg"/>
+            <span class="limit-flag" ng-if="::(activity.activity_type == 3)" >限购</span>
+          </div>
+          <div class="dp-itemList__title" ng-click="gotoDetail()">{{::activity.goods_title}}</div>
+
+          <div class="dp-itemList__desc"
+               style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+            <p>期号： {{::activity.activity_id}}</p>
+
+            <div class="progress"><span style="width: {{(1-(activity.remain_num/activity.need_num))*100}}%;"></span></div>
+            <p>总需：
+              <em class="red">{{::activity.need_num}}</em>
+              <span class="fr">剩余： <em class="red">{{::activity.remain_num}}</em></span>
+            </p>
+            <button class="dp-button dp-button--red"
+                    style="position:absolute; top: 50%; margin-top: -15px; right: -54px; font-size: 12px; line-height:30px; "
+                    ng-click="showAddPay(activity)">追加
+            </button>
+          </div>
+
+          <p style="color: #888888;">本期参与：
+            <em class="red">{{::activity.user_num}}</em> 人次
+            <a ng-click="getHisNumber(activity.activity_id, null)" class="fr blue" href="">查看详情</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!--1：即将揭晓-->
+    <div ng-if="activity.status==1">
+      <div class="dp-itemList__li">
+        <div class="dp-itemList__content">
+          <div class="dp-itemList__img" ng-click="gotoDetail(activity.activity_id)">
+            <img lazyload lazy-src="{{::activity.goods_img}}" default-img="img/goods_default.jpg"
+                 error-img="img/goods_default.jpg"/>
+            <span class="limit-flag" ng-if="::(activity.activity_type == 3)" >限购</span>
+          </div>
+          <div class="dp-itemList__title" ng-click="gotoDetail()">{{::activity.goods_title}}</div>
+
+          <div class="dp-itemList__desc"
+               style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+            <p>期号： {{::activity.activity_id}}</p>
+          </div>
+          <p style="color: #888888;">本期参与：
+            <em class="red">{{::activity.user_num}}</em> 人次
+            <a ng-click="getHisNumber(activity.activity_id, null)" class="fr blue" href="">查看详情</a>
+          </p>
+
+          <div class="dp-itemList__time">
+            <p>揭晓倒计时：</p>
+                          <span class="remain_time iconfont-clock"
+                                view-countdown
+                                remain-time="{{::activity.remain_time}}"
+                                timeout-callback="doRefresh()"
+                            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--2：已经揭晓-->
+    <div ng-if="activity.status==2">
+      <div class="dp-itemList__li">
+        <div class="dp-itemList__content">
+          <div class="dp-itemList__img" ng-click="gotoDetail(activity.activity_id)">
+            <img lazyload lazy-src="{{::activity.goods_img}}" default-img="img/goods_default.jpg"
+                 error-img="img/goods_default.jpg"/>
+            <span class="limit-flag" ng-if="::(activity.activity_type == 3)" >限购</span>
+          </div>
+          <div class="dp-itemList__title" ng-click="gotoDetail()">{{::activity.goods_title}}</div>
+
+          <div class="dp-itemList__desc">
+               <!--style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">-->
+            <p>期号： {{::activity.activity_id}}</p>
+          </div>
+          <p style="color: #888888;">本期参与：
+            <em class="red">{{::activity.user_num}}</em> 人次
+            <a ng-click="getHisNumber(activity.activity_id, null)" class="fr blue" href="">查看详情</a>
+          </p>
+        </div>
+        <div class="dp-detailBox__grayBox" style="margin-bottom: 10px; margin-left: 100px;">
+          <p>获奖者： <em class="blue" ng-click="goToHisPage(activity.lucky_unick,activity.lucky_uicon,activity.lucky_uid)">{{::activity.lucky_unick}}</em>
+            <span style="color: #b2b2b2;">（{{::activity.lucky_uip.country}}）</span></p>
+
+          <p>本期参与： <em class="red">{{::activity.lucky_user_num}}</em>人次</p>
+
+          <p>幸运号码： <em class="red">{{::activity.lucky_num}}</em></p>
+
+          <p>揭晓时间： <span style="white-space: nowrap">{{::activity.publish_time}}</span></p>
+        </div>
+      </div>
+
+    </div>
+</div>
+

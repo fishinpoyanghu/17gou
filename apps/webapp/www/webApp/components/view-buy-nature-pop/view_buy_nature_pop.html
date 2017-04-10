@@ -1,0 +1,38 @@
+<!--弹窗：显示亿七购号码-->
+<div id="choice_nature" class="pop-wp" style="display: block" ng-if="isShowAddPay">
+	<div class="pop">
+		<div class="pop__title">
+			<div class="img">
+				<img ng-src="{{goodsInfo.img}}"/>
+			</div>
+			<div class="content">
+				<div class="priceContainer">￥{{goodsInfo.price}}</div>
+				<div class="priceContainer">{{goodsInfo.goods_title}}</div>
+				<div class="choice_natrued" >
+					<label>请选择</label>
+					<label ng-if="!choiceNature[0].value">{{choiceNature[0].name}}</label>
+					<!--<label ng-repeat="(i,nature) in choiceNature" ng-if="i!=0(!nature.value&&choiceNature[i-1].value)">{{nature.name}}</label>-->
+					<label ng-repeat="(i,nature) in choiceNature" ng-if="i!=0&&(!nature.value&&choiceNature[i-1].value)">{{nature.name}}</label>
+				</div>
+				<!--<div class="choice_natrued" ng-repeat="nature in choiceNature">
+					<label>{{nature.name}}</label>
+					<label>{{nature.value||'请选择'}}</label>
+				</div>-->
+			</div>
+		</div>
+		<div class="pop__content">
+			<ul class="list">
+				<li class="item" ng-repeat="(nature_i,nature) in natures">
+					<h2 class="nature_title">{{nature.name}}</h1>
+					<div class="nature_content">
+						<label ng-class="{'nature_selected':choiceNature[nature_i].value==value}" ng-click="choiceWhice(this)" ng-repeat="(value_i,value) in nature.values">{{value}}</label>
+					</div>
+				</li>
+			</ul>
+		</div>
+			<button class="dp-button dp-button--red nature_btn_sure" type="button">确认</button>
+		<div class="close nature_close" ng-click="hideNaturePan()">×</div>
+		<div style="height: 100%;width: 100%;"></div>
+	</div>
+	 <div class="mask" ng-click="hideNaturePan()"></div>
+</div>

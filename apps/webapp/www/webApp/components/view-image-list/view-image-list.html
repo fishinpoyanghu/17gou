@@ -1,0 +1,11 @@
+<div class="view-image-list">
+  <div class="row" ng-repeat="item in items track by $index" view-row-height>
+    <div ng-repeat="photo in item track by $index"
+         class="col col-{{responsiveGrid}} image-container">
+
+      <img view-image-scale ng-click="openModal(photo,$parent.$index,$index)"
+           ng-src="{{::photo}}">
+
+    </div>
+  </div>
+</div>

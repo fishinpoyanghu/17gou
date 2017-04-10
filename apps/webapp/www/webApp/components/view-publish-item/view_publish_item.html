@@ -1,0 +1,97 @@
+<!--正在进行-->
+<div ng-if="activity.status==0">
+    <div class="dp-itemList__li">
+        <a ng-click="gotoDetail()">
+            <div id="zuixinxiexiao">
+                最新揭晓
+            </div>
+            <div class="dp-itemList__content">
+                <div class="dp-itemList__img">
+          <img lazyload lazy-src="{{::activity.goods_img}}"/>
+        </div>
+        <div class="dp-itemList__title">{{::activity.goods_title}}</div>
+        <div class="dp-itemList__desc">
+          <span>期号：{{::activity.activity_id}}</span>
+        </div>
+        <div class="dp-detailBox__progress" style="margin-bottom: 0;">
+          <div class="progress">
+            <span class="num" view-progress progress="1-(activity.remain_num/activity.need_num)"></span>
+          </div>
+          <p>共需 <em class="blue">{{::activity.need_num}}</em> 人次 <span class="fr">剩余 <em class="red">{{::activity.remain_num}}</em> 人次</span>
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!--即将揭晓-->
+<div ng-if="activity.status==1">
+
+    <div class="dp-itemList__li">
+      <a ng-click="gotoDetail()">
+          <div class="dp-itemList__content">
+        <div class="dp-itemList__img">
+          <img lazyload lazy-src="{{::activity.goods_img}}"/>
+        </div>
+        <div class="dp-itemList__title">{{::activity.goods_title}}</div>
+        <div class="dp-itemList__desc" ng-if="!(activity.flag==7||activity.flag==8)">
+          <span>期号：{{::activity.activity_id}}</span>
+        </div>
+        <div class="dp-itemList__desc" ng-if="activity.flag==7||activity.flag==8">
+          <span>团号：{{::activity.activity_id}}</span>
+        </div>
+
+        <div class="dp-itemList__time">
+          <p>即将揭晓：</p>
+            <span class="remain_time iconfont-clock"
+                  view-countdown
+                  remain-time="{{activity.remain_time}}"
+                  timeout-callback="timeoutCallback()"></span>
+        </div>
+
+
+      </div>
+      <div class="red_mark">即将揭晓</div>
+    </a>
+  </div>
+</div>
+<!--我添加一个zuixinxiexiao类名-->
+
+<!--已经结束-->
+<div ng-if="activity.status==2">
+
+  <div class="dp-itemList__li">
+    <a ng-click="gotoDetail()">
+        <div id="zuixinxiexiao">
+            最新揭晓
+        </div>
+        <div class="dp-itemList__content">
+        <div class="dp-itemList__img">
+          <img lazyload lazy-src="{{::activity.goods_img}}"/>
+        </div>
+        <div class="dp-itemList__title">{{::activity.goods_title}}</div>
+        <div class="dp-itemList__desc" style="margin-bottom: 0;" ng-if="!(activity.flag==7||activity.flag==8)">
+          <p>期号：<em class="blue">{{::activity.activity_id}}</em></p>
+
+          <p>获 奖 者：<em class="red">{{activity.lucky_unick}}</em>  （{{activity.lucky_ip.country}}）</p>
+
+          <p>幸运号码：{{activity.lucky_num}}</p>
+
+          <p>本期参与：{{::activity.lucky_user_num}} 人次</p>
+        </div>
+        <div class="dp-itemList__desc" style="margin-bottom: 0;" ng-if="activity.flag==7||activity.flag==8">
+          <p>团号：<em class="blue">{{::activity.activity_id}}</em></p>
+
+          <p>获 奖 者：<em class="red">{{activity.lucky_unick}}</em></p>
+
+          <p>幸运号码：{{activity.lucky_num}}</p>
+
+          <p></p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+

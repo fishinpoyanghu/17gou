@@ -1,0 +1,69 @@
+<!--大图模式-->
+<div class="dp-broad dp-broad--bigImg clearfix" style="margin-top: 10px; background-color: #ffffff; border-bottom: 1px solid #ededed;">
+    <button ng-show="dpSplitSize&&(requestParams.from - dpSplitSize) > 1" ng-click="reloadPrePage()" class="button"
+            style="left: 40%;"
+            >点击上一页
+    </button>
+
+    <div class="dp-broad__li" ng-repeat="broad in broadlist track by $index" style="margin-top:-1px;border-bottom: 1px solid #ededed;">
+        <div ng-click="gotoDetail(broad.activity_id)">
+            <div class="dp-broad__img" >
+                <img lazyload lazy-src="{{::broad.goods_img}}"/>
+                <!--<img ng-src="{{::broad.goods_img}}" width="100%" height="auto"/>-->
+                 <span class="limit-flag" ng-if="::(broad.activity_type == 3)">限购10人次</span>
+            </div>
+            <h3 class="dp-broad__title">{{::broad.goods_title}}</h3>
+        </div>
+        <div class="dp-broad__content">
+            <div class="content_btn btn iconfont-shopcart-outline" ng-click="addToCart(broad,$event)"
+                 ontouchstart="domController.changeAddCartState(this,true)" ontouchend="domController.changeAddCartState(this,false)"></div>
+            <div class="progress_box">
+                <span class="text">开奖进度 <em>{{::getPercentageProgress(broad.remain_num,broad.need_num)}}%</em></span>
+
+                <div class="progress"><span class="num" view-progress progress="::(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+            </div>
+        </div>
+        <!--限购专区的标签-->
+        <i class="dp-broad__tag blue_tag" ng-if="::(broad.activity_type == 2)"></i>
+       
+    </div>
+
+</div>
+<a class="dp-broad__more" ng-if="::dpIsShortList" ng-click="showTheListAll()">查看更多&nbsp;
+    <i class="icon ion-chevron-right"></i>
+</a>
+
+<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+
+<!--<p ng-if="::!dpIsShortList" ng-show="isFinish" class="dp-more dp-more--bottom" >没有更多啦~</p>-->
+<p ng-if="::!dpIsShortList" ng-show="isFinish" class="dp-more dp-more--bottom" >喂喂， 我可是有底线的~</p>
+
+<button ng-if="::!dpIsShortList" ng-hide="isFinish || isEnableScrollToLoad()" ng-click="loadNextPage()"
+        class="button" style="left: 40%">点击下一页
+</button>
+
+<!--断网-->
+<div class="dp-emptyBlock" style="background-color: #f8f8f8;" ng-if="broadlist.length <= 0 && disconnected ">
+<!--<div class="dp-emptyBlock" style="background-color: #f8f8f8;display: block;" >-->
+  <div class="dp-emptyBlock__container">
+    <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+    <p style="color: #585858;">亲，你好像断网了...</p>
+    <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+    <button class="dp-button dp-button--red" ng-click="resetFresh()"
+            style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+  </div>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+  function pressCartBtn(id){
+    var dom = document.getElementById(id);
+    dom.className += ' iconfont-shopcart';
+    dom.className = dom.className.replace('iconfont-shopcart-outline','');
+  }
+
+  function releaseCartBtn(id){
+    var dom = document.getElementById(id);
+    dom.className += ' iconfont-shopcart-outline';
+    dom.className = dom.className.replace('iconfont-shopcart','');
+  }
+</script>

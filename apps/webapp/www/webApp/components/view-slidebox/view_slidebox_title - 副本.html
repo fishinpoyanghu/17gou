@@ -1,0 +1,8 @@
+<!--<ion-slide-box auto-play="true" does-continue="true" slide-interval=2000000 class="dp-slider {{dpSlides.length == 2 ? (slidePageHack ? 'two-slides-1' : 'two-slides') : ''}}" ng-if="dpSlides.length" on-slide-changed="slideHasChanged($index)" style="height: 52%;">-->
+<ion-slide-box auto-play="true" does-continue="true" slide-interval=200000 class="dp-slider {{dpSlides.length == 2 ? (slidePageHack ? 'two-slides-1' : 'two-slides') : ''}}" ng-if="dpSlides.length" on-slide-changed="slideHasChanged($index)">
+  <ion-slide ng-repeat="dpSlide in dpSlides">
+    <a class="dp-slider__link" ng-href="{{::dpSlide.href}}">
+      <img ng-src="{{::dpSlide.img}}" class="dp-slider__img">
+    </a>
+  </ion-slide>
+</ion-slide-box>

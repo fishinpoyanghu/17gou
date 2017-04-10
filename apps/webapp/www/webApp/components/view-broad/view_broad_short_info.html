@@ -1,0 +1,85 @@
+<!-- <div class="padding" ng-if="::dpSetTopBar">
+  <a class="fr" ng-click="addListToCart(broadlist)" style="color: #f44336">全部加入购物车</a>
+  <span style="margin-right: 10px;">{{::dpTopBarTitle}}</span><span>共{{broadlist.length}}件商品</span>
+</div> -->
+<!--左图模式-->
+<div class="dp-broad dp-broad--leftImg pos-r" id="class_details"  ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]">
+    <button ng-show="dpSplitSize&&(requestParams.from - dpSplitSize) > 1" ng-click="reloadPrePage()" class="button"
+            style="left: 40%;">点击上一页
+    </button>
+
+    <div class="dp-broad__li clearfix" ng-repeat="broad in broadlist track by $index" style="margin-top: 0;padding:10px;">
+        <div class="dp-broad__img" style="width: 30%;" ng-click="gotoDetail(broad.activity_id)">
+            <img class="margin-top-14" ng-src="{{broad.title_img}}"/>
+        </div>
+
+        <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 0px;  padding-left: 10px;overflow: hidden; ">
+            <h3 class="dm-nowrap-2 h3_title">{{broad.goods_title}}</h3>
+            <div class="row p-0 row-center" style="margin-top: 8px;">
+                <div class="col p-0">
+                    <span class="price1">￥{{broad.need_num}}</span>
+                    <span class="price2">￥{{broad.need_num}}</span>
+                </div>
+                <button ng-if="broad.activity_type == 4" class="bq_btn">二人购</button>
+                <button ng-if="broad.activity_type == 2" class="bq_btn">十元购</button>
+                <button ng-if="broad.activity_type == 6" class="bq_btn">幸运购</button>
+                <button ng-if="broad.activity_type == 7" class="bq_btn">返现购</button>
+                <button ng-if="broad.activity_type != 6 && broad.activity_type != 4 && broad.activity_type != 2 && broad.activity_type != 7" class="bq_btn">一元GO</button>
+            </div>
+            <div class="row p-0 row-center" >
+                <div class="col p-0">
+                    <div class="row p-0 row-center" style="margin-top: 10px;">
+                        <div class="col p-0">
+                            <div class="progress_box" style="color: #888888; float:none;">
+
+                                <div class="progress border-radius-10" style="width: 100%; margin-bottom: 5px;"><span class="num border-radius-10" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+                                <!--  <span >参与人数 <em style="color: #519fff;">{{broad.need_num - broad.remain_num}}/{{broad.need_num}}</em></span> -->
+                            </div>
+
+                        </div>
+                        <!--<div style="padding:0 8px;font-size:10px;color:#666;">
+                            {{((broad.need_num - broad.remain_num) / broad.need_num) * 100 | number:2}} %
+                        </div>-->
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row p-0 row-center" style="margin-top: 10px;">
+                <div class="col p-0">
+                    <span class="activity_id">{{broad.activity_id}}期</span>
+                </div>
+
+                <div class="col p-0 work_off">
+                    <span>已售出{{broad.need_num-broad.remain_num}}份</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!--   <div class="dp-broad__content" style="position:absolute; top: 50%;  right: 1px;  line-height:32px;height: 30px;width: 45px;">
+              <div class=" btn iconfont-shopcart-outline" ng-click="addToCart(broad,$event)" ontouchstart="domController.changeAddCartState(this,true)" ontouchend="domController.changeAddCartState(this,false)" style="line-height: 1;color: #f44336;font-size: 3.2rem;z-index: 1;"></div>
+          </div> -->
+
+        <!--下面是二人云购图标-->
+        <i class="two_people__tag red_tag" ng-if="(broad.activity_type == 4)"></i>
+
+        <i class="dp-broad__tag blue_tag" ng-if="(broad.activity_type == 2)"></i>
+        <span class="limit-flag" ng-if="(broad.activity_type == 3)" style="top:3px;right: 6px;">限购</span>
+        <div id="hot_bq" ng-if="(order_key == 'weight')" style="top:3px;z-index:22222;">
+            <img src="img/pintuan_icon/hot.jpg" alt="">
+        </div>
+    </div>
+    <a class="dp-broad__more" ng-if="::dpIsShortList" ng-click="showTheListAll()">查看更多&nbsp;
+        <i class="icon ion-chevron-right"></i>
+    </a>
+    <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+    <!--<p ng-if="::!dpIsShortList" ng-show="isFinish" class="dp-more dp-more--bottom">没有更多啦~</p>-->
+    <p ng-if="::!dpIsShortList" ng-show="isFinish" class="dp-more dp-more--bottom">下面没有啦~</p>
+    <button ng-if="::!dpIsShortList" ng-hide="isFinish || isEnableScrollToLoad()" ng-click="loadNextPage()"
+            class="button" style="left: 40%">点击下一页
+    </button>
+</div>
+
+

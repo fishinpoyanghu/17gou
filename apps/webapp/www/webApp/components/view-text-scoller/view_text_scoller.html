@@ -1,0 +1,11 @@
+<div class="row bg-white  row-center dm-msg-wrap">
+    <i class="icon iconfont-msg dm-msg-icon"></i>
+    <div class="col p-0 " style="height:{{::height}}px;line-height:{{::height}}px;width:100%;position:relative;overflow:hidden;">
+        <!-- 恭喜 <span class="dm-user-name">毛都没中过两根</span> 8分钟前获得大街上覆盖的空间更合适的健康健康 -->
+        <div style="position:absolute;left:0;top:0;width:100%;" id='{{::textWrapId}}'>
+            <p class="dm-nowrap" style="width:100%;" ng-repeat="text in texts">恭喜 <span class="dm-user-name">{{::text.name}}</span> {{dataFormatGap(text.ut)}}获得{{::text.goods_name}}</p>
+            <p class="dm-nowrap" style="width:100%;" >恭喜 <span class="dm-user-name">{{::texts[0].name}}</span> {{dataFormatGap(texts[0].ut)}}获得{{::texts[0].goods_name}}</p>
+           
+        </div>
+    </div>
+</div>

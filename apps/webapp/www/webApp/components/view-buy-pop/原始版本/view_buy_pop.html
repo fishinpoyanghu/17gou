@@ -1,0 +1,36 @@
+<div class="pop-wp" style="display: block" ng-show="isShowAddPay">
+  <div class="pop pop--btBar">
+    <div class="pop__title">{{headTitle}}</div>
+    <div class="pop__content">
+        <p ng-if="addPay.activity_type==1 || addPay.activity_type==2 || addPay.activity_type==3">共需 {{addPay.need_num}} 人次，剩余 <em>{{addPay.remain_num}}</em> 人次</p>
+      <p  ng-if="addPay.activity_type==4">共需 {{(addPay.need_num/addPay.need_num)*2}} 人次，剩余 <em>{{(addPay.remain_num/addPay.need_num)*2}}</em> 人次</p>
+        <!--添加一个标签div和属性ng-if="good_type13,当商品类型为1或2或3时就显示下面的方框"-->
+        <div ng-if="addPay.activity_type==1 || addPay.activity_type==2 || addPay.activity_type==3">
+            <div class="num_box" style="margin-bottom:0;">
+                <a class="decrease_btn" ng-click="decrease()"> - </a>
+                <input class="num"  type="tel" id="joinNumber" maxlength="6" value="{{addPay.join_number}}" ng-model="addPay.join_number" ng-blur="editJoinNumber(addPay)"/>
+                <a class="add_btn" ng-click="increase()"> + </a>
+            </div>
+            <div style="width: 238px;height: 40px;margin: 5px auto;" class="clearfix">
+                <a style="display: block;float: right;width: 52px;height: 38px;background: #fff;border: 1px solid #f2f2f2;color: #888888;font-size: 1.4rem;border-radius:4px;line-height: 38px;text-align: center;margin-left:10px;" ng-click="increase('remain_num')">包尾</a>
+                <a style="display: block;float: right;width: 52px;height: 38px;background: #fff;border: 1px solid #f2f2f2;color: #888888;font-size: 1.4rem;border-radius:4px;line-height: 38px;text-align: center;margin-left:10px;" ng-click="increase('100')">+100</a>
+                <a style="display: block;float: right;width: 52px;height: 38px;background: #fff;border: 1px solid #f2f2f2;color: #888888;font-size: 1.4rem;border-radius:4px;line-height: 38px;text-align: center;margin-left:10px;" ng-click="increase('50')">+50</a>
+                <a style="display: block;float: right;width: 52px;height: 38px;background: #fff;border: 1px solid #f2f2f2;color: #888888;font-size: 1.4rem;border-radius:4px;line-height: 38px;text-align: center;" ng-click="increase('10')">+10</a>
+            </div>
+        </div>
+        <!--添加一个标签div和属性ng-if="good_type4,当商品类型为4时就显示下面的方框"-->
+        <div ng-if="addPay.activity_type==4">
+            <div class="num_box" id="type4_num_box" style="width: 230px;border-radius: 15px;z-index: 11;overflow: hidden;border: 2px solid #C4C1C1;">
+                <a class="decrease_btn2" id="decrease_btn2" ng-click="decrease()" style="width: 113px;z-index: 1;"> 一半 </a>
+                <!--把下面的一行添加display: none;为了方便计算参与人次的数值。-->
+                <input class="num"  type="tel" id="joinNumber" maxlength="6" value="{{addPay.join_number}}" ng-model="addPay.join_number" ng-blur="editJoinNumber(addPay)" style="display: none;"/>
+                <a class="add_btn2" ng-click="increase('remain_num')" style="width: 113px;z-index: 1;"> 全部 </a>
+            </div>
+        </div>
+        <p  ng-if="addPay.activity_type==4" style="font-size: 14px;font-weight: 600;margin-bottom: 20px;">价格：￥{{addPay.join_number}}</p>
+      <button class="dp-button dp-button--red" ng-class="getButtonClass()" ng-click="startToPay()">{{buttonText}}</button>
+    </div>
+    <div class="close" ng-click="closeAddPay()">×</div>
+  </div>
+  <div class="mask"></div>
+</div>

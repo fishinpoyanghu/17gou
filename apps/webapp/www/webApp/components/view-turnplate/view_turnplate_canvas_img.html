@@ -1,0 +1,28 @@
+<div class="dp-itemList__li">
+    <div class="dp-itemList__content">
+        <div class="dp-itemList__img" ng-click="goToDetail(goods.activity_id)"><img ng-src="{{goods.goods_img}}" alt=""/>
+        </div>
+        <div class="dp-itemList__title" ng-click="goToDetail(goods.activity_id)">{{goods.goods_title}}</div>
+        <div class="dp-itemList__desc" ng-click="goToDetail(goods.activity_id)">
+            <span class="all_num">总需人次：<em class="blue">{{goods.need_num}}</em></span>
+            <span class="left_num">剩余人数：<em class="red">{{goods.remain_num}}</em></span>
+        </div>
+        <div class="dp-itemList__option">
+            <label>参与人次：</label>
+
+            <div class="num_box">
+                <a class="decrease_btn" ng-click="minusNumber()" href="">-</a>
+                <input class="num"  type="text" id="joinNumber" maxlength="6" value="{{goods.join_number}}" ng-model="goods.join_number" ng-change="editJoinNumber(goods)"/>
+                <a class="add_btn" ng-click="addNumber()" href="">+</a>
+            </div>
+        </div>
+    </div>
+    <div class="dp-itemList__select form_input" ng-click="chooseGoods(goods)">
+        <i ng-class="{'selected':goods.isSelected,'checkbox_icon':true}"></i>
+        <!--<label class="weui_cell weui_check_label" style="padding: 0" for="s12">-->
+            <!--<input type="checkbox" class="weui_check" name="checkbox1" id="s12">-->
+            <!--<i class="weui_icon_checked" ng-click="chooseAllGoods()"></i>-->
+        <!--</label>-->
+    </div>
+</div>
+

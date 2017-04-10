@@ -1,0 +1,18 @@
+<!--纯文本列表-->
+<div class="dp-broad dp-broad--bigImg" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]">
+    <div class="dp-broad__head">
+        <span>话题&动态</span>
+    </div>
+    <div class="dp-broad__li" ng-repeat="broad in broadlist" >
+        <a class="" ng-href="#/topicDetail/{{::broad.article_id}}">
+            <h3 class="dp-broad__title">{{::broad.title}}</h3>
+
+            <p class="dp-broad__desc">
+                {{::broad.summary}}
+            </p>
+            <span class="dp-broad__time" ng-if="::dpToggleDate">{{::broad.rt}}</span>
+            <span class="dp-broad__context" ng-if="::dpToggleComment">评论&nbsp;{{::broad.reply_count}}</span>
+        </a>
+    </div>
+    <a class="dp-broad__more" ng-if="::dpIsShortList" ng-click="showTheListAll()">查看更多&nbsp;<i class="icon ion-chevron-right"></i></a>
+</div>

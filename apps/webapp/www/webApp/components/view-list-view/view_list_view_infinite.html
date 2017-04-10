@@ -1,0 +1,51 @@
+<ion-content scrollbar-y="true">
+  <!--<ion-refresher
+    pulling-text="下拉刷新..."
+    pulling-icon="ion-arrow-down-c"
+    on-refresh="refresh()"
+    immediate-check="false"
+    style="z-index:9999;display: block;"
+    distance="10%"
+    >
+  </ion-refresher>-->
+  <div ng-transclude></div>
+
+  <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+  <p ng-show="isFinish && !isEmpty && !displayDiXian" class="dp-more dp-more--bottom" >没有更多啦~</p>
+  <p ng-show="isFinish && !isEmpty && displayDiXian" class="dp-more dp-more--bottom" >喂喂， 我可是有底线的！~</p>
+
+  <ion-infinite-scroll
+    ng-show="!isFinish"
+    on-infinite="loadMore()"
+    icon="ion-loading-c"
+    distance="1%">
+  </ion-infinite-scroll>
+
+  <!--<button ng-show="!isFinish && !isLoading"-->
+          <!--ng-click="loadMore()"-->
+          <!--style="width: 100%; height: 50px; background: white">加载更多-->
+  <!--</button>-->
+
+  <!--<a class="dp-broad__more"
+     ng-show="!isFinish && !isLoading && !isEmpty"
+     ng-click="loadMore()" 
+     on-touch="loadMore()">查看更多&nbsp;
+  </a>-->
+
+
+  <!--断网-->
+  <div  ng-show="isNetError">
+    <div class="dp-emptyBlock" style="background-color: #f8f8f8;">
+      <!--<div class="dp-emptyBlock" style="background-color: #f8f8f8;display: block;" >-->
+      <div class="dp-emptyBlock__container">
+        <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+        <p style="color: #585858;">亲，你好像断网了...</p>
+        <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+        <button class="dp-button dp-button--red" ng-click="refresh()"
+                style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>

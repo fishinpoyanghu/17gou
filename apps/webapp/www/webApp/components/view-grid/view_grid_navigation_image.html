@@ -1,0 +1,8 @@
+<!--如果要换成每行3个的排列方式，就把dp-grid--4换成dp-grid--3-->
+<!--图标导航-->
+<div class="dp-grid dp-grid--icon" ng-repeat="navigaterow in gridDataList" ng-class="{4:'dp-grid--4',3:'dp-grid--3'}[navigaterow.length]">
+    <a class="dp-grid__link" ng-repeat="navigate in navigaterow" href="{{::navigate.link}}">
+        <!--<img vg-src="::navigate.url" class="dp-grid__img"/>-->
+        <img lazy lazy="true" scsrc="{{::navigate.url}}" preload="0" class="dp-grid__img"/>
+    </a>
+</div>

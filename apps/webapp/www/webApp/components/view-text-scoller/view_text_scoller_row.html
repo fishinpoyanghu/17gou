@@ -1,0 +1,15 @@
+<div class="row bg-white  row-center dm-msg-wrap">
+    <div class="col p-0 " style="height:{{::height}}px;width:100%;position:relative;overflow:hidden;">
+        <div style="position:absolute;left:0;top:0;width:100%;" id='{{::textWrapId}}'>
+          <div class="list p-0">
+              <div class="item" style="padding:5px 0;" ng-repeat="lottery in texts">
+                  <div class="row row-center text-center f-28 pm-0">
+                      <div class="col ng-binding">恭喜 <em style="color:#e42012;" >{{::lottery.nick}}</em> 获得 {{::lottery.goods_name}}</div>
+                  </div>
+              </div>
+          </div>
+
+           
+        </div>
+    </div>
+</div>

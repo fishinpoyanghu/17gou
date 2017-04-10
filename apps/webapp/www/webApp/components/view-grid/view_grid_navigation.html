@@ -1,0 +1,8 @@
+<!--如果要换成每行3个的排列方式，就把dp-grid--4换成dp-grid--3-->
+<!--图文导航-->
+<div class="dp-grid dp-grid--4" >
+  <a class="dp-grid__link" ng-repeat="dpGrid in dpGrids" ng-href="{{::dpGrid.href}}">
+    <img ng-src="{{::dpGrid.img}}" class="dp-grid__img"/>
+    <p class=" dp-grid__title">{{::dpGrid.title}}</p>
+  </a>
+</div>

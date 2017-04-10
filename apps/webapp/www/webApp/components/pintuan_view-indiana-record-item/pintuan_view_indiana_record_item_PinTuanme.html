@@ -1,0 +1,342 @@
+
+<!--暂时添加下面的-->
+<div id="pintuan_dingdan">
+
+    <!-- -1：订单取消-->
+    <div  ng-if="activity.status==-3">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div> 
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl">
+                    订单购买失败,退款成功
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png"   alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear">
+                   <button class="zcgm fr zcgm_white"  >订单购买失败</button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- -1：订单取消-->
+    <div  ng-if="activity.status==-2">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div>
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl">
+                    订单已取消
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png"   alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear">
+                   <button class="zcgm fr zcgm_white"  >订单已取消</button>
+
+            </div>
+        </div>
+    </div>
+    <!-- -1：拼团失败退款-->
+    <div  ng-if="activity.status==-1">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div> 
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl">
+                   未成团，退款成功
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png"   alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear">
+                   <button class="zcgm fr zcgm_white" ng-click="gotoPintuan_Detail(activity.goods_id)" >再次购买</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!--1：待付款-->
+    <div  ng-if="activity.status==1">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)" >  
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+            </div>
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl">
+                    待付款
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png"   alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear"> 
+                <button   class="zcgm fr" ng-click="pay_order(activity.order_num,activity.title,activity.moneyinfo,activity.wxpay)" >付款</button>
+              
+                <button class="zcgm fr zcgm_white" ng-click="cancel_dingdan(activity)">取消订单</button>
+            </div>
+        </div>
+    </div>
+
+    <!--2：待成团-->
+    <div  ng-if="activity.status==2">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div>
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div ng-if="activity.teamwar_id!=0" class="zhuangtai fl">
+                    拼团中
+                </div>
+                <div  ng-if="activity.teamwar_id==0" class="zhuangtai fl">
+                    处理中
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png" alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear">
+                <button  ng-if="activity.teamwar_id!=0" class="zcgm fr" ng-click="goMember({{activity.teamwar_id}})">邀请好友</button>
+                <button  ng-if="activity.teamwar_id==0" class="zcgm fr" onclick="window.location.reload()">刷新</button>
+            </div>
+        </div>
+    </div>
+
+    <!--3：待发货-->
+    <div  ng-if="activity.status==3">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div>
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl" ng-if="activity.goods_type!=4">
+                    已成团，待发货  
+                </div>
+                <div class="zhuangtai fl" ng-if="activity.goods_type==4">
+                    购买成功，待发货
+                </div>
+                 
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png" alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <!-- <div class="bt_button clear">
+                <div class="address fl">{{::activity.address}}</div>
+                <button class="zcgm fr" ng-click="startToAddressSelect(activity.logistics_id,'pintuan2',activity.order_num)">修改收货地址</button>
+            </div> -->
+           <div class="bt_button clear"> 
+                <div class="address fl">{{::activity.address}}</div> 
+                <button  ng-if="activity.teamwar_id!=0" class="zcgm fr" ng-click="goMember({{activity.teamwar_id}})">分享获豪礼！</button>
+            </div>
+              
+        </div>
+    </div>
+    <!--4：待收货-->
+    <div  ng-if="activity.status==4">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img lazyload lazy-src="{{::activity.main_img}}" default-img="img/goods_default.jpg"
+                         error-img="img/goods_default.jpg"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div>
+            <!--实付-->
+             
+
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl" >
+                    已发货  
+                </div>
+                 
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png" alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear">
+                <button class="zcgm fr" ng-click="orderstatus(activity.order_num,5,'')" >确认收货</button>
+                <button class="zcgm fr zcgm_white"  ng-click="go_express_record(activity)" >查看物流</button>
+            </div> 
+        </div>
+    </div>
+        <div  ng-if="activity.status==5">
+        <div class="goods_list">
+            <!--商品-->
+            <div class="goods_center clear" ng-click="gotoPintuan_Detail(activity.goods_id)">
+                <div class="good_img fl">
+                    <img ng-src="{{::activity.main_img}}"/>
+                </div>
+                <div class="good_box fl">
+                    <h3 class="good_title fl">
+                        {{::activity.title}}
+                    </h3>
+                </div>
+                <div class="yuan fr">
+                    <p class="jiage" ng-if="activity.goods_type!=4">{{::activity.price}}元</p>
+                    <p class="jiage" ng-if="activity.goods_type==4">{{::activity.single_price}}元</p>
+                    <p class="shuliang">x{{::activity.goodsnum}}</p>
+                </div>
+
+            </div>
+            <!--实付-->
+            <div class="shifu  clear" >
+                <div class="zhuangtai fl">
+                    已签收
+                </div>
+                <div class="fr">
+                    <img class="price_img fl" src="img/pintuan/price.png" alt="">
+                    <span class="fl">实付：￥<em style="font-size: 18px">{{::activity.paymoney}}</em>.00（免运费）</span>
+                </div>
+            </div>
+            <!--按钮-->
+            <div class="bt_button clear"> 
+                <button class="zcgm fr zcgm_white">已签收</button>
+            </div>
+        </div>
+    </div>
+    <div  style="display: none;">{{::activity.order_num}}</div>
+
+</div>
+
+<!--点击取消订单弹框-->
+<!--<div id="quxiaodingdan" ng-if="quexiao">
+        <ul class="clear">
+            <li  ng-click="orderstatus(activity.order_num,-2,'我不想买了')">我不想买了</li>
+            <li ng-click="orderstatus(activity.order_num,-2,'信息填写错误，重新拍')" >信息填写错误，重新拍</li>
+            <li ng-click="orderstatus(activity.order_num,-2,'卖家缺货')" >卖家缺货</li>
+            <li ng-click="orderstatus(activity.order_num,-2,'同城见面交易')" >同城见面交易</li>
+            <li ng-click="orderstatus(activity.order_num,-2,'其他原因')">其他原因</li>
+        </ul>
+        <div class="quexiao" ng-click="close_this()">
+            取消
+        </div>
+</div>-->

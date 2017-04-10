@@ -1,0 +1,45 @@
+<ion-content>
+
+  <ion-refresher
+    pulling-text="下拉刷新..."
+    pulling-icon="ion-arrow-down-c"
+    on-refresh="refresh()"
+    immediate-check="false"
+    sytle="z-index:9999"
+    >
+  </ion-refresher>
+
+  <div ng-transclude></div>
+
+  <!--<p ng-show="isFinish  && isFinalPage() && !isEmpty" class="dp-more dp-more--bottom" >没有更多啦~</p>-->
+  <p ng-show="isFinish  && isFinalPage() && !isEmpty" class="dp-more dp-more--bottom" >喂喂， 我可是有底线的~</p>
+
+  <!--<div class="row" ng-hide="isLoading">-->
+      <!--<div class="col" ng-hide="isFirstPage()">-->
+        <!--<button ng-click="loadPrePage()">上一页</button>-->
+      <!--</div>-->
+      <!--<div class="col" ng-hide="isLastPage()">-->
+        <!--<button ng-click="loadNextPage()">下一页</button>-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <div class="row" ng-hide="isLoading" style="height: 50px">
+      <button class="col" ng-click="loadPrePage()" ng-hide="isFirstPage()">上一页</button>
+      <button class="col" ng-click="loadNextPage()" ng-hide="isFinalPage()">下一页</button>
+  </div>
+
+  <!--断网-->
+  <div  ng-show="isNetError">
+    <div class="dp-emptyBlock" style="background-color: #f8f8f8;">
+      <!--<div class="dp-emptyBlock" style="background-color: #f8f8f8;display: block;" >-->
+      <div class="dp-emptyBlock__container">
+        <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+        <p style="color: #585858;">亲，你好像断网了...</p>
+        <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+        <button class="dp-button dp-button--red" ng-click="refresh()"
+                style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<!--弹窗：显示亿七购号码-->
+<div ng-show="isBuyNumShow">
+  <div class="backdrop visible active"></div>
+  <div class="popup-container popup-showing active">
+    <div class="popup" style="max-height:85%;">
+      <div class="popup-head" style="padding:0;height:40px;line-height:40px;">
+        <h3 class="popup-title ng-binding">{{title}}</h3><!-- ngIf: subTitle -->
+      </div>
+      <div class="popup-body">
+        <div class="row" ng-repeat="activityNumCol in activityNumCols track by $index">
+                    <span class="col-33" ng-repeat="activityNum in activityNumCol track by $index">
+                      {{activityNum}}
+                    </span>
+        </div>
+      </div>
+      <div class="popup-buttons">
+        <button ng-click="hideBuyNum()" class="button button-assertive">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

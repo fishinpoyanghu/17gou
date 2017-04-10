@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-plugin-dmdevice" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>DMDevice</name>
+    <js-module name="DMDevice" src="www/DMDevice.js">
+        <clobbers target="cordova.plugins.DMDevice" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="DMDevice">
+                <param name="ios-package" value="DMDevice" />
+            </feature>
+        </config-file><source-file src="src/ios/DMDevice.m" />
+
+        <!-- 添加回调注册Target -->
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>weixin</string>
+                <string>wechat</string>
+                <string>sinaweibohd</string>
+                <string>sinaweibo</string>
+                <string>sinaweibosso</string>
+                <string>weibosdk</string>
+                <string>weibosdk2.5</string>
+                <string>sqqapi</string>
+                <string>mqq</string>
+                <string>mqqapi</string>
+                <string>mqqOpensdkSSologin</string>
+                <string>wtloginmqq2</string>
+                <string>mqqopensdkapiV3</string>
+                <string>mqqopensdkapiV2</string>
+            </array>
+        </config-file>
+
+        <info>
+            检测应用是否安装的插件，目前只支持 wechat, sina, qq...
+            需要添加应用，先修改plugin.xml文件...
+        </info>
+
+    </platform>
+</plugin>

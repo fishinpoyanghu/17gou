@@ -1,0 +1,122 @@
+
+<ion-view view-title="我"  hide-nav-bar="true" on-swipe-right="goPre()">
+
+    <ion-content scrollbar-y="false" class="user-page" overflow-scroll="true">
+        <div class="dp-account">
+            <div class="dp-account__img" ng-click="showImageSelector()">
+                <img ng-src="{{getCurrUserInfo().icon}}" alt="" />
+            </div>
+            <div class="dp-account__name" ng-click="startToModifyNick()">{{getCurrUserInfo().nick}}</div>
+
+            <div class="dp-account__tips" ui-sref="setting" >
+                <img src="img/set.png" width="20" height="20" alt="设置"/>
+            </div>
+        </div>
+        
+        <div class="row row-center text-center account-info-block">
+            <div class="col" style="border-right:1px solid #e2e2e2;">
+                <p style="color: #db3752;font-size:16px;font-weight:bold;"><span style="color: #333;font-weight:normal;">积分：</span> {{pointData.point ? pointData.point : '0'}}</p>
+
+                <div class="look-details-wrap">
+                    <a href="#/myPoint" class="look-details" style="color:#64b9f4;">
+                        <span>签到</span><i style="margin-left:8px;vertical-align:middle;" class="icon ion-ios-arrow-right arrow "></i>
+                    </a>
+                </div>
+                <div class="row p-0 text-center">
+                    <div class="col p-0">
+                        <a class="dp-account__btn btn f-24 " href="#/turntable" style="background-color:#38DB88;width:70px;">转盘</a>
+                    </div>
+                    <div class="col p-0">
+                        <a class="dp-account__btn btn f-24 " href="#/redPacketList" style="background-color:#f8c343;width:70px;">红包</a>
+                    </div>
+                    
+                </div>
+                
+
+            </div>
+            <div class="col">
+                <p style="color: #db3752;font-size:16px;font-weight:bold;"><span style="color: #333;font-weight:normal;">余额 </span> {{getCurrUserInfo().money}}</p>
+
+                <div class="look-details-wrap">
+                    <a href="#/myAccountDetails" class="look-details" style="color:#64b9f4;">
+                        <span>明细</span><i style="margin-left:8px;vertical-align:middle;" class="icon ion-ios-arrow-right arrow "></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="dp-account__btn btn f-24" href="javascript:;" style="background-color:#e42012;" ng-show="showChongZhi" ng-click="goChongZhi()">充值</a>
+                </div>
+
+            </div>
+        </div>      
+
+        <div class="list mt-20">
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="startToMyPartRecord()">
+            <i class="icon "><img class="ic" src="img/ic_1.png"  /></i>
+            购买记录
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="startToWinningRecord()">
+            <i class="icon "><img class="ic" src="img/ic_2.png"  /></i>
+            获奖记录
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="startToMyShareOrder()">
+            <i class="icon "><img class="ic" src="img/ic_3.png"  /></i>
+            我的晒单
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+          
+          
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="startToMyUserAgency()">
+            <i class="icon "><img class="ic" src="img/agency/user_agency.png" /></i>
+            亿七代理
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+         
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="#/inviteFriends" >
+            <i class="icon "><img class="ic" src="img/ic_5.png"  /></i>
+            邀请有礼
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="goNews()" ng-mousedown="bell_news = 0">
+            <i class="icon "><img class="ic" src="img/ic_bell.png"  /></i>
+            消息提醒
+            
+            <span class="badge badge-assertive" ng-if="bell_news > 0">{{bell_news}}</span>
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+         
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="javascript:;" ng-click="startToUserDetail()">
+            <i class="icon "><img class="ic" src="img/ic_6.png"  /></i>
+            个人信息
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+          <a class="item item-icon-left item-icon-right user-list-item" href="#/questionReport">
+            <i class="icon "><img class="ic" src="img/ic_7.png"  /></i>
+            意见反馈
+            <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+          <a class="item item-icon-left item-icon-right user-list-item" ng-click="logout()"  href="#/trolley">
+          <!--<a class="item item-icon-left item-icon-right user-list-item" href="#/BoundPhoneNumber">-->
+            <i class="icon ion-ios-cart-outline" style="left: 9px;font-size: 32px;">
+            </i>
+            购物车
+                  <i class="badge badge-assertive">{{trolleySum()}}</i>
+
+              <i class="icon ion-ios-arrow-right arrow c-9"></i>
+          </a>
+
+        </div>
+    </ion-content>
+
+</ion-view>
+

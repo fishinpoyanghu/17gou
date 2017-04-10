@@ -1,0 +1,329 @@
+<ion-view view-title="我" hide-nav-bar="true" on-swipe-right="goPre()">
+
+    <ion-content class="user-page2" id="account">
+        <div id="agent_platform">
+            <div class="agent-platform-main">
+                <div class="agent-platform-content">
+                    <!--个人信息-->
+                    <div id="agency_header">
+                        <div class="agency_title">
+                            <div class="agency_content">
+                                <div class="agency_user_image" ng-click="startToUserDetail()">
+                                    <div class="agency_user_image_content">
+                                        <!--<img src="img/ben.png" alt="">-->
+                                        <img ng-src="{{getCurrUserInfo().icon}}" />
+                                    </div>
+
+                                </div>
+                                <div class="agency_user_info">
+                                    <div>
+                                        <div class="agent_userinfo_info">
+                                            <span>{{getCurrUserInfo().nick}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="agency_list" class="list">
+                        <li class="item ">
+                            <ul class="row">
+                                <li class="col">
+                                    <span class="agency_title">我的余额</span>
+                                    <div class="agency_cash">￥<span>{{getCurrUserInfo().money}}</span></div>
+                                    <!--<br>-->
+                                </li>
+                                <li class="col"  ng-click="goChongZhi()">
+                                    <!--<img ng-click="hideOrshowMoney(this)" class="eyes" ng-src={{eyesImg}}>-->
+                                    <button type="button" class="cash_out">充值</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="balance_account2" style=" margin-bottom: 10px;">
+                        <div class="yu_e_zhanghao">
+                            <p style="color: #444444;font-size:16px;">我的福袋（个）</p>
+                            <p class="lucky_packet_balance" style="position: relative;top: 0px;color: #D82E2F;font-size: 38px;
+font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
+                                {{getCurrUserInfo().lucky_packet}}
+                            </p>
+                        </div>
+                        <div class="fudai_btn">
+                            <a class="dp-account__btn2" href="javascript:;" style="background-color:#D53127;" ng-show="showChongZhi" ng-click="open_fd()">开福袋</a>
+                        </div>
+                    </div>
+
+                    <!--功能列表-->
+                    <div class="function-list">
+                        <div class="row no-padding function-box">
+                            <div class="col no-padding" ng-click="startToMyPartRecord()">
+                                <img src="img/icon/c1.png" alt="">
+                                <div class="function-text">云购记录</div>
+                            </div>
+                            <div class="col no-padding" ng-click="go_luckyBag()">
+                                <img src="img/icon/fudai.png" alt="">
+                                <div class="function-text">福袋</div>
+                            </div>
+                            
+                            <div class="col no-padding" ng-click="startToWinningRecord()">
+                                <img src="img/icon/c2.png" alt="">
+                                <div class="function-text">获奖记录</div>
+                            </div>
+
+                        </div>
+                        <div class="row no-padding function-box">
+                            <div class="col no-padding" ng-click="startToInviteFriends()">
+                                <img src="img/icon/c6.png" alt="">
+                                <div class="function-text">邀请注册</div>
+                            </div>
+
+                            <div class="col no-padding" ng-click="startToMyShareOrder()">
+                                <img src="img/icon/c3.png" alt="">
+                                <div class="function-text">我的晒单</div>
+                            </div>
+                            <div class="col no-padding" ng-click="startToTrolley()">
+                                <img src="img/icon/c7.png" alt="">
+                                <div class="function-text">购物车</div>
+                            </div>
+
+                        </div>
+                        <div class="row no-padding function-box">
+                        	<div class="col no-padding" ng-click="startToPintuanOrder()">
+                                <img src="img/icon/pintuan_order.png" alt="">
+                                <div class="function-text">拼团记录</div>
+                            </div>
+                            <div class="col no-padding" ng-click="startToPintuanCollect()">
+                                <img src="img/icon/collect_center.png" alt="">
+                                <div class="function-text">我的收藏</div>
+                            </div>
+
+                            <!--<div class="col no-padding" ng-click="go_public_offer()">
+                                <img src="img/icon/gp.png" alt="">
+                                <div class="function-text">消费全返</div>
+                            </div>-->
+                            
+                            <div class="col no-padding" ng-click="startToSetting()">
+                                <img src="img/icon/shezhi.png" alt="">
+                                <div class="function-text">设置</div>
+                            </div>
+                        </div>
+                        <!--<div class="row no-padding function-box">
+                            <div class="col no-padding" ng-click="startToSetting()">
+                                <img src="img/icon/shezhi.png" alt="">
+                                <div class="function-text">设置</div>
+                            </div>
+
+                            <div class="col no-padding" >
+
+                            </div>
+                            <div class="col no-padding" >
+
+                            </div>
+
+                        </div>-->
+                    </div>
+                    <div class="big-img" ui-sref="activityRule({type:'pintuan'})">
+                        <img src="img/pintuan/pintuan_goDetail.jpg" alt="">
+                    </div>
+                    <div style="height: 30px;"></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+<div ng-if="open_luckyBag">
+    <!--开启福袋个数-->
+    <div id="open_luckybag_num" overflow-scroll="true">
+        透明背景
+        <div id="white_bg"  ng-click="close_fdkj()">
+        </div>
+        <!--开启福袋个数-->
+        <div class="diamonds_radius">
+            <div class="luckybag_title">
+                <div class="fl">开启福袋个数</div>
+                <div class="close_bq2 fr" ng-click="close_fdkj()"><i class="icon ion-close"></i></div>
+            </div>
+            <!--剩余多少个福袋-->
+            <!--<p class="lb_monkey clearfix">剩余{{getCurrUserInfo().lucky_packet}}个福袋</p>-->
+
+            <!--加减法和输入框-->
+            <!--<div class="calculator_box">
+                <ul class="clearfix">
+                    <li><a class="add_btn fr" ng-click="decrease()">-</a></li>
+                    <li><input class="num_ipt fl" type="text" value="{{num}}" ng-model="num"></li>
+                    &lt;!&ndash;<li><input class="num_ipt fl" type="text" value="{{num}}" ng-model="num" ng-blur="input_LdNum(num)"></li>&ndash;&gt;
+                    <li><a class="sub_btn fl" ng-click="increase()">+</a></li>
+                </ul>
+
+            </div>-->
+            <div class="open_fudai"  ng-show="!close_money">
+                <div class="slide_box">
+                    <div class="num_box">
+                        <input class="inpt_lcynum" value="{{fudai.num}}" type="text" placeholder="输入福袋个数" ng-model="fudai.num" ng-change="input_LdNum(this)">
+                    </div>
+                    <input id="input_rang" type="range" value="{{fudai.num}}" name="points" min="1" max="{{fudai.maxnum}}" ng-model="fudai.num" ng-change="input_LdNum(this)"/>
+                </div>
+                <!--数量-->
+                <div class="num_box row">
+                    <a class="col cls" style="{{(getCurrUserInfo().lucky_packet)<1 && 'background-color: #E5E5E5;color: #74777b'}}" ng-click="choose('1')">1</a>
+                    <a class="col cls" style="{{(getCurrUserInfo().lucky_packet)<2  && 'background-color: #E5E5E5;color: #74777b'}}" ng-click="choose('2')">2</a>
+                    <a class="col cls" style="{{(getCurrUserInfo().lucky_packet)<5 && 'background-color: #E5E5E5;color: #74777b'}}" ng-click="choose('5')">5</a>
+                    <a class="col cls" style="{{(getCurrUserInfo().lucky_packet)<10 && 'background-color: #E5E5E5;color: #74777b'}}" ng-click="choose('10')">10</a>
+                </div>
+
+                <!--立即开启的按钮-->
+                <button class="ljkq" ng-click="open_fdImg()">立即开启</button>
+            </div>
+
+                <!--剩余多少个福袋-->
+                <p class="lb_monkey clearfix" ng-show="!close_money">您还可以开{{getCurrUserInfo().lucky_packet}}个福袋个福袋，<span style="color:#115DBB;" ng-click="showAlert()">立即购买</span></p>
+                <p ng-show="close_money" class="lb_monkey clearfix">您还可以开{{getCurrUserInfo().lucky_packet}}个福袋个福袋，<span style="color:#115DBB;" ng-click="closeAlert()">取消购买</span></p>
+
+
+                <!--选择充值金额-->
+                <div ng-show="close_money">
+                    <div id="xz_box">
+                        <div class="one_hang">
+                            <p class="xzje_word">选择购买金额（元）</p>
+                            <ul id="bb" class="ul_je clearfix">
+                                <li class="{{fudai.buyLuckypacketNum == '20' ? 'active' : ''}}" ng-click="select('20')"><a  href="">20</a></li>
+                                <li class="{{fudai.buyLuckypacketNum == '50' ? 'active' : ''}}" ng-click="select('50')"><a href="">50</a></li>
+                                <li class="{{fudai.buyLuckypacketNum == '100' ? 'active' : ''}}" ng-click="select('100')"><a href="">100</a></li>
+                            </ul>
+                            <ul class="ul_je clearfix margin-5">
+                                <li class="{{fudai.buyLuckypacketNum == '200' ? 'active' : ''}}" ng-click="select('200')"><a href="">200</a></li>
+                                <li class="{{fudai.buyLuckypacketNum == '500' ? 'active' : ''}}" ng-click="select('500')"><a href="">500</a></li>
+                                <li class="{{fudai.buyLuckypacketNum == '1000' ? 'active' : ''}}" ng-click="select('1000')"><a href="">1000</a></li>
+                            </ul>
+                            <p class="xzje_word clearfix">请输入金额</p>
+                            <div class="ipt_je clearfix">
+                                <span class="monkey_icon fl">￥</span>
+                                <div class="ipt_num fl">
+                                    <input class="inpt_monkey" maxlength="4" value="{{fudai.buyLuckypacketNum}}" type="number" placeholder="其他金额" ng-model="fudai.buyLuckypacketNum" ng-change="onInputChange(this)">
+                                    <!--<input class="num"  type="tel" id="joinNumber" maxlength="6" value="{{addPay.join_number}}" ng-model="addPay.join_number" ng-blur="editJoinNumber(addPay)"/>-->
+                                </div>
+                            </div>
+                            <!--<p class="xzje_word clearfix">选择支付方式</p>
+                            <div class="weui_cells_radio" ng-if="rechargeType!=2">
+                                <label class="weui_cell weui_check_label " for="x11" style="padding: 0px;" ng-hide="hideWeixin">
+                                    <div class="weui_cell_hd"><img src="img/weixin.png" alt="" style="width: 18px;margin-right:5px;display:block"></div>
+                                    <div class="weui_cell_bd weui_cell_primary">
+                                        <p>微信支付</p>
+                                    </div>
+                                    <div class="weui_cell_ft">
+                                        <input type="radio" class="weui_check" id="x11" name="payWay" ng-model="pay.type" value="1" required>
+                                        <span class="weui_icon_checked"></span>
+                                    </div>
+                                </label>
+                            </div>-->
+                            <!--立即充值的按钮-->
+                            <button class="ljkq" ng-click="startToPay()" style="margin-top: 6px;">立即购买</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<!--福袋的大图-->
+<div ng-if="display.fd_img">
+    <div id="img_wrapper">
+        <!--幸运儿-->
+        <img ng-show="display.luckyimg" class="paper-img2" src="img/account/lucky.png" alt=""/>
+        <!--纸-->
+        <div ng-show="display.yellow_paper" class="paper-box">
+            <img class="paper-img" src="img/account/paper.png" alt=""/>
+
+            <div class="paper-content" overflow-y="yes">
+                <ul>
+                    <li  ng-repeat="luckylist in luckylists"><em style="font-size: 24px;color:red;font-weight: 600;">{{$index+1}}</em>.获得<em class="blue">{{luckylist.goods_name}}</em> <em class="big-font">{{luckylist.num}}</em> 个云购幸运码</li>
+                </ul>
+            </div>
+            <div class="close_bq" ng-click="close_fdImg()"><i class="icon ion-close"></i></div>
+        </div>
+        <!--红袋子-->
+        <div ng-show="display.red_bag" class="bag-box  bag-box-shake">
+            <img src="img/account/redbag.png" alt=""/>
+        </div>
+    </div>
+    <!--透明背景-->
+   <div id="white_bg" ng-show="!display.golden||!display.silvery" overflow-scroll="true" ng-click="close_fdImg()">
+
+    </div>
+
+</div>
+<!--金币背景-->
+<!--<div id="goldBg" ng-click="close_fdImg()">
+    &lt;!&ndash;金币的canvas&ndash;&gt;
+    <canvas id="goldCanvas" width="480" height="800" style="margin-top: -20%;position: absolute;z-index: 99;"></canvas>
+</div>-->
+<!-- <div id="goldgif" ng-click="close_fdImg()"></div> -->
+<!--金光-->
+<div id="blackbg" ng-show="display.golden"  ng-click="close_fdImg()">
+    <!--苹果-->
+    <div id="goldenLight">
+        <div class="triangle-down rotate0"></div>
+        <div class="triangle-down rotate20"></div>
+        <div class="triangle-down rotate40"></div>
+        <div class="triangle-down rotate60"></div>
+        <div class="triangle-down rotate80"></div>
+        <div class="triangle-down rotate100"></div>
+        <div class="triangle-down rotate120"></div>
+        <div class="triangle-down rotate140"></div>
+        <div class="triangle-down rotate160"></div>
+    </div>
+    <!--安卓-->
+    <div id="goldenLight2">
+        <div class="triangle-down2 rotate0"></div>
+        <div class="triangle-down2 rotate20"></div>
+        <div class="triangle-down2 rotate40"></div>
+        <div class="triangle-down2 rotate60"></div>
+        <div class="triangle-down2 rotate80"></div>
+        <div class="triangle-down2 rotate100"></div>
+        <div class="triangle-down2 rotate120"></div>
+        <div class="triangle-down2 rotate140"></div>
+        <div class="triangle-down2 rotate160"></div>
+    </div>
+
+</div>
+
+<!--银光-->
+<div id="silverybg" ng-show="display.silvery" ng-click="close_fdImg()">
+    <!--苹果-->
+    <div id="silveryLight">
+        <div class="silvery-down rotate0"></div>
+        <div class="silvery-down rotate20"></div>
+        <div class="silvery-down rotate40"></div>
+        <div class="silvery-down rotate60"></div>
+        <div class="silvery-down rotate80"></div>
+        <div class="silvery-down rotate100"></div>
+        <div class="silvery-down rotate120"></div>
+        <div class="silvery-down rotate140"></div>
+        <div class="silvery-down rotate160"></div>
+    </div>
+    <!--安卓-->
+    <div id="silveryLight2">
+        <div class="silvery-down2 rotate0"></div>
+        <div class="silvery-down2 rotate20"></div>
+        <div class="silvery-down2 rotate40"></div>
+        <div class="silvery-down2 rotate60"></div>
+        <div class="silvery-down2 rotate80"></div>
+        <div class="silvery-down2 rotate100"></div>
+        <div class="silvery-down2 rotate120"></div>
+        <div class="silvery-down2 rotate140"></div>
+        <div class="silvery-down2 rotate160"></div>
+    </div>
+
+</div>

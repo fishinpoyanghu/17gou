@@ -1,0 +1,15 @@
+<ion-view view-title="意见反馈" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content style="background-color: white">
+        <div class="row c-9 f-24 m-0" style="padding: 10px;">
+            <textarea  cols="300" rows="10" ng-model="feedback.content" style="padding:10px;font-size:16px;background:#F2F2F2;color:#333;border:1px solid #D8D8D8;" placeholder="在这里写下您对我们的意见反馈吧~"></textarea>
+        </div>
+       
+        <div class="row m-0" style="padding:0 10px;">
+            <button class="button button-block button-assertive" ng-click="submit()">提交</button>
+        </div>
+    </ion-content>
+</ion-view>

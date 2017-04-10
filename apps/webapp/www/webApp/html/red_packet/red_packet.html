@@ -1,0 +1,73 @@
+<ion-view view-title="我的红包" hide-nav-bar="isHideNaviBar">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+        <!--<button ng-click="getRedPacketList()">获取红包列表</button>-->
+        <ion-tabs class="tabs-top dp-tabs dp-tabs--border">
+            <ion-tab title="可使用" >
+                <ion-content has-tabs="true" scrollbar-y="false">
+                  <div class="dp-broad dp-broad--leftImg">
+                  <view-list-view comp-id="'15-1-1'" type="infinite" dp-request-url="{{::requestUrl}}" dp-request-params="::requestParams"
+                                  dp-call-back="callBack" dp-per-request-size="20" dp-auto-refresh="false">
+                    <view-list-item ng-repeat="readPacket in list">
+                      <div class="dp-broad__li" style="margin-top: 0">
+                        <div class="dp-broad__img red_packge">{{::readPacket.money}}元</div>
+                        <h3 class="dp-broad__title" style="font-size: 18px; line-height: 1.5">{{::readPacket.packet_name}}</h3>
+                        <div class="dp-broad__desc">
+                          <p>有效期：{{::readPacket.overdue}}</p>
+                          <p>直减1元（{{::readPacket.user_range}}）</p>
+                        </div>
+                      </div>
+                    </view-list-item>
+                  </view-list-view>
+                  </div>
+                  <!--没有红包时-->
+                  <div class="dp-emptyBlock" ng-if="list.length <= 0">
+                  <div class="dp-emptyBlock__container">
+                  <img src="img/red_packge_not.png" width="67" class="img" alt=""/>
+                  <p style="margin-top: 10px;">您还没有红包</p>
+                  <button class="dp-button dp-button--red" style="margin: auto; margin-top: 40px; width: 130px; "
+                          ng-click="goToBuy()">立即购买</button>
+                  </div>
+                  </div>
+                </ion-content>
+            </ion-tab>
+            <ion-tab title="已使用 / 过期" >
+                <ion-content has-tabs="true" scrollbar-y="false">
+                  <div class="dp-broad dp-broad--leftImg">
+                    <view-list-view type="infinite" dp-request-url="{{::requestUrl}}" dp-request-params="::requestParamsUsed"
+                                    dp-call-back="callBackUsed" dp-per-request-size="20" >
+                      <view-list-item ng-repeat="readPacket in usedList">
+                        <div class="dp-broad__li" style="margin-top: 0">
+                          <div class="dp-broad__img red_packge">{{::readPacket.money}}元</div>
+                          <h3 class="dp-broad__title" style="font-size: 18px; line-height: 1.5">{{::readPacket.packet_name}}</h3>
+                          <div class="dp-broad__desc">
+                            <p>有效期：{{::readPacket.overdue}}</p>
+                            <p>直减1元（{{::readPacket.user_range}}）</p>
+                          </div>
+                          <div class="out_of_date red" ng-if="::(readPacket.status == 2)"></div>
+                          <div class="out_of_date gray" ng-if="::(readPacket.status == 3)"></div>
+                        </div>
+                      </view-list-item>
+                    </view-list-view>
+                  </div>
+
+                  <!--没有红包时-->
+                  <div class="dp-emptyBlock" ng-show="usedList.length <= 0">
+                    <div class="dp-emptyBlock__container">
+                      <img src="img/red_packge_not.png" width="67" class="img" alt=""/>
+                      <p style="margin-top: 10px;">您还没有红包</p>
+                      <button class="dp-button dp-button--red" style="margin: auto; margin-top: 40px; width: 130px; "
+                              ng-click="goToBuy()"
+                        >立即购买</button>
+                    </div>
+                  </div>
+                </ion-content>
+            </ion-tab>
+        </ion-tabs>
+
+
+</ion-view>

@@ -1,0 +1,197 @@
+<ion-view view-title="拼团全部分类" hide-nav-bar="isHideNaviBar" class="classify-area-page" on-swipe-left="goNext()" on-swipe-right="goPre()">
+
+    <!--<ion-nav-buttons side="left">
+         <button class="dp-button button-icon ion-chevron-left" ng-click="go_pintuanmainpage()">
+         </button>
+     </ion-nav-buttons>-->
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <!--<aside class="left-bar clearfix slide-in-up {{showClassify ? 'ng-enter-active' : ''}}"  style="height:{{leftBarHeight}}px;top:{{leftBarTop}};z-index: 20;left:auto;right:0;background-color:rgba(0,0,0,.7);width:100%;" ng-click="closeClass()">
+
+        <div class="list  fr" style="background-color:#fff;width:100%;height: auto;padding:20px 0;">
+
+            <style>
+                .clas-item  {
+                    width: 25%;
+                    display: inline-block;
+                    float:left;
+                    padding: 10px 0;
+                    position: relative;
+                }
+                .clas .active {
+                    color: #f72331;
+                }
+                .clas-item:after {
+                    content: '';
+                    position: absolute;
+                    top: 11px;
+                    right: 0px;
+                    display: inline-block;
+                    height: 21px;
+                    width: 1px;
+                    background-color: #e5e5e5;
+                }
+                .clas-item:nth-child(4n):after,.clas-item:last-child:after {
+                    background-color: transparent;
+                }
+
+            </style>
+            <div class="f-28 clearfix clas">
+                <div class="clas-item {{goods_type_id == null ? 'active' : ''}}" ng-click="fetchData(null)">
+                    全部商品
+                </div>
+
+                <div class="clas-item dm-nowrap {{goods_type_id == broadlist1.goods_type_id ? 'active' : ''}}" ng-repeat="broadlist1 in broadlist" ng-click="fetchData(broadlist1.goods_type_id)">
+                    {{::broadlist1.name}}
+                </div>
+            </div>
+
+        </div>
+    </aside>-->
+
+    <!--添加搜查-->
+    <!--<div style="top:{{inWechatB ? '8px' : '50px'}};display: block;height: 32px;line-height:32px;background-color: rgba(225, 225, 225, 0.7);position: absolute;width: 80%; z-index: 20;left: 50%;transform: translateX(-50%);color:#7F6E6F;border-radius: 20px;" class="clearfix">
+        <div class="fl">
+            <a  ng-click="go_search()">
+                <img class="search_img" src="img/search/search.png" alt="">
+            </a>
+        </div>
+        <div class="sd_sousuo fl" ng-click="go_search()">
+            <a style="color:#7F6E6F;font-size: 18px;font-weight: 500;">
+                搜索商品
+            </a>
+
+        </div>
+        <div class="fr">
+            <a href="#/attention">
+                <img class="erweima_img" src="img/search/erweima.png" alt="">
+            </a>
+        </div>
+    </div>-->
+    <!--不在内容区里的顶部分类栏-->
+    <div id="pintuan_classif" class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }};height: 41px;" >
+        <div class="row  row-center dm-goods-classify" style="margin-top:0px;padding:0px;border-bottom: 1px solid #DDDDDD;">
+            <div class="col nav-col nav-col2 {{order_key == 'weight' ? 'active' : ''}}"  ng-click="changeActive('weight')">
+                <span class="nav-item nav-item2" style="padding:0;">热门推荐</span>
+            </div>
+            <div class="col nav-col nav-col2 {{order_key == 'time' ? 'active' : ''}}"  ng-click="changeActive('time')">
+                <span class="nav-item nav-item2" style="padding:0;">最新商品</span>
+            </div>
+            <div id="other_class" class="col nav-col nav-col3" ng-click="showClass()">
+                <div class="nav-item clearfix ">
+                    <span class="fl nav-item2">其他分类 <i class="ion-chevron-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .dp-floatBtn--bl {
+            left: auto;
+            right: 40px;
+            bottom:60px;
+        }
+        .dm-goods-classify .nav-item {
+            padding: 0 6px;
+        }
+
+    </style>
+    <ion-content id="text" class="has-subheader classify-page"  style="{{inWechatB ? 'top:40px;' : (inIosApp ? 'top:84px;' : 'top:88px;') }}">
+        <ion-refresher
+            pulling-text=" 喂喂， 我可是有底线的！"
+            pulling-icon="ion-arrow-down-c"
+            on-refresh="doRefresh('3-2-001-01')"
+        >
+        </ion-refresher>
+
+        <div id="pintuan_list" class="dp-broad dp-broad--leftImg pos-r" id="class_details" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]" >
+            <div class="dp-broad__li clearfix  center margin-bottom-8px" ng-repeat="broad in broadlist track by $index" style="margin-top: 0;padding:10px;">
+                <div class="dp-broad__img new_img" ng-click="gotoDetail(broad.goods_id)">
+                    <img class="margin-top-14" ng-src="{{broad.main_img}}"/>
+                    <!--<img class="margin-top-14" src="img/pintuan_icon/index.jpg"/>-->
+                </div>
+
+                <div class="dp-broad__content" ng-click="gotoDetail(broad.goods_id)" style="position:relative;overflow: hidden; ">
+                    <h3 class="dm-nowrap-2 font-size-16">{{broad.title}}</h3>
+                    <div class="row p-0 row-center" style="margin-top: 8px;">
+                        <div class="col p-0 text-align-left">
+                            <span class="pintuan_price1">拼团价<i style="color:#B52A2F;">￥</i><em class="font-30">{{broad.price}}</em></span>
+                            <span class="pintuan_price2">￥{{broad.original_price}}</span>
+                        </div>
+                        <button ng-if="broad.activity_type==1" class="button_red">{{broad.people_num}}人团</button>
+                        <div ng-if="broad.activity_type==3" id="#pintuan_list">
+                            <button  class="barpeople_button_red2"><em class="baren_btn">{{broad.people_num}}人团</em><span class="tzmf_btn">团长免费</span></button>
+                        </div>
+                    </div>
+                    <!--<div class="row p-0 row-center" >
+                        <div class="col p-0">
+                            <div class="row p-0 row-center" style="margin-top: 10px;">
+                                <div class="col p-0">
+                                    <div class="progress_box" style="color: #888888; float:none;">
+
+                                        <div class="progress border-radius-10" style="width: 100%; margin-bottom: 5px;"><span class="num border-radius-10" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>-->
+                    <!--<div class="row p-0 row-center" style="margin-top: 10px;">
+                        <div class="col p-0">
+                            <span class="activity_id">{{broad.activity_id}}期</span>
+                        </div>
+
+                        <div class="col p-0 work_off">
+                            <span>已售出{{broad.need_num-broad.remain_num}}份</span>
+                        </div>
+                    </div>-->
+                </div>
+
+
+                <!--   <div class="dp-broad__content" style="position:absolute; top: 50%;  right: 1px;  line-height:32px;height: 30px;width: 45px;">
+                      <div class=" btn iconfont-shopcart-outline" ng-click="addToCart(broad,$event)" ontouchstart="domController.changeAddCartState(this,true)" ontouchend="domController.changeAddCartState(this,false)" style="line-height: 1;color: #f44336;font-size: 3.2rem;z-index: 1;"></div>
+                  </div> -->
+
+                <!--下面是二人云购图标-->
+                <!--<i class="two_people__tag red_tag" ng-if="(broad.activity_type == 4)"></i>
+
+                <i class="dp-broad__tag blue_tag" ng-if="(broad.activity_type == 2)"></i>
+                <span class="limit-flag" ng-if="(broad.activity_type == 3)" style="top:3px;right: 6px;">限购</span>-->
+                <!--<div class="hot_bq" ng-if="(order_key == 'weight')" style="top:3px;z-index:22222;">
+                    <img src="img/pintuan_icon/hot.jpg" alt="">
+                </div>-->
+            </div>
+
+            <a class="dp-broad__more" ng-if="::dpIsShortList" ng-click="showTheListAll()">查看更多&nbsp;
+                <i class="icon ion-chevron-right"></i>
+            </a>
+            <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+            <p  ng-show="!isMoreData && isLoadFinished" class="dp-more dp-more--bottom">没有更多啦~</p>
+
+        </div>
+
+        <ion-infinite-scroll
+            ng-if="isMoreData"
+            on-infinite="loadMore()"
+            icon="ion-loading-c"
+            distance="1%"
+            immediate-check='false'>
+        </ion-infinite-scroll>
+    </ion-content>
+
+</ion-view>
+
+<!--购物车图标-->
+<!--<div class="dp-floatBtn dp-floatBtn--bl" ng-hide="hideCartIcon">
+    <a class="dp-floatBtn__link" href="#/trolley">
+        <i class="icon ion-ios-cart" id="{{showCartId ? 'classify_cart' : 'sdfsd'}}"></i>
+    </a>
+    <i class="badge badge-assertive">{{trolleySum()}}</i>
+</div>-->
+

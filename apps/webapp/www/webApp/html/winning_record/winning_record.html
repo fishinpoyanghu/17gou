@@ -1,0 +1,248 @@
+<ion-view view-title="中奖记录" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+<style>.win-record-page .scroll-content{top:47px;}</style>
+    <ion-content scrollbar-y="false" overflow-scroll="true">
+      <div class=" row text-center share-order-nav" style="z-index:1;height:50px;">
+        <div class="col pm-0 classify-l {{type == 'duobao' ? 'active' : ''}}" ng-click="changeType('duobao')" style="line-height:33px;">中奖记录</div>
+        <div class="col pm-0 classify-p {{type == 'zhuanpan' ? 'active' : ''}}" ng-click="changeType('zhuanpan')" style="line-height:33px;">转盘中奖</div>
+        <div class="col pm-0 classify-r {{type == 'pintuan' ? 'active' : ''}}" ng-click="changeType('pintuan')" style="line-height:33px;">拼团中奖</div>
+      </div>
+      <view-list-view comp-id="'9-1-1'" type="infinite" dp-request-url="{{requestUrl}}" dp-request-params="requestParams"
+                      dp-per-request-size="20" dp-call-back="callBack" dp-auto-refresh="false" class="win-record-page">
+        <view-list-item ng-repeat="record in pintuanRecordList" ng-if="type == 'pintuan'">
+          <div class="dp-itemList__li">
+            <div class="dp-itemList__content" style="margin-bottom: 10px;">
+              <div class="dp-itemList__img">
+                <img ng-src="{{::record.goods_img}}"/>
+              </div>
+              <div class="dp-itemList__title">{{::record.goods_title}}</div>
+              <div class="dp-itemList__desc" style="margin-bottom: 0;">
+                <p>团号： {{::record.activity_id}}</p>
+                <p>总需： {{::record.need_num}}人次</p>
+                <p>本期参与： <em class="red">{{::record.user_num}}</em> 人次</p>
+                <p>幸运号码： <em class="red">{{::record.lucky_num}}</em> <a class="blue fr" ng-click="getMyActivityPinTuanNum(record.activity_id)">查看我的号码</a></p>
+                <p ng-if="record.activity_type==7">说明： <em class="red">此商品为双十二活动分享返现专区</em> <a class="blue fr" ng-click="getMyActivityNum(record.activity_id)">查看详情</a></p>
+              </div>
+            </div>
+
+              <div class="more-btn">
+              <button ng-if="(record.logistics_stat == 1)" class="dp-button dp-button--white dp-button--lhf"  ng-click="startToCheckReceive(record,'pintuan')" style="margin-right:5px;">签收</button>
+              <button ng-if="record.activity_type != 7 && record.logistics_stat>=1" class="dp-button dp-button--white dp-button--lhf"  ng-click="go_express_record(record.activity_id,record.logistics_num,record.logistics_id,record)">查看物流</button>
+              <button ng-if="record.activity_type != 7" class="dp-button dp-button--red dp-button--lhf"  ng-click="doShareRecord(record)" style="margin-right:5px;">炫耀一下</button>
+              <button ng-if="record.activity_type == 7" class="dp-button dp-button--red dp-button--lhf"  ng-click="doShareRecord(record)" style="margin-right:5px;">分享返现</button>
+
+              <button class="dp-button dp-button--red dp-button--lhf"
+                      ng-if="(record.address == null || record.address=='') && record.logistics_stat == 0"
+                      ng-click="startToAddressSelect(record.activity_id,'pintuan')"
+                      style="margin-right:5px;" >确认收货地址</button>
+              <button class="dp-button dp-button--red dp-button--lhf"
+                      ng-if="record.address && record.logistics_stat == 0"
+                      ng-click="startToAddressSelect(record.activity_id,'pintuan')" style="margin-right:5px;"
+              >修改收货地址</button>
+              <button class="dp-button dp-button--red dp-button--lhf"
+                      ng-if="(record.logistics_stat == 2)" ng-click="startToMyShareOrder(record.activity_id,record.address)"
+              >晒单分享</button>
+          </div>
+            <div class="dp-detailBox__grayBox">
+              <h3 class="title">物流信息</h3>
+              <p>物流状态： <em class="red">{{::parseLogisticsStat(record.logistics_stat)}}</em></p>
+              <p class="toe">收货地址：{{::record.address}}
+              </p>
+              <p>快递单号： {{::record.logistics_order}}</p>
+
+
+              
+            </div>
+          </div>
+        </view-list-item>
+        <view-list-item ng-repeat="record in recordList" ng-if="type == 'duobao'">
+          <div class="dp-itemList__li">
+            <div class="dp-itemList__content" style="margin-bottom: 10px;">
+              <div class="dp-itemList__img">
+                <img ng-src="{{::record.goods_img}}"/>
+              </div>
+              <div class="dp-itemList__title">{{::record.goods_title}}</div>
+              <div class="dp-itemList__desc" style="margin-bottom: 0;">
+                <p>期号： {{::record.activity_id}}</p>
+                <p>总需： {{::record.need_num}}人次</p>
+                <p>本期参与： <em class="red">{{::record.user_num}}</em> 人次</p>
+                <p>幸运号码： <em class="red">{{::record.lucky_num}}</em> <a class="blue fr" ng-click="getMyActivityNum(record.activity_id)">查看我的号码</a></p>
+                <p ng-if="record.activity_type==7">说明： <em class="red">此商品为双十二活动分享返现专区</em> <a class="blue fr" ng-click="getMyActivityNum(record.activity_id)">查看详情</a></p>
+              </div>
+            </div>
+
+              <div class="more-btn">
+                  <button ng-if="(record.logistics_stat == 1)" class="dp-button dp-button--white dp-button--lhf"  ng-click="startToCheckReceive(record,'duobao')">签收</button>
+                  <button ng-if="record.activity_type != 7 && record.logistics_stat>=1" class="dp-button dp-button--white dp-button--lhf"  ng-click="go_express_record(record.activity_id,record.logistics_num,record.logistics_id,record)">查看物流</button>
+                  <button ng-if="record.activity_type != 7" class="dp-button dp-button--red dp-button--lhf"  ng-click="doShareRecord(record)" style="margin-right:5px;">炫耀一下</button>
+                  <button ng-if="record.activity_type == 7" class="dp-button dp-button--red dp-button--lhf"  ng-click="doShareRecord(record)" style="margin-right:5px;">分享返现</button>
+
+                  <button class="dp-button dp-button--red dp-button--lhf"
+                          ng-if="(record.address == null || record.address=='') && record.logistics_stat == 0"
+                          ng-click="startToAddressSelect(record.activity_id,'duobao')" style="margin-right:5px;"
+                  >确认收货地址</button>
+                  <button class="dp-button dp-button--red dp-button--lhf"
+                          ng-if="record.address && record.logistics_stat == 0"
+                          ng-click="startToAddressSelect(record.activity_id,'duobao')" style="margin-right:5px;"
+                  >修改收货地址</button>
+                  <button class="dp-button dp-button--red dp-button--lhf"
+                          ng-if="(record.logistics_stat == 2)" ng-click="startToMyShareOrder(record.activity_id,record.address)" style="margin-right:5px;"
+                  >晒单分享</button>
+              </div>
+            <div class="dp-detailBox__grayBox">
+              <h3 class="title">物流信息</h3>
+              <p>物流状态： <em class="red">{{::parseLogisticsStat(record.logistics_stat)}}</em></p>
+              <p class="toe">收货地址：{{::record.address}}
+              </p>
+              <p>快递单号： {{::record.logistics_order}}</p>
+
+
+              
+            </div>
+          </div>
+        </view-list-item>
+        <view-list-item ng-repeat="record in zhuanpanRecordList" ng-if="type == 'zhuanpan'">
+          <div class="dp-itemList__li">
+            
+            <h3 style="margin:10px 5px;font-size:16px;color:#333;" class="dm-nowrap-2">奖品名称： {{::record.name}}</h3>
+              <div class="more-btn">
+                  <button ng-if="(record.send == 1)" class="dp-button dp-button--white dp-button--lhf" ng-click="startToCheckReceive(record,'choujiang')" style="margin-right:5px;">签收</button>
+                  <button class="dp-button dp-button--red dp-button--lhf" style="position:absolute; top: 8px; right: 8px; z-index: 1;"
+                          ng-if="(record.address == null || record.address=='') && record.send == 0"
+                          ng-click="startToAddressSelect(record.id,'choujiang')" style="margin-right:5px;"
+                  >确认收货地址</button>
+                  <button class="dp-button dp-button--red dp-button--lhf"
+                          ng-if="record.address && record.send == 0"
+                          ng-click="startToAddressSelect(record.id,'choujiang')"
+                  >修改收货地址</button>
+              </div>
+            <div class="dp-detailBox__grayBox" style="margin-bottom: 10px;">
+              <h3 class="title">物流信息</h3>
+              <p>物流状态： <em class="red">{{::parseLogisticsStat(record.send)}}</em></p>
+              <p class="toe">收货地址：{{::record.address}}
+              </p>
+              <p>快递单号： {{::record.kuaidi}}</p>
+
+
+             <!--  <button class="dp-button dp-button--red" style="position:absolute; top: 8px; right: 8px; z-index: 1;"
+                      ng-if="(record.send == 2)" ng-click="startToMyShareOrder(record.activity_id,record.address)"
+                >晒单分享</button> -->
+            </div>
+            <!--<p class="tar" style="color: #bbbbbb">10个小时前</p>-->
+          </div>
+        </view-list-item>
+      </view-list-view>
+
+      <!--中奖纪录为空时-->
+      <div class="dp-emptyBlock" ng-if="type == 'pintuan' && pintuanRecordList.length<=0 " style="top:60px;">
+        <div class="dp-emptyBlock__container">
+          <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+          <p>你还没有拼团中奖记录哦~</p>
+          <button class="dp-button dp-button--yellow dp-button--lhf" style="margin: auto; margin-top: 40px; width: 130px; " ng-click="goToPintuan()">立即参与</button>
+        </div>
+      </div>
+      <div class="dp-emptyBlock" ng-if="type == 'duobao' && recordList.length<=0 " style="top:60px;">
+        <div class="dp-emptyBlock__container">
+          <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+          <p>你还没有中奖记录哦~</p>
+          <button class="dp-button dp-button--yellow dp-button--lhf" style="margin: auto; margin-top: 40px; width: 130px; " ng-click="goToBuy()">立即参与</button>
+        </div>
+      </div>
+
+      <div class="dp-emptyBlock" ng-if="type == 'zhuanpan' && zhuanpanRecordList.length<=0 " style="top:60px;">
+        <div class="dp-emptyBlock__container">
+          <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+          <p>你还没有转盘中奖记录哦~</p>
+          <button class="dp-button dp-button--yellow dp-button--lhf" style="margin: auto; margin-top: 40px; width: 130px; " ng-click="goToTurntable()">立即去抽奖</button>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <!--隐藏弹窗只要把 visible actve popup-showing 的类去掉就可以-->
+    <div class="backdrop visible active" ng-show="activityNums"></div>
+    <div class="popup-container popup-showing active" ng-show="activityNums">
+        <div class="popup" style="max-height:85%;">
+            <div class="popup-head" style="padding:0;height:40px;line-height:40px;">
+                <h3 class="popup-title ng-binding">我的亿七购号码</h3><!-- ngIf: subTitle -->
+            </div>
+            <div class="popup-body">
+                <div class="row" ng-repeat="activityNumCol in activityNums">
+                    <span class="col-33" ng-repeat="activityNum in activityNumCol">
+                      {{::activityNum}}
+                    </span>
+                </div>
+            </div>
+            <div class="popup-buttons"><!-- ngRepeat: button in buttons -->
+                <button ng-click="hideMyActivityNum()" class="button button-assertive " ng-class="button.type || 'button-default'">确定</button><!-- end ngRepeat: button in buttons -->
+            </div>
+        </div>
+    </div>
+    <!--红包弹窗-->
+    <!--要显示的时候加个show-->
+    <!--<div class="pop-wp show">-->
+    <div id="congratulation" class="pop-wp">
+        <div class="pop pop--redPackage">
+            <div class="redPackage">
+                <div class="pop__title">恭喜你，中奖啦</div>
+                <div class="pop_content">
+                    <div class="dp-itemList__li" style="background-color: transparent; border-bottom: 0;">
+                        <div class="dp-itemList__content" style="background-color: transparent; padding-left: 60px;">
+                            <div class="dp-itemList__img1" style="width: 50px;"><img ng-src="{{unreadRecord.goods_img}}" alt=""/>
+                            </div>
+                            <div class="dp-itemList__title">{{unreadRecord.goods_title}}</div>
+                            <div class="dp-itemList__desc">
+                                <p>期       号：<span class="blue">{{unreadRecord.activity_id}}</span></p>
+                                <p>总       需：<span class="red">{{unreadRecord.need_num}}</span></p>
+                                <p>本期参与：<span class="red">{{unreadRecord.user_num}}</span> 人次</p>
+                                <p>幸运号码：<span class="red">{{unreadRecord.lucky_num}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="tac" style="margin-top: 5px;">
+                        <button class="dp-button dp-button--yellow" style="padding: 0 40px; box-shadow:0 2px 4px #ff7a00;" ng-click="go_express_record(record.activity_id,record.logistics_order)">查看物流</button>
+                    </div>-->
+                        <button class="dp-button dp-button--yellow" style="padding: 0 20px; box-shadow:0 2px 4px #ff7a00;" ng-click="doShareRecord(unreadRecord)">炫耀一下</button>
+                    </div>
+                </div>
+            </div>
+            <div class="yellow_light"><img src="img/round_light.png" alt=""/></div>
+            <div class="xuehua"></div>
+            <div class="close" style="color: #ff5555; top: 8px; right: -6px;" ng-click="closeUnreadRecord()"><i class="icon iconfont-close-round"></i></div>
+        </div>
+        <div class="mask"></div>
+    </div>
+
+</ion-view>
+<!--分享文字-->
+<div id="guidepop" class="pop-wp"  style="display:none" ng-click="hideGuide1()">
+  <div class="pop pop--share" >
+    <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+  </div>
+  <div class="mask"></div>
+</div>
+<div id="actionSheet_wrap" ng-show="isShowShare">
+    <div class="weui_mask_transition weui_fade_toggle show" id="mask" ></div>
+    <div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+        <h3 class="dp-grid__head tac" style="background-color: #ffffff">分享到</h3>
+        <div class="dp-grid dp-grid--3" style="padding: 0 10%;">
+
+            <a class="dp-grid__link"  href="javascript:;" ng-click="shareToFriendsCircle()">
+                <img class="dp-grid__img" src="img/pengyouquan_logo.png" alt=""/>
+                <p class="dp-grid__title">朋友圈</p>
+            </a>
+            <a class="dp-grid__link"   href="javascript:;" ng-click="shareToFriends()">
+                <img class="dp-grid__img" src="img/weixin_logo.png" alt=""/>
+                <p class="dp-grid__title">微信好友</p>
+            </a>
+           
+        </div>
+        <div class="weui_actionsheet_action" ng-click="hidePop()">
+            <div class="weui_actionsheet_cell" id="actionsheet_cancel" style="color: #888;">取消</div>
+        </div>
+    </div>
+</div>

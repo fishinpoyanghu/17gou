@@ -1,0 +1,39 @@
+<!--<ion-view view-title="编辑晒单" hide-nav-bar="isHideNaviBar">-->
+<ion-view view-title="编辑晒单">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="dp-button button-icon" ng-style="{opacity:!isDisablePost() ? 1 : 0.3}"
+                ng-click="postShareOrder()" ng-disabled="isDisablePost()">发布
+        </button>
+    </ion-nav-buttons>
+
+    <style>
+        .title1{font-size: 1.6rem;}
+    </style>
+    <ion-content>
+        <div class="dp-edit">
+            <input class="dp-edit__title" type="text" placeholder="标题（可选，最大长度20字节）" ng-model="::newShowOrder.title"/>
+
+            <textarea class="dp-edit__textArea" id="TextArea1"
+                      ng-model="newShowOrder.content" cols="5" rows="7" placeholder="正文内容...（最大长度140字节）">
+            </textarea>
+
+        </div>
+
+        <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this)"
+               style="visibility: hidden">
+
+        <div id="fileList" class="dp-edit__imgBox">
+            <div class="imgBox_addItem" id="plusicon"><i class="icon ion-plus-round" ng-click="choosePicture()"></i>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+

@@ -1,0 +1,110 @@
+<ion-view view-title="确认申请" hide-nav-bar="isHideNaviBar">
+
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+	</ion-nav-buttons>
+	<a id="pintuan_mainpage" class="item item-icon-left item-icon-right user-list-item item-icon-left2" href="#/tab/mainpage">
+		<!--<i class="icon ion-ios-arrow-right arrow2 c-9 ion-ios-home-outline" style="right: 15px;"></i>-->
+		<img src="img/icon/index.png" / width="40px">
+	</a>
+	<ion-content>
+
+		<ion-refresher pulling-text=" 喂喂， 我可是有底线的！" pulling-icon="ion-arrow-down-c" on-refresh="refresh()">
+		</ion-refresher>
+
+		<div id="pintuan_gainAdress">
+			<div ng-if="!isDataEmpty()">
+				<!--<h3 class="padding" style="color: #333333;font-size: 15px;">收货地址</h3>-->
+
+				<div class="weui_cells weui_cells_access">
+					<a ng-show="{{!displayAdress || addr.is_default===1}}" class="weui_cell" ng-repeat="addr in displayAddressList" ng-click="startToAddressUpdate(addr)">
+						<div class="weui_cell_hd">
+							<input type="radio" class="weui_check" name="checkbox1" id="s11" checked="checked">
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p>收货人：{{addr.name}}<span class="fr">{{addr.mobile}}</span></p>
+
+							<p><span class="red" ng-show="{{addr.is_default===1}}">[默认]</span> 收货地址：{{addr.province + addr.city + addr.area + '，' + addr.detail}}</p>
+						</div>
+						<div class="weui_cell_ft">
+						</div>
+					</a>
+				</div>
+			</div>
+			<div ng-if="isDataEmpty()" ng-click="startToAddressAdd()" class="pintuan_addAdress">
+				<img src="img/add.png" />
+				<span>新增收货地址</span>
+			</div>
+		</div>
+		<div id="pintuan_goods_info" class="dp-broad dp-broad--leftImg pos-r">
+			<div class="pintuan_logo">
+				<img src="img/pintuan/pintuan.png" />
+			</div>
+			<div class="dp-broad__li clearfix" style="margin-top: 0;padding:10px;border-top: 1px solid #CCCCCC;border-bottom: 1px solid #CCCCCC;">
+				<div class="dp-broad__img" ng-click="gotoDetail(broad.activity_id)">
+					<img ng-src="{{broad.img}}" />
+				</div>
+
+				<div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="height:100%;position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">
+					<!--<h3 class="dm-nowrap-2 f-28" style="color: #333; margin-bottom: 5px;  overflow:hidden;padding-right: 26px;">{{broad.goods_title}}</h3>-->
+
+					<div class="row p-0 row-center">
+						<div class="col p-0">
+							{{broad.goods_title}}
+						</div>
+					</div>
+					<div class="row p-0 row-center row-center1">
+						<div class="col num" ng-if="orderType==4">
+							<span>￥{{broad.singleprice*goods_num}}</span><br>
+							<div class="contrul_num">
+								<i style="{{goods_num==1&&'background-color: #ddd;'}}" ng-click="changeNum(0)" class="minus ion ion-minus"></i>
+								<span class="value">{{goods_num}}</span>
+								<i ng-click="changeNum(1)" class="add ion ion-android-add"></i>
+							</div>
+						</div>
+						<div class="col num" ng-if="orderType==3">
+							<span ng-if="broad.activity_type==3">￥0.00</span><br>
+							<span ng-if="broad.activity_type==1">￥{{broad.price}}</span><br>
+							<span>x1</span>
+						</div>
+						<div class="col num" ng-if="orderType==2">
+							<span>￥{{broad.price}}</span><br>
+							<span>x1</span>
+						</div>
+						<!--<div class="col num">
+                        	<span>￥0.00</span><br>
+                        	<span>x1</span>
+                        </div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div id="choice_nature">
+			<ul class="list">
+				<li class="item" ng-repeat="nature in natures">
+					<h1 class="">{{nature.name}}</h1>
+					<span ng-repeat="value in nature.values">{{value}}</span>
+				</li>
+			</ul>
+		</div>-->
+		<!--<div id="pintuan_pay_style">
+			<div class="pintuan_pay_content">
+				<img class="pintuan_weixin_logo" src="img/weixin.png"/>
+				<span class="pintuan_weixin">微信支付</span>
+				<img class="pintuan_gou" src="img/gou.png"/>
+			</div>
+		</div>-->
+	</ion-content>
+	<!--<div id="pintuan_pay_sure">-->
+	<div id="pintuan_footer" class="bar bar-footer">
+		<div class="row">
+			<!--<div class="pintuan_pay_total col col-67 pintuan_inviteFriend">-->
+			<!--<span>共<span class="pintuan_pay_num">1</span>件，合计：￥<span class="pintuan_pay_num">0.00</span></span>-->
+			<!--</div>-->
+			<div class="col pintuan_keyShare" ng-click="gotopintuanPayInfo()">确认</div>
+			<!--<div class="col pintuan_keyShare" ng-click="goToPay()">立即支付</div>-->
+		</div>
+	</div>
+</ion-view>

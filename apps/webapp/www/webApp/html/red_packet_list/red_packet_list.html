@@ -1,0 +1,77 @@
+<ion-view view-title="抢红包" > 
+    <!-- hide-nav-bar="isHideNaviBar" -->
+  <ion-nav-buttons side="right">
+    <button class="dp-button    " ui-sref="redPacketRule">
+      玩法
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+    </button>
+  </ion-nav-buttons>
+    <ion-content has-bouncing="true"  overflow-scroll="false" class="packet-list-page">
+      <ion-refresher
+        pulling-text="下拉刷新"
+        pulling-icon="ion-arrow-down-c"
+        on-refresh="doRefresh()">
+      </ion-refresher>
+      <div ng-show="redPacketList.length > 0">
+        <div class="packet-wrap" ng-repeat="packet in redPacketList">
+          <div class="img-wrap">
+            <img src="img/packet_list.jpg" >
+            <span class="price">{{::packet.price}}</span>
+            <p class="time-flag" ng-if="packet.flag == 0">进行中...</p>
+            <p class="time-flag" ng-if="packet.flag == 2">已揭晓</p>
+            <div class="time-flag row row-center p-0 text-center" ng-if="packet.flag == 1">
+              <div class="p-0 col">
+                即将揭晓
+              <div class="dm-counter text-center counter-wrap" remain-time="{{packet.remain_time}}" activity_id="{{::packet.activity_id}}"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-0 mt-20 row-center">
+            <div class="col p-0 dp-broad__content">
+              <p class="mt-10 c-3 text-left f-28 dm-nowrap-2">（第{{::packet.activity_id}}期）{{::packet.title}} {{::packet.price}}元  【{{::packet.sub_title}}】</p>
+              <div class="progress_box mt-20" ng-if="packet.flag == 0 ">
+                  <!-- <span class="text">开奖进度 <em>{{getPercentageProgress(broad.remain_num,broad.need_num)}}%</em></span> -->
+                  <div class="progress" style="width:100%;border-radius:20px;"><span class="num" view-progress progress="(packet.user_num
+ / packet.need_num)"></span></div>
+                <div class="row p-0 c-3">
+                  <div class="col p-0">
+                    <span style="color:#FD9271;"> {{::packet.user_num}}</span> / {{::packet.need_num}}
+                  </div>
+                  <div class="col p-0 text-right">
+                    {{::(packet.user_num / packet.need_num)*100 | number:2}} %
+                  </div>
+                </div>
+                <div class="row p-0 c-9">
+                  <div class="col p-0">
+                    参与人数
+                  </div>
+                  <div class="col p-0 text-right">
+                    开奖进度
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="button button-assertive button-small join" href="#/grabRedPacket/{{::packet.activity_id}}">{{::packet.flag == 0 ? '马上参加' : '查看详情'}}</a>
+          </div>
+        </div>
+        <p ng-if="!hasMoreData" class="dp-more dp-more--bottom" style="padding-bottom: 10px;">没有更多啦~</p>
+      </div>
+      <div class="no-item-wrap c-9 " ng-if="isLoadFinished && redPacketList.length == 0">
+          <p class="mt-40 f-32">暂时还没有红包，敬请期待~</p>
+      </div>
+      <ion-infinite-scroll
+        ng-if="hasMoreData"
+        on-infinite="doLoadMore()"
+        icon="ion-loading-c"
+        immediate-check='false'
+        distance="1%">
+      </ion-infinite-scroll>  
+        
+    </ion-content>
+   
+</ion-view>
+

@@ -1,0 +1,181 @@
+<ion-view view-title="参与拼团" hide-nav-bar="isHideNaviBar">
+
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+	</ion-nav-buttons>
+	<a ng-show="firstInIsGoodsPage" id="pintuan_mainpage" class="item item-icon-left item-icon-right user-list-item item-icon-left2" href="#/tab/mainpage">
+		<img src="img/icon/index.png" / width="40px">
+	</a>
+	<ion-content style="background-color: #fff;">
+
+		<ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="refresh()">
+		</ion-refresher>
+
+		<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+		<div id="pintuan_member_info" class="dp-broad dp-broad--leftImg pos-r" ng-if="!isLoading" ng-click="gotoDetail(broad.activity_id)">
+			<div class="row goods_info">
+				<div class="col-33 good_img">
+					<img style="min-height: 100px;" ng-src="{{tuan_info.main_img}}" />
+				</div>
+				<div class="col good_content">
+					<h1 class="goos_title">{{tuan_info.title}}</h1>
+					<div class="num_info">
+						<div class="firse_line">{{tuan_info.people_num}}人团&nbsp;&nbsp;&nbsp;已团{{tuan_info.sale_num}}件</div>
+						<div class="second_line"><span class="price">￥{{tuan_info.price}}</span>拼团省{{tuan_info.single_price-tuan_info.price}}</div>
+					</div>
+					<div ng-if="tuan_info.flag==2||tuan_info.flag==3" class="col p-0 pintuan_status_icon">
+						<img src="img/pintuan/pintuan_fail_icon.png" alt="失败" />
+					</div>
+					<div ng-if="tuan_info.flag==7||tuan_info.flag==8" class="col p-0 pintuan_status_icon">
+						<img src="img/pintuan/pintuan_success_icon.png" alt="成功" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pintuan_rule" ng-if="!isLoading">
+			<div class="pintuan_detail_icon1">
+				<img src="img/pintuan/pintuan_detail_icon1.png" />
+			</div>
+			<!--<h1>活动流程</h1>
+				<div class="pintuan_detail_icon2">
+					<img src="img/pintuan/pintuan_detail_icon2.png" />
+				</div>-->
+			<!--<h1>温馨提示：每个团组团有效时间为{{activity.endday}}小时，若结束时间人数不足系统自动退款</h1>-->
+		</div>
+
+		<div id="pintuan_member_info_icon" ng-if="!isLoading">
+			<ul class="list">
+				<li class="item">
+					<ul class="row row1" style="{{tuan_info.people_num==2&&'margin-left: 33.4%;'}}">
+						<li class="col col-25" ng-repeat="member in members" ng-if="member.uid == tuan_info.teamleader">
+							<img ng-src="{{member.icon}}" alt="头像1" /><img class="pintuan_tuan_icon" src="img/pintuan/pintuan_tuan_icon.png" alt="tuan" />
+						</li>
+						<li class="col col-25" ng-repeat="icon in tuan_members_icon track by $index">
+							<img ng-src="{{icon}}" alt="头像" />
+						</li>
+					</ul>
+					<p ng-if="tuan_info.flag==1">仅剩<span class="red">{{tuan_info.people_num-members.length}}</span>个名额</p>
+					<p ng-if="tuan_info.flag==1">剩余<span class="remain_time" view-countdown remain-time="{{tuan_info.endtime}}" timeout-callback="timeoutCallback(activity)"></span>结束</p>
+					<p ng-if="tuan_info.flag==2||tuan_info.flag==3">拼团失败</p>
+					<p ng-if="tuan_info.flag==7||tuan_info.flag==8">拼团成功</p>
+					<button style="background-color: #dd2726;" ng-if="inArrayus(getCurrUserInfo().uid,tuan_name_arr)||tuan_info.flag!=1" type="button" class="join_team button button-full button-assertive" ng-click="pintuan_doShare()">立即分享</button>
+					<button style="background-color: #dd2726;" ng-if="!inArrayus(getCurrUserInfo().uid,tuan_name_arr)&&tuan_info.flag==1" type="button" class="join_team button button-full button-assertive" ng-click="gotopintuanApply(tuan_info.teamwar_id)">一键参团</button>
+					<p ng-hide="isDisplayMember" ng-click="displayMember()">查看全部参团详情<i style="display: inline-block;border-left: 7px solid transparent;border-right: 7px solid transparent;margin-left: 4px;border-top: 7px solid #666;"></i></p>
+					<p ng-show="isDisplayMember" ng-click="displayMember()">收起全部参团详情<i style="display: inline-block;border-left: 7px solid transparent;border-right: 7px solid transparent;margin-left: 4px;border-bottom: 7px solid #666;"></i></p>
+				</li>
+			</ul>
+		</div>
+		<!--<div id="height20px"></div>-->
+		<div id="pintuan_member_detail" ng-if="!isLoading&&isDisplayMember">
+			<i class="up_sanjiaoxing"></i>
+			<ul class="item pintuan_tuanzhang">
+				<li class="list" ng-repeat="member in members" ng-if="tuan_info.teamleader == member.uid">
+					<img src="{{member.icon}}" title="头像"></img>
+					<span class="pintuan_member_first">团长：{{member.nick}}</span>
+					<span class="pintuan_member_second">&nbsp;{{member.rt}}</span>&nbsp;
+				</li>
+			</ul>
+			<ul class="item pintuan_member" ng-if="members.length>1">
+				<li class="list" ng-repeat="member in members" ng-if="tuan_info.teamleader != member.uid">
+					<i class="shuxian"></i>
+					<img src="{{member.icon}}" title="头像"></img>
+					<span class="pintuan_member_first">成员：{{member.nick}}</span>
+					<span class="pintuan_member_second">{{member.rt}}</span>
+				</li>
+			</ul>
+		</div>
+		<div id="pintuan_notice" ng-if="!isLoading">
+			<h1>拼团须知</h1>
+			<ul class="row">
+				<li class="col">邀请好友参团</li>
+				<li class="col">人满分别发货</li>
+				<li class="col">人数不足将退款</li>
+			</ul>
+		</div>
+		<!--推荐商品-->
+		<div id="pintuan_push" ng-if="!isLoading">
+			<h1>看了又看</h1>
+			<div class="pin_push_info clearfix">
+				<div class="pin_goods_list" ng-repeat="broad in pageConfig[0].data" ng-click="gotoPintuan_Detail(broad.goods_id)">
+					<div class="pin_push_img">
+						<img ng-src="{{broad.main_img}}" />
+					</div>
+					<div class="pin_push_content">
+						<p class="pin_push_title">{{broad.title}}</p>
+						<p class="pin_push_price"><span class="red">￥{{broad.price}}</span><span class="fr">已团{{broad.sale_num}}件</span></p>
+					</div>
+				</div>
+				<ion-infinite-scroll ng-if="!pageConfig[0].pageOver" on-infinite="loadMore()">
+				</ion-infinite-scroll>
+			</div>
+			<div ng-if="pageConfig[0].pageOver" style="text-align: center;padding: 40px 0;">
+				<p>没有更多啦～</p>
+			</div>
+		</div>
+		<div id="shareSuccCallBack" ng-if="shareSuccPage" ng-click="closeShareSuccPage()">
+			<div class="shareSucc_Main">
+				<div class="shareSuccTitle">
+					<img src="img/pay_succ.png" />
+					<h4>分享成功</h4>
+					<i ng-click="closeShareSuccPage()"></i>
+				</div>
+				<div class="shareSucc_content">
+					<h1>继续分享才能大大提高成团成功率哦！</h1>
+					<button class="share_continue" ng-click="pintuan_doShare()" type="button">继续分享</button>
+					<div class="row">
+						<i class="col"></i>
+						<span class="col">好货提示</span>
+						<i class="col"></i>
+					</div>
+					<p>90%的人都在这里发现心仪好货</p>
+					<button ng-click="gotoMainPage()" class="goMainPage" type="button">前往亿七购首页</button>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<!--分享成功后弹出框-->
+
+	<!--<div id="pintuan_footer" class="bar bar-footer" ng-if="!isLoading">-->
+	<!--<div class="row" ng-if="tuan_info.flag!=7&&tuan_info.flag!=8&&tuan_info.flag!=2&&tuan_info.flag!=3">-->
+	<!--<div class="row" ng-if="tuan_info.flag==1">
+			<div ng-show="inArrayus(getCurrUserInfo().uid,tuan_name_arr)" class="col pintuan_keyShare" ng-click="pintuan_doShare()">立即分享</div>
+			<div ng-show="!inArrayus(getCurrUserInfo().uid,tuan_name_arr)" class="col pintuan_keyShare" ng-click="gotopintuanApply(tuan_info.teamwar_id)">参团</div>
+			<a class="pintuan_member_go col pintuan_keyShare" href="#/pintuan_main_page">去开团</a>
+		</div>-->
+	<!--<div class="row" ng-if="tuan_info.flag==7||tuan_info.flag==8||tuan_info.flag==2||tuan_info.flag==3">-->
+	<!--<div class="row" ng-if="tuan_info.flag!=1">
+			<div class="col pintuan_keyShare" ng-click="pintuan_doShare()">立即分享</div>
+			<a class="col pintuan_member_go pintuan_keyShare" href="#/pintuan_main_page">去开团</a>
+		</div>
+	</div>-->
+</ion-view>
+
+<div id="guidepop1" class="pop-wp" style="display:none" ng-click="hideGuide1()">
+	<div class="pop pop--share">
+		<img src="img/yaoqing.png" width="248" height="120" alt="" />
+	</div>
+	<div class="mask"></div>
+</div>
+<div id="actionSheet_wrap" ng-show="isShowShare">
+	<div class="weui_mask_transition weui_fade_toggle show" id="mask"></div>
+	<div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+		<h3 class="dp-grid__head tac" style="background-color: #ffffff">分享到</h3>
+		<div class="dp-grid dp-grid--3" style="padding: 0 10%;">
+
+			<a class="dp-grid__link" href="javascript:;" ng-click="shareToFriendsCircle()">
+				<img class="dp-grid__img" src="img/pengyouquan_logo.png" alt="" />
+				<p class="dp-grid__title">朋友圈</p>
+			</a>
+			<a class="dp-grid__link" href="javascript:;" ng-click="shareToFriends()">
+				<img class="dp-grid__img" src="img/weixin_logo.png" alt="" />
+				<p class="dp-grid__title">微信好友</p>
+			</a>
+
+		</div>
+		<div class="weui_actionsheet_action" ng-click="hidePop()">
+			<div class="weui_actionsheet_cell" id="actionsheet_cancel" style="color: #888;">取消</div>
+		</div>
+	</div>
+</div>

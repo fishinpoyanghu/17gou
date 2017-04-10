@@ -1,0 +1,72 @@
+<ion-view view-title="消息" hide-nav-bar="isHideNaviBar">
+  <!--<ion-view view-title="首页">-->
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+    <style>
+        .dp-emptyBlock__container .icon{background-color: transparent;}
+        .myIndianaRecord-page .tabs {
+          top:0 !important;
+        }
+    </style>
+
+  <ion-content has-bouncing="true" padding="false" scrollbar-y="false" class="myIndianaRecord-page">
+
+    <ion-tabs class="tabs-top dp-tabs dp-tabs--border">
+
+      
+
+      <ion-tab title="通知消息" badge="notify_news" badge-style="badge-assertive" on-select="notify_news = 0">
+        <!--<ion-tab title="评论" badge="10" badge-style="badge-assertive">-->
+        <view-list-view comp-id="'13-1-2'" type="infinite" dp-request-url="{{::notifyUrl}}" dp-request-params="::notifyRequestParams" dp-call-back="notifyCallBack" dp-per-request-size="20">
+
+            <div class="dp-broad">
+                <div class="dp-broad__li" ng-repeat="notifyMessage in notifyList">
+                    <!--notify => {{notifyMessage | json}}-->
+                    <div class="dp-broad__desc c-3">{{::notifyMessage.content}}</div>
+                    <div class="dp-broad__time" style="color:#a4a4a4;">{{::notifyMessage.rt}}</div>
+                </div>
+            </div>
+
+
+          <!--空状态结构-->
+          <div class="dp-emptyBlock" ng-if="notifyEmpty" ng-click="doRefresh('13-1-2')">
+            <div class="dp-emptyBlock__container">
+              <i class="icon iconfont-warning-outline"></i>
+              <p>还没有收到通知消息哦~</p>
+            </div>
+          </div>
+        </view-list-view>
+      </ion-tab>
+      <ion-tab title="系统消息" badge="sys_new" badge-style="badge-assertive" on-select="sys_new = 0">
+        <!--<ion-tab title="系统消息" badge="10" badge-style="badge-assertive">-->
+        <view-list-view comp-id="'13-1-1'" type="infinite" dp-request-url="{{::sysUrl}}" dp-request-params="::sysRequestParams" dp-call-back="sysCallBack" dp-per-request-size="20">
+
+          <div class="dp-broad">
+            <div class="dp-broad__li" ng-repeat="systemMessage in sysList">
+              <a class="" >
+                <h3 class="dp-broad__title">{{::systemMessage.title}}</h3>
+                <p class="dp-broad__desc c-6" ng-bind-html="systemMessage.content | trustHtmlFilter">
+                </p>
+                <span class="dp-broad__time" style="color:#a4a4a4;">{{::systemMessage.rt}}</span>
+              </a>
+            </div>
+          </div>
+          <!--空状态结构-->
+          <div class="dp-emptyBlock" ng-if="sysEmpty" ng-click="doRefresh('13-1-1')">
+            <div class="dp-emptyBlock__container">
+              <i class="icon iconfont-warning-outline"></i>
+              <p>这里空空的~</p>
+            </div>
+          </div>
+        </view-list-view>
+
+      </ion-tab>
+
+    </ion-tabs>
+  </ion-content>
+</ion-view>
+
+
+

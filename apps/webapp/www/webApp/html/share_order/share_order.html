@@ -1,0 +1,140 @@
+<ion-view view-title="{{pageTitle}}" hide-nav-bar="isHideNaviBar" >
+
+
+  <!--<ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+    </button>
+  </ion-nav-buttons>-->
+    <ion-nav-buttons side="left">
+        <button ng-if="my==1" class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+    <div>
+        <div id="share2" class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }}"  ng-click="show_aside()">
+            <div class="h3_title">
+            		<div class="ddd" ng-if="displayWhichItem=='init'">最新浏览记录</div>
+            		<div class="ddd" ng-if="displayWhichItem=='weight'">最热</div>
+            		<div class="ddd" ng-if="displayWhichItem=='time'">最新</div>
+                <i ng-if="down_icon" class="ion-chevron-down down_icon"></i>
+                <i ng-if="up_icon" ng-click="closeClass()" class="ion-chevron-up down_icon"></i>
+            </div>
+        </div>
+        <div ng-if="aside" id="aside" style="top:{{leftBarTop}};" ng-click="close_aside()">
+            <div class="white_bg">
+                <ul class="clear">
+                    <li ng-if="displayWhichItem!='time'"  ng-click="changeActive('time','none')">
+                        <div class="nav-item ddd">最新</div>
+                        <!--<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">最</span>-->
+                        <!--<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">新</span>-->
+                    </li>
+                    <li  ng-if="displayWhichItem!='weight'" ng-click="changeActive('weight','none')">
+                    	<div class="nav-item ddd">最热</div>
+                        <!--<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">最</span>-->
+                        <!--<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">热</span>-->
+                    </li>
+
+                    <li  ng-if="displayWhichItem!='init'" ng-click="changeActive('init','none',4)">
+                    	<div class="nav-item ddd" >最新浏览记录</div>
+                        <!--<span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">二</span>
+                        <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">人</span>
+                        <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">云</span>
+                        <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">购</span>-->
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--晒单分享页面-->
+  <ion-content scrollbar-y="false" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:88px;' : 'top:88px;') }}">
+    <ion-refresher
+      pulling-text="下拉刷新"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+  <!--    <div ng-if="my==1">
+          <img src="img/share/share.jpg" alt="">
+      </div>-->
+    <div class="dp-postList__li" ng-repeat="order in orderlist">
+
+      <div class="dp-postList__link" ng-click="goToHisPage(order.uicon,order.unick,order.uid)">
+        <div class="dp-postList__user">
+          <img class="user_avatar" ng-src="{{::order.uicon}}" ng-click="goToHisPage(order.uicon,order.unick,order.uid)" />
+
+          <div class="user_info">
+            <!--<span class="user_info_time">{{order.show_time}}</span>-->
+            <h3 class="user_info_name">{{::order.unick}}</h3>
+            <span class="user_info_id">{{::order.show_time}}</span>
+          </div>
+        </div>
+        <div class="dp-postList__content">
+          <a ng-href="#/shareDetails/{{::order.show_id}}">
+              <h3 class="content_title">{{::order.show_title}}</h3>
+              <h2 style="color: #888888;"> 奖品：{{::order.goods_title}}</h2>
+              <!--<h2 style="color: #888888;"> {{order.goods_subtitle}}</h2>-->
+              <h2 style="color: #888888;"> 期号：{{::order.activity_id}}</h2>
+              <p class="content_desc">{{::order.show_desc}}</p>
+          </a>
+          
+          <view-image-list dp-data="order.show_imgs" dp-toggle="true"></view-image-list>
+          <div class="row row-center p-0">
+            <div class="col text-right" style="padding-right:20px;">
+              <button class="button button-small button-clear" style="{{order.is_zan ? 'color:#f44336;' : ''}}" ng-click="zan(order)">
+                <i class="icon iconfont-like"></i> <span>{{order.zans}}</span>
+              </button>
+              
+            </div>
+           
+            <a class="button button-small button-clear" href="#/commentDetails/{{::order.show_id}}">
+              <i class="icon iconfont-comment" style="vertical-align: middle;"></i> <span>{{::order.comments}}</span>
+            </a>
+           
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+<!--我查遍了，我想可能是卖这个的卖家在这个网站的售后管理里上传图片并输入不正确的宽度和高度的数值。-->
+    <p ng-if="!hasMoreData && !isDataEmpty()" class="dp-more dp-more--bottom">没有更多啦~</p>
+
+    <!--加载过程中-->
+    <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+
+    <!--空状态结构-->
+    <div class="dp-emptyBlock" ng-show="isDataEmpty()&&isLoadFinished" style="position:relative;">
+      <div class="dp-emptyBlock__container">
+        <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+        <p>这里空空的什么也没留下~</p>
+        <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+          ng-click="startToMainPage()">立即购买</button>
+      </div>
+    </div>
+
+
+    <!--断网-->
+    <div class="dp-emptyBlock" style="background-color: #f8f8f8;" ng-if="isShowDisconnect()">
+      <div class="dp-emptyBlock__container">
+        <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+        <p style="color: #585858;">亲，你好像断网了...</p>
+        <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+        <button class="dp-button dp-button--red" ng-click="doRefresh()"
+                style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+      </div>
+    </div>
+
+    <ion-infinite-scroll
+      ng-if="hasMoreData"
+      on-infinite="doLoadMore()"
+      immediate-check='false'
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+
+
+
+
+</ion-view>
+

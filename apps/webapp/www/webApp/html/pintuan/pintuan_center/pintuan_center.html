@@ -1,0 +1,273 @@
+<ion-view view-title="拼团订单" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+<style>
+  .myIndianaRecord-page .tabs {
+    top:0 !important;
+  }
+</style>
+  <ion-content id="pintuan_center" class="myIndianaRecord-page">
+
+    <ion-tabs class="tabs-top dp-tabs dp-tabs--border" on-swipe-left="swipe(1)" on-swipe-right="swipe(0)">
+
+      <ion-tab title="全部">
+      	<div class="pintuan_center_all" class="dp-itemList__li"  ng-repeat="tuan in tuans">
+	        <div class="dp-itemList__content">
+		          <div class="dp-itemList__img" >
+		            <img ng-src="{{::tuan.main_img}}" default-img="img/goods_default.jpg"
+		                 error-img="img/goods_default.jpg"/>
+		          </div>
+		
+		          <div  ng-click="getHisMumber(tuan.teamwar_id, null)" class="dp-itemList__desc"style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+		            <p class="pintuan_goodName">{{::tuan.title}}</p>
+		            <p>团号： {{::tuan.teamwar_id}}</p>
+		            <p>团长： <span class="pintuan_leader_name">{{::tuan.name}}</span></p>
+		            <p>团类型： {{::tuan.people_num}}人团</p>
+		            
+		            <p ng-if="tuan.flag == 1">描述： <span class="blue">已开团</span></p>
+		            <p ng-if="tuan.flag == 2">描述：  <span class="blue">人数不够，组团失败</span></p>
+		            <p ng-if="tuan.flag == 3">描述： <span class="blue">商品下架，组团失败</span></p>
+		            <p ng-if="tuan.flag == 7">描述： <span class="blue">人数已满，请等待揭晓</span></p>
+		            <p ng-if="tuan.flag == 8">描述： <span class="blue">开团成功</span></p>
+		            <p ng-if="tuan.flag == 8">获奖者： <span class="blue">{{tuan.lucky_nick}}</span></p>
+		            
+		            <p>开团时间： <span>{{formatTime(tuan.ut*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		            <p>结束时间： <span>{{formatTime(tuan.et*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		
+		            <!--<p>开团时间： <span>{{(new Date(tuan.ut*1000))}}</span></p>-->
+		            <!--<p>结束时间： <span>{{(new Date(tuan.et*1000))}}</span></p>-->
+		
+		            <div class="progress"><span style="width: {{(1-(tuan.remain_num/tuan.need_num))*100}}%;"></span></div>
+		            <p>总需：
+		              <em class="red">{{::tuan.people_num}}</em>
+		              <span class="fr">剩余： <em class="red">{{tuan.people_num-tuan.join_num}}</em></span>
+		            </p>
+		            <a ng-click="getHisMumber(tuan.teamwar_id, null)" class="fr blue pintuan_detail" href="">查看详情</a>
+		          </div>
+		
+		          <p style="color: #888888;">
+		          </p>
+		
+		        </div>
+      	</div>
+		        	<!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="tuans.length == 0">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无记录，快去参与吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startTopintuanPage()">立即参与
+              </button>
+            </div>
+          </div>
+      </ion-tab>
+
+      <ion-tab title="待付款">
+      	<div>
+					<div class="pintuan_center_all" class="dp-itemList__li"  ng-repeat="tuan in tuans" ng-if="tuan.flag == 5">
+	        	<div class="dp-itemList__content">
+		          <div class="dp-itemList__img" >
+		            <img ng-src="{{::tuan.main_img}}" default-img="img/goods_default.jpg"
+		                 error-img="img/goods_default.jpg"/>
+		          </div>
+		
+		          <div  ng-click="getHisMumber(tuan.teamwar_id, null)" class="dp-itemList__desc"style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+		            <p class="pintuan_goodName">{{::tuan.title}}</p>
+		            <p>团号： {{::tuan.teamwar_id}}</p>
+		            <p>团长： <span class="pintuan_leader_name">{{::tuan.name}}</span></p>
+		            <p>团类型： {{::tuan.people_num}}人团</p>
+		            
+		            <p ng-if="tuan.flag == 1">描述： <span class="blue">已开团</span></p>
+		            
+		            <p>开团时间： <span>{{formatTime(tuan.ut*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		            <p>结束时间： <span>{{formatTime(tuan.et*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		
+		            <!--<p>开团时间： <span>{{(new Date(tuan.ut*1000))}}</span></p>-->
+		            <!--<p>结束时间： <span>{{(new Date(tuan.et*1000))}}</span></p>-->
+		
+		            <div class="progress"><span style="width: {{(1-(tuan.remain_num/tuan.need_num))*100}}%;"></span></div>
+		            <p>总需：
+		              <em class="red">{{::tuan.people_num}}</em>
+		              <span class="fr">剩余： <em class="red">{{tuan.people_num-tuan.join_num}}</em></span>
+		            </p>
+		            <a ng-click="getHisMumber(tuan.teamwar_id, null)" class="fr blue pintuan_detail" href="">查看详情</a>
+		          </div>
+		
+		          <p style="color: #888888;">
+		          </p>
+		
+		        </div>
+      		</div>
+      			<!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isDisplayMe.will_pay"  ng-click="startTopintuanPage()">
+            <div class="dp-emptyBlock__container">
+              <span>没有待付款的订单</span>
+            </div>
+          </div>
+      		</div>
+      </ion-tab>
+      <ion-tab title="待成团">
+      	<div>
+					<div class="pintuan_center_all" class="dp-itemList__li"  ng-repeat="tuan in tuans" ng-if="tuan.flag == 1">
+	        	<div class="dp-itemList__content">
+		          <div class="dp-itemList__img" >
+		            <img ng-src="{{::tuan.main_img}}" default-img="img/goods_default.jpg"
+		                 error-img="img/goods_default.jpg"/>
+		          </div>
+		
+		          <div  ng-click="getHisMumber(tuan.teamwar_id, null)" class="dp-itemList__desc"style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+		            <p class="pintuan_goodName">{{::tuan.title}}</p>
+		            <p>团号： {{::tuan.teamwar_id}}</p>
+		            <p>团长： <span class="pintuan_leader_name">{{::tuan.name}}</span></p>
+		            <p>团类型： {{::tuan.people_num}}人团</p>
+		            
+		            <p ng-if="tuan.flag == 1">描述： <span class="blue">已开团</span></p>
+		            
+		            <p>开团时间： <span>{{formatTime(tuan.ut*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		            <p>结束时间： <span>{{formatTime(tuan.et*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		
+		            <!--<p>开团时间： <span>{{(new Date(tuan.ut*1000))}}</span></p>-->
+		            <!--<p>结束时间： <span>{{(new Date(tuan.et*1000))}}</span></p>-->
+		
+		            <div class="progress"><span style="width: {{(1-(tuan.remain_num/tuan.need_num))*100}}%;"></span></div>
+		            <p>总需：
+		              <em class="red">{{::tuan.people_num}}</em>
+		              <span class="fr">剩余： <em class="red">{{tuan.people_num-tuan.join_num}}</em></span>
+		            </p>
+		            <a ng-click="getHisMumber(tuan.teamwar_id, null)" class="fr blue pintuan_detail" href="">查看详情</a>
+		          </div>
+		
+		          <p style="color: #888888;">
+		          </p>
+		
+		        </div>
+      		</div>
+      			<!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isDisplayMe.open_tuan">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无记录，快去参与吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startTopintuanPage()">立即参与
+              </button>
+            </div>
+          </div>
+      		</div>
+      </ion-tab>
+
+      <ion-tab title="已成团">
+      	<div>
+					<div class="pintuan_center_all" class="dp-itemList__li"  ng-repeat="tuan in tuans" ng-if="tuan.flag == 7 || tuan.flag == 8">
+	        	<div class="dp-itemList__content">
+		          <div class="dp-itemList__img" >
+		            <img ng-src="{{::tuan.main_img}}" default-img="img/goods_default.jpg"
+		                 error-img="img/goods_default.jpg"/>
+		          </div>
+		
+		          <div  ng-click="getHisMumber(tuan.teamwar_id, null)" class="dp-itemList__desc"style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+		            <p class="pintuan_goodName">{{::tuan.title}}</p>
+		            <p>团号： {{::tuan.teamwar_id}}</p>
+		            <p>团长： <span class="pintuan_leader_name">{{::tuan.name}}</span></p>
+		            <p>团类型： {{::tuan.people_num}}人团</p>
+		            
+		            <p ng-if="tuan.flag == 7">描述： <span class="blue">人数已满，请等待揭晓</span></p>
+		            <p ng-if="tuan.flag == 8">描述： <span class="blue">开团成功</span></p>
+		            <p ng-if="tuan.flag == 8">获奖者： <span class="blue">{{tuan.lucky_nick}}</span></p>
+		            
+		            <p>开团时间： <span>{{formatTime(tuan.ut*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		            <p>结束时间： <span>{{formatTime(tuan.et*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		
+		            <!--<p>开团时间： <span>{{(new Date(tuan.ut*1000))}}</span></p>-->
+		            <!--<p>结束时间： <span>{{(new Date(tuan.et*1000))}}</span></p>-->
+		
+		            <div class="progress"><span style="width: {{(1-(tuan.remain_num/tuan.need_num))*100}}%;"></span></div>
+		            <p>总需：
+		              <em class="red">{{::tuan.people_num}}</em>
+		              <span class="fr">剩余： <em class="red">{{tuan.people_num-tuan.join_num}}</em></span>
+		            </p>
+		            <a ng-click="getHisMumber(tuan.teamwar_id, null)" class="fr blue pintuan_detail" href="">查看详情</a>
+		          </div>
+
+		          <p style="color: #888888;">
+		          </p>
+		
+		        </div>
+      		</div>
+      			<!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isDisplayMe.success">
+            <div class="dp-emptyBlock__container">
+              <img  src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无记录，快去参与吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startTopintuanPage()">立即参与
+              </button>
+            </div>
+          </div>
+      	</div>
+      </ion-tab>
+      
+      <ion-tab title="拼团失败">
+      	<div>
+					<div class="pintuan_center_all" class="dp-itemList__li"  ng-repeat="tuan in tuans" ng-if="tuan.flag == 2 || tuan.flag == 3">
+	        	<div class="dp-itemList__content">
+		          <div class="dp-itemList__img" >
+		            <img ng-src="{{::tuan.main_img}}" default-img="img/goods_default.jpg"
+		                 error-img="img/goods_default.jpg"/>
+		          </div>
+		
+		          <div  ng-click="getHisMumber(tuan.teamwar_id, null)" class="dp-itemList__desc"style="position:relative; margin-right: 54px; padding-right: 10px; border-right: 1px solid #f2f2f2;">
+		            <p class="pintuan_goodName">{{::tuan.title}}</p>
+		            <p>团号： {{::tuan.teamwar_id}}</p>
+		            <p>团长： <span class="pintuan_leader_name">{{::tuan.name}}</span></p>
+		            <p>团类型： {{::tuan.people_num}}人团</p>
+		            
+		            <p ng-if="tuan.flag == 2">描述：  <span class="blue">人数不够，组团失败</span></p>
+		            <p ng-if="tuan.flag == 3">描述： <span class="blue">商品下架，组团失败</span></p>
+		            
+		            <p>开团时间： <span>{{formatTime(tuan.ut*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		            <p>结束时间： <span>{{formatTime(tuan.et*1000,"yyyy-MM-dd HH:mm:ss")}}</span></p>
+		
+		            <!--<p>开团时间： <span>{{(new Date(tuan.ut*1000))}}</span></p>-->
+		            <!--<p>结束时间： <span>{{(new Date(tuan.et*1000))}}</span></p>-->
+		
+		            <div class="progress"><span style="width: {{(1-(tuan.remain_num/tuan.need_num))*100}}%;"></span></div>
+		            <p>总需：
+		              <em class="red">{{::tuan.people_num}}</em>
+		              <span class="fr">剩余： <em class="red">{{tuan.people_num-tuan.join_num}}</em></span>
+		            </p>
+		            <a ng-click="getHisMumber(tuan.teamwar_id, null)" class="fr blue pintuan_detail" href="">查看详情</a>
+		          </div>
+		
+		          <p style="color: #888888;">
+		          </p>
+		
+		        </div>
+      		</div>
+      			<!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isDisplayMe.fail">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无记录，快去参与吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startTopintuanPage()">立即参与
+              </button>
+            </div>
+          </div>
+      	</div>
+      </ion-tab>
+
+    </ion-tabs>
+
+  </ion-content>
+
+
+
+
+</ion-view>

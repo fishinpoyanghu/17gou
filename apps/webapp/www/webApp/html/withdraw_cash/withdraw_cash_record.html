@@ -1,0 +1,41 @@
+<ion-view view-title="提现申请记录" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list">
+            <div class="item p-10">
+                <div class="row row-center p-0 text-center c-3 f-28">
+                    <div class="col">申请时间</div>
+                    <div class="col">微信号</div>
+                    <div class="col">提现金额</div>
+                    <div class="col">提现状态</div>
+                </div>
+            </div>
+            <div ng-show="listData.length > 0">
+                <div class="item p-10" ng-repeat="item in listData" style="white-space: normal;">
+                    <div class="row row-center p-0 text-center c-3" style="font-size:10px;">
+                        <div class="col">{{::item.ut * 1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
+                        <div class="col">{{::item.weixin_id}}</div>
+                        <div class="col">{{::item.money}}元</div>
+                        <div class="col">
+                            <span ng-if="item.state == 1">待审核</span>
+                            <span ng-if="item.state == 2">已通过，待打款</span>
+                            <span ng-if="item.state == 3">未通过</span>
+                            <span ng-if="item.state == 4">已打款</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p ng-show="isLoadFinished && !moreDataCanBeLoaded && listData.length > 0" class="dp-more dp-more--bottom">没有更多啦~</p>
+        </div>
+        <div class="no-item-wrap c-9 " ng-show="isLoadFinished && !moreDataCanBeLoaded && listData.length == 0">
+            <p class="dp-more dp-more--bottom mt-40">暂无提现申请记录</p>
+        </div>
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check='false' distance="1%" on-infinite="getData()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

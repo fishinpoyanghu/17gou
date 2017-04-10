@@ -1,0 +1,39 @@
+
+<ion-tabs class="tabs-icon-bottom dp-tabs dp-tabs--icon">
+
+  
+  <ion-tab title="首页" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/mainpage">
+    <ion-nav-view name="tab-mainpage"></ion-nav-view>
+  </ion-tab>
+  
+  <ion-tab title="所有商品" icon-off="iconfont-discovery-outline" icon-on="iconfont-discovery" href="#/tab/classify">
+    <ion-nav-view name="tab-classify"></ion-nav-view>
+  </ion-tab>
+  
+  <ion-tab title="晒单分享" icon-off="iconfont-cup-outline" icon-on="iconfont-cup" href="#/tab/tabShareOrder">
+    <ion-nav-view name="tab-shareOrder"></ion-nav-view>
+  </ion-tab>
+
+  
+  
+<!-- <ion-tab title="购物车" icon-off="iconfont-shopping-outline js-tab-cart" icon-on="iconfont-shopping js-tab-cart" badge="trolleySum()" badge-style="badge-assertive" href="#tab/trolley">
+ 
+    <ion-nav-view name="tab-trolley"></ion-nav-view>
+  </ion-tab>
+-->
+
+    <!--<ion-tab title="二人拼团" icon-off="tab_two_people" icon-on="ion-android-contacts" badge="trolleySum()" badge-style="badge-assertive" href="#tab/twoPeople">
+
+        <ion-nav-view name="tab-twoPeople"></ion-nav-view>
+    </ion-tab>-->
+    <ion-tab title="二人拼团" icon-off="tab_two_people" icon-on="ion-android-contacts" href="#tab/twoPeople">
+
+        <ion-nav-view name="tab-twoPeople"></ion-nav-view>
+    </ion-tab>
+  
+  <ion-tab id="tab_my" title="我" icon-off="iconfont-person-outline" icon-on="iconfont-person" badge="all_new" badge-style="badge-assertive" href="#/tab/account2">
+      <div ng-if=""></div>
+    <ion-nav-view name="tab-account2"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

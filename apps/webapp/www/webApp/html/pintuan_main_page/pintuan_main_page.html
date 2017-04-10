@@ -1,0 +1,209 @@
+<ion-view view-title="拼团" hide-nav-bar="isHideNaviBar">
+
+	<!--<ion-nav-buttons side="left">
+      <a class="dp-button button-icon iconfont-search-outline" style="font-size: 2rem; z-index:-1" href="#/search"></a>
+    </ion-nav-buttons>-->
+
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="go_preferential_activities()">
+        </button>
+	</ion-nav-buttons>
+
+	<style>
+		.limit-flag {
+			display: block;
+			height: 19px;
+			margin-left: 5px;
+			line-height: 20px;
+			background-color: #2af;
+			color: #fff;
+			padding: 0 3px;
+			border-radius: 2px;
+			position: absolute;
+			top: 124px;
+			right: 3px;
+		}
+		
+		.limit-flag::after {
+			content: '';
+			display: block;
+			width: 0;
+			height: 0;
+			border-width: 5px 10px;
+			border-style: solid;
+			border-color: transparent;
+			border-bottom-color: #2af;
+			position: absolute;
+			bottom: 0;
+			left: -5px;
+		}
+		
+		.search_img {
+			width: 32px;
+			background-size: 100%;
+			margin-top: -4px;
+			margin-left: 10px;
+		}
+		
+		.erweima_img {
+			width: 32px;
+			background-size: 100%;
+			margin-top: 3px;
+			margin-right: 10px;
+		}
+	</style>
+
+	<!--<div style="top:{{inWechatB ? '0' : '44px'}};display: block;height: 32px;line-height:32px;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 1;color:#fff;padding-left:10px;" class="clearfix" ng-if="show_attention" ng-click="go_attention()">
+         <img src="img/logo-small2.png" alt="" style="width:28px;vertical-align:middle;background-size: cover;">
+         <span style="vertical-align: middle;margin-left: 8px;">点击关注亿七购官方微信</span>
+         <span class="fr" style="padding: 0 15px;display: inline-block;font-size: 16px;vertical-align:middle;" ng-click="close_attention($event)">X</span>
+     </div>-->
+
+	<ion-content has-bouncing="false" padding="false" scrollbar-y="true" on-scroll="scroll()" style="margin-bottom: 48px;">
+		<!--<ion-refresher pulling-text=" 喂喂， 我可是有底线的！" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+		</ion-refresher>-->
+		<!--轮播-->
+		<view-slide-box comp-id="'1-1-001'" type="title" dp-slides="slides"></view-slide-box>
+		<p class="text-center" style="color: #f72331;padding: 5px;font-size: 12px;border: 1px solid #ededed;" ng-show="isIosApp">本活动和苹果公司无关，解释权归本公司所有</p>
+		<!--<view-text-scoll interval="3000" scoller-height="24" text-list={{getLuckyData}} ng-if="getLuckyData.length > 0"></view-text-scoll>-->
+		<!--添加搜查-->
+		<!--<div style="top:{{inWechatB ? '8px' : '50px'}};display: block;height: 32px;line-height:32px;background-color: rgba(255, 255, 255,.7);position: absolute;width: 80%; z-index: 20;left: 50%;transform: translateX(-50%);color:#7F6E6F;border-radius: 20px;" class="clearfix">
+			<div class="fl">
+				<a ng-click="go_search()">
+					<img class="search_img" src="img/search/search.png" alt="">
+				</a>
+			</div>
+			<div class="sd_sousuo fl" ng-click="go_search()">
+				<a style="color:#7F6E6F;font-size: 18px;font-weight: 500;">
+					搜索商品
+				</a>
+
+			</div>
+			<div class="fr">
+            <a href="#/attention">
+                <img class="erweima_img" src="img/search/erweima.png" alt="">
+            </a>
+        	</div>
+		</div>-->
+		<!--添加拼团图标组件-->
+		<div id="pintuan_white">
+			<ul class="clearfix" ng-if="categoryList.length">
+				<li ng-repeat="categoryList1 in categoryList" ng-click="go_classify(categoryList1.goods_type_id)">
+					<img src="{{categoryList1.img}}" alt="">
+					<span>{{categoryList1.name}}</span>
+				</li>
+				<li ng-click="go_search()" >
+					<img src="img/pintuan_icon/search.png" style="width: 41px;" alt="">
+					<span>搜索</span>
+				</li>
+				<li ng-click="go_commodity_classify()">
+					<img src="img/pintuan_icon/more.jpg" alt="">
+					<span>更多</span>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<!--<ion-spinner icon="dots" class="dp-spinner spinner-dark spinner spinner-dots ng-hide mt-20" ng-show="pageConfig[0].isLoading " style="">
+                <svg viewBox="0 0 64 64">
+                    <g>
+                        <circle cx="16" cy="32" stroke-width="0" r="3">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".5;.6;.8;1;.8;.6;.5;.5" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="3;3;4;5;6;5;4;3" repeatCount="indefinite"></animate>
+                        </circle>
+                        <circle cx="32" cy="32" stroke-width="0" r="3.2239">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".5;.5;.6;.8;1;.8;.6;.5" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="4;3;3;4;5;6;5;4" repeatCount="indefinite"></animate>
+                        </circle>
+                        <circle cx="48" cy="32" stroke-width="0" r="4.2239">
+                            <animate attributeName="fill-opacity" dur="750ms" values=".6;.5;.5;.6;.8;1;.8;.6" repeatCount="indefinite"></animate>
+                            <animate attributeName="r" dur="750ms" values="5;4;3;3;4;5;6;5" repeatCount="indefinite"></animate>
+                        </circle>
+                    </g>
+                </svg>
+            </ion-spinner>-->
+
+			<div id="pintuan_list" class="dp-broad dp-broad--leftImg pos-r" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]">
+				<div class="dp-broad__li clearfix  center margin-bottom-8px" ng-repeat="broad in pageConfig[0].data track by $index" style="margin-top: 0;padding:10px;">
+					<!--<div class="dp-broad__img" style="width: 75px;" ng-click="gotoDetail(broad.activity_id,broad.activity_type)">-->
+					<div class="dp-broad__img new_img" ng-click="gotoPintuan_Detail(broad.goods_id)">
+						<img ng-src="{{broad.main_img}}" />
+						<!--<img src="img/pintuan_icon/index2.jpg" alt="">-->
+					</div>
+
+					<!--<div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id,broad.activity_type)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">-->
+					<div class="dp-broad__content" ng-click="gotoPintuan_Detail(broad.goods_id)" style="position:relative;overflow: hidden; ">
+						<h3 class="dm-nowrap-2 f-28 font-size-16">{{broad.title}}</h3>
+
+						<div class="row p-0 row-center">
+							<div class="col p-0">
+								<!--<div class="row p-0 row-center" style="margin-top: 10px;">
+                                    <div class="col p-0">
+                                        <div class="progress_box" style="color: #888888; float:none;">
+
+                                            <div class="progress" style="width: 100%; margin-bottom: 5px;"><span class="num" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+
+                                        </div>
+
+                                    </div>
+                                    <div style="padding:0 8px;font-size:10px;color:#666;">
+                                        {{((broad.need_num - broad.remain_num) / broad.need_num) * 100 | number:2}} %
+                                    </div>
+                                </div>-->
+								<!--拼团价-->
+								<div class="col p-0 text-align-left">
+									<span class="pintuan_price1">拼团价<i style="color:#B52A2F;">￥</i><em class="font-30">{{broad.price}}</em></span>
+									<span class="pintuan_price2">￥{{broad.original_price}}</span>
+								</div>
+							</div>
+							<button class="button_red">{{broad.people_num}}人团</button>
+						</div>
+					</div>
+					<!--<i class="dp-hot_sale red_tag" ng-if="::(pageConfig[0].order_key == 'weight' && broad.activity_type == 1)"></i>-->
+					<i class="dp-broad__tag blue_tag" ng-if="::(broad.activity_type == 2)"></i>
+
+				</div>
+
+			</div>
+
+			<p ng-show="!pageConfig[0].isLoading && pageConfig[0].pageOver" class="dp-more dp-more--bottom">没有更多啦～</p>
+		</div>
+		<ion-infinite-scroll ng-if="!pageConfig[0].pageOver" immediate-check='false' on-infinite="getMoreData()">
+		</ion-infinite-scroll>
+	</ion-content>
+		<a id="index_icon_top" ng-click="scrollTop()" style="display: none;">
+			<img src="img/icon/top_icon.png" />
+		</a>
+<!--	<ion-footer-bar id="footer_tab">
+		<div class="row pd-0 red-circle">
+			<div class="col pd-0" ui-sref="tab.mainpage">
+				<div class="ion-ios-home-outline font-30" style="margin-top: -5px;"></div>
+				<span class="bar-title">首页</span>
+			</div>
+			<div class="col pd-0" ui-sref="tab.preferential_activities">
+				&lt;!&ndash;<div class="tab_youhuihuodong_line" style="margin-top: -3px;"></div>&ndash;&gt;
+				<img class="img_icon" src="img/icon/preferential_line.png" alt="">
+				<span class="bar-title">活动专区</span>
+			</div>
+
+			<div class="col pd-0" ui-sref="tab.shareOrder">
+				&lt;!&ndash;<div class="iconfont-cup-outline font-30" style="margin-top: -3px;margin-bottom: 6px;font-size: 25px;"></div>&ndash;&gt;
+				<img class="img_icon2" src="img/icon/shaidan_line.png" alt="">
+				<span class="bar-title">幸运晒单</span>
+			</div>
+
+			<div class="col pd-0" ui-sref="tab.account2">
+				<div class="iconfont-person-outline font-30" style="margin-top: -3px;margin-bottom: 6px;font-size: 25px;"></div>
+				<span class="bar-title">我</span>
+			</div>
+
+		</div>
+	</ion-footer-bar>-->
+    <view-nav-footer activity="activity"></view-nav-footer>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp" ng-click="hideGuide()">
+	<div class="pop pop--share">
+		<img src="img/yaoqing.png" width="248" height="120" alt="" />
+	</div>
+	<div class="mask"></div>
+</div>

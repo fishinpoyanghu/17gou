@@ -1,0 +1,158 @@
+<ion-view view-title="拼团订单" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+  <ion-nav-buttons side="left">
+    <!--<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">-->
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+<style>
+  .myIndianaRecord-page .tabs {
+    top:0 !important;
+  }
+</style>
+
+
+
+  <ion-content id="pintuandingdan" class="myIndianaRecord-page">
+
+    <ion-tabs class="tabs-top dp-tabs dp-tabs--border">
+
+      <ion-tab title="全部">
+        <view-list-view type="infinite"
+                        dp-request-url="{{::requestUrl}}"
+                        dp-request-params="::requestParamsAll"
+                        dp-per-request-size="10"
+                        dp-call-back="callbackAll">
+          <view-list-item ng-repeat="activity in listAll">
+            <view-indiana-record-item activity="::activity" ng-hide="activity.title==null" callback="itemCallBack" type="PinTuanme"></view-indiana-record-item>
+          </view-list-item>
+
+          <!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isAllEmpty">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无记录，快去抢购吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startToMainPage()">立即购买
+              </button>
+            </div>
+          </div>
+        </view-list-view>
+
+      </ion-tab>
+
+      <ion-tab title="待付款">
+        <view-list-view type="infinite"
+                        dp-request-url="{{::requestUrl}}"
+                        dp-request-params="::requestParamsObligation"
+                        dp-per-request-size="10"
+                        dp-call-back="callbackObligation">
+          <view-list-item ng-repeat="activity in listObligation">
+            <view-indiana-record-item activity="::activity" ng-hide="activity.title==null"
+                                      callback="itemCallBack" type="PinTuanme"></view-indiana-record-item>
+          </view-list-item>
+
+          <!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isObligationEmpty">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无进行中的购买记录，快去购买吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startToMainPage()">立即购买
+              </button>
+            </div>
+          </div>
+        </view-list-view>
+
+      </ion-tab>
+
+      <ion-tab title="待成团">
+        <view-list-view type="infinite"
+                        dp-request-url="{{::requestUrl}}"
+                        dp-request-params="::requestParamsGroup"
+                        dp-per-request-size="10"
+                        dp-call-back="callbackGroup">
+          <view-list-item ng-repeat="activity in listGroup">
+            <view-indiana-record-item activity="::activity" ng-hide="activity.title==null"
+                                      callback="itemCallBack" type="PinTuanme"></view-indiana-record-item>
+          </view-list-item>
+
+          <!--空状态结构-->
+          <div class="dp-emptyBlock" ng-show="isGroupEmpty">
+            <div class="dp-emptyBlock__container">
+              <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+              <p>暂无已揭晓的购买记录，快去购买吧~</p>
+              <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                      ng-click="startToMainPage()">立即购买
+              </button>
+            </div>
+          </div>
+        </view-list-view>
+
+      </ion-tab>
+        <ion-tab title="待发货">
+            <view-list-view type="infinite"
+                            dp-request-url="{{::requestUrl}}"
+                            dp-request-params="::requestShipped"
+                            dp-per-request-size="10"
+                            dp-call-back="callbackShipped">
+                <view-list-item ng-repeat="activity in listShipped">
+                    <view-indiana-record-item activity="::activity" ng-hide="activity.title==null" callback="itemCallBack" type="PinTuanme"></view-indiana-record-item>
+                </view-list-item>
+
+                <!--空状态结构-->
+                <div class="dp-emptyBlock" ng-show="isShippedEmpty">
+                    <div class="dp-emptyBlock__container">
+                        <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+                        <p>您还没相关的订单~</p>
+                        <!--<button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                                ng-click="startToMainPage()">立即购买
+                        </button>-->
+                    </div>
+                </div>
+            </view-list-view>
+
+        </ion-tab>
+
+        <ion-tab title="待收货">
+            <view-list-view type="infinite"
+                            dp-request-url="{{::requestUrl}}"
+                            dp-request-params="::requestReceipt"
+                            dp-per-request-size="10"
+                            dp-call-back="callbackReceipt">
+                <view-list-item ng-repeat="activity in listReceipt">
+                    <view-indiana-record-item activity="::activity" ng-hide="activity.title==null" callback="itemCallBack" type="PinTuanme"></view-indiana-record-item>
+                </view-list-item>
+
+                <!--空状态结构-->
+                <div class="dp-emptyBlock" ng-show="isReceiptEmpty">
+                    <div class="dp-emptyBlock__container">
+                        <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+
+                        <p>暂无已揭晓的购买记录，快去购买吧~</p>
+                        <button class="dp-button dp-button--yellow" style="margin: auto; margin-top: 40px; width: 130px; "
+                                ng-click="startToMainPage()">立即购买
+                        </button>
+                    </div>
+                </div>
+            </view-list-view>
+
+        </ion-tab>
+
+    </ion-tabs>
+
+  </ion-content>
+
+
+  <!--亿七购号码-->
+  <view-buy-number-pop comp-id="4-2-1" title="我的号码"></view-buy-number-pop>
+
+  <!--追加购买-->
+  <view-buy-pop head-title="追加购买次数" button-text="buttonText" ng-init="buttonText='追加购买'"></view-buy-pop>
+
+
+</ion-view>

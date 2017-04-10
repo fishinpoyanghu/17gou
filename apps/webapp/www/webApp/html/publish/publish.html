@@ -1,0 +1,23 @@
+<ion-view view-title="最新揭晓" hide-nav-bar="isHideNaviBar" on-swipe-left="goNext()" on-swipe-right="goPre()" >
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+  <ion-content>
+    <view-list-view unique-id="publish-001" type="infinite"
+                    dp-request-url="{{::requestUrl}}"
+                    dp-request-params="::requestParams"
+                    dp-per-request-size="20"
+                    dp-call-back="callBack"
+                    >
+      <view-list-item ng-repeat="activity in list">
+        <view-publish-item activity="activity" ng-hide="activity.goods_title==null"></view-publish-item>
+      </view-list-item>
+    </view-list-view>
+    <p class="text-center c-9 f-30" style="padding-top: 150px;position: relative;" ng-if="list.length == 0">暂时还没有揭晓商品~</p>
+  </ion-content>
+
+</ion-view>
+
+
+

@@ -1,0 +1,68 @@
+<ion-view view-title="设置" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <!--<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">-->
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons >
+
+    <ion-content scrollbar-y="false">
+        <div class="dp-blank10"></div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="#/modifyPassword">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>修改密码</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" ng-click="checkVersion()" ng-show="isShowCheckVersion">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>版本检测</p>
+                </div>
+                <div class="weui_cell_ft">V{{version}}</div>
+            </a>
+            <a class="weui_cell"  ng-hide="true">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>清理缓存</p>
+                </div>
+                <div class="weui_cell_ft">36MB</div>
+            </a>
+        </div>
+
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="#/question/question">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>常见问题</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+            
+            <a class="weui_cell" href="#/question/term_of_service">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>用户协议</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+            <a class="weui_cell" href="#/question/about_us">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>关于我们</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+
+        <div class="dp-blank10"></div>
+        <button class="log-off"  ng-click="logout()">
+            退出登录
+        </button>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,85 @@
+<ion-view view-title="确认订单" hide-nav-bar="::isHideNaviBar">
+<!--<ion-view view-title="确认订单">-->
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <form name="form" ng-submit="goToPay()">
+        <ion-content style="bottom: 44px;">
+
+            <div class="dp-section__container">
+                <div class="dp-section" ng-init="payItemHide = false">
+                    <div class="dp-section__li" ng-click="payItemHide = !payItemHide">
+                        <span class="dp-section__name">订单金额</span>
+                        <span class="dp-section__desc">{{::oderInfo.order_money}}元
+                          <i class="icon" ng-class="{true:'ion-ios-arrow-down',false:'ion-ios-arrow-up'}[payItemHide]">
+                          </i><!--不展开时把ion-ios-arrow-up替换成ion-ios-arrow-down-->
+                        </span>
+                    </div>
+                    <div class="dp-section__content" ng-hide="payItemHide">
+                        <h3>参与商品：</h3>
+                        <!-- <p ng-repeat="shop in shopList">{{::shop.goods_title}} <span class="fr">{{::shop.user_num}}人次</span></p> -->
+                        <div class="row row-center" ng-repeat="shop in shopList">
+                            <div class="col ">
+                                {{::shop.goods_title}}
+                            </div>
+                            <!--<span ng-if="shop.activity_type != 6">{{::shop.user_num}}人次</span>
+                            <span ng-if="shop.activity_type == 6">{{::shop.hot_luckyBuy == 1?'奇数幸运牌':'偶数幸运牌'}}</span>-->
+                            
+                            <!--<span>{{::shop.user_num}}人次</span>
+                            <span>{{shop.activity_type}}</span>-->
+                            <span ng-if="shop.ordertype == 4">{{::shop.goods_num}}&nbsp;件</span>
+                            <span ng-if="shop.activity_type != 6 && shop.ordertype != 4">{{::shop.user_num}}人次</span>
+                            <span ng-if="shop.activity_type == 6 && shop.ordertype != 4">{{shop.hot_luckyBuy == 1?'奇数幸运牌':'偶数幸运牌'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="dp-section">
+                    <div class="dp-section__li">
+                        <span class="dp-section__name">红包抵扣</span>
+                        <span class="dp-section__desc">{{::oderInfo.packet_use}}元</span>
+                    </div>
+                </div> -->
+                <div class="dp-section">
+                    <div class="dp-section__li" style="padding-bottom: 7px; padding-top: 7px;">
+                        <span class="dp-section__name">余额支付 <br/> <span>当前余额：{{::oderInfo.remain_money}}元</span></span>
+                        <span class="dp-section__desc">{{::oderInfo.remain_use}}元</span>
+                    </div>
+                </div>
+                <div class="dp-section dp-section--big" ng-if="(oderInfo.need_money > 0)">
+                    <div class="dp-section__li">
+                        <span class="dp-section__name">还需支付</span>
+                        <span class="dp-section__desc" style="color: #f44336;">{{::oderInfo.need_money}}元</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="weui_cells_title" ng-if="(oderInfo.need_money > 0)">选择支付方式</div> -->
+            <!--<div class="error-messages" ng-messages="form.payWay.$error" ng-show="form.$submitted">-->
+            <!--<div class="error-messages" ng-messages="form.payWay.$error">-->
+                <!--<span ng-message="required">至少选择一项</span>-->
+            <!--</div>-->
+            <div class="weui_cells weui_cells_radio" ng-if="(oderInfo.need_money > 0)">
+                <label class="weui_cell weui_check_label" for="x11" ng-if="show_wx_pay">
+                    <div class="weui_cell_hd"><img src="img/weixin.png" alt=""
+                                                   style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>微信支付</p>
+                    </div>
+                    <div class="weui_cell_ft">
+                        <input type="radio" class="weui_check" id="x11" name="payWay" ng-model="pay.type" value="0">
+                        <span class="weui_icon_checked"></span>
+                    </div>
+                </label>
+            </div>
+        </ion-content>
+        <div class="bar bar-footer">
+            <button type="submit" class="dp-button dp-button--red button-block" style="border-radius: 0" ng-disabled="!_loaded">立即支付</button>
+        </div>
+    </form>
+
+</ion-view>
+
+

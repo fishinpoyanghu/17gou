@@ -1,0 +1,112 @@
+<style>
+    /*.guize{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 30%;
+        z-index: 1888;
+        width: 50%;
+        background: white;
+        height: 200px;
+        border-radius: 10px;
+    }*/
+    .guize p{
+        font-size: 14px;
+    }
+    .gz_text{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 28%;
+        z-index: 1888;
+        color:white;
+        width: 80%;
+    }
+    .gz_text h1{
+        font-size: 36px;
+        color:black;
+        font-weight: 900;
+        -webkit-text-stroke: 1px white;
+        text-stroke: 2px white;
+        text-align: center;
+        font-family:"微软雅黑" !important;
+        letter-spacing:10px;
+        margin-bottom: 10px;
+    }
+    .gz_text p{
+        text-indent : 20px;
+        font-size: 16px;
+        color:white;
+        line-height: 32px;
+        font-family:"微软雅黑" !important;
+    }
+	#turnTableResult{
+		position:relative;
+		text-align:center
+	}
+	#turnTableResult>span{
+		display: block;
+	    position: absolute;
+	    top: 32%;
+	    left: 29%;
+	    font-weight: bold;
+	    font-size: 21px;
+	    color: #f72331;
+	    width: 40%;
+	    text-align: center;
+	}
+</style>
+<div ng-if="model">
+    <!--<div class="guize">
+        <p>规则</p>
+        <p>规则</p>
+        <p>规则</p>
+        <p>规则</p>
+        <p>规则</p>
+    </div>-->
+    <div class="gz_text" ng-click="close_model()">
+        <h1>抽奖规则</h1>
+        <p>活动规则：通过商城公众号(关注商城公众号)即可免费参加抽奖一次，分享抽奖信息即可再获得一次抽奖机会。</p>
+    </div>
+    <div style="position: absolute;left: 0; top: 0;z-index: 888;background-color: #000000;opacity: 0.7; width: 100%; height: 100%;"></div>
+</div>
+
+
+<ion-view view-title="抽奖" >
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="dp-button     " ui-sref="turntableRule">
+      玩法
+    </button>
+  </ion-nav-buttons>
+    <ion-content has-bouncing="true"  overflow-scroll="false">
+      <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+      </ion-refresher>
+      <p  ng-show="turnplate.restaraunts.length == 0" class="dp-more dp-more--bottom" >抽奖活动还未开始，敬请期待~</p>
+     <div class="dm-turnplate" ng-if="turnplate.restaraunts.length > 0" turnplate-setting="{{::turnplate}}" award-use-img="false" deal-text="false" comp-id="9-1-1" style="background:#f44343;padding:10px;" ></div>
+     <p class="text-center" style="color: #f32d2d;padding: 5px;font-size: 12px;border: 1px solid #ededed;" ng-show="isIosApp">本活动和苹果公司无关，解释权归本公司所有</p>
+     <div class="win-record-wrap">
+        <h3 class="c-3 f-32 text-center pos-r">
+          中奖用户
+          <a href="#/luckyLottery"  style="position:absolute;right:10px;color:#2f9cdb;font-size:14px;">全部记录</a>
+        </h3>
+        <div class="mt-30">
+          <view-text-scoll-row text-list="lotteryListData" ng-if="lotteryListData.length" scoller-row="4" scoller-height="42" interval="5000" ></view-text-scoll-row> 
+        </div>
+         
+     
+     </div>  
+     
+    
+    <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check='false' distance="1%" on-infinite="getLotteryList()">
+        </ion-infinite-scroll>
+  
+
+    </ion-content>
+   
+</ion-view>
+

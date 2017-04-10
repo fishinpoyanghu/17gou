@@ -1,0 +1,107 @@
+<ion-view view-title="二人拼团" hide-nav-bar="isHideNaviBar" class="classify-area-page" on-swipe-left="goNext()" on-swipe-right="goPre()">
+
+    <!--  <ion-nav-buttons side="left">
+         <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+         </button>
+     </ion-nav-buttons> -->
+
+
+
+    <style>
+        .dp-floatBtn--bl {
+            left: auto;
+            right: 40px;
+            bottom:60px;
+        }
+        .dm-goods-classify .nav-item {
+            padding: 0 6px;
+        }
+
+    </style>
+    <div class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }}">
+        <div class="row  row-center dm-goods-classify" style="margin-top:0;border-bottom: 1px solid #ededed;">
+            <div class="col nav-col " ng-click="changeActive('num',order_type)">
+                <div class="nav-item clearfix {{order_key == 'num' ? 'active' : ''}}">
+                    <span class="fl ">价格</span>
+                    <div class="arrow-icon fl">
+                        <i class="icon iconfont-arrow-down arrow-up" style="{{order_key == 'num' && order_type == 'desc' ? 'color:#333;' : ''}}"></i>
+                        <i class="icon iconfont-arrow-down arrow-down" style="{{order_key == 'num' && order_type == 'asc' ? 'color:#333;' : ''}}"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col nav-col"  ng-click="changeActive('time','none','tenyuan')">
+                <span class="nav-item {{order_key == 'time' ? 'active' : ''}}" style="padding:0;">最新商品</span>
+            </div>
+            <div class="col nav-col" ng-click="changeActive('ing','none')">
+                <span class="nav-item {{order_key == 'ing' ? 'active' : ''}}" style="padding:0;">即将揭晓</span>
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-subheader classify-page" style="{{inWechatB ? 'top:50px;' : (inIosApp ? 'top:108px;' : 'top:88px;') }}">
+        <ion-refresher
+            pulling-text="下拉刷新"
+            pulling-icon="ion-arrow-down-c"
+            on-refresh="doRefresh('3-2-001-01')"
+        >
+        </ion-refresher>
+
+        <div class="dp-broad dp-broad--leftImg pos-r" ng-class="{true:'',false:'dp-broad--noComment'}[dpToggleComment]" >
+            <div class="dp-broad__li clearfix" ng-repeat="broad in broadlist track by $index" style="margin-top: 0;padding:10px;">
+                <div class="dp-broad__img" style="width: 75px;" ng-click="gotoDetail(broad.activity_id)">
+                    <img ng-src="{{broad.title_img}}"/>
+                </div>
+
+                <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">
+                    <h3 class="dm-nowrap-2 f-28" style="color: #333; margin-bottom: 5px;  overflow:hidden;padding-right: 26px;">{{broad.goods_title}}</h3>
+
+                    <div class="row p-0 row-center" >
+                        <div class="col p-0">
+                            <div class="row p-0 row-center" style="margin-top: 10px;">
+                                <div class="col p-0">
+                                    <div class="progress_box" style="color: #888888; float:none;">
+
+                                        <div class="progress" style="width: 100%; margin-bottom: 5px;"><span class="num" view-progress progress="(((broad.need_num - broad.remain_num) / broad.need_num))"></span></div>
+                                        <!--  <span >参与人数 <em style="color: #519fff;">{{broad.need_num - broad.remain_num}}/{{broad.need_num}}</em></span> -->
+                                    </div>
+
+                                </div>
+                                <div style="padding:0 8px;font-size:10px;color:#666;">
+                                    {{((broad.need_num - broad.remain_num) / broad.need_num) * 100 | number:2}} %
+                                </div>
+                            </div>
+
+                        </div>
+                        <button style="width:75px;height:30px;font-size:13px;border-radius:10px;color:#f72331;border:1px solid #f72331;background-color:#fff;">二人购</button>
+                    </div>
+                </div>
+
+                <!--   <div class="dp-broad__content" style="position:absolute; top: 50%;  right: 1px;  line-height:32px;height: 30px;width: 45px;">
+                      <div class=" btn iconfont-shopcart-outline" ng-click="addToCart(broad,$event)" ontouchstart="domController.changeAddCartState(this,true)" ontouchend="domController.changeAddCartState(this,false)" style="line-height: 1;color: #f44336;font-size: 3.2rem;z-index: 1;"></div>
+                  </div> -->
+
+                <!--下面是二人云购图标-->
+                <i class="two_people__tag red_tag" ng-if="(broad.activity_type == 4)"></i>
+
+                <i class="dp-broad__tag blue_tag" ng-if="(broad.activity_type == 2)"></i>
+                <span class="limit-flag" ng-if="(broad.activity_type == 3)" style="top:3px;right: 6px;">限购</span>
+            </div>
+
+            <a class="dp-broad__more" ng-if="::dpIsShortList" ng-click="showTheListAll()">查看更多&nbsp;
+                <i class="icon ion-chevron-right"></i>
+            </a>
+            <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+            <p  ng-show="!isMoreData && isLoadFinished" class="dp-more dp-more--bottom">没有更多啦~</p>
+
+        </div>
+
+        <ion-infinite-scroll
+            ng-if="isMoreData"
+            on-infinite="loadMore()"
+            icon="ion-loading-c"
+            distance="1%"
+            immediate-check='false'>
+        </ion-infinite-scroll>
+    </ion-content>
+
+</ion-view>
+

@@ -1,0 +1,63 @@
+<ion-view view-title="搜索结果" hide-nav-bar="isHideNaviBar">
+
+	<ion-nav-buttons side="left">
+		<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+	</ion-nav-buttons>
+	<div id="search" class="clearfix" style="top:{{inWechatB ? '0px' : '44px'}};position: absolute;z-index: 99;border-bottom: 1px solid #E5E2E2;">
+
+		<div class="shuru2 fl" ng-click="go_search()">
+			<div class="sosuo">
+				<img class="search_img" src="img/search/search2.png" alt="">
+				<span class="search_name">点一点</span>
+			</div>
+		</div>
+		<div class="two_xing2 fr" style="width:33px" ng-click="goHome()">
+			<img class="ic2" src="img/icon/home.png" />
+		</div>
+	</div>
+
+	<ion-content style="{{inWechatB ? 'top:49px;' : (inIosApp ? 'top:94px;' : 'top:88px;') }}">
+
+		<view-broad ng-if="productType==1" comp-id="'3-4-001'" type="short_info" dp-is-short-list="false" dp-page-size="10" dp-split-size="20" dp-filter-title="{{::keyword}}" dp-is-auto-load="true" dp-set-top-bar="true" dp-top-bar-title="::keyword"></view-broad>
+		<div ng-if="productType==2" class="dp-broad dp-broad--leftImg pos-r" id="class_details">
+			<div class="dp-broad__li clearfix" ng-repeat="broad in postData.data track by $index" style="margin-top: 0;padding:10px;" ng-click="gotoPintuan_Detail(broad.goods_id)">
+				<div class="dp-broad__img" style="width: 20%;" ng-click="gotoPintuan_Detail(broad.goods_id)">
+					<img class="margin-top-14" ng-src="{{broad.main_img}}" />
+				</div>
+
+				<div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 0px;  padding-left: 10px;overflow: hidden; ">
+					<h3 class="dm-nowrap-2 h3_title" style="-webkit-line-clamp: 3;">{{broad.title}}</h3>
+					<div class="row p-0 row-center" style="margin-top: 8px;">
+						<div class="col p-0">
+							<span class="price1">￥{{broad.price}}</span>
+						</div>
+						<button class="bq_btn">立即购买</button>
+					</div>
+				</div>
+
+				<div id="hot_bq" ng-if="(order_key == 'weight')" style="top:3px;z-index:22222;">
+					<img src="img/pintuan_icon/hot.jpg" alt="">
+				</div>
+			</div>
+			<ion-infinite-scroll ng-if="!postData.pageOver" on-infinite="loadMore()">
+			</ion-infinite-scroll>
+			<div ng-if="!postData.data.length==0&&postData.pageOver"  style="font-size: 14px;text-align: center;padding-top: 50px;">
+				<p>没有更多啦～</p>
+			</div>
+			<div ng-if="postData.data.length==0" style="font-size: 14px;text-align: center;padding-top: 50px;">
+				<p>搜索结果为空，请重新搜索吧！</p>
+			</div>
+		</div>
+	</ion-content>
+
+</ion-view>
+
+<!--
+<div class="dp-floatBtn dp-floatBtn&#45;&#45;bl" >
+    <a class="dp-floatBtn__link" href="#/tab/trolley">
+        <i class="icon ion-ios-cart"></i>
+    </a>
+    <i class="badge badge-assertive">{{trolleySum()}}</i>
+</div>
+-->

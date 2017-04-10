@@ -1,0 +1,45 @@
+<ion-view view-title="购物车" hide-nav-bar="isHideNaviBar" on-swipe-left="goNext()" on-swipe-right="goPre()">
+
+
+
+    <ion-content style="bottom: {{allgoods.length==0 ? '0' : '93px'}};"  scrollbar-y="false" delegate-handle="cartPageContent">
+        <div class="dp-itemList" id="goodslist" ng-if="allgoods.length > 0">
+            <div ng-repeat="goods in allgoods">
+                <view-trolley-item type="list" data="goods"></view-trolley-item>
+            </div>
+        </div>
+
+        <!--购物车为空时-->
+        <div class="dp-emptyBlock p-c" ng-if="allgoods.length==0">
+            <div class="dp-emptyBlock__container">
+                <i class="icon iconfont-shopping" style=" border-radius: 50%; background-color: #e2e2e2; color: #ffffff;"></i>
+                <p>您的购物车空空如也</p>
+                <button class="dp-button dp-button--red mt-10" ng-click="goToMainPage()" style="margin: auto; margin-top: 40px; width: 130px; ">马上去购买</button>
+            </div>
+            <view-recomend delegate-handle="cartPageContent" type="list" goods-list="{{recommendGoodsList}}" title="猜你喜欢" details-url="activity"></view-recomend>
+        </div>
+    </ion-content>
+
+    <div class="dp-itemList__editBox" id="editbox" style="display: none;">
+        <span class="select_all form_input" ng-click="chooseAllGoods()">
+        <i ng-class="{'selected':isSelectedAll,'radio_icon':true}"></i>  全选
+        </span>
+        <span class="count_txt">
+        共选中 <em>{{selectNumber}}</em> 个奖品
+        </span>
+        <a class="delete_btn" ng-click="showPop()" href="">删除</a>
+        <a class="cancel_btn" ng-click="cancallEdit()" href="">取消</a>
+    </div>
+
+
+    <div class="dp-itemList__countBox " id="countbox" style="display: block;" ng-show="allgoods.length!=0">
+        <a class="edit_btn f-32" ng-click="editGoods()" href="" style="padding:10px 15px;">编辑</a>
+                <span class="count_txt f-28">
+                    共 <em>{{allgoods.length}}</em> 个商品，合计 <em>{{getGoodsPrice()}}</em> 元
+                </span>
+        <a class="count_btn f-32" ng-click="fixOrder()"  >去结算</a>
+    </div>
+</ion-view>
+
+
+

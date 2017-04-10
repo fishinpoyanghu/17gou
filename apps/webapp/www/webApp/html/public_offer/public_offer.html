@@ -1,0 +1,119 @@
+<ion-view view-title="消费全返" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div id="public_offer">
+            <!--资金-->
+            <div>
+                <div class="bg_img" ng-if="diskData.orderstatus==1">
+                    <div class="center_box">
+                        <p class="one_h">等待全返资金（元）</p>
+                        <!--有产生云购消费订单-->
+                        <h1 ng-if="diskData.orderstatus==1" class="two_h">{{::diskData.diskmoney}}</h1>
+
+                        <p class="three_h">预计{{::diskData.pushday}}天后可以全额返到您的账上</p>
+                    </div>
+                </div>
+                <!--没买东西的用户-->
+                <div class="bg_img" ng-if="diskData.orderstatus==0">
+                    <div class="center_box">
+                        <!--没产生云购消费订单-->
+                        <h1 class="zwgpjl">暂无公盘记录</h1>
+                        <div class="go_buy" ng-click="go_mainpage()">
+                            <span>前往购买</span>
+                            <i class="icon ion-ios-arrow-right icon_right2"></i>
+                        </div>
+                    </div>
+                </div>
+                <!--提现-->
+                <div class="two_col">
+                    <a class="item  item-icon-right user-list-item f-32 " href="#/apply_withdraw_cash" style="padding:0px;">
+                        <img src="img/public_offer/tx.png" class="tx_img" alt="">
+                        <span class="left_tx">提现</span>
+                        <i class="icon ion-ios-arrow-right c-9 icon_right"></i>
+                    </a>
+                </div>
+                <!--有买东西的用户-->
+                <div class="gongpan_statuas clearfix">
+                    <!--公盘状态-->
+                    <div class="gp_st_one" ui-sref="activityRule({type:'public_offer'})">
+                        <a class="item item-icon-right user-list-item f-32 " href="#/invite_detail" style="padding:0px;">
+                            <div class="fl">
+                                <img src="img/public_offer/gpzt.png" class="tx_img" alt="" style="margin-top: 9px;">
+                                <span class="left_tx">消费全返介绍</span>
+                            </div>
+                            <div class="gongpanjiejiao fr">
+                                <span>消费全返介绍</span>
+                                <i class="icon ion-ios-arrow-right c-9 icon_right2 right-2"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="gp_st_two clearfix mg-top" ng-if="diskData.orderstatus==1">
+                        <!--percent为0时不显示进度条-->
+                        <div ng-if="diskData.percent>0">
+                            <div class="progress_box" style="color: #888888; float:none;padding: 0 10px;">
+
+                                <div class="progress border-radius-10" style="width: 100%; margin-bottom: 5px;    margin-top: 20px;"><span class="num border-radius-10" view-progress progress="((diskData.percent/10))"></span></div>
+                            </div>
+                        </div>
+                        <!--<p class="number_text">{{::diskData.percent}}/{{::diskData.queuenum}}</p>
+                        <h3 class="xiaofei">还差{{::diskData.percent>0?diskData.queuenum-diskData.percent:diskData.queuenum}}位用户消费，您的1元将会返还到您的账上</h3>-->
+                        <h3 class="xiaofei" ng-if="diskData.percent>0 || diskData.queuenum> 0">还差{{::diskData.queuenum}}位用户消费，您的1元将会返还到您的账上</h3>
+                        <h3 class="xiaofei" ng-if="diskData.peoplenum>0">还有{{::diskData.peoplenum}}位用户正在等待消费全返。马上轮到您了呢！请稍稍等待喔~！</h3>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <!--玩法介绍-->
+           <!-- <div class="zuixin_dongtai clearfix">
+                <h3 class="zuixindongtai_text" style="border-top:none;">玩法介绍</h3>
+            </div>-->
+            <img ui-sref="activityRule({type:'public_offer'})" class="banner_img" src="img/public_offer/public_offer_banner.jpg" alt="">
+            <!--最新动态-->
+            <div class="two_col no_border_bot">
+                <img src="img/public_offer/dtxx.png" class="tx_img" alt="" style="margin-top: 10px">
+                <span class="left_tx">最新动态</span>
+            </div>
+            <!--<div class="zuixin_dongtai clearfix">
+                <img src="img/public_offer/dtxx.png" class="tx_img" alt="">
+                <h3 class="zuixindongtai_text" style="border-bottom:none">最新动态</h3>
+            </div>-->
+            <div class="list_col" ng-repeat="listData in listDatas">
+                <div class="z_d_data clearfix">
+                    <div class="fl" style="padding-left: 10px;">第{{::listData.activity_id}}期</div>
+                    <div class="fr" style="padding-right: 10px;">
+                        <span>{{::listData.time}}</span>
+                    </div>
+                </div>
+                <div class="new_good_li clearfix">
+                    <div class="width-70 fl" ng-click="gotoDetail(listData.activity_id)">
+                        <div class="good_pic fl">
+                            <img ng-src="{{::listData.main_img}}" alt="">
+                        </div>
+                        <div class="good_text">
+                            {{::listData.title}}
+                        </div>
+                    </div>
+                    <div class="width-30 fr">
+                        <p class="price_text">￥<em class="big_size">{{::listData.money}}</em></p>
+                        <div class="user_box clearfix" ng-click="goToHisPage(listData.icon,listData.nick,listData.uid)">
+                            <img class="user_simg fl" ng-src="{{::listData.icon}}" alt="">
+                            <div class="user_name">{{::listData.nick}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p ng-show="pageData.pageOver" class="dp-more dp-more--bottom">没有更多啦~</p>
+        </div>
+        <ion-infinite-scroll ng-if="!pageData.pageOver" immediate-check='false' distance="1%" on-infinite="getRecentOrderList()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

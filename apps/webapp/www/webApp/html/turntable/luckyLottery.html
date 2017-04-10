@@ -1,0 +1,45 @@
+<ion-view view-title="获奖用户" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+ 
+    <ion-content scrollbar-y="false" overflow-scroll="false">
+      <ion-refresher
+        pulling-text="下拉刷新"
+        pulling-icon="ion-arrow-down-c"
+        on-refresh="doRefresh()"
+        >
+      </ion-refresher>
+      <div class="row row-center mt-10 text-center f-28 c-3 bg-white p-10" >
+        <div class="col">获奖者</div>
+        <div class="col">奖品</div>
+        <div class="col">时间</div>
+      </div>
+       
+      <div class="list" ng-show="lotteryListData.length > 0"> 
+        <div class="item p-10" ng-repeat="lottery in lotteryListData">
+          <div class="row row-center p-0 f-28 text-center">
+            <div class="col">{{::lottery.nick}}</div>
+            <div class="col">{{::lottery.goods_name}}</div>
+            <div >{{::lottery.ut*1000 | date:'yyyy-MM-dd HH:mm'}}</div>
+          </div>
+        </div>
+        <p  ng-show="isLoadFinished && !moreDataCanBeLoaded && lotteryListData.length > 0" class="dp-more dp-more--bottom" >没有更多啦~</p>
+      </div>
+      <div class="no-item-wrap c-9 " ng-show="isLoadFinished && !moreDataCanBeLoaded && lotteryListData.length == 0" >
+          <p class="mt-40 f-32">暂无获奖用户~</p>
+      </div>
+
+      <ion-infinite-scroll
+        ng-if="moreDataCanBeLoaded"
+        immediate-check='false'
+        distance="1%"
+        on-infinite="getLotteryList()">
+      </ion-infinite-scroll>
+
+    </ion-content>
+   
+</ion-view>
+

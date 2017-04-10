@@ -1,0 +1,51 @@
+<ion-view view-title="搜索" hide-nav-bar="true">
+    <ion-header-bar class="bar-assertive item-input-inset" style="padding-left: 10px; padding-right: 2px;">
+        <div class="ion-chevron-left" style="font-size: 16px;" style="z-index: 99999" ng-click="go_mainpage()"></div>
+        <i class="clear_date"  ng-click="clear_date()">X</i>
+        <label class="item-input-wrapper" style="margin-left: 14px;position: relative;">
+            <form name="form" ng-submit="search($event)">
+                <input id="searchInput" type="search" name="search" placeholder="输入商品名称" ng-model="searchContent" autocomplete="off"
+                       ng-keyup="search($event)">
+            </form>
+        </label>
+
+        <button class="dp-button button-clear"  ng-click="sousuo($event)">搜索</button>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <style>
+            .weui_cell {
+                padding: 12px 10px 12px 15px;
+                color: #888888;
+            }
+        </style>
+        <!--添加最近搜索-->
+        <div class="zjss" ng-if="zj_search">
+            <i class="clear_date2"  ng-click="clear_newtextarea()">X</i>
+            <h3>最近搜索</h3>
+            <div style="clear:both;">
+                <div class="p-text" ng-repeat="newtextarea2 in newtextarea track by $index"  ng-click="goToResult(newtextarea2)">{{newtextarea2}}</div>
+
+            </div>
+
+        </div>
+        <!--当搜索到商品时-->
+        <div class="weui_cells" ng-if="keywords">
+            <div class="weui_cell" ng-repeat="keyword in keywords track by $index" ng-click="goToResult(keyword)">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{::keyword}}</p>
+                </div>
+            </div>
+        </div>
+        <!--当搜索结果为空时-->
+        <div class="dp-emptyBlock" ng-show="isEmpty">
+            <div class="dp-emptyBlock__container">
+                <i class="icon ion-ios-search"></i>
+
+                <p>找不到该商品</p>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="购物车" hide-nav-bar="isHideNaviBar" >
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+
+    <ion-content style="bottom: 44px;">
+        <div class="dp-itemList" id="goodslist_1">
+            <div ng-repeat="goods in allgoods">
+                <view-trolley-item type="list" data="goods"></view-trolley-item>
+            </div>
+        </div>
+
+        <!--购物车为空时-->
+        <div class="dp-emptyBlock" ng-if="allgoods.length==0">
+            <div class="dp-emptyBlock__container">
+                <i class="icon iconfont-shopping" style=" border-radius: 50%; background-color: #e2e2e2; color: #ffffff;"></i>
+                <p>您的购物车空空如也</p>
+                <button class="dp-button dp-button--red" ng-click="goToMainPage()" style="margin: auto; margin-top: 40px; width: 130px; ">马上去购买</button>
+            </div>
+        </div>
+    </ion-content>
+
+    <div class="dp-itemList__editBox" id="editbox_1" style="display: none;bottom: 0;">
+        <span class="select_all form_input" ng-click="chooseAllGoods()">
+        <i ng-class="{'selected':isSelectedAll,'radio_icon':true}"></i>  全选
+        </span>
+        <span class="count_txt">
+        共选中 <em>{{selectNumber}}</em> 个奖品
+        </span>
+        <a class="delete_btn" ng-click="showPop()" href="">删除</a>
+        <a class="cancel_btn" ng-click="cancallEdit()" href="">取消</a>
+    </div>
+
+
+    <div class="dp-itemList__countBox" id="countbox_1" style="display: block;bottom: 0;" ng-show="allgoods.length!=0">
+        <a class="edit_btn f-32" ng-click="editGoods()" href="" style="padding:10px 15px;">编辑</a>
+                <span class="count_txt f-28">
+                    共 <em>{{allgoods.length}}</em> 个商品，合计 <em>{{getGoodsPrice()}}</em> 元
+                </span>
+        <a class="count_btn f-32" ng-click="fixOrder()" >去结算</a>
+    </div>
+</ion-view>
+
+
+

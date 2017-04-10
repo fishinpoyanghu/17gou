@@ -1,0 +1,43 @@
+<ion-view view-title="优惠活动" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+    <!--<ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="go_pintuanmainpage()">
+        </button>
+    </ion-nav-buttons>-->
+
+    <!--<ion-content has-bouncing="false" padding="false" scrollbar-y="true">-->
+    <ion-content scrollbar-y="true">
+        <!--<ion-refresher
+            pulling-text=" 喂喂， 我可是有底线的！"
+            pulling-icon="ion-arrow-down-c"
+            on-refresh="doRefresh('3-2-001-01')"
+        >
+        </ion-refresher>-->
+        <div id="preferential_activities">
+            <ul>
+                <li ng-repeat="commodity_pic in commodity_pics">
+                    <!--<a href="#/{{commodity_pic.url}}">
+                        <img ng-src="{{commodity_pic.img}}" alt="">
+                    </a>-->
+                    <a href="#/{{commodity_pic.url}}">
+                        <img  ng-src="{{commodity_pic.img}}" alt="">
+                        <h3 style="position: relative;" class="title_img">{{commodity_pic.title}}
+                            <div  ng-if="$index==0&&0" class="start-img">
+                                <img  style="" src="img/icon/star.png" alt="" /><img class="" style="" src="img/icon/star.png" alt="" /><img class="" style="" src="img/icon/star.png" alt="" />
+                            </div>
+                        </h3>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

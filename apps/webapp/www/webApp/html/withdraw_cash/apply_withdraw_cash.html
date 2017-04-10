@@ -1,0 +1,111 @@
+<ion-view view-title="申请提现" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+    <div id="application_withdrawal" style="margin-top: {{inWechatB ? '0px' : '44px' }}">
+        <div class="wx" ng-click="show_wx()" style="{{t_index==1&&'color:black;'}}border-right: none;width: 100%;">提现到微信零钱</div>
+        <!--<div class="yh" ng-click="show_yh()" style="{{t_index==2&&'color:black'}}">提现到银行卡</div>-->
+    </div>
+
+  <ion-content scrollbar-y="false" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:95px;' : 'top:88px;') }}">
+    <style>
+        .weui_label{ text-align: right;}
+        .weui_select{ padding-left: 0;}
+    </style>
+
+      <!--提现到微信零钱-->
+      <div ng-if="t_index==1">
+          <div id="tixian_weixin">
+              <div ng-if="tx_wx" class="wxts_kj">
+                  <div class="xinxi">
+                      此次提现将会直接提现到微信账号
+                  </div>
+              </div>
+              <div ng-if="tx_yh" class="wxts_kj">
+                  <div class="xinxi">
+                      请填写您的微信账号
+                  </div>
+              </div>
+
+              <div class="weui_cells weui_cells_form" style=" margin-top: 16px;">
+                  <div class="weui_cell">
+                      <div class="weui_cell_hd"><label class="weui_label">微信号：</label></div>
+                      <div class="weui_cell_bd weui_cell_primary">
+                          <input class="weui_input" type="text" ng-model="cash.wechatId" maxlength="42" value="">
+                      </div>
+                  </div>
+                  <div class="weui_cell">
+                      <div class="weui_cell_hd marbot martop"><label class="weui_label">提现金额</label></div>
+                      <!--<h3 class="txje">提现金额</h3>-->
+                  </div>
+                  <div class="weui_cell" style="margin-top: 14px">
+                      <div class="weui_cell_bd weui_cell_primary">
+                          <!--<input class="weui_input" type="text" placeholder="提现金额不能大于当前师徒收益" ng-model="cash.money">-->
+                          <div class="monkey_i">￥</div>
+                          <input class="weui_input" type="text" ng-model="cash.money" style="width: 90%;font-size: 28px;">
+                      </div>
+                  </div>
+              </div>
+              <p class="c-9 f-24 p-l-20">账户余额{{inviteMoney}},<a href="" class="blue">全部提现</a></p>
+              <p class="c-9 f-24 p-l-20" ng-if="cash.money.length>0">额外扣除￥0.00手续费</p>
+
+          </div>
+          <div style="margin-top: 20px;">
+              <button class="btn_anniu2" ng-click="submit()" style="{{cash.wechatId.length>0&&cash.money.length>0&&'background-color: #22B33A;'}}">确定</button>
+          </div>
+          <div class="t_msg2">两个小时内到账(每次提现会扣除1元的手续费)</div>
+      </div>
+
+
+      <!--提现到银行卡,现在数据还没做好，暂时隐藏-->
+      <div ng-if="t_index==2" style="display: none;">
+          <div id="tixian_yinhang">
+              <div class="yh_box">
+                  <label class="label_yh let_spc">发行卡：</label>
+                  <select name="" id="bank_card">
+                      <option value ="volvo">中国银行</option>
+                      <option value ="saab">中国农业银行</option>
+                      <option value="opel">中国建设银行</option>
+                      <option value="audi">中国工商银行</option>
+                  </select>
+              </div>
+              <div class="yh_box">
+                  <label class="label_yh">提现金额：</label>
+                  <input type="text" class="ipt_text">
+              </div>
+              <div class="yh_box">
+                  <label class="label_yh">银行卡号：</label>
+                  <input type="text" class="ipt_text">
+              </div>
+              <div class="yh_box">
+                  <label class="label_yh">真实姓名：</label>
+                  <input type="text" class="ipt_text">
+              </div>
+              <div class="yh_box">
+                  <label class="label_yh">绑定手机：</label>
+                  <input type="text" class="ipt_text">
+              </div>
+              <div class="yh_box">
+                  <label class="label_yh let_spc">开户号：</label>
+                  <input type="text" class="ipt_text">
+              </div>
+
+
+
+          </div>
+          <div style="margin-top: 20px;">
+              <button class="btn_anniu2" ng-click="submit()" style="{{cash.wechatId.length>0&&cash.money.length>0&&'background-color: #22B33A;'}}">提交申请</button>
+          </div>
+          <div class="t_msg3">温馨提示：如果您在亿七购商城绑定的银行卡资料填写不完整，将导致提现被驳回，提现被驳回后返还到您的可用余额中。请您及时核对您的银行卡相关信息，如果信息填写不完全或者有误，请您进行修改后再次提现。</div>
+      </div>
+
+      <!--提现到银行卡未开发-->
+      <div ng-if="t_index==2">
+          <div class="t_msg3">用户您好，真的很抱歉。这个功能未开发。望您敬请期待。</div>
+      </div>
+
+  </ion-content>
+
+</ion-view>

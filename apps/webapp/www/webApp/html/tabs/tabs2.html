@@ -1,0 +1,26 @@
+<ion-tabs class="tabs-icon-bottom dp-tabs dp-tabs--icon">
+
+  
+  <ion-tab title="首页" icon-off="ion-ios-home-outline ion_icon" icon-on="ion-ios-home ion_icon" badge="all_new"  badge-style="badge-assertive"  href="#/tab/mainpage2">
+     <!-- <span class="badge badge-assertive" ng-if="bell_news > 0">{{bell_news}}</span>-->
+    <ion-nav-view name="tab-mainpage"></ion-nav-view>
+  </ion-tab>
+  
+  <!--<ion-tab title="活动专区" icon-off="tab_youhuihuodong_line" ng-class="{true:'tab-red-point',false:''}[true]" icon-on="tab_youhuihuodong_tian" href="#/tab/preferential_activities">-->
+  <ion-tab title="活动专区" icon-off="tab_youhuihuodong_line"  icon-on="tab_youhuihuodong_tian" href="#/tab/preferential_activities">
+    <ion-nav-view name="tab-preferential_activities">
+    </ion-nav-view>
+  </ion-tab>
+  
+  <ion-tab title="幸运晒单" icon-off="tab_shaidan_line" icon-on="tab_shaidan_tian" href="#/tab/tabShareOrder">
+    <ion-nav-view name="tab-shareOrder"></ion-nav-view>
+  </ion-tab>
+
+  
+  <!--<ion-tab id="tab_my" title="我" icon-off="iconfont-person-outline" icon-on="iconfont-person" badge="all_new" badge-style="badge-assertive" href="#/tab/account2">-->
+  <ion-tab id="tab_my" title="我" icon-off="iconfont-person-outline" icon-on="iconfont-person" badge="" badge-style="badge-assertive" href="#/tab/account2">
+      <div ng-if=""></div>
+    <ion-nav-view name="tab-account2"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

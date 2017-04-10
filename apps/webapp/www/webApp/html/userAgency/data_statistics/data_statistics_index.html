@@ -1,0 +1,139 @@
+
+<!--<ion-view view-title="个人信息" hide-section-bar="false" >-->
+<ion-view view-title="数据统计" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+		<div id="agency_header" class="data_statistics_header">
+			<div class="agency_title data_title_bg">
+				<div class="agency_content data_statistics_content">
+					<div class="agency_user_image data_statistics">
+						<img  ng-src="{{getCurrUserInfo().icon}}"/>
+						<div class="data_statistics_title">
+							<span>{{getCurrUserInfo().nick}}</span><br />
+							<span>[ID：{{getCurrUserInfo().uid}}]</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agency_about_money">
+				<div class="row">
+				  <div class="col">昨天浏览量<br/><span>{{getCurrUserInfo().agencyData.data.data_statistics.yestodayPageView}}</span></div>
+				  <div class="col">总浏览量<br /><span>{{getCurrUserInfo().agencyData.data.data_statistics.allPageView}}</span></div>
+				  <div class="col">昨日推广数<br /><span>{{getCurrUserInfo().agencyData.data.data_statistics.yestodayGenerlize}}</span></div>
+				  <div class="col">总推广数<br /><span>{{getCurrUserInfo().agencyData.data.data_statistics.yestodayGenerlize}}</span></div>
+				</div>
+			</div>
+		</div>
+		<section id="data_statistics_body">
+			<div class="list">
+				<div class="item item-icon-right">
+					<img width="40" src="img/agency/data_generlize/visitor_generlize.png"/>
+					<div>访客统计</div>
+					<i class="icon ion-ios-arrow-right arrow c-9"></i>
+				</div>
+				<div class="item item-icon-right">
+					<img width="40" src="img/agency/data_generlize/order_generlize.png"/>
+					<div>订单统计</div>
+					<i class="icon ion-ios-arrow-right arrow c-9"></i>
+				</div>
+				<div class="item item-icon-right">
+					<img width="40" src="img/agency/data_generlize/income_detail.png"/>
+					<div>收入明细</div>
+					<i class="icon ion-ios-arrow-right arrow c-9"></i>
+				</div>
+			</div>
+		</section>
+
+    </ion-content>
+
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<!--<ion-view view-title="个人信息" hide-section-bar="false" >-->
+<ion-view view-title="个人信息" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <!--<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">-->
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+        <div class="dp-section__container">
+            <div class="dp-section dp-section--big" ng-click="showImageSelector()">
+                <div class="dp-section__li">
+                    <span class="dp-section__name" style="font-size: 15px;">头像</span>
+                    <span class="dp-section__select">
+                        <img class="avatar_img" ng-src="{{getCurrUserInfo().icon}}" alt=""/>
+                    </span>
+                </div>
+            </div>
+            <div class="dp-section">
+                <div class="dp-section__li">
+                    <span class="dp-section__name">ID</span>
+                    <span class="dp-section__select">
+                        {{getCurrUserInfo().uid}}
+                    </span>
+                </div>
+            </div>
+            <!--我暂时添加注释掉下面的一行代码-->
+            <div class="dp-section" ng-click="startToModifyNick()">
+            <!--<div class="dp-section">-->
+                <div class="dp-section__li clearfix">
+                    <span class="dp-section__name">昵称</span>
+                    <span style="display:block;width:80%;float:right;text-align:right;">
+                        {{getCurrUserInfo().nick}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="dp-section" ng-if="showPhone(getCurrUserInfo().phone)">
+                <div class="dp-section__li">
+                    <span class="dp-section__name">手机号码</span>
+                    <span class="dp-section__select">
+                       {{getCurrUserInfo().phone}}
+                    </span>
+                </div>
+            </div>
+            <div class="dp-section" ng-if="!showPhone(getCurrUserInfo().phone)" ng-click="bindphpone()">
+                <div class="dp-section__li">
+                    <span class="dp-section__name">未绑定手机</span>
+                    <span class="dp-section__select">
+                        <span>点击此处绑定手机</span>
+                    </span>
+                </div>
+            </div>
+            <div class="dp-section" ng-click="startToShippingAddress()">
+                <div class="dp-section__li">
+                    <span class="dp-section__name">收货地址</span>
+                    <span class="dp-section__select">
+                      <i class="icon ion-ios-arrow-forward"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dp-section__container" ng-click="startToSetting()">
+            <div class="dp-section">
+                <div class="dp-section__li">
+                    <span class="dp-section__name">设置</span>
+                    <span class="dp-section__select">
+                        <i class="icon ion-ios-arrow-forward"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </ion-content>
+
+</ion-view>

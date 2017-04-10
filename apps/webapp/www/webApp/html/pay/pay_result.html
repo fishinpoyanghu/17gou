@@ -1,0 +1,48 @@
+<ion-view view-title="支付结果" hide-nav-bar="isHideNaviBar">
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+    <ion-content style="bottom: 44px;">
+      <ion-refresher
+        pulling-text="下拉刷新"
+        pulling-icon="ion-arrow-down-c"
+        on-refresh="refreshOrderInfo()"
+        >
+      </ion-refresher>
+        <div class="dp-blank10"></div>
+      <!--Loading-->
+      <div ng-hide="oderArray">
+        <ion-spinner icon="ios" class="dp-spinner"></ion-spinner>
+        <p style="font-size: larger;text-align: center;font-weight: bolder">正在处理，请稍候……</p>
+      </div>
+      <div class="dp-result__content" ng-repeat="item in oderArray">
+            <h3 class="title">{{::item.goods_title}}</h3>
+            <button class="dp-button dp-button--yellow" ng-click="goToLatestItem(item.new_activity_id)" ng-if="::(3 == item.status && item.new_activity_id)">购买下一期</button>
+            <p class="red" ng-if="::(3 == item.status)">参与失败，商品被抢光了~</p>
+            <p ng-if="::(2 == item.status)">剩余人次不足，仅抢到 <em class="red">{{::item.total}}</em> 人次，您的亿七购号码如下：</p>
+            <p ng-if="::(1 == item.status)">您已成功参与了 <em class="red">{{::item.total}}</em> 人次，您的亿七购码如下：</p>
+            <ul class="result_list clearfix">
+                <li  ng-repeat="num in item.activity_num">
+                  {{::num}}
+                </li>
+               
+              <li ng-if="::((item.status < 3) && (item.total < 1))">亿七购号正在计算，请稍后刷新……</li>
+            </ul>
+
+          <p ng-if="::(3 == item.status)">您支付的 <em class="red">{{::item.no_use_money}}</em> 余额已退回到您的账户</p>
+          <p ng-if="::(2 == item.status)">剩余 <em class="red">{{::item.no_use_money}}</em> 余额已存到您的账户</p>
+      </div>
+      <div class="dp-result__content" ng-if="packet_stat">
+          <h3 class="title" ng-if="::(1 == packet_stat)" ng-click="goToMyRedPacket()">红包使用失败！已退回至“<em class="red">我的红包</em>”。</h3>
+        <h3 class="title" ng-if="::(2 == packet_stat)">红包使用成功！。</h3>
+      </div>
+
+    </ion-content>
+    <div class="dp-result__btBtn">
+        <button class="dp-button dp-button--red button-block" ng-click="continueBuy()">继续购买</button>
+    </div>
+
+</ion-view>
+
+

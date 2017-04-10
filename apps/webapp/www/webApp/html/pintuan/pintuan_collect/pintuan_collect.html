@@ -1,0 +1,44 @@
+<ion-view view-title="我的收藏" hide-nav-bar="isHideNaviBar">
+
+	<ion-nav-buttons side="left">
+		<!--<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">-->
+		<button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+	</ion-nav-buttons>
+	<ion-content style="bottom: 50px;">
+
+		<ion-refresher pulling-text=" 喂喂， 我可是有底线的！" pulling-icon="ion-arrow-down-c" on-refresh="refresh()">
+		</ion-refresher>
+
+		<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+
+		<div id="pintuan_collect">
+			<ul class="list">
+				<li class="item pintuan_good_list" ng-repeat="collect in collectList">
+					<ul class="row">
+						<li class="pintuan_img" ng-click="gotoDetail(collect.goods_id)">
+							<img ng-src="{{collect.main_img}}" alt="头像" />
+						</li>
+						<li class="pintuan_content">
+							<h1>{{collect.title}}</h1>
+							<div class="pintuan_content_num" ng-click="gotoDetail(collect.goods_id)">
+								<span>{{collect.people_num}}人团</span>
+								<span>已团{{collect.sale_num}}件</span>
+							</div>
+							<div class="pintuan_content_price">
+								<span>￥{{collect.price}}</span>
+								<a class="red" ng-click="gotopintuanApply(collect.goods_id)">一键开团</a>
+								<a ng-click="removeCollect(collect.goods_id)">取消收藏</a>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="pintuan_reminder" ng-show="!isLoading">
+				<span>没有更多啦～</span>
+			</div>
+		</div>
+
+	</ion-content>
+
+</ion-view>

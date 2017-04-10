@@ -1,0 +1,106 @@
+<ion-view view-title="推荐消费详情" hide-nav-bar="isHideNaviBar"  >
+
+    <div>
+        <div id="line_chart_share2" class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }}">
+            <div class="h3_title">
+                <span>推荐消费收益报表</span>
+                <!--<i ng-if="down_icon" class="ion-chevron-down down_icon"></i>
+                <i ng-if="up_icon" ng-click="closeClass()" class="ion-chevron-up down_icon"></i>-->
+            </div>
+
+        </div>
+        <!--<div ng-if="aside" id="line_chart_aside" style="top:{{leftBarTop}};" ng-click="close_aside()">
+            <div class="white_bg">
+                <ul class="clear">
+                    <li class="{{invite_earning == '1' ? 'active' : ''}}" ng-click="changeList('1')">
+                        <span class="nav-item {{invite_earning == '1' ? 'active' : ''}} ">邀请注册收益报表</span>
+                    </li>
+                    <li class="{{invite_earning == '2' ? 'active' : ''}} " ng-click="changeList('2')">
+                        <span class="nav-item {{invite_earning == '2' ? 'active' : ''}} ">邀请注册下级数表</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>-->
+    </div>
+    <ion-content scrollbar-y="true" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:88px;' : 'top:88px;') }}">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <div id="line_chart">
+            <div>
+            <!--月份-->
+            <div id="yuefen" ng-click="show_month()">
+                <div class="h3_title">
+                        <span>
+                            2017年-月份
+                            <i ng-if="down_icon_month" class="ion-chevron-down down_icon"></i>
+                        <i ng-if="up_icon_month" ng-click="closeClass()" class="ion-chevron-up down_icon"></i></span>
+
+                </div>
+
+            </div>
+            <div ng-if="month" id="yuefen_aside" ng-click="close_aside2()">
+                <div class="white_bg">
+                    <ul class="clear">
+                        <li class="{{order_key == 'time' ? 'active' : ''}}" ng-click="changeActive('time','none')">
+                            <span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">2017-01月度</span>
+                        </li>
+                        <li class="{{order_key == 'weight' ? 'active' : ''}} " ng-click="changeActive('weight','none')">
+                            <span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">2017-02月度</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            <!--说明的标签-->
+            <div id="bg_line" class="row">
+                <div class="col wg-hg">合计收益</div>
+                <div class="col wg-hg">一级收益</div>
+                <div class="col wg-hg">二级收益</div>
+                <div class="col wg-hg">三级收益</div>
+            </div>
+
+
+            <!--收益流水图-->
+            <div class="line_tu">
+                <div class="yuan_word">（元）</div>
+                <canvas id="myChart" height="250"></canvas>
+                <div class="tian_word">（天）</div>
+            </div>
+
+            <!--收益流水记录-->
+            <div id="earnings_water">
+                <div class="row top_row">
+                    <div class="col">日期</div>
+                    <div class="col">收益</div>
+                    <div class="col">来源</div>
+                </div>
+                <div class="row bot_row" ng-repeat="earning in earnings">
+                    <div class="col txt_left">
+                        <span class="pd_left">{{earning.data}}</span>
+                    </div>
+                    <div class="col txt_center">{{earning.sy}}</div>
+                    <div class="col txt_center">{{earning.source}}</div>
+                </div>
+            </div>
+
+            <!--温馨提示-->
+            <p class="wxts">温馨提示：XXXXXXXXXXXXXXXXXX</p>
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

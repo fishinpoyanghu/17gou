@@ -1,0 +1,76 @@
+<ion-view view-title="抢红包" hide-nav-bar="isHideNaviBar"  >
+
+    <!--<ion-nav-buttons side="left">
+        <a class="dp-button button-icon iconfont-search-outline" style="font-size: 2rem; z-index:-1" href="#/search"></a>
+    </ion-nav-buttons>
+-->
+    <style>
+        .limit-flag {
+            display: block;
+            height: 19px;
+            margin-left: 5px;
+            line-height: 20px;
+            background-color: #2af;
+            color: #fff;
+            padding: 0 3px;
+            border-radius: 2px;
+            position: absolute;
+            top: 124px;
+            right: 3px;
+        }
+
+        .limit-flag::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 5px 10px;
+            border-style: solid;
+            border-color: transparent;
+            border-bottom-color: #2af;
+            position: absolute;
+            bottom: 0;
+            left: -5px;
+        }
+
+
+    </style>
+    <div>
+        <div>
+            <!--蒙板框-->
+            <div id="masking" style="display:block;height: 100%;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 10;color:#fff;" class="clearfix" ng-if="making">
+                <!--抢红包的蒙版层-->
+                <div id="attention17gou" ng-if="Red_box">
+                    <span id="close_red" style="position: absolute;right: 2%;bottom: 80%;width: 40px;height: 40px;font-size: 18px;text-align: center;line-height: 40px; z-index: 99"  ng-click="close_red()">X</span>
+                    <img id="forfinger2" src="img/forefinger2.png" alt=""  ng-if="forfinger">
+                    <span id="qiang" ng-click="get_redpacke_money()"></span>
+                    <img id="qiangred" src="img/qiang.png" alt="" ng-click="get_redpacke_money()">
+                    <div id="qiang_success" style="display:block;position: absolute;height: 60px; width: 150px;text-align: center; left: 33%; bottom: 56%;background-color: rgba(0, 0, 0, 0.8);z-index: 5;border-radius: 10px;" ng-if="qiang_suc">
+                        <span style="font-size: 18px; line-height: 60px">抢红包成功</span>
+                    </div>
+                    <img id="Grab_rad2" src="img/Grab_red.png"  alt="" >
+
+                </div>
+                <!--红包详情的蒙版层-->
+                <div id="red_details" ng-if="Details_box">
+                    <span id="close_Details" style="position: absolute;right: 2%;bottom: 80%;width: 40px;height: 40px;font-size: 18px;text-align: center;line-height: 40px; z-index: 99"  ng-click="close_rd()">X</span>
+                    <img id="details_pic" src="img/follow2.png"  alt="" >
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <ion-content has-bouncing="false" padding="false" scrollbar-y="true">
+
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

@@ -1,0 +1,30 @@
+<ion-view view-title="支付结果" align="center">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="dp-blank10"></div>
+        <div class="dp-result__content">
+            <i class="icon iconfont-checkmark-outline"></i>
+            <br/>
+            <h3 class="title">恭喜您，参与成功！</h3>
+            <p>请等待系统为您揭晓</p>
+            <br/>
+            <a class="btn" href="">开奖结果计算规则</a><a class="btn" href="">追加购买</a>
+        </div>
+        <div class="dp-blank10"></div>
+        <div class="dp-result__list">
+            <h3 class="title">您已成功参与了 <em>5</em> 人次，您的亿七购号码如下：</h3>
+            <ul class="result_list clearfix">
+                <li>10000001</li> <li>10000001</li> <li>10000001</li>
+                <li>10000001</li> <li>10000001</li>
+            </ul>
+        </div>
+        <button class="dp-button dp-button--red" style="display:block; width: 50%; margin: 25px auto; " ng-click="continueBuy()">继续购买</button>
+        <a style="color: #888888;" href="#/addressList">编辑我的收货信息</a>
+    </ion-content>
+
+</ion-view>
+
+

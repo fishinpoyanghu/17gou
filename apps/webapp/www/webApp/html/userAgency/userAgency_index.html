@@ -1,0 +1,185 @@
+
+<!--<ion-view view-title="个人信息" hide-section-bar="false" >-->
+<ion-view view-title="亿七代理" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+		<div id="agency_header">
+			<div class="agency_title">
+				<div class="agency_content">
+					<div class="agency_user_image" ng-click="showImageSelector()">
+						<img  ng-src="{{getCurrUserInfo().icon}}"/>
+					</div>
+					<div class="agency_user_info" >
+						<div>{{getCurrUserInfo().nick}}</div>
+						<div>[ID：{{getCurrUserInfo().uid}}]</div>
+					</div>
+				</div>
+			</div>
+			<!--<img src="img/agency/agency_bg.jpg"/>-->
+			<div class="agency_about_money">
+				<div class="row">
+				  <!--<div class="col">加入时间<br/><span>{{getCurrUserInfo().agencyData.data.join_agency_time}}</span></div>
+				  <div class="col">保证金<br /><span>￥{{getCurrUserInfo().agencyData.data.cash_deposit}}</span></div>
+				  <div class="col">累计收益金额<br /><span>￥{{getCurrUserInfo().agencyData.data.all_earning}}</span></div>-->
+				  
+				  <div class="col">加入时间<br/><span>2000</span></div>
+				  <div class="col">保证金<br /><span>￥2000</span></div>
+				  <div class="col">累计收益金额<br /><span>￥3000</span></div>
+				</div>
+			</div>
+		</div>
+		<ul id="agency_list" class="list">
+			<li class="item ">
+				<ul class="row">
+					<li class="col">
+						<div class="agency_cash">￥<span>{{agencyCash}}</span></div>
+						<!--<br>-->
+						<span class="agency_title">可提现金额</span>
+					</li>
+					<li class="col">
+						<img ng-click="hideOrshowMoney(this)" class="eyes" ng-src={{eyesImg}}>
+						<button type="button" class="cash_out">提现</button>
+					</li>
+				</ul>
+			</li>
+			<!--<li class="item" ng-if="true || getCurrUserInfo().agencyData.agencyLevel == 1">-->
+			<li class="item" ng-if="true">
+				<ul class="row" >
+					<li class="col">
+						<img width="60" src="img/agency/agency_goods_public.png"/><br />发布商品
+					</li>
+					<li class="col">
+						<img width="60" src="img/agency/agency_goods_manage.png"/><br />商品管理
+					</li>
+					<li class="col">
+						<img width="60" src="img/agency/anency_order_manage.png"/><br />订单管理
+					</li>
+					<li class="col">
+						<img width="60" src="img/agency/agency_goods_earning.png"/><br />商品收益
+					</li>
+				</ul>
+			</li>
+			<li class="item">
+				<ul class="row">
+					<li class="col" ng-click="startToDataStatistics()">
+						<img width="60" src="img/agency/agency_data_statistics.png"/><br />数据统计
+					</li>
+					<li class="col"  ng-click="startToMyfans()">
+						<img width="60" src="img/agency/agency_fans.png"/><br />我的粉丝
+					</li>
+					<li class="col"  ng-click="startToEarningManage()">
+						<img width="60" src="img/agency/agency_earning_manage.png"/><br />收入管理
+					</li>
+					<li class="col"   ng-click="startToMyGenerlize()">
+						<img width="60" src="img/agency/agency_My_generlize.png"/><br />我的推广
+					</li>
+				</ul>
+				<ul class="row">
+					<li class="col">
+						<img width="60" src="img/agency/yiqi_benefit.jpg"/><br />亿七公益
+					</li>
+					<li class="col">
+						<img width="60" src="img/agency/agency_service.png"/><br />在线客服
+					</li>
+					<li class="col">
+					</li>
+					<li class="col">
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+
+    </ion-content>
+
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,485 @@
+/*一元云购的商品分类和分类详情  start*/
+
+
+/*商品分类*/
+
+#commodity_classification ul li {
+	float: left;
+	width: 50%;
+	height: auto;
+	overflow: hidden;
+	margin-top: -1.9%;
+}
+
+#commodity_classification ul li:nth-child(1) {
+	float: none;
+	width: 100%;
+	overflow: hidden;
+	margin-top: 0.1%;
+}
+
+#commodity_classification .img_url {
+	height: 10%;
+	overflow: hidden;
+	display: block;
+}
+
+
+/*分类详情*/
+
+.height-237 {
+	height: 237px;
+}
+
+.border-radius-10 {
+	border-radius: 10px;
+}
+
+#class_details .h3_title {
+	color: #333;
+	margin-bottom: 5px;
+	overflow: hidden;
+	padding-right: 40px;
+	font-size: 16px;
+}
+
+#class_details .price1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+#class_details .line_througn_strong{
+	position: absolute;
+	width: 100%;
+	height: 0.2rem;
+	top: 50%;
+	left: 0;
+	background-color: #000;
+}
+#class_details .price2 {
+	text-decoration: line-through;
+}
+
+#class_details .activity_id {
+	font-size: 12px;
+	color: #959595;
+}
+
+#class_details .work_off {
+	font-size: 12px;
+	color: #959595;
+	text-align: right;
+}
+
+.margin-top-14 {
+	margin-top: 14px;
+}
+
+#class_details_pic {
+	border-top: #D2D2D2;
+	border-bottom: #D2D2D2;
+}
+
+#class_details_pic .nav-item2 {
+	height: 37px;
+	line-height: 37px;
+}
+
+#class_details_pic2 .nav-item2 {
+	height: 34px;
+	/*line-height: 34px;*/
+}
+
+#class_details_pic2 {
+	width: 100%;
+	top: 50px;
+}
+
+#class_details .bq_btn {
+	width: 75px;
+	height: 30px;
+	font-size: 12px;
+	font-weight: 500;
+	border-radius: 10px;
+	color: white;
+	border: 1px solid #DD2726;
+	background-color: #DD2726;
+}
+
+@media screen and (min-height: 480px) {
+	#aside .top_css {
+		top: 47%;
+	}
+}
+
+@media screen and (min-height: 568px) {
+	#aside .top_css {
+		top: 40%;
+	}
+}
+
+@media screen and (min-height: 667px) {
+	#aside .top_css {
+		top: 37%;
+	}
+}
+
+@media screen and (min-height: 736px) {
+	#aside .top_css {
+		top: 36%;
+	}
+}
+
+#hot_bq {
+	display: block;
+	margin-left: 5px;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	right: 22px;
+}
+
+#hot_bq img {
+	width: 21px;
+	background-size: 100%;
+}
+
+
+/*一元云购的商品分类和分类详情  end*/
+
+
+/*TA的购买记录 start*/
+
+
+/*我/TA的购买记录*/
+
+#other_indiana_record {
+	background: #b94a48;
+}
+
+#other_indiana_record .dp-itemList__li {
+	padding: 15px 8px;
+}
+
+#other_indiana_record .padding-left-0 {
+	padding-left: 0px;
+}
+
+#other_indiana_record .dp_activity_img_left {
+	/*width: 150px;*/
+	width: 30%;
+	float: left;
+	margin-right: 5px;
+}
+
+#other_indiana_record .dp_activity_box_right {
+	float: left;
+	width: 68%;
+    padding-left: 4px;
+}
+
+#other_indiana_record .dp-account {
+	/*background: -webkit-linear-gradient(21deg, #EC4343, #FEAA3A);
+    background: -o-linear-gradient(21deg, #EC4343, #FEAA3A);
+    background: -moz-linear-gradient(21deg, #EC4343, #FEAA3A);
+    background: linear-gradient(21deg, #EC4343, #FEAA3A);*/
+	background: url("../img/hispage/ta_shaidan.jpg") left top;
+	background-size: cover;
+	width: 100%;
+}
+
+#other_indiana_record .dp-account__img {
+	display: block;
+	margin-bottom: 7.5px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.6);
+	text-align: center;
+	line-height: 78px;
+	margin-top: 10px;
+}
+
+#other_indiana_record .dp-account__img img {
+	width: 87%;
+	height: auto;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: inline-block;
+	display: inline-block;
+}
+
+#other_indiana_record .dp-itemList__title {
+	font-size: 16px;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	word-break: break-all;
+	white-space: normal !important;
+	display: -webkit-box;
+	width: 100%;
+	color: #504E4F;
+}
+
+#other_indiana_record .activity_price {
+	font-size: 14px;
+	float: left;
+	line-height: 30px;
+	display: -webkit-box;
+	color: #504E4F;
+}
+
+#other_indiana_record .price1_fontsize {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#other_indiana_record .price2 {
+	text-decoration: line-through;
+}
+
+#other_indiana_record .genmai {
+    float: right;
+    font-size: 10px;
+    line-height: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+    margin-right: -2px;
+}
+
+#other_indiana_record .two_hang {
+	display: -webkit-box;
+	float: left;
+}
+
+#other_indiana_record .dp_activity_box_right .progress {
+	width: 100%;
+	height: 5px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background: #F0F0ED;
+	clear: both;
+	border-radius: 20px;
+}
+
+#other_indiana_record .dp_activity_box_right .progress span {
+	display: block;
+	width: auto;
+	height: 5px;
+	background: #ff9800;
+	border-radius: 20px;
+}
+
+#other_indiana_record .data_left {
+	display: block;
+	float: left;
+}
+
+#other_indiana_record .shouchu_right {
+	display: block;
+	text-align: right;
+}
+
+#other_indiana_record .four_row {
+	margin-top: 8px;
+	color: #9A9899;
+}
+
+#other_indiana_record .jiexiao_box {
+	margin-top: 8px;
+	background-color: #ececec;
+	padding: 8px;
+	font-size: 1.2rem;
+	line-height: 22px;
+	color: #888888;
+	display: inline-block;
+	width: 100%;
+}
+
+
+#other_indiana_record2 .dp-tabs .tabs {
+	background-color: rgba(15, 15, 15, 0.3);
+	height: 49px;
+}
+
+#other_indiana_record2 .dp-tabs--border .tab-item {
+	color: white;
+}
+
+#other_indiana_record2 .dp-tabs--border .tab-item:last-child:after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	width: 1px;
+	height: 18px;
+	margin-top: -9px;
+	background-color: transparent;
+}
+
+#other_indiana_record2 .dp-tabs--border .tab-item:after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 36%;
+	right: 0px;
+	width: 1px;
+	height: 33px;
+	margin-top: -9px;
+	background-color: white;
+}
+
+#other_indiana_record2 .dp-tabs--border .tab-item.tab-item-active:before {
+	display: block;
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 43%;
+	height: 1px;
+	background: white;
+}
+
+#other_indiana_record2 .dp-tabs--border .tab-item.tab-item-active:last-child:before {
+	display: block;
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 25%;
+	height: 1px;
+	background: white;
+}
+
+
+
+/*TA的购买记录 end*/
+
+
+/*商品详情页的提示信息 start*/
+
+#good_detail_content img{
+	display: block;
+}
+#bubble-wrapper .bubble-content {}
+
+#bubble-wrapper .bubble-content.hideContent {
+	opacity: 0;
+	transition: all .5s linear;
+	-moz-transition: all .5s linear;
+	/* Firefox 4 */
+	-webkit-transition: all .5s linear;
+	/* Safari 和 Chrome */
+	-o-transition: all .5s linear;
+}
+
+#bubble-wrapper .bubble-content.showContent {
+	opacity: 1;
+	transition: all .5s linear;
+	-moz-transition: all .5s linear;
+	/* Firefox 4 */
+	-webkit-transition: all .5s linear;
+	/* Safari 和 Chrome */
+	-o-transition: all .5s linear;
+}
+
+#bubble-wrapper .bubble-content .bubble-img-circle {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+	background-size: cover;
+	border: 2px solid;
+}
+
+#bubble-wrapper .bubble-text {
+	font-size: 1.2rem;
+	display: block;
+	color: white;
+	margin-left: 36px;
+	margin-top: 5px;
+	margin-right: 10px;
+	padding: 10px 10px 10px 25px;
+	border-radius: 0px 5px 5px 5px;
+	background: rgba(0, 0, 0, 0.6);
+	
+}
+#bubble-wrapper .bubble-text span{
+	display: inline-block;
+	width: 90%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+		
+}
+#bubble-wrapper .bubble-list {
+	position: absolute;
+	left: 4%;
+	top: 4%;
+	z-index: 9999999;
+	width: 99%;
+	/*opacity:0;*/
+	/*visibility: hidden;*/
+	/*display:none;*/
+	padding-right: 4%;
+	/*transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear; !* Firefox 4 *!
+    -webkit-transition: all 0.5s linear; !* Safari and Chrome *!
+    -o-transition: all 0.5s linear; !* Opera *!*/
+}
+/*商品详情页的提示信息 end*/
+
+/*商品首页添加消费全返的提示信息*/
+.dp-broad__content .return_money{
+	height: 30px;
+	margin-top: 10px;
+}
+.dp-broad__content .return_money .return_money_bg{
+	text-align: center;
+	    display: inline-block;
+    /* background-color: #CCCCCC; */
+    background-image: url(../img/logo/return_money_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 32px;
+    /*min-width: 80%;*/
+    height: 30px;
+    color: #fff;
+    padding: 0px 28px;
+   /*padding-left: 10px;*/
+    line-height: 30px;
+	
+}
+.dp-broad__content .return_money .return_money_text{
+	display: inline-block;
+	display: none;
+    background-image: url(../img/logo/return_money_text.png);
+    background-repeat: no-repeat;
+    background-size: 100% 15px;
+    width: 44%;
+    height: 30px;
+    margin-left: 4%;
+    background-position: 0px 15px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

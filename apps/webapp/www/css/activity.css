@@ -1,0 +1,1012 @@
+/*圣诞页面 start*/
+
+/*在圣诞页面添加*/
+
+/*圣诞音乐*/
+#audio_btn {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    z-index: 200;
+    display: none;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
+    /* background-size: 100% 100%; */
+    /* background-position: 0px 0px; */
+}
+.play_yinfu{
+    background: url(../img/music_off.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.rotate {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    background-image: url(../img/music_off.png);
+    -webkit-animation: rotating 1.2s linear infinite;
+    -moz-animation: rotating 1.2s linear infinite;
+    -o-animation: rotating 1.2s linear infinite;
+    animation: rotating 1.2s linear infinite;
+}
+@-webkit-keyframes rotating {
+
+    0%{
+
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        transform:rotate(0deg);
+
+    }
+
+    100% {
+
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+.off{
+    background-image: url(../img/Christmas_Day/music_on.gif);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#christmas_box .christmas_box_img1{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    left: 0%;
+    z-index: 0;
+    background-size: 100%;
+}
+.christmas_box_img1{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    left: 0%;
+    z-index: 0;
+    background-size: 100%;
+}
+
+#christmas_box .christmas_box_img2{
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    height: 98%;
+    -webkit-animation: sd_img2 0.8s forwards;
+    -o-animation: sd_img2 0.8s forwards;
+    animation: sd_img2 0.8s forwards;
+}
+#christmas_box .christmas_box_img12{
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    height: 98%;
+    -webkit-animation: sd_img12 0.8s forwards;
+    -o-animation: sd_img12 0.8s forwards;
+    animation: sd_img12 0.8s forwards;
+    animation: sd_img12 0.8s forwards;
+}
+
+@-webkit-keyframes sd_img2{
+    0%{
+        -webkit-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -moz-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -ms-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -o-transform: translateX(-50%) scale(0.1) translateY(291%);
+        transform: translateX(-50%) scale(0.1) translateY(291%);
+    }
+    10%{
+        -webkit-transform: translateX(-50%) scale(0.4) translateY(251%);
+        -moz-transform: translateX(-50%) scale(0.4) translateY(251%);
+        -ms-transform: translateX(-50%) scale(0.4) translateY(251%);
+        -o-transform: translateX(-50%) scale(0.4) translateY(251%);
+        transform: translateX(-50%) scale(0.4) translateY(251%);
+    }
+    20%{
+        -webkit-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -moz-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -ms-transform: translateX(-50%) scale(0.1) translateY(291%);
+        -o-transform: translateX(-50%) scale(0.1) translateY(291%);
+        transform: translateX(-50%) scale(0.1) translateY(291%);
+    }
+    80%{
+        top: -15%;
+        -webkit-transform: translateX(-50%) scale(1);
+        -moz-transform: translateX(-50%) scale(1);
+        -ms-transform: translateX(-50%) scale(1);
+        -o-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+    100%{
+        -webkit-transform: translateX(-50%) scale(1);
+        -moz-transform: translateX(-50%) scale(1);
+        -ms-transform: translateX(-50%) scale(1);
+        -o-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+
+}
+
+@-webkit-keyframes sd_img12{
+    0%{
+        -webkit-transform: translateX(-50%) scale(1);
+        -moz-transform: translateX(-50%) scale(1);
+        -ms-transform: translateX(-50%) scale(1);
+        -o-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+    10%{
+        top: -15%;
+        -webkit-transform: translateX(-50%) scale(1);
+        -moz-transform: translateX(-50%) scale(1);
+        -ms-transform: translateX(-50%) scale(1);
+        -o-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+    100%{
+        top: 35%;
+        -webkit-transform: translateX(-50%) scale(0);
+        -moz-transform: translateX(-50%) scale(0);
+        -ms-transform: translateX(-50%) scale(0);
+        -o-transform: translateX(-50%) scale(0);
+        transform: translateX(-50%) scale(0);
+    }
+}
+
+#christmas_box .christmas_box_img3{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+    z-index: 20;
+}
+
+/*.no_height{
+    height: auto !important;
+}*/
+.christmas_box_img2{
+    position: absolute;
+    top:0%;
+    width: 98%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 60;
+}
+.share_text{
+    position: absolute;
+    top: 41%;
+    left: 59%;
+    transform: translateX(-50%);
+    z-index: 70;
+    color: black;
+    width: 70%;
+    font-size: 30px;
+}
+
+
+#christmas_box h1{
+    position: absolute;
+    z-index: 10;
+    top: 35%;
+    font-size: 28px;
+    color: red;
+    font-weight: bold;
+    left: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.16);
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(221, 221, 221, 0.38);
+    -webkit-animation: text2 2s infinite linear;
+    -moz-animation: text2 2s infinite linear;
+    -o-animation: text2 2s infinite linear;
+    animation: text2 2s infinite linear;
+}
+
+
+@-webkit-keyframes text2{
+    0%{
+        text-shadow: 0 0 0px yellow;
+    }
+    50%{
+        text-shadow: 0 0 20px yellow;
+    }
+    100%{
+        text-shadow: 0 0 0px yellow;
+    }
+}
+
+
+#christmas_box .gift_box{
+    position: relative;
+    margin-top:35%;
+    height: 375px;
+}
+
+.gift_box_top{
+    position: absolute;
+    z-index: 5;
+    bottom: 11%;
+    width: 50%;
+    background-size: 100%;
+    left:21%;
+    -webkit-animation: bag_box 1s forwards;
+    -o-animation: bag_box 1s forwards;
+    animation: bag_box 1s forwards;
+    /*-webkit-transform: rotate(50deg) translate(55%,16%);
+    -moz-transform: rotate(50deg) translate(55%,16%);
+    -ms-transform: rotate(50deg) translate(55%,16%);
+    -o-transform: rotate(50deg) translate(55%,16%);
+    transform: rotate(50deg) translate(55%,16%);*/
+    transform-origin:right bottom;
+}
+/*开盖头*/
+@-webkit-keyframes bag_box{
+    10%{
+        -webkit-transform: rotate(0deg) translate(17%,-50%);
+        -moz-transform: rotate(0deg)  translate(17%,-50%);
+        -ms-transform: rotate(0deg)  translate(17%,-50%);
+        -o-transform: rotate(0deg) translate(17%,-50%);
+        transform: rotate(0deg)  translate(17%,-50%);
+        transform-origin:right bottom;
+    }
+    100%{
+        -webkit-transform:rotate(50deg) translate(55%,16%);
+        -moz-transform: rotate(50deg) translate(55%,16%);
+        -ms-transform: rotate(50deg) translate(55%,16%);
+        -o-transform: rotate(50deg) translate(55%,16%);
+        transform: rotate(50deg) translate(55%,16%);
+        transform-origin:right bottom;
+    }
+}
+.gift_box_bot{
+    position: absolute;
+    z-index: 2;
+    bottom: 0%;
+    width: 50%;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-size: 100%;
+}
+.gift_box_top2{
+    position: absolute;
+    z-index: 5;
+    bottom: 14%;
+    width: 50%;
+    background-size: 100%;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.gift_box_bot2{
+    position: absolute;
+    z-index: 2;
+    bottom: 0%;
+    width: 50%;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-size: 100%;
+}
+.gift_box_top3{
+    position: absolute;
+    z-index: 5;
+    bottom: 11%;
+    width: 50%;
+    background-size: 100%;
+    left:21%;
+    -webkit-animation: close_top 1s forwards;
+    -o-animation: close_top 1s forwards;
+    animation: close_top 1s forwards;
+    -webkit-transform: rotate(50deg) translate(55%,16%);
+    -moz-transform: rotate(50deg) translate(55%,16%);
+    -ms-transform: rotate(50deg) translate(55%,16%);
+    -o-transform: rotate(50deg) translate(55%,16%);
+    transform: rotate(50deg) translate(55%,16%);
+    transform-origin:right bottom;
+}
+.gift_box_bot3{
+    position: absolute;
+    z-index: 2;
+    bottom: 0%;
+    width: 50%;
+    left:50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-size: 100%;
+}
+/*关盖头*/
+@-webkit-keyframes close_top{
+    10%{
+        -webkit-transform:rotate(50deg) translate(55%,16%);
+        -moz-transform: rotate(50deg) translate(55%,16%);
+        -ms-transform: rotate(50deg) translate(55%,16%);
+        -o-transform: rotate(50deg) translate(55%,16%);
+        transform: rotate(50deg) translate(55%,16%);
+        transform-origin:right bottom;
+    }
+    80%{
+
+        -webkit-transform: rotate(0deg) translate(17%,-50%);
+        -moz-transform: rotate(0deg)  translate(17%,-50%);
+        -ms-transform: rotate(0deg)  translate(17%,-50%);
+        -o-transform: rotate(0deg) translate(17%,-50%);
+        transform: rotate(0deg)  translate(17%,-50%);
+        transform-origin:right bottom;
+    }
+    100%{
+
+        -webkit-transform: rotate(0deg) translate(8%,-14%);
+        -moz-transform:rotate(0deg) translate(8%,-14%);
+        -ms-transform:rotate(0deg) translate(8%,-14%);
+        -o-transform:rotate(0deg) translate(8%,-14%);
+        transform:rotate(0deg) translate(8%,-14%);
+        transform-origin:right bottom;
+    }
+}
+
+
+#christmas_bag .Santa_old1{
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    left: 50%;
+    z-index: 5;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-animation: Santa_Claus 2s forwards;
+    -o-animation: Santa_Claus 2s forwards;
+    animation: Santa_Claus 2s forwards;
+    opacity: 0;
+}
+
+@-webkit-keyframes Santa_Claus{
+    10%{
+        opacity: 1;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+        bottom:70%;
+        left: 0%;
+    }
+    50%{
+        opacity: 1;
+        left: 5%;
+        -webkit-transform: scale(1.8);
+        -moz-transform: scale(1.8);
+        -ms-transform: scale(1.8);
+        -o-transform: scale(1.8);
+        transform: scale(1.8);
+        bottom:30%;
+    }
+    100%{
+        opacity: 1;
+        left: 10%;
+        bottom:0%;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+
+#christmas_older_car img{
+    position: absolute;
+    top: 20%;
+    z-index:20;
+    left:50%;
+    -webkit-transform:translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-animation: older_Car 5s  forwards;
+    -moz-animation: older_Car 5s forwards;
+    -o-animation: older_Car 5s forwards;
+    animation: older_Car 5s forwards;
+}
+@-webkit-keyframes older_Car {
+    0%{
+        -webkit-transform:translate(5%,-9%) scale(0);
+        -moz-transform:translate(5%,-9%) scale(0);
+        -ms-transform:translate(5%,-9%) scale(0);
+        -o-transform:translate(5%,-9%) scale(0);
+        transform:translate(5%,-9%) scale(0);
+    }
+    5%{
+        -webkit-transform:translate(-5%,0%) scale(0.1);
+        -moz-transform:translate(-5%,0%) scale(0.1);
+        -ms-transform:translate(-5%,0%) scale(0.1);
+        -o-transform:translate(-5%,0%) scale(0.1);
+        transform:translate(-5%,0%) scale(0.1);
+    }
+    10%{
+        -webkit-transform:translate(-10%,-5%) scale(0.2);
+        -moz-transform:translate(-10%,-5%) scale(0.2);
+        -ms-transform:translate(-10%,-5%) scale(0.2);
+        -o-transform:translate(-10%,-5%) scale(0.2);
+        transform:translate(-10%,-5%) scale(0.2);
+    }
+    15%{
+        -webkit-transform:translate(-20%,10%) scale(0.25);
+        -moz-transform:translate(-20%,10%) scale(0.25);
+        -ms-transform:translate(-20%,10%) scale(0.25);
+        -o-transform:translate(-20%,10%) scale(0.25);
+        transform:translate(-20%,10%) scale(0.25);
+    }
+    20%{
+        -webkit-transform:translate(-30%,0%) scale(0.3);
+        -moz-transform:translate(-30%,0%) scale(0.3);
+        -ms-transform:translate(-30%,0%) scale(0.3);
+        -o-transform:translate(-30%,0%) scale(0.3);
+        transform:translate(-30%,0%) scale(0.3);
+    }
+    25%{
+        -webkit-transform:translate(-40%,20%) scale(0.4);
+        -moz-transform:translate(-40%,20%) scale(0.4);
+        -ms-transform:translate(-40%,20%) scale(0.4);
+        -o-transform:translate(-40%,20%) scale(0.4);
+        transform:translate(-40%,20%) scale(0.4);
+    }
+    30%{
+        -webkit-transform:translate(-48%,5%) scale(0.5);
+        -moz-transform:translate(-48%,5%) scale(0.5);
+        -ms-transform:translate(-48%,5%) scale(0.5);
+        -o-transform:translate(-48%,5%) scale(0.5);
+        transform:translate(-48%,5%) scale(0.5);
+    }
+    35%{
+        -webkit-transform:translate(-60%,40%) scale(0.6);
+        -moz-transform:translate(-60%,40%) scale(0.6);
+        -ms-transform:translate(-60%,40%) scale(0.6);
+        -o-transform:translate(-60%,40%) scale(0.6);
+        transform:translate(-60%,40%) scale(0.6);
+    }
+    45%{
+        -webkit-transform:translate(-78%,30%) scale(0.7);
+        -moz-transform:translate(-78%,30%) scale(0.7);
+        -ms-transform:translate(-78%,30%) scale(0.7);
+        -o-transform:translate(-78%,30%) scale(0.7);
+        transform:translate(-78%,30%) scale(0.7);
+    }
+    45%{
+        -webkit-transform:translate(-90%,90%) scale(0.8);
+        -moz-transform:translate(-90%,90%) scale(0.8);
+        -ms-transform:translate(-90%,90%) scale(0.8);
+        -o-transform:translate(-90%,90%) scale(0.8);
+        transform:translate(-90%,90%) scale(0.8);
+    }
+    50%{
+        -webkit-transform:translate(-90%,90%) scale(0.8) rotateY(-180deg);
+        -moz-transform:translate(-90%,90%) scale(0.8) rotateY(-180deg);
+        -ms-transform:translate(-90%,90%) scale(0.8) rotateY(-180deg);
+        -o-transform:translate(-90%,90%) scale(0.8) rotateY(-180deg);
+        transform:translate(-90%,90%) scale(0.8) rotateY(-180deg);
+    }
+    55%{
+        -webkit-transform:translate(-50%,110%) scale(0.9) rotateY(-180deg);
+        -moz-transform:translate(-50%,110%) scale(0.9) rotateY(-180deg);
+        -ms-transform:translate(-50%,110%) scale(0.9) rotateY(-180deg);
+        -o-transform:translate(-50%,110%) scale(0.9) rotateY(-180deg);
+        transform:translate(-50%,110%) scale(0.9) rotateY(-180deg);
+    }
+    55%{
+        -webkit-transform:translate(-40%,90%) scale(0.8) rotate(-18deg) rotateY(-180deg);
+        -moz-transform:translate(-40%,90%) scale(0.8) rotate(-18deg) rotateY(-180deg);
+        -ms-transform:translate(-40%,90%) scale(0.8) rotate(-18deg) rotateY(-180deg);
+        -o-transform:translate(-40%,90%) scale(0.8) rotate(-18deg) rotateY(-180deg);
+        transform:translate(-40%,90%) scale(0.8) rotate(-18deg) rotateY(-180deg);
+    }
+
+    60%{
+        -webkit-transform:translate(-30%,100%) scale(0.7) rotate(15deg) rotateY(-180deg);
+        -moz-transform:translate(-30%,100%) scale(0.7) rotate(15deg) rotateY(-180deg);
+        -ms-transform:translate(-30%,100%) scale(0.7) rotate(15deg) rotateY(-180deg);
+        -o-transform:translate(-30%,100%) scale(0.7) rotate(15deg) rotateY(-180deg);
+        transform:translate(-30%,100%) scale(0.7) rotate(15deg) rotateY(-180deg);
+    }
+
+    65%{
+        -webkit-transform:translate(-20%,95%) scale(0.6) rotate(-18deg) rotateY(-180deg);
+        -moz-transform:translate(-20%,95%) scale(0.6) rotate(-18deg) rotateY(-180deg);
+        -ms-transform:translate(-20%,95%) scale(0.6) rotate(-18deg) rotateY(-180deg);
+        -o-transform:translate(-20%,95%) scale(0.6) rotate(-18deg) rotateY(-180deg);
+        transform:translate(-20%,95%) scale(0.6) rotate(-18deg) rotateY(-180deg);
+    }
+
+    70%{
+        -webkit-transform:translate(-30%,70%) scale(0.5) rotate(15deg) rotateY(0deg);
+        -moz-transform:translate(-30%,70%) scale(0.5) rotate(15deg) rotateY(0deg);
+        -ms-transform:translate(-30%,70%) scale(0.5) rotate(15deg) rotateY(0deg);
+        -o-transform:translate(-30%,70%) scale(0.5) rotate(15deg) rotateY(0deg);
+        transform:translate(-30%,70%) scale(0.5) rotate(15deg) rotateY(0deg);
+    }
+    75%{
+        -webkit-transform:translate(-50%,50%) scale(0.4) rotate(-15deg) rotateY(0deg);
+        -moz-transform:translate(-50%,50%) scale(0.4) rotate(-15deg) rotateY(0deg);
+        -ms-transform:translate(-50%,50%) scale(0.4) rotate(-15deg) rotateY(0deg);
+        -o-transform:translate(-50%,50%) scale(0.4) rotate(-15deg) rotateY(0deg);
+        transform:translate(-50%,50%) scale(0.4) rotate(-15deg) rotateY(0deg);
+    }
+    80%{
+        -webkit-transform:translate(-75%,40%) scale(0.3) rotate(12deg) rotateY(0deg);
+        -moz-transform:translate(-75%,40%) scale(0.3) rotate(12deg) rotateY(0deg);
+        -ms-transform:translate(-75%,40%) scale(0.3) rotate(12deg) rotateY(0deg);
+        -o-transform:translate(-75%,40%) scale(0.3) rotate(12deg) rotateY(0deg);
+        transform:translate(-75%,40%) scale(0.3) rotate(12deg) rotateY(0deg);
+    }
+    85%{
+        -webkit-transform:translate(-85%,30%) scale(0.2) rotate(-12deg) rotateY(0deg);
+        -moz-transform:translate(-85%,30%) scale(0.2) rotate(-12deg) rotateY(0deg);
+        -ms-transform:translate(-85%,30%) scale(0.2) rotate(-12deg) rotateY(0deg);
+        -o-transform:translate(-85%,30%) scale(0.2) rotate(-12deg) rotateY(0deg);
+        transform:translate(-85%,30%) scale(0.2) rotate(-12deg) rotateY(0deg);
+    }
+    100%{
+        -webkit-transform:translate(-100%,20%) scale(0) rotate(12deg) rotateY(0deg);
+        -moz-transform:translate(-100%,20%) scale(0) rotate(12deg) rotateY(0deg);
+        -ms-transform:translate(-100%,20%) scale(0) rotate(12deg) rotateY(0deg);
+        -o-transform:translate(-100%,20%) scale(0) rotate(12deg) rotateY(0deg);
+        transform:translate(-100%,20%) scale(0) rotate(12deg) rotateY(0deg);
+    }
+
+}
+
+
+
+.gift_box1_jt{
+    position: absolute;
+    bottom: 0%;
+    z-index: 1;
+    width: 66.5%;
+    left: 48%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-size: 100%;
+    -webkit-animation: jt 3s forwards;
+    -o-animation: jt 3s forwards;
+    animation: jt 3s forwards;
+
+}
+/*从大变小*/
+@-webkit-keyframes jt{
+    0%{
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        left: 10%;
+    }
+    50%{
+        left: 10%;
+        bottom:35%;
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        -ms-transform: scale(2);
+        -o-transform: scale(2);
+        transform: scale(2);
+    }
+    100%{
+        left: 0%;
+        bottom:80%;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+
+#christmas_bag .Santa_old2{
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 10;
+    -webkit-animation: Santa_old2 3s forwards;
+    -o-animation: Santa_old2 3s forwards;
+    animation: Santa_old2 3s forwards;
+}
+
+@-webkit-keyframes Santa_old2 {
+    10% {
+        -webkit-transform: rotate(20deg);
+        -moz-transform: rotate(20deg);
+        -ms-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+        transform: rotate(20deg);
+        left: 10%;
+    }
+    20%{
+        -webkit-transform: rotate(-20deg);
+        -moz-transform: rotate(-20deg);
+        -ms-transform: rotate(-20deg);
+        -o-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+        left: 5%;
+    }
+    30% {
+        -webkit-transform: rotate(20deg);
+        -moz-transform: rotate(20deg);
+        -ms-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+        transform: rotate(20deg);
+        left: 0%;
+    }
+    40%{
+        -webkit-transform: rotate(-20deg);
+        -moz-transform: rotate(-20deg);
+        -ms-transform: rotate(-20deg);
+        -o-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+        left: 0%;
+    }
+    50%{
+        -webkit-transform: translate(-49%,-3%);
+        -moz-transform: translate(-49%,-3%);
+        -ms-transform: translate(-49%,-3%);
+        -o-transform: translate(-49%,-3%);
+        transform: translate(-49%,-3%);
+    }
+    55%{
+        -webkit-transform:translate(-45%,2%);
+        -moz-transform:translate(-45%,2%);
+        -ms-transform:translate(-45%,2%);
+        -o-transform:translate(-45%,2%);
+        transform:translate(-45%,2%);
+    }
+
+    60%{
+        -webkit-transform:translate(-43%,-10%) scale(0.8);
+        -moz-transform:translate(-43%,-10%) scale(0.8);
+        -ms-transform:translate(-43%,-10%) scale(0.8);
+        -o-transform:translate(-43%,-10%) scale(0.8);
+        transform: translate(-43%,-10%) scale(0.8);
+    }
+    65%{
+        -webkit-transform:translate(-35%,-5%) scale(0.8);
+        -moz-transform:translate(-35%,-5%) scale(0.8);
+        -ms-transform:translate(-35%,-5%) scale(0.8);
+        -o-transform:translate(-35%,-5%) scale(0.8);
+        transform: translate(-35%,-5%) scale(0.8);
+
+    }
+    70%{
+        -webkit-transform:translate(-28%,-20%) scale(0.7);
+        -moz-transform:translate(-28%,-20%) scale(0.7);
+        -ms-transform:translate(-28%,-20%) scale(0.7);
+        -o-transform:translate(-28%,-20%) scale(0.7);
+        transform: translate(-28%,-20%) scale(0.7);
+    }
+    75%{
+        -webkit-transform:translate(-24%,-10%) scale(0.7);
+        -moz-transform:translate(-24%,-10%) scale(0.7);
+        -ms-transform:translate(-24%,-10%) scale(0.7);
+        -o-transform:translate(-24%,-10%) scale(0.7);
+        transform: translate(-24%,-10%) scale(0.7);
+    }
+    80%{
+        -webkit-transform:translate(-18%,-30%) scale(0.4);
+        -moz-transform:translate(-18%,-30%) scale(0.4);
+        -ms-transform:translate(-18%,-30%) scale(0.4);
+        -o-transform:translate(-18%,-30%) scale(0.4);
+        transform: translate(-18%,-30%) scale(0.4);
+    }
+    85%{
+        -webkit-transform:translate(-12%,-25%) scale(0.4);
+        -moz-transform:translate(-12%,-25%) scale(0.4);
+        -ms-transform:translate(-12%,-25%) scale(0.4);
+        -o-transform:translate(-12%,-25%) scale(0.4);
+        transform: translate(-12%,-25%) scale(0.4);
+    }
+    90%{
+        -webkit-transform:translate(-5%,-35%) scale(0.3);
+        -moz-transform:translate(-5%,-35%) scale(0.3);
+        -ms-transform:translate(-5%,-35%) scale(0.3);
+        -o-transform:translate(-5%,-35%) scale(0.3);
+        transform: translate(-5%,-35%) scale(0.3);
+    }
+    95%{
+        -webkit-transform:translate(10%,-30%) scale(0.2);
+        -moz-transform:translate(10%,-30%) scale(0.2);
+        -ms-transform:translate(10%,-30%) scale(0.2);
+        -o-transform:translate(10%,-30%) scale(0.2);
+        transform: translate(10%,-30%) scale(0.2);
+    }
+    100%{
+        -webkit-transform:translate(15%,-40%) scale(0);
+        -moz-transform:translate(15%,-40%) scale(0);
+        -ms-transform:translate(15%,-40%) scale(0);
+        -o-transform:translate(15%,-40%) scale(0);
+        transform: translate(15%,-40%) scale(0);
+    }
+
+}
+
+#xy_qd{
+    position: absolute;
+    z-index: 30;
+    left: 50%;
+    top: 32%;
+    width: 75%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+#xy_qd .title{
+    font-size: 28px;
+    color: white;
+    width: 133%;
+    text-align: center;
+}
+
+#xy_qd .christmas_list1{
+    margin-top: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+#xy_qd .christmas_list1 img{
+    display: block;
+    float: left;
+    margin-top: 4px;
+    width: 6%;
+    background-size: 100%;
+}
+
+#xy_qd .christmas_list1 textarea{
+    color: white;
+    background: rgba(255, 222, 173, 0);
+    border: 2px solid white;
+    border-radius: 7px;
+    padding: 3px;
+}
+#xy_qd .no_border_margintop{
+    border: none;
+    margin-top: auto;
+}
+#xy_qd .qx_btn{
+    display: block;
+    padding: 0;
+    margin-right: 0;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    color: white;
+    font-size: 1.6rem;
+    text-align: center;
+    border: 0;
+    border-radius: 0;
+    /*border-right: 1px solid #e4e4e4;*/
+    cursor: pointer;
+    float: left;
+    width: 50%;
+}
+#xy_qd .qd_btn{
+    display: block;
+    padding: 0;
+    margin-right: 0;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    color: white;
+    font-size: 1.6rem;
+    text-align: center;
+    border: 0;
+    border-radius: 0;
+    float: left;
+    width: 50%;
+}
+#xy_qd .btn_box{
+    width: 100%;
+}
+
+
+
+
+
+@media screen and (min-width: 320px) {
+    .christmas_list1 textarea {
+        width: 100%;
+    }
+    #xy_qd{
+        top: 30%;
+    }
+    #xy_qd .title{
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: -14px;
+    }
+    #xy_qd .christmas_list1 {
+        font-size: 14px;
+
+    }
+    /*#xy_qd .qx_btn {
+        margin-top: 4px;
+    }
+    #xy_qd .qd_btn {
+        margin-top: 4px;
+    }*/
+    #xy_qd2 .title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: -39px;
+        margin-bottom: 7px;
+    }
+    #xy_qd2 .christmas_list1 {
+        font-size: 14px;
+        margin-top: 0px;
+    }
+    .height50{
+        height: 50px !important;
+    }
+    .height60{
+        height: 110px !important;
+    }
+}
+@media screen and (min-width: 375px) {
+    .christmas_list1 textarea {
+        width: 100%;
+
+    }
+    #xy_qd .christmas_list1 {
+        font-size: 16px;
+    }
+    /*#xy_qd .qx_btn {
+        margin-top: 6px;
+    }*/
+    /*#xy_qd .qd_btn {
+        margin-top: 6px;
+    }*/
+    #xy_qd{
+        top: 32%;
+        width: 75%;
+    }
+    #xy_qd .title{
+        width: 100%;
+        font-size: 22px;
+    }
+    #xy_qd2 .title {
+        margin-top: -52px;
+        margin-bottom: 14px;
+        font-size: 20px;
+    }
+    #xy_qd2 .christmas_list1 {
+        margin-top: 3px;
+        font-size: 15px;
+    }
+    .height50{
+        height: 58px !important;
+    }
+    .height60{
+        height: 110px !important;
+    }
+}
+@media screen and (min-width: 414px) {
+    .christmas_list1 textarea {
+        width: 100%;
+    }
+    .height50{
+        height: 78px !important;
+    }
+    .height60{
+        height: 110px !important;
+    }
+
+
+    #xy_qd {
+        top: 30%;
+    }
+
+    #xy_qd .title {
+        width: 100%;
+    }
+
+    #xy_qd2 .title {
+        margin-top: -60px;
+        margin-bottom: 29px;
+        font-size: 22px;
+    }
+
+    #xy_qd2 .christmas_list1 {
+        margin-top: 7px;
+        font-size: 16px;
+    }
+}
+
+#xy_qd2{
+    position: absolute;
+    z-index: 30;
+    left: 51%;
+    top: 30%;
+    width: 70%;
+    transform: translateX(-50%);
+}
+#xy_qd2 .title{
+    color: #000000;
+    text-align: center;
+}
+
+#xy_qd2 .christmas_list1{
+    color: #000000;
+    font-weight: bold;
+}
+#xy_qd2 .christmas_list1 img{
+    display: block;
+    float: left;
+    margin-top: 4px;
+    width: 6%;
+    background-size: 100%;
+}
+
+#xy_qd2 .christmas_list1 textarea{
+    height: 48px;
+    background: rgba(255, 222, 173, 0);
+    border: 2px solid #000000;
+    border-radius: 7px;
+}
+#xy_qd2 .no_border_margintop{
+    border: none;
+    margin-top: auto;
+}
+
+
+
+/*圣诞页面 end*/
+

@@ -1,0 +1,120 @@
+.col-40 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 40%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+#goods_detail .row {
+  margin: 0 5%;
+  font-size: 12px;
+}
+#goods_detail .row .col {
+  text-align: center;
+  padding: 0;
+  margin: 5px 10px;
+}
+#goods_detail .row .col.active {
+  border-bottom: 1px solid #ffffff;
+}
+#goods_detail .row .col > a {
+  color: #ffffff;
+}
+#open_lucky_box .lucky_status_1 .dp-detailBox__orgBox .dp-button {
+    border: 1px solid #fff;
+    background: #fff;
+    height: 26px;
+    color: black;
+    margin-top: 6px;
+    line-height: 24px;
+}
+#open_lucky_box .lucky_status_2 .dp-itemList__li {
+  position: relative;
+  background-color: #F8E1D1;
+  border: 1px solid #ececec;
+  margin-bottom: -4px;
+}
+#open_lucky_box .lucky_status_2 .dp-itemList__li .lucky_icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6rem;
+  z-index: 11;
+}
+#open_lucky_box .lucky_status_2 .dp-itemList__li .dp-itemList__content {
+  background-color: #F8E1D1;
+  padding-left: 6rem;
+}
+#open_lucky_box .lucky_status_2 .dp-itemList__li .dp-itemList__content .dp-itemList__img {
+  height: auto;
+  width: auto;
+}
+#open_lucky_box .lucky_status_2 .dp-itemList__li .dp-itemList__content .dp-itemList__img > img {
+  width: 5rem;
+  border-radius: 50%;
+}
+#open_lucky_box .lucky_status_2 .dp-detailBox__orgBox {
+  background-image: url("../img/icon/orange_bolang.png");
+  background-color: transparent;
+}
+#open_lucky_box .lucky_status_2 .dp-detailBox__orgBox .dp-button {
+  /*background-color: transparent;*/
+  background-color: white;
+  border: 1px solid #ffffff;
+  /*color: #ffffff;*/
+    color:black;
+  height: 26px;
+  line-height: 24px;
+  width: 70px;
+}
+#buy_foot {
+  padding: 0;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+}
+#buy_foot .shop_car {
+    position: relative;
+    top: 0;
+    right: 0;
+    font-size: 2.2rem;
+    color: #252222;
+    display: block;
+    margin-top: -6px;
+}
+#buy_foot .shop_car_font {
+    /* position: absolute; */
+    /* top: 14px; */
+    font-size: 1rem;
+    /* right: 7%; */
+    display: block;
+    margin-top: -38px;
+}
+#buy_foot #Badge2 {
+    right: 23%;
+    top: 8px;
+}
+
+#invite_friends .invite_logo {
+  background-color: #EB2D39;
+}
+#invite_friends .invite-friends .invite-info-wrap .row {
+  padding: 0;
+  border-bottom: 1px solid #c9c9c9;
+}
+#invite_friends .invite-friends .invite-info-wrap .row .col {
+  padding: 5px;
+}
+#invite_friends .invite-friends .invite-info-wrap .row .col .gap {
+  top: 0;
+  height: 100%;
+  border-right: 1px solid #C9C9C9;
+}
+#invite_friends .invite-friends .list .item {
+  margin-bottom: 10px;
+}
+#invite_friends .invite-friends .qr-code-wrap p {
+  font-size: 12px;
+}

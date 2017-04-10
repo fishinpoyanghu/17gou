@@ -1,0 +1,220 @@
+#line_chart .line_tu{
+    display: block;
+    margin-top: 6px;
+    padding: 2px;
+}
+
+#line_chart_share2 .h3_title{
+    font-size: 16px;
+    line-height: 44px;
+    width: 124px;
+    margin: 0 auto;
+    text-align: justify;
+    text-align-last: justify;
+}
+#line_chart_share2 .down_icon{
+    position: absolute;
+    font-size: 20px;
+    padding-left: 10px;
+    top: 0px
+}
+#line_chart_aside{
+    position: absolute;
+    top:88px;
+    z-index: 20;
+    left:auto;
+    right:0;
+    background-color:rgba(0,0,0,.7);
+    width:100%;
+    height: 100%;
+}
+#line_chart_aside .white_bg{
+    position: absolute;
+    z-index: 3000;
+    left:0;
+    background-color:white;
+    width:100%;
+    height:auto;
+}
+#line_chart_aside ul{
+    /*padding:0px 10px;*/
+}
+#line_chart_aside ul li{
+    /*width: 25%;*/
+    /*float: left;*/
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    border-bottom: 1px solid #DDDDDD;
+    text-align: justify;
+    text-align-last: justify;
+}
+
+/*#aside ul li:after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    right: 0px;
+    display: inline-block;
+    height: 21px;
+    width: 1px;
+    background-color: #e5e5e5;
+}*/
+#line_chart_aside ul li .nav-item:first-child{
+    /*padding-left: 28%;*/
+}
+#line_chart_aside ul li .nav-item:last-child{
+    display: block;
+    width: 124px;
+    margin: 0 auto
+    /*padding-right: 28%;*/
+}
+
+#line_chart_aside ul li .nav-item.active{
+    color: #f72331
+}
+#line_chart_aside ul li.active{
+    border-bottom: 1px solid #f72331
+}
+
+
+/*月份*/
+#line_chart #yuefen .h3_title{
+    font-size: 14px;
+    line-height: 36px;
+    margin: 10px auto -1px;
+    z-index: 99;
+    background: white;
+    width: 126px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#line_chart #yuefen .down_icon{
+    position: absolute;
+    font-size: 14px;
+    padding-left: 5px;
+    top: 1px
+}
+#line_chart #yuefen_aside{
+    /*position: absolute;
+    top:88px;
+    z-index: 20;
+    left:auto;
+    right:0;
+    background-color:rgba(0,0,0,.7);
+    width:100%;
+    height: 100%;*/
+}
+#line_chart #yuefen_aside .white_bg{
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    text-align: center;
+    width: 126px;
+    left: 50%;
+    top: 37px;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+#line_chart #yuefen_aside ul{
+    /*padding:0px 10px;*/
+}
+#line_chart #yuefen_aside ul li{
+    padding: 10px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+#line_chart #yuefen_aside ul li .nav-item:first-child{
+    /*padding-left: 28%;*/
+}
+#line_chart #yuefen_aside ul li .nav-item:last-child{
+    margin: 0 auto;
+    /*padding-right: 28%;*/
+}
+#line_chart #yuefen_aside ul li:last-child {
+    border-bottom: none;
+}
+
+#line_chart #yuefen_aside ul li .nav-item.active{
+    color: #f72331
+}
+#line_chart #yuefen_aside ul li.active{
+    border-bottom: 1px solid #f72331
+}
+#line_chart #bg_line{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 6px;
+
+}
+#line_chart #bg_line .wg-hg{
+    color:white;
+}
+#line_chart #bg_line .wg-hg:nth-child(1){
+    background: #70CBDF;
+
+}
+#line_chart #bg_line .wg-hg:nth-child(2){
+    background: #7EC57E;
+}
+#line_chart #bg_line .wg-hg:nth-child(3){
+    background: #F3B744;
+}
+#line_chart #bg_line .wg-hg:nth-child(4){
+    background: #EF8385;
+}
+#line_chart .line_tu .tian_word{
+    float: right;
+    /*margin-top: -15px;*/
+    margin-right: 50%;
+    text-align: center;
+    transform: translateX(50%);
+    color: #7E7E7E;
+}
+
+#line_chart .line_tu .yuan_word{
+    color: #7E7E7E;
+    margin-left: -4px;
+}
+
+#line_chart #earnings_water{
+    background: #E5E5E5;
+    margin: 30px auto 15px;
+    width: 96%;
+    color:#707070;
+}
+#line_chart #earnings_water .top_row{
+    text-align: center;
+    font-size: 14px;
+}
+#line_chart #earnings_water .bot_row{
+    font-size: 12px;
+}
+
+#line_chart #earnings_water .txt_center{
+    text-align: center;
+}
+#line_chart #earnings_water .txt_left{
+    text-align: left
+}
+
+#line_chart #earnings_water .pd_left{
+    padding-left: 16px;
+}
+#line_chart .wxts{
+    padding-left: 8px;
+    font-size: 14px;
+    color: #636363;
+    padding-bottom: 20px;
+}
+
+
+
+
+
+
+

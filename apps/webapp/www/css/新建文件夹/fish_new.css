@@ -1,0 +1,580 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('myiconfont/fonts/icomoon.eot?metiik');
+  src: url('myiconfont/fonts/icomoon.eot?metiik#iefix') format('embedded-opentype'), url('myiconfont/fonts/icomoon.ttf?metiik') format('truetype'), url('myiconfont/fonts/icomoon.woff?metiik') format('woff'), url('myiconfont/fonts/icomoon.svg?metiik#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-baituan_share:before {
+  content: "\e900";
+  color: #EF2D43;
+}
+/*fish new*/
+/*百团大战*/
+#baituan_firstpage {
+  padding-top: 12px;
+  background-color: #ffffff;
+}
+#baituan_firstpage > li > ul > li.isDisplay {
+  font-size: 14px;
+  text-align: center;
+  color: #f72331;
+}
+#baituan_firstpage li {
+  margin-left: 15px;
+}
+#baituan_firstpage .baituan_opening_icon {
+  height: 30px;
+  position: relative;
+  border-left: 3px solid #f72331;
+}
+#baituan_firstpage .baituan_opening_icon .baituan_opening_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 300px;
+}
+#baituan_firstpage .baituan_opening_icon .baituan_opening_content .baituan_text {
+  position: absolute;
+  top: -2px;
+  left: 35px;
+  z-index: 100;
+  color: #fff;
+}
+#baituan_firstpage .baituan_opening_icon .baituan_opening_content .baituan_rect {
+  position: absolute;
+  top: -6px;
+  left: 15px;
+  height: 27px;
+}
+#baituan_firstpage .baituan_opening_icon .baituan_opening_content .baituan_circle {
+  position: absolute;
+  top: -5px;
+  left: -34px;
+  height: 22px;
+  margin-left: 20px;
+}
+#baituan_firstpage .baituan_opening_icon2 {
+  height: 40px;
+}
+#baituan_firstpage .baituan_opening_icon2 .baituan_opening_content {
+  top: 12px;
+}
+#baituan_firstpage #baituan_opening,
+#baituan_firstpage #baituan_willOpen {
+  border-left: 3px solid #f72331;
+  border-bottom: 1px solid #CCCCCC;
+}
+#baituan_firstpage #baituan_opening > ul,
+#baituan_firstpage #baituan_willOpen > ul {
+  padding: 10px;
+  padding-top: 0;
+}
+#baituan_firstpage #baituan_opening #baituan_page,
+#baituan_firstpage #baituan_willOpen #baituan_page {
+  margin: 0;
+  border-top: none;
+  padding: 7px 0;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__img,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__img {
+  width: 100px;
+  float: left;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .progress_box .progress,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .progress_box .progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 12px;
+  margin-bottom: 5px;
+  background-color: #F3ABAF;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .progress_box .progress .num,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .progress_box .progress .num {
+  border-radius: 12px;
+  height: 10px;
+  background: #f72331;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .progress_text .progress_text1,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .progress_text .progress_text1 {
+  color: #F72331;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .baituan_price1,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .baituan_price1 {
+  font-size: 18px;
+  color: #F72331;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .baituan_price2,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .baituan_price2 {
+  text-decoration: line-through;
+}
+#baituan_firstpage #baituan_opening #baituan_page .dp-broad__content .baituan_page_jointeam,
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .baituan_page_jointeam {
+  width: 75px;
+  height: 30px;
+  font-size: 13px;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  margin-right: 8px;
+  background-color: #f72331;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page {
+  margin: 0;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__img {
+  width: 100px;
+  float: left;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content {
+  position: relative;
+  margin-left: 75px;
+  padding-left: 10px;
+  overflow: hidden;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .row-center1 {
+  position: relative;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .row-center1 i {
+  position: absolute;
+  font-size: 2rem;
+  top: -7px;
+  left: 0px;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .row-center1 span {
+  margin-left: 11%;
+}
+#baituan_firstpage #baituan_willOpen #baituan_page .dp-broad__content .dm-nowrap-2 {
+  color: #333;
+  margin-bottom: 5px;
+  overflow: hidden;
+  padding-right: 26px;
+}
+#baituan .baituan_join {
+  font-size: 2.2rem;
+  position: relative;
+}
+#baituan .baituan_join img {
+  height: 45px;
+  position: absolute;
+  left: 160px;
+  top: 4px;
+}
+#baituan .baituan_title {
+  font-size: 12px;
+}
+#baituan .dp-detailBox__progress .baituan_price .baituan_join {
+  position: relative;
+  color: #f72331;
+}
+#baituan .dp-detailBox__progress .baituan_price .baituan_join span {
+  position: relative;
+  display: inline-block;
+  left: 20px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 2px 10px;
+  border-radius: 6px;
+  background-color: #f72331;
+}
+#baituan .dp-detailBox__progress .baituan_price .baituan_join span .left_sanjiaoxing {
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: inline-block;
+  /* width: 12px; */
+  /* height: 7px; */
+  border-right: 6px solid #f72331;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  z-index: 100;
+}
+#baituan .dp-detailBox__progress .baituan_price .baituan_really {
+  font-size: 1rem;
+  text-decoration: line-through;
+}
+#baituan .baituan_rule {
+  color: #000000;
+  font-size: 1.3rem;
+}
+#other_open_tuan {
+  margin: 10px 0px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e4;
+}
+#other_open_tuan > ul > li.other_open_tuan_title {
+  margin-bottom: 1rem;
+}
+#other_open_tuan .other_open_tuan_title {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+#other_open_tuan .other_open_tuan_content ul {
+  border: 2px solid #f72331;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+#other_open_tuan .other_open_tuan_content ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#other_open_tuan .other_open_tuan_content li {
+  float: left;
+  height: 40px;
+}
+#other_open_tuan .other_open_tuan_content .other_open_tuan_img {
+  height: 40px;
+  padding-right: 1rem;
+}
+#other_open_tuan .other_open_tuan_content .other_open_tuan_img img {
+  width: 40px;
+}
+#other_open_tuan .other_open_tuan_content .other_open_tuan_content3 {
+  float: right;
+  padding-right: 1rem;
+  text-align: center;
+}
+#other_open_tuan .other_open_tuan_content .other_open_tuan_content3 .other_open_tuan_dissTime {
+  color: #f72331;
+}
+#other_open_tuan .other_open_tuan_content .other_open_tuan_content4 {
+  float: right;
+  /* line-height: 40px; */
+  padding: 10px 18px;
+  font-size: 12px;
+  background-color: #f72331;
+  color: #ffffff;
+}
+#baituan_footer {
+  height: 60px;
+}
+#baituan_footer .row {
+  padding: 0;
+  text-align: center;
+}
+#baituan_footer .row .col i {
+  font-size: 1rem;
+}
+#baituan_footer .row .col i:before {
+  font-size: 3rem;
+}
+#baituan_footer .row .baituan_keyShare {
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #f72331;
+  line-height: 4rem;
+}
+#baituan_footer .row .baituan_inviteFriend {
+  border: 1px solid #CCCCCC;
+}
+#baituan_gainAdress {
+  background-color: #ffffff;
+}
+#baituan_gainAdress .weui_cell {
+  font-size: 14px;
+  height: 73px;
+}
+#baituan_gainAdress .baituan_addAdress {
+  position: relative;
+  height: 95px;
+  text-align: center;
+  line-height: 95px;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+#baituan_gainAdress .baituan_addAdress img {
+  height: 20px;
+  margin-right: 0.4rem;
+  /* vertical-align: middle; */
+  position: relative;
+  top: 0.5rem;
+}
+#baituan_gainAdress .baituan_addAdress span {
+  position: relative;
+  top: 1px;
+}
+#baituan_goods_info .baituan_logo {
+  border-top: 1px solid #D8D8D8;
+  padding: 10px 0px;
+  margin-top: 10px ;
+  padding-left: 5% ;
+  background-color: #ffffff;
+}
+#baituan_goods_info .baituan_logo img {
+  height: 16px;
+}
+#baituan_goods_info .dp-broad__li {
+  overflow: hidden;
+  background-color: #F5F5F5;
+  height: 110px;
+}
+#baituan_goods_info .dp-broad__li .dp-broad__img {
+  margin: 0;
+  width: 25%;
+}
+#baituan_goods_info .dp-broad__li .dp-broad__img img {
+  vertical-align: middle;
+}
+#baituan_goods_info .dp-broad__li .dp-broad__content .row-center {
+  font-size: 14px;
+}
+#baituan_goods_info .dp-broad__li .dp-broad__content .row-center .num {
+  line-height: 30px;
+  width: 20%;
+}
+#baituan_goods_info .dp-broad__li .dp-broad__content .row-center .num span {
+  float: right;
+}
+#baituan_pay_style {
+  height: 60px;
+  background-color: #ffffff;
+  border-top: 1px solid #D8D8D8;
+  border-bottom: 1px solid #D8D8D8;
+}
+#baituan_pay_style .baituan_pay_content {
+  height: 30px;
+  margin: 15px 5%;
+  position: relative;
+}
+#baituan_pay_style .baituan_pay_content .baituan_weixin_logo {
+  height: 20px;
+}
+#baituan_pay_style .baituan_pay_content .baituan_weixin {
+  font-size: 14px;
+  position: relative;
+  left: 4px;
+  top: -4px;
+}
+#baituan_pay_style .baituan_pay_content img.baituan_gou {
+  height: 20px;
+  float: right;
+}
+#baituan_footer {
+  line-height: 50px;
+}
+#baituan_footer .row .col span {
+  position: relative;
+  top: -36px;
+}
+#baituan_footer .row .baituan_pay_total {
+  background-color: #ECEAEB;
+  font-size: 14px;
+}
+#baituan_footer .row .baituan_pay_total .baituan_pay_num {
+  color: #ff0000;
+}
+#baituan_apply_result {
+  font-size: 16px;
+  text-align: center;
+  color: #f72331;
+  padding: 10px 0;
+}
+#baituan_apply_content {
+  font-size: 14px;
+  padding: 10px;
+}
+.baituan_apply_sure {
+  display: block;
+  margin: 10px auto 20px;
+  background-color: transparent;
+  border: 1px solid #288BFC;
+  color: #288BFC;
+  padding: 3px 13px;
+  border-radius: 5px;
+}
+#baituan_member_info {
+  border-bottom: 1px solid #CCCCCC;
+}
+#baituan_member_info .dp-broad__li {
+  margin-top: 0;
+  padding: 10px;
+}
+#baituan_member_info .dp-broad__li .dp-broad__img {
+  width: 27%;
+}
+#baituan_member_info .dp-broad__li .dp-broad__content > .row {
+  position: relative;
+}
+#baituan_member_info .dp-broad__li .dp-broad__content > .row .col {
+  font-size: 12px;
+}
+#baituan_member_info .dp-broad__li .dp-broad__content > .row .baituan_status_icon {
+  width: 30%;
+  position: absolute;
+  top: -15px;
+  right: 36%;
+}
+#baituan_member_info .dp-broad__li .dp-broad__content > .row .baituan_active_detail {
+  width: 78px;
+  height: 36px;
+  font-size: 12px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  border: none;
+  background-color: #F72331;
+}
+#baituan_publish {
+  margin: 5px;
+  position: relative;
+}
+#baituan_publish .dp-itemList__li {
+  border: 1px solid #ececec;
+  margin-bottom: 10px;
+}
+#baituan_publish .dp-itemList__li .dp-itemList__content .dp-itemList__img .baituan_tuan_icon {
+  position: absolute;
+  left: 51px;
+  width: 20px;
+  top: 12px;
+}
+#baituan_fail {
+  margin-top: 10px;
+  position: relative;
+}
+#baituan_fail > div > div {
+  font-size: 15px;
+  padding-top: 10px;
+  color: #959595;
+}
+#baituan_fail > div > div img {
+  position: absolute;
+  top: 11%;
+  left: 20%;
+  width: 9%;
+}
+#baituan_fail > div > div span {
+  margin-left: 31%;
+}
+#height20px {
+  height: 20px;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+}
+#member_info_icon {
+  margin-top: 20px;
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
+}
+#member_info_icon .list .item {
+  border: none;
+}
+#member_info_icon .list .item .row {
+  padding: 0;
+  flex-flow: row wrap;
+  position: relative;
+}
+#member_info_icon .list .item .row .col {
+  position: relative;
+  padding: 0;
+  padding-right: 7px;
+  padding-left: 7px;
+}
+#member_info_icon .list .item .row .col img {
+  border-radius: 50%;
+}
+#member_info_icon .list .item .row .col .baituan_tuan_icon {
+  position: absolute;
+  left: 46px;
+  width: 20px;
+}
+#member_info_icon .list .item .row .col .baituan_leader {
+  position: absolute;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  color: #ffffff;
+  background-color: #f72331;
+  border-radius: 50%;
+}
+#baituan_member_detail .up_sanjiaoxing {
+  position: relative;
+  top: 5px;
+  left: 44%;
+  display: inline-block;
+  /* width: 12px; */
+  /* height: 7px; */
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid #f72331;
+  z-index: 100;
+}
+#baituan_member_detail .shuxian {
+  position: absolute;
+  top: -22px;
+  left: 32px;
+  height: 21px;
+  width: 1px;
+  border: 1px solid #f72331;
+}
+#baituan_member_detail .item {
+  position: relative;
+  padding-right: 0;
+  font-size: 10px;
+  color: #ffffff;
+  padding-left: 57px;
+}
+#baituan_member_detail .item .list img {
+  position: absolute;
+  width: 33px;
+  border-radius: 50%;
+  top: -7px;
+  left: -38px;
+}
+#baituan_member_detail .item .list span.baituan_member_second {
+  float: right;
+  padding-right: 30px;
+}
+#baituan_member_detail .baituan_tuanzhang {
+  background-color: #f72331;
+}
+#baituan_member_detail .baituan_member {
+  padding-left: 0;
+  color: #333333;
+}
+#baituan_member_detail .baituan_member .list {
+  border-top: 1px solid #f22233;
+  border-bottom: 1px solid #f22233;
+  padding: 17px 0px 17px 57px;
+}
+#baituan_member_detail .baituan_member .list img {
+  left: 17px;
+  top: 8px;
+}
+#baituan_center .pane {
+  overflow: auto;
+}
+#baituan_center .baituan_center_all {
+  border-bottom: 1px solid #D9D9D9;
+}
+#baituan_center .baituan_center_all .dp-itemList__content .dp-itemList__img {
+  height: auto;
+}
+#baituan_center .baituan_center_all .dp-itemList__content .dp-itemList__desc .baituan_leader_name {
+  color: #179aff;
+}
+#baituan_center .baituan_center_all .dp-itemList__content .dp-itemList__desc .baituan_goodName {
+  color: #000000;
+}
+#baituan_center .baituan_center_all .dp-itemList__content .dp-itemList__desc .baituan_detail {
+  position: absolute;
+  top: 38%;
+  right: -52px;
+}
+/*end 百团大战*/

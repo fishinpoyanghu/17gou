@@ -1,0 +1,72 @@
+<ion-view view-title="分类浏览" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+      <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+      </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+      <style>
+          .weui_cell:before{ left: 10px;}
+      </style>
+
+      <div class="weui_cells weui_cells_access">
+          <a class="weui_cell" ng-href="#/shopClassificationList/全部/全部商品">
+              <div class="weui_cell_hd"><img src="img/i9.png" alt="" style="width:26px;margin-right:5px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>全部商品</p>
+              </div>
+              <div class="weui_cell_ft"></div>
+          </a>
+
+          <a class="weui_cell" ng-href="#/tenYuan">
+              <div class="weui_cell_hd"><img src="img/i5.png" alt="" style="width:26px;margin-right:5px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>10元专区</p>
+              </div>
+              <div class="weui_cell_ft"></div>
+          </a>
+         <!--  <a class="weui_cell" ng-repeat="category in categoryList"
+             ng-href="#/shopClassificationList/{{::category.goods_type_id}}/{{::category.name}}">
+              <div class="weui_cell_hd"><img ng-src="{{::category.img}}" alt="" style="width:26px;margin-right:5px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>{{::category.name}}</p>
+              </div>
+          </a> -->
+        
+          <div class="list p-0">
+            <div class="item p-0" ng-repeat="category in categoryList">
+              <a class="weui_cell" 
+                 ng-href="javascript:;" ng-click="show_sub(category)">
+                  <div class="weui_cell_hd"><img ng-src="{{::category.img}}" alt="" style="width:26px;margin-right:5px;display:block"></div>
+                  <div class="weui_cell_bd weui_cell_primary">
+                      <p>{{::category.name}}</p>
+                  </div>
+                  <div class="weui_cell_ft  {{category.show ? 'rotate-270' : 'rotate-90'}}"></div>
+              </a>
+              <div class="list p-0" ng-show="category.show">
+                <div class="item " style="padding:0 20px;" ng-repeat="item in category.sub">
+                  <a class="weui_cell" 
+                     ng-href="#/shopClassificationList/{{::item.goods_type_id}}/{{::item.name}}">
+                      <div class="weui_cell_hd"><img ng-src="{{::item.img}}" alt="" style="width:26px;margin-right:5px;display:block"></div>
+                      <div class="weui_cell_bd weui_cell_primary">
+                          <p>{{::item.name}}</p>
+                      </div>
+                  </a>
+                </div>
+                <div class="item " style="padding:0 20px;">
+                  <a class="weui_cell" href="javascript:;" ng-if="!category.sub || category.sub.length == 0">
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p class="text-center c-9">该分类下暂时没有二级分类</p>
+                        </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </ion-content>
+
+</ion-view>
+
+

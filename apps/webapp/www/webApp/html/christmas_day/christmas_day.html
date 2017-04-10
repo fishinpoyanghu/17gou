@@ -1,0 +1,135 @@
+<style>
+    .gz_text{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 18%;
+        z-index: 1888;
+        color:white;
+        width: 80%;
+    }
+    .gz_text h1{
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        font-family: "微软雅黑" !important;
+        letter-spacing: 10px;
+        margin-bottom: 10px;
+    }
+    .gz_text p{
+        text-indent: 20px;
+        font-size: 16px;
+        color: white;
+        line-height: 30px;
+        font-family: "微软雅黑" !important;
+    }
+</style>
+<div id="masking" style="display:block;height: 100%;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 10;color:#fff;" class="clearfix">
+	<!--圣诞音乐-->
+	<div id="audio_btn" class="video_exist" style="display: block;">
+        <div id="yinfu" class="rotate"></div>
+         <!--<audio loop="" src="http://show.inbay.cn/userfiles/mp3/1/201607/579723b3b5928.mp3" id="media" autoplay="" preload=""></audio>-->
+		<audio loop src="audio/Jingle_Bells.mp3"></audio>
+    </div>
+    <!--圣诞愿望盒-->
+    <div id="christmas_box" ng-if="christmas_box">
+        <img class="christmas_box_img1" ng-if="word2" src="img/Christmas_Day/sd_bg.jpg" alt="">
+        <img class="christmas_box_img1" ng-if="word3" src="img/Christmas_Day/sd_jiqu.jpg" alt="">
+        <img class="christmas_box_img1" ng-if="sd_nowz_bg" src="img/Christmas_Day/bg.jpg" alt="">
+
+        <!--圣诞愿望清单-->
+        <img class="christmas_box_img2 no_height" src="img/Christmas_Day/ywqd.png" alt="" ng-if="xy_bg">
+        <img class="christmas_box_img12 no_height" src="img/Christmas_Day/ywqd.png" alt="" ng-if="xy_bg2">
+        <div id="xy_qd" ng-if="xy_qd">
+            <h2 class="title">圣诞愿望清单</h2>
+            <div class='christmas_list1'>
+                <img src='img/Christmas_Day/star_bq2.png' alt=''>
+                <span>最想收到的一份礼物：</span>
+                <textarea name='christmas_list1' id='christmas_list1' value='christmas.present' ng-model='christmas.present'></textarea>
+            </div>
+            <div class='christmas_list1'>
+                <img src='img/Christmas_Day/star_bq2.png' alt=''>
+                <span>最想去的地方（为什么？）：</span>
+                <textarea name='christmas_list1' id='christmas_list2'  value='christmas.place' class="height50"  ng-model='christmas.place'></textarea>
+            </div>
+            <div class='christmas_list1'>
+                <img src='img/Christmas_Day/star_bq2.png' alt=''><span>最想跟某人说的话：</span>
+                <textarea name='christmas_list1' id='christmas_list3'  value='christmas.talk'  class="height50" ng-model='christmas.talk'></textarea>
+            </div>
+
+            <div class="qx_btn" ng-click="cancel()">取消</div>
+            <div class="qd_btn" ng-click="confirm()">确定</div>
+
+        </div>
+
+        <!--静态的盒子，点击就动态的盒子-->
+        <div id="gift_box" ng-if="close_top" ng-click="open_list()">
+            <!--盒头-->
+            <img class="gift_box_top2" src="img/Christmas_Day/gift_box_top.png" alt="">
+            <!--盒身-->
+            <img class="gift_box_bot2" src="img/Christmas_Day/gift_box_bot.png" alt="">
+        </div>
+
+
+        <!--开盖头的动作-->
+        <div ng-if="gift_box" ng-click="close_boxtop()">
+            <!--盒头-->
+            <img class="gift_box_top" src="img/Christmas_Day/gift_box_top.png" alt="">
+            <!--盒身-->
+            <img class="gift_box_bot" src="img/Christmas_Day/gift_box_bot.png" alt="">
+        </div>
+
+        <!--关盖头的动作-->
+
+        <div ng-if="close_boxtop2">
+            <!--盒头-->
+            <img class="gift_box_top3" src="img/Christmas_Day/gift_box_top.png" alt="">
+            <!--盒身-->
+            <img class="gift_box_bot3" src="img/Christmas_Day/gift_box_bot.png" alt="">
+
+        </div>
+        <img ng-if="jt_box1" src="img/Christmas_Day/gift_box1.png" class="gift_box1_jt" alt="">
+    </div>
+
+    <!--将愿望清单放入圣诞老人包裹-->
+    <div id="christmas_bag" ng-if="christmas_bag">
+        <img class="Santa_old1" src="img/Christmas_Day/Santa_Claus.png" alt="" ng-if="Santa_old1">
+        <!--包裹回到圣诞老人手中，圣诞老人回到车上赶路-->
+        <img class="Santa_old2" src="img/Christmas_Day/Santa_Claus.png" alt="" ng-if="Santa_old2">
+    </div>
+
+    <!--圣诞老人回到车上赶路-->
+    <div id="christmas_older_car" ng-if="christmas_older_car">
+        <img src="img/Christmas_Day/Christmas_car.png" alt="" ng-click="pop_share()">
+
+    </div>
+
+    <img ng-if="share_christmas" src="img/Christmas_Day/share.png" width="248" height="120" style="position: absolute;right: 2%;"  alt="">
+
+    <div ng-if="share_txt_img">
+        <div style="position: absolute;top: 68%;width: 201px;height: 100px;left: 50%;transform: translateX(-50%);z-index: 999; " ng-click="close_rd()"></div>
+        <img class="christmas_box_img2" src="img/Christmas_Day/last.png" alt="">
+
+        <img class="christmas_box_img1" src="img/Christmas_Day/bg.jpg" alt="">
+    </div>
+    <div ng-if="sd_text">
+        <div class="gz_text" ng-click="close_model()">
+            <h1>圣诞节到咯</h1>
+            <p>1.许下你的愿望清单，分享到朋友圈，让心里的那个ta看到你的期望。</p>
+
+            <p>2.通过愿望清单进入亿七购活动页面，寄出一份爱，大胆说出：give me love 亿七购将推出优质品牌手套，全部商品一律7折！</p>
+
+            <p>3.中奖几率在于你购买的数量，爱的份量是多少？你来决定！</p>
+
+            <p>4.商品份额被抢购完毕，将揭晓商品去向（中奖得主），商城会立即寄出你满满的期望。</p>
+
+            <p>这个冬天， 不冷。这个圣诞，我们不孤单。</p>
+        </div>
+        <!--<span id="close_red" style="position: absolute;right: 2%;top: 6%;width: 40px;height: 40px;font-size: 18px;text-align: center;line-height: 35px;
+z-index: 9999; border: 2px solid white;border-radius: 50%;" ng-click="close_sd()">X</span>-->
+        <div style="position: absolute;left: 0; top: 0;z-index: 888;background-color: #000000;opacity: 0.7; width: 100%; height: 100%;"></div>
+    </div>
+
+
+</div>

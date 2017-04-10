@@ -1,0 +1,100 @@
+<ion-view view-title="计算详情" hide-nav-bar="isHideNaviBar">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content style="background-color: #efeee9;">
+        <style>
+            .dp-detailBox__title {
+                margin-bottom: 5px;
+            }
+            .dp-detailBox__table th, .dp-detailBox__table td {
+                text-align:center;
+            }
+        </style>
+        <div style="background-color: #efeee9;border-bottom:1px solid #d1d0ce">
+	        <div class="dp-detailBox" style="background-color: #f4aa36; color: #ffffff;
+	    border-radius: 10px;
+	    margin: 3.3%;">
+	            <h3 class="dp-detailBox__title" style="margin-bottom: 14px;font-size: 17px;">计算公式：</h3>
+	
+	            <p style="font-size: 16px;">（(数值A + 数值B) % 本商品总需参与人数）取余数 + 10000001</p>
+	        </div>
+        </div>
+       
+
+        <div class="dp-detailBox list" style="background-color: #FFFFFF;color: #000;">
+        	<div class="item">
+        		<h1>数值A</h1>
+        		<p>= 截至改商品最后夺宝时间的最后50条全站参与记录</p>
+        		<p>= <span style="font-size: 17px;">{{detail.value_a}}</span>	
+        			<span ng-click="expendDetail()">
+		        			<i ng-show="!expendDetailOK" class="bgDownImg"></i>
+		        			<i ng-show="expendDetailOK" class="bgUpImg"></i>
+    	    			<button type="button">展开</button>
+        			</span>
+        		</p>
+        	</div>
+        	<div class="item" style="padding: 0;">
+        		 <table class="dp-detailBox__table"  ng-show="expendDetailOK && detail.a_detail.length > 0">
+			            <tr>
+			                <th>购买时间</th>
+			                <th>用户昵称</th>
+			            </tr>
+			            <tr ng-repeat="record in detail.a_detail">
+			                <td>{{record.time}}
+			                <!-- <em class="red"><i class="icon ion-arrow-right-a"></i>{{record.record_id}}</em> -->
+			                </td>
+			                <td>{{record.unick}}</td>
+			            </tr>
+			        </table>
+        		<!--<table>
+        			<tr>
+        				<th>购买时间</th>
+        				<th>用户昵称</th>
+        			</tr>
+        			<tr>
+        				<td>Data</td>
+        			</tr>
+        		</table>-->
+        	</div>
+        	<div class="item">
+        		<h1>数值B</h1>
+        		<p>= 最新一期重庆时时彩开奖号码</p>
+        		<p ng-if="detail.status == 1">= <span style="color:#f4aa36;font-size: 17px;">正在等待揭晓...</span></p>
+        		<p ng-if="detail.status == 2">= <span style="color:#f4aa36;font-size: 17px;">{{detail.value_b}}</span></p>
+        	</div>
+			<div style="height: 28px;background-color: #EFEEE9;"></div>
+			<div class="item last_result">
+				<h1>计算结果</h1>
+				<div class="row" style="text-align: center;">
+					<div ng-if="detail.status == 1" class="col">幸运号码：等待揭晓...</div>
+					<div ng-if="detail.status == 2" class="col" >幸运号码：{{detail.lucky_num}}</div>
+				</div>
+			</div>
+            <!--<h3 class="dp-detailBox__title">以上数值结果得：</h3>
+            <p>求和 ：<span style="color: #fff;">{{detail.value_a}}【上面50条（不足50时，取实际参与数）参与记录的总和】</span></p>
+            <p>加上 ：<span style="color: #fff;">{{detail.value_b}}【最新一期重庆时时彩开奖号码】</span></p>
+            <div ng-if="detail.status==2" style="margin-top:5px;">
+                <h3 class="dp-detailBox__title" style="margin-bottom:0;">余数：</h3>
+
+                <p>
+                    ({{detail.value_a}}(50条时间记录之和) + {{detail.value_b}}(最新一期重庆时时彩开奖号码)) %  {{detail.need_num}}(本商品总需参与人数) = <span style="color: #fff;">{{detail.lucky_num - 10000001}}</span>
+                </p>
+                <h3 class="dp-detailBox__title">幸运号码：</h3>
+                <p style="color: #fff;font-size:18px;">{{detail.lucky_num}}</p>
+            </div>
+            <div ng-if="detail.status==1">
+                <h3 class="dp-detailBox__title">幸运号码：</h3>
+                <p><span style="color: #fff;">正在揭晓</span></p>
+            </div>-->
+        </div>
+
+    </ion-content>
+
+
+</ion-view>
+
+

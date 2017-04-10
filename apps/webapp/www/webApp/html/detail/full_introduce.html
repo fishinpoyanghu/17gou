@@ -1,0 +1,37 @@
+<ion-view view-title="图文详情" hide-nav-bar="isHideNaviBar" >
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content style="bottom: 50px;">
+    <div class="dp-content">
+      <div class="dp-content__box" ng-bind-html="content | trustHtmlFilter" style="padding:8px;"></div>
+    </div>
+
+
+    <div class="dp-emptyBlock" ng-if="isShowEmpty()">
+      <div class="dp-emptyBlock__container">
+        <p>这里空空的什么也没留下~</p>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <view-buy-footer activity="activity"></view-buy-footer>
+
+</ion-view>
+
+<!--断网-->
+<div class="dp-emptyBlock" style="background-color: #f8f8f8;" ng-if="isShowDisconnect()">
+  <div class="dp-emptyBlock__container">
+    <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+    <p style="color: #585858;">亲，你好像断网了...</p>
+    <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+    <button class="dp-button dp-button--red" ng-click="getGoodsDetail()"
+            style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+  </div>
+</div>
+
+

@@ -1,0 +1,80 @@
+<style>
+  .dp-itemList__li {
+    margin-bottom: 0 !important;
+    border-bottom: 0;
+  }
+
+  .dp-itemList__li:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .dp-itemList__li:nth-child(even) .dp-itemList__content {
+    background-color: transparent;
+  }
+
+  .avater {
+    border-radius: 50%;
+  }
+
+</style>
+
+
+<ion-view view-title="参与记录" hide-nav-bar="isHideNaviBar" on-swipe-right="$ionicGoBack()">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content style="bottom: 50px">
+    <view-list-view type="infinite"
+                    dp-request-url="{{::requestUrl}}"
+                    dp-request-params="::requestParams"
+                    dp-per-request-size="10"
+                    dp-call-back="callBack">
+      <view-list-item ng-repeat="joinRecordItem in list">
+        <div class="dp-itemList has_published">
+          <div class="dp-itemList__li">
+            <div class="dp-itemList__content">
+              <div class="dp-itemList__img1">
+                <img class="avater" ng-src="{{::joinRecordItem.uicon}}" onerror="this.src='img/default_icon.png'"
+                     alt="" ng-click="gotoHisPage(joinRecordItem)"/>
+              </div>
+              
+              <!--<div ng-if="!joinRecordItem.orderinfo&&joinRecordItem.orderinfo!==null" class="dp-itemList__desc">-->
+              <div ng-if="!joinRecordItem.orderinfo" class="dp-itemList__desc">
+                <p><em class="blue">{{::joinRecordItem.unick}}</em> （{{::joinRecordItem.ip.country}}）</p>
+
+                <p>本期参与： <em class="red">{{::joinRecordItem.user_num}}</em> 人次 ({{::joinRecordItem.join_time}})</p>
+              </div>
+              <!--幸运购-->
+              <!--<div ng-if="joinRecordItem.orderinfo||joinRecordItem.orderinfo===null"  class="dp-itemList__desc">-->
+              <div ng-if="joinRecordItem.orderinfo"  class="dp-itemList__desc">
+                <p><em class="blue">{{::joinRecordItem.unick}}</em> （{{::joinRecordItem.ip.country}}）</p>
+
+                <p ng-if="joinRecordItem.orderinfo==1">本期参与： <em class="red">奇数幸运牌</em>  </p>
+                <p ng-if="joinRecordItem.orderinfo==2">本期参与： <em class="red">偶数幸运牌</em>  ({{::joinRecordItem.join_time}})</p>
+                <p ng-if="joinRecordItem.orderinfo==3">本期参与： <em class="red">奇数幸运牌</em></p>
+                <p ng-if="joinRecordItem.orderinfo==3">本期参与： <em class="red">偶数幸运牌</em>  ({{::joinRecordItem.join_time}})</p>
+                <p ng-if="joinRecordItem.orderinfo==null" onclick="window.location.reload()">本期参与： <em class="red">数据错误,请重新刷新</em>  ({{::joinRecordItem.join_time}})</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </view-list-item>
+    </view-list-view>
+
+    <div class="dp-emptyBlock" ng-if="isEmpty">
+      <div class="dp-emptyBlock__container">
+        <p>还没有人参与，哦耶快抢头彩~</p>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <view-buy-footer activity="activity"></view-buy-footer>
+
+
+</ion-view>
+
+

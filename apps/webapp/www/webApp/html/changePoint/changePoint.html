@@ -1,0 +1,39 @@
+<ion-view view-title="积分兑换余额" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content scrollbar-y="false" class="change-point">
+    <style>
+    </style>
+    <div class="form">
+      <div class="row">
+        <div class="col col-25 text-right">
+          <label class="label" style="line-height: 34px;">积分：</label>
+        </div>
+        <div class="col col-75">
+          <input class="" type="text" style="width:100%;padding:0 10px;" ng-model="inputData.point" ng-change="changePoint()">
+          <p class="c-9 f-24">当前积分为：{{hasPoint}} 兑换不能大于当前积分数</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-25 text-right">
+          <label class="label">所得余额：</label>
+        </div>
+        <div class="col col-75">
+          <p><em style="color:red;">{{canGetMoney}}</em> 元</p>
+          <p class="c-9 f-24">积分：余额 = 100:1</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="padding" style="margin-top: 20px;">
+      <button class="dp-button dp-button--yellow button-block" ng-click="submit()">确定兑换</button>
+      <p class="c-9 f-24 text-center">积分只能单向兑换成余额，一旦确定不能更改。</p>
+      <p class="main-f mt-20 text-center">{{tipsMsg}}</p>
+    </div>
+  </ion-content>
+
+</ion-view>

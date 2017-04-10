@@ -1,0 +1,46 @@
+<ion-view view-title="愿望清单" hide-nav-bar="isHideNaviBar"  >
+        <!--模型层-->
+        <div id="masking" style="display:block;height: 100%;background-color: rgba(0, 0, 0,.6);position: absolute;width: 100%;z-index: 10;color:#fff;" class="clearfix">
+        	<!--圣诞音乐-->
+			<div id="audio_btn" class="video_exist" style="display: block;">
+		        <div id="yinfu" class="rotate"></div>
+		         <!--<audio loop="" src="http://show.inbay.cn/userfiles/mp3/1/201607/579723b3b5928.mp3" id="media" autoplay="" preload=""></audio>-->
+				<audio loop src="audio/Jingle_Bells.mp3"></audio>
+		    </div>
+            <div id="christmas_box">
+                <!--愿望清单-->
+                <div ng-if="xy_bg">
+                    <!--点击我也要许-->
+                    <div style="position: absolute;top: 69%;width: 144px;height: 100px;left: 51%;transform: translateX(-50%);z-index: 999; " ng-click="goChristmas_Day()"></div>
+                    <img class="christmas_box_img3" src="img/Christmas_Day/letter_paper2.jpg" alt="">
+                    <div id="xy_qd2">
+                        <h2 class="title">Ta的愿望清单</h2>
+                        <div class='christmas_list1'>
+                            <span>Ta最想收到的一份礼物：
+                             <em class="red" ng-model='christmas.present'><!--<textarea   ng-model='christmas.present' ></textarea>-->{{christmas.present}}</em></span>
+
+                        </div>
+                        <div class='christmas_list1'>
+                            <span>Ta最想去的地方（为什么？）：<em class="red"  ng-model='christmas.place'>{{christmas.place}}</em></span>
+
+                        </div>
+                        <div class='christmas_list1'>
+                            <span>Ta最想跟某人说的话：<em class="red"    ng-model='christmas.talk'>{{christmas.talk}}</em></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div ng-if="empty_pager_bg">
+                    <div style="position: absolute;top: 54%;width: 144px;height: 100px;left: 51%;transform: translateX(-50%);z-index: 999; " ng-click="goChristmas_Day()"></div>
+                    <img class="christmas_box_img3" src="img/Christmas_Day/empty_pager.jpg" alt="">
+                </div>
+
+
+                <!--点击查看TA的愿望清单-->
+                <div style="position: absolute;top: 36%;width: 222px;height: 100px;left: 51%;transform: translateX(-50%);z-index: 999; "  ng-click="seek_ohter_xy()" ng-if="click_ohterxy"></div>
+                <img class="christmas_box_img1" src="img/Christmas_Day/seek_ta.jpg" alt="">
+            </div>
+
+        </div>
+</ion-view>

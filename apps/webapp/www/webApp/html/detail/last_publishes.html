@@ -1,0 +1,59 @@
+<style>
+  .avater {
+    border-radius: 50%;
+  }
+</style>
+
+
+<ion-view view-title="往期揭晓" hide-nav-bar="isHideNaviBar" on-swipe-right="$ionicGoBack()">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content style="bottom: 50px">
+    <view-list-view type="infinite"
+                    dp-request-url="{{::requestUrl}}"
+                    dp-request-params="::requestParams"
+                    dp-per-request-size="10"
+                    dp-call-back="callBack">
+      <div class="dp-itemList has_published">
+        <div ng-repeat="publish in list">
+          <div class="dp-itemList__li">
+            <div class="dp-itemList__openTime">
+              <span class="num">第{{::publish.activity_id}}期</span> 揭晓时间：{{::publish.publish_time}}
+            </div>
+            <div class="dp-itemList__content">
+              <div class="dp-itemList__img1">
+                <img class="avater"  onerror="this.src='img/default_icon.png'" ng-src="{{::publish.lucky_uicon}}" alt="" ng-click="gotoHisPage(publish)"/></div>
+              <div class="dp-itemList__desc">
+
+                <p><img src="img/crown.jpg" style="width: 30px;vertical-align: bottom;margin: 0 9px;">： <em class="blue">{{::publish.lucky_unick}}</em> （{{::publish.ip.country}}）</p>
+
+                <p>幸运号码： <span class=" f-32">{{::publish.lucky_num}}</span></p>
+
+                <p>本期参与： <em class="red">{{::publish.lucky_user_num}}</em> 人次</p>
+
+                <!--<p>累计参与： <em class="red">xxxxx</em> 人次</p>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </view-list-view>
+
+    <div class="dp-emptyBlock" ng-if="isEmpty">
+      <div class="dp-emptyBlock__container">
+        <p>暂时没有往期揭晓~</p>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <view-buy-footer activity="activity"></view-buy-footer>
+
+
+</ion-view>
+
+

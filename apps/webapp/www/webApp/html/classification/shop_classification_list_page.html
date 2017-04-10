@@ -1,0 +1,57 @@
+<ion-view view-title="{{navTitle}}" hide-nav-bar="isHideNaviBar">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <!--通过 dp-headList--open来控制下拉列表显示和隐藏-->
+        <div id="headListBar" class="dp-headList" >
+            <div class="dp-headList__main" style="padding-right: 10px;">
+                <ion-scroll direction="x" scrollbar-x="false">
+                  <a ng-click="clickClass(null)" ng-class="{true:'',false:'selected'}[(goods_type_id || goods_type_id != null)]">全部商品</a>
+                  <a ng-click="clickClass(category.goods_type_id)"
+                     ng-class="{true:'selected',false:''}[(goods_type_id == category.goods_type_id)]"
+                     ng-repeat="category in categoryList">{{::category.name}}</a>
+                </ion-scroll>
+                <!-- <i class="icon ion-chevron-down" id="slide_down" ng-click="showHeadBar()"></i> -->
+        </div>
+            <div class="dp-headList__slideDown" id="slide_box">
+                <ul class="type_list clearfix" id="slide_ul">
+                    <li ng-repeat="categoryIn in categoryList track by $index" ng-click="clickClass(categoryIn.goods_type_id);"
+                         ng-class="{true:'selected',false:''}[(goods_type_id == categoryIn.goods_type_id)]"
+                      >{{::categoryIn.name}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <ion-refresher
+                pulling-text="下拉刷新"
+                pulling-icon="ion-arrow-down-c"
+                on-refresh="doRefresh('3-2-001')"
+                >
+        </ion-refresher>
+
+        <view-broad comp-id="'3-2-001'" type="short_info" dp-is-short-list="false" dp-page-size="20" dp-split-size="4000"
+                    dp-filter-class="goods_type_id" dp-filter-order="{{::oderKey}}" dp-filter-order-type="{{::oderType}}"
+                    dp-filter-type="{{::activityType}}" dp-filter-status="0" dp-is-auto-load="true"
+                    dp-set-top-bar="true"></view-broad>
+
+        <ion-infinite-scroll
+                ng-if="isMoreData"
+                on-infinite="loadMore('3-2-001')"
+                icon="ion-loading-c"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+
+</ion-view>
+
+<div class="dp-floatBtn dp-floatBtn--bl">
+    <a class="dp-floatBtn__link" href="#/trolley">
+        <i class="icon ion-ios-cart"></i>
+    </a>
+    <i class="badge badge-assertive">{{trolleySum()}}</i>
+</div>
+

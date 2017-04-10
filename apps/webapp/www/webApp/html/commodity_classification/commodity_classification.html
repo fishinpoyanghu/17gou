@@ -1,0 +1,36 @@
+<ion-view view-title="商品分类" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="go_mainpage()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content has-bouncing="false" padding="false" scrollbar-y="true">
+        <!--<ion-refresher
+            pulling-text="下拉刷新"
+            pulling-icon="ion-arrow-down-c"
+            on-refresh="doRefresh('3-2-001-01')"
+        >
+        </ion-refresher>-->
+        <div id="commodity_classification">
+            <ul>
+                <li ng-repeat="commodity_pic in commodity_pics" ng-click="go_classification_details(commodity_pic.goods_type_id,$index)">
+                    <!--<a href="#/{{commodity_pic.url}}">
+                        <img ng-src="{{commodity_pic.img}}" alt="">
+                    </a>-->
+
+                    <img ng-src="{{commodity_pic.img}}" alt="">
+
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+</ion-view>
+
+<div id="guidepop3" class="pop-wp"  ng-click="hideGuide()" >
+    <div class="pop pop--share" >
+        <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+    </div>
+    <div class="mask"></div>
+</div>
+

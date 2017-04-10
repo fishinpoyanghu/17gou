@@ -1,0 +1,82 @@
+<ion-view view-title="晒单分享" hide-nav-bar="isHideNaviBar" on-swipe-right="$ionicGoBack()">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content style="bottom: 50px">
+    
+    <ion-refresher
+      pulling-text="下拉刷新"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="dp-postList__li" ng-repeat="order in orderlist">
+
+      <div class="dp-postList__link">
+        <div class="dp-postList__user">
+          <img class="user_avatar" ng-src="{{::order.uicon}}" ng-click="goToHisPage(order.uicon,order.unick,order.uid)" />
+
+          <div class="user_info">
+            <!--<span class="user_info_time">{{order.show_time}}</span>-->
+            <h3 class="user_info_name">{{::order.unick}}</h3>
+            <span class="user_info_id">{{::order.show_time}}</span>
+          </div>
+        </div>
+        <div class="dp-postList__content">
+          <a ng-href="#/shareDetails/{{::order.show_id}}">
+              <h3 class="content_title">{{::order.show_title}}</h3>
+              <h2 style="color: #888888;"> 奖品：{{::order.goods_title}}</h2>
+              <h2 style="color: #888888;"> 期号：{{::order.activity_id}}</h2>
+              <p class="content_desc">{{::order.show_desc}}</p>
+          </a>
+          <view-image-list dp-data="order.show_imgs" dp-toggle="true"></view-image-list>
+          <div class="row row-center p-0">
+            <div class="col text-right" style="padding-right:20px;">
+              <button class="button button-small button-clear" style="{{order.is_zan ? 'color:#f44336;' : ''}}" ng-click="zan(order)">
+                <i class="icon iconfont-like"></i> <span>{{order.zans}}</span>
+              </button>
+              
+            </div>
+           
+            <a class="button button-small button-clear" href="#/commentDetails/{{::order.show_id}}">
+              <i class="icon iconfont-comment" style="vertical-align: middle;"></i> {{::order.comments}}
+            </a>
+           
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+
+    <p ng-if="!hasMoreData && !isDataEmpty()" class="dp-more dp-more--bottom">没有更多啦~</p>
+
+    <!--加载过程中-->
+    <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+
+
+    <div class="dp-emptyBlock" ng-show="isDataEmpty()&&isLoadFinished" style="position:relative;">
+      <div class="dp-emptyBlock__container">
+        <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
+        <p>这里空空的什么也没留下~</p>
+        
+      </div>
+    </div>
+
+  <ion-infinite-scroll
+      ng-if="hasMoreData"
+      on-infinite="doLoadMore()"
+      icon="ion-loading-c"
+      immediate-check='false'
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+
+  <view-buy-footer activity="activity"></view-buy-footer>
+
+
+</ion-view>
+

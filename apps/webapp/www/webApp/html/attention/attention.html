@@ -1,0 +1,17 @@
+<ion-view view-title="关注公众号" hide-nav-bar="isHideNaviBar" >
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content style="z-index:-1;overflow: hidden;overflow-scroll="true">
+      <img src="img/qrcode.jpg" alt="" style="width: 100%;display: block;z-index:999;" data-tap-disabled="true">
+      <!--<img src="img/qr_code2.jpg" alt="" style="width: 70%;margin:15% 15% 10%;  display: block;z-index:9;" ng-click="show_img();">
+      <img src="img/qr_code2.jpg" alt="" style="width: 97%;display: block;z-index: 20;position: absolute;top: -5%;left: 50%;transform: translateX(-50%);" ng-if="img" ng-click="hide_img()">
+-->
+    <p class="text-center" style="color:#e42012;font-size:14px;width: 100%;margin-top: 20px;z-index: 999;" ng-bind-html="text;"></p>
+    <p class="text-center f-28 c-9 mt-10">关注我们 获取更多服务</p>
+  </ion-content>
+</ion-view>
+
+
+

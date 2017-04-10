@@ -1,0 +1,36 @@
+<ion-view view-title="师徒收益明细" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false" overflow-scroll="true">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list">
+            <div class="item p-10">
+                <div class="row row-center p-0 text-center c-3 f-28">
+                    <div class="col">时间</div>
+                    <div class="col">好友账号</div>
+                    <div class="col">消费记录</div>
+                    <div class="col">所获师徒收益</div>
+                </div>
+            </div>
+            <div ng-show="inviteMoneyData.length > 0">
+                <div class="item p-10" ng-repeat="money in inviteMoneyData">
+                    <div class="row row-center p-0 text-center c-3 f-28">
+                        <div class="col">{{::money.date}}</div>
+                        <div class="col">{{::money.user}}</div>
+                        <div class="col">{{::money.money}}</div>
+                        <div class="col">{{::money.invite_money}}</div>
+                    </div>
+                </div>
+            </div>
+            <p ng-show="isLoadFinished && !moreDataCanBeLoaded && inviteMoneyData.length > 0" class="dp-more dp-more--bottom">没有更多啦~</p>
+        </div>
+        <div class="no-item-wrap c-9 " ng-show="isLoadFinished && !moreDataCanBeLoaded && inviteMoneyData.length == 0">
+            <p class="dp-more dp-more--bottom mt-40">暂无师徒收益明细，赶紧去邀请好友吧~</p>
+        </div>
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check='false' distance="1%" on-infinite="getInviteMoney()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

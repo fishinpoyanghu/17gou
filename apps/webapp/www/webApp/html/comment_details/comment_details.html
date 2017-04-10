@@ -1,0 +1,35 @@
+<ion-view view-title="评论" hide-nav-bar="isHideNaviBar">
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="back()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新" pulling-icon="ion-arrow-down-c" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="comment-detail-content">
+            <div class="comment-list mt-20" ng-if="commentsList.length > 0">
+                <!-- ng-if="commentsList.length > 0" -->
+                <div class="row" ng-repeat="comment in commentsList">
+                    <div style="color:#6c86a7;font-size:15px;">
+                        <span ng-click="commentPerson(comment.uid,comment.nick)">{{::comment.nick}}</span><span ng-if="comment.comment_nick">
+            <span style="color:#666;">回复</span> <span  ng-click="commentPerson(comment.comment_uid,comment.comment_nick)">{{::comment.comment_nick}}</span>
+                        </span>：</div>
+                    <div class="col p-0 f-28">{{::comment.text}}</div>
+                </div>
+                <p ng-show="isLoadFinished && !moreDataCanBeLoaded && commentsList.length > 0" class="dp-more dp-more--bottom">没有更多啦~</p>
+            </div>
+            <div class="no-item-wrap c-9 " ng-if="isLoadFinished && commentsList.length == 0">
+                <p class="mt-40 f-32">暂无评论~</p>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check='false' distance="1%" on-infinite="getCommentList()"></ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-stable inform-comment">
+        <div class="row">
+            <div class="padding-right col">
+                <input class="comment-input" type="text" placeholder="{{comment_placeholder}}" ng-model="comment_content">
+            </div>
+            <button ng-click="comment()" ng-show="comment_content" class="button button-energized" style="height: 20px;line-height:20px;margin-top:4px;">提交</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

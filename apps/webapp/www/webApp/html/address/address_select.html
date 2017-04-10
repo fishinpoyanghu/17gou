@@ -1,0 +1,31 @@
+<ion-view view-title="选择收货地址" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+        <h3 class="padding" style="color: #333333;font-size: 15px;">收货地址：</h3>
+
+        <div class="weui_cells weui_cells_checkbox">
+          <div class="weui_cell weui_check_label" for="s11" ng-repeat="addr in addressList" >
+            
+            <div class="weui_cell_hd">
+              <input type="radio" class="weui_check" name="checkbox1" checked="checked">
+              <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary ">
+              
+              <p class="clearfix">{{addr.name}} &nbsp;&nbsp;<span >{{addr.mobile}}</span> <button  ng-click="showConfirmSelectDialog(addr)" class="fr" style="background-color:#f44336;border:none;color:#fff;padding:4px;border-radius:4px;">选择该地址</button></p>
+              <p style="font-size: 12px;"><span style="color: #f44336;" ng-show="{{addr.is_default===1}}">[默认]</span>  {{addr.province + addr.city + addr.area + '，' + addr.detail}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="padding" style="margin-top: 20px;">
+            <button class="dp-button dp-button--red button-block" ng-click="startToAddressList()" >管理收货地址</button>
+        </div>
+    </ion-content>
+
+</ion-view>

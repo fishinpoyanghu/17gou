@@ -1,0 +1,91 @@
+<ion-view view-title="确认申请" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+  <a id="baituan_mainpage" class="item item-icon-left item-icon-right user-list-item item-icon-left2" href="#/tab/mainpage">
+    <!--<i class="icon ion-ios-arrow-right arrow2 c-9 ion-ios-home-outline" style="right: 15px;"></i>-->
+    <i class="ion-ios-home" ></i>
+  </a>
+  <ion-content>
+
+    <ion-refresher
+      pulling-text=" 喂喂， 我可是有底线的！"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="refresh()"
+      >
+    </ion-refresher>
+
+		<div id="baituan_gainAdress">
+			<div ng-if="!isDataEmpty()">
+            <!--<h3 class="padding" style="color: #333333;font-size: 15px;">收货地址</h3>-->
+
+            <div class="weui_cells weui_cells_access">
+                <a ng-show="{{!displayAdress || addr.is_default===1}}" class="weui_cell" ng-repeat="addr in displayAddressList" ng-click="startToAddressUpdate(addr)" >
+                    <div class="weui_cell_hd">
+                        <input type="radio" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                        <i class="weui_icon_checked"></i>
+                    </div>
+                    <div  class="weui_cell_bd weui_cell_primary">
+                        <p>收货人：{{addr.name}}<span class="fr">{{addr.mobile}}</span></p>
+
+                        <p ><span class="red" ng-show="{{addr.is_default===1}}">[默认]</span> 收货地址：{{addr.province +
+                            addr.city + addr.area + '，' + addr.detail}}</p>
+                    </div>
+                    <div class="weui_cell_ft">
+                    </div>
+                </a>
+            </div>
+      </div>
+			<div ng-if="isDataEmpty()"  ng-click="startToAddressAdd()" class="baituan_addAdress">
+				<img src="img/add.png"/>
+				<span>新增收货地址</span>
+			</div>
+		</div>
+		<div id="baituan_goods_info" class="dp-broad dp-broad--leftImg pos-r">
+			<div class="baituan_logo">
+				<img src="img/baituan_logo.png"/>
+			</div>
+			<div class="dp-broad__li clearfix" style="margin-top: 0;padding:10px;border-top: 1px solid #CCCCCC;border-bottom: 1px solid #CCCCCC;">
+                <div class="dp-broad__img" ng-click="gotoDetail(broad.activity_id)">
+                    <img ng-src="{{broad.img}}"/>
+                </div>
+
+                <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">
+                    <!--<h3 class="dm-nowrap-2 f-28" style="color: #333; margin-bottom: 5px;  overflow:hidden;padding-right: 26px;">{{broad.goods_title}}</h3>-->
+
+                    <div class="row p-0 row-center" >
+                        <div class="col p-0">
+                            {{broad.goods_title}}
+                        </div>
+                        <div class="col num">
+                        	<span>￥0.00</span><br>
+                        	<span>x1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<!--<div id="baituan_pay_style">
+			<div class="baituan_pay_content">
+				<img class="baituan_weixin_logo" src="img/weixin.png"/>
+				<span class="baituan_weixin">微信支付</span>
+				<img class="baituan_gou" src="img/gou.png"/>
+			</div>
+		</div>-->
+	</ion-content>
+		<!--<div id="baituan_pay_sure">-->
+		<div id="baituan_footer" class="bar bar-footer">
+  		<div class="row">
+  			<!--<div class="baituan_pay_total col col-67 baituan_inviteFriend">-->
+  				<!--<span>共<span class="baituan_pay_num">1</span>件，合计：￥<span class="baituan_pay_num">0.00</span></span>-->
+  			<!--</div>-->
+  			<div class="col baituan_keyShare" ng-click="gotobaituanPayInfo()">确认</div>
+  			<!--<div class="col baituan_keyShare" ng-click="goToPay()">立即支付</div>-->
+  		</div>
+		</div>
+</ion-view>
+
+
+

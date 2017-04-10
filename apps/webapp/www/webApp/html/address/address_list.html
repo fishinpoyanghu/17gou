@@ -1,0 +1,68 @@
+<ion-view view-title="收货地址" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+        <!--已有地址时-->
+        <div ng-if="!isDataEmpty()">
+            <h3 class="padding" style="color: #333333;font-size: 15px;">收货地址</h3>
+
+            <div class="weui_cells weui_cells_access">
+                <a class="weui_cell" ng-repeat="addr in addressList" ng-click="startToAddressUpdate(addr)">
+                    <div class="weui_cell_hd">
+                        <input type="radio" class="weui_check" name="checkbox1" id="s11" checked="checked">
+                        <i class="weui_icon_checked"></i>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p>{{addr.name}}<span class="fr">{{addr.mobile}}</span></p>
+
+                        <p style="font-size: 12px;"><span class="red"
+                                                          ng-show="{{addr.is_default===1}}">[默认]</span> {{addr.province +
+                            addr.city + addr.area + '，' + addr.detail}}</p>
+                    </div>
+                    <div class="weui_cell_ft">
+                    </div>
+                </a>
+            </div>
+
+            <div class="padding" style="margin-top: 20px;">
+                <button class="dp-button dp-button--red button-block" ng-click="startToAddressAdd()">新增收货地址</button>
+            </div>
+        </div>
+
+      <!--加载过程中-->
+      <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
+
+        <!--没有地址时-->
+        <div class="dp-emptyBlock" style="display: block" ng-if="isDataEmpty()&&isLoadFinished">
+            <div class="dp-emptyBlock__container">
+                <i class="icon iconfont-location"></i>
+
+                <p style="margin-top: 10px; color:#6b6b6b;">您还没有填写收货地址哦~</p>
+                <button class="dp-button dp-button--red" style="margin: auto; margin-top: 40px; width: 100%; "
+                        ng-click="startToAddressAdd()">
+                    填写收货地址
+                </button>
+            </div>
+        </div>
+
+      <!--断网时-->
+      <div class="dp-emptyBlock" style="background-color: #f8f8f8;" ng-if="isShowDisconnect()">
+        <div class="dp-emptyBlock__container">
+          <img class="icon" src="img/disconnected.png" alt="" width="165"/>
+          <p style="color: #585858;">亲，你好像断网了...</p>
+          <p style="color: #b5b5b5; font-size: 14px;">请检查网络设置</p>
+          <button class="dp-button dp-button--red" ng-click="reload()"
+                  style="margin: auto; margin-top: 40px; width: 130px; ">重新加载</button>
+        </div>
+      </div>
+
+    </ion-content>
+
+  <!--断网时-->
+
+
+</ion-view>

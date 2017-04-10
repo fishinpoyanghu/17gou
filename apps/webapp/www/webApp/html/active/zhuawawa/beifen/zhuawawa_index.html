@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="css/letter_game.css" />
+<ion-view view-title="抓娃娃" hide-nav-bar="true">
+
+	<ion-content id="zhuawawa">
+		<main class="zhuawawa_main" ng-class="{ 'type1':skinArr[0],'type2':skinArr[1], 'type3':skinArr[2]}">
+			<nav>
+				<div class="zhuanww_left">
+					<i class="icon-doll"></i>
+					<span class="bean_total jsBalance">0</span>
+					<span class="btn_add jsPay"></span>
+				</div>
+				<div class="zhuanww_machine">
+					<div class="doll-tit">
+						<span id="jsTitLevel" class="tit tit-primary"></span>
+					</div>
+					<div class="machine-clip-line">
+						<div class="machine-bar-wrap machine-down" style="height: 0.96rem;">
+							<span class="machine-bar"></span>
+						</div>
+						<div class="machine-handle">
+							<span class="machine-origin-bg"></span> 
+							<span class="machine-origin"></span> 
+							<span class="machine-arm machine-arm-left"></span> 
+							<span class="machine-arm machine-arm-right"></span>
+						</div>
+						<ul class="doll-hold jsHoldSuc">
+							<!---->
+						</ul>
+					</div>
+				</div>
+				<div class="zhuanww_item"></div>
+			</nav>
+		</main>
+
+		<footer>
+			<div class="doll_notice">
+				<ul class="notice_list">
+					<li>
+						<i class="icon_notice">公告</i>
+						<a><span>微信P2c**ih</span>获得了<span>iPhone7 plus128G</span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="doll-bets">
+				<div class="doll_bet_bean">
+					<span class="bet-bean-item current" ng-click="changeShin(1,$event)">
+						<span class="bet-bean bet-bean-1"></span>
+					</span>
+					<span class="bet-bean-item" ng-click="changeShin(2,$event)">
+						<span class="bet-bean bet-bean-5"></span>
+					</span>
+					<span class="bet-bean-item" ng-click="changeShin(3,$event)">
+						<span class="bet-bean bet-bean-10">
+							
+						</span>
+					</span>
+				</div>
+				<div class="doll-btn">
+					<a class="btn-start jsBetBtn"></a>
+				</div>
+			</div>
+			</div>
+		</footer>
+
+	</ion-content>
+
+</ion-view>

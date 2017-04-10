@@ -1,0 +1,198 @@
+<ion-view view-title="百团成员" hide-nav-bar="isHideNaviBar">
+
+  <ion-nav-buttons side="left">
+    <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>
+  </ion-nav-buttons>
+  <a id="baituan_mainpage" class="item item-icon-left item-icon-right user-list-item item-icon-left2" href="#/tab/mainpage">
+    <i class="ion-ios-home" ></i>
+  </a>
+  <ion-content style="bottom: 50px;">
+
+    <ion-refresher
+      pulling-text=" 喂喂， 我可是有底线的！"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="refresh()"
+      >
+    </ion-refresher>
+
+
+		<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+		<div id="baituan_member_info" class="dp-broad dp-broad--leftImg pos-r" ng-if="!isLoading">
+			<div class="dp-broad__li clearfix">
+                <div class="dp-broad__img" ng-click="gotoDetail(broad.activity_id)">
+                    <img ng-src="{{tuan_info.main_img}}"/>
+                </div>
+
+                <div class="dp-broad__content" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">
+                    <h3 class="dm-nowrap-2 f-28" style="color: #333; margin-bottom: 5px;  overflow:hidden;padding-right: 26px;">{{broad.goods_title}}</h3>
+                      <div class="row p-0 row-center"  ng-click="gotoDetail(broad.activity_id)" style="margin-top: 10px;">
+                          <div class="col p-0">
+                              <span>{{tuan_info.title}}</span>
+                          </div>
+                      </div>
+                      <div class="row p-0 row-center"  ng-click="gotoDetail(broad.activity_id)" style="margin-top: 10px;">
+                          <div class="col p-0">
+                              <span>结束时间：</span>
+                              <span class="red">{{tuan_info.end}}</span>
+                          </div>
+                      </div>
+                      <div class="row p-0 row-center"  ng-click="gotoDetail(broad.activity_id)" style="margin-top: 10px;">
+                          <div class="col p-0">
+                              <span>价格：</span>
+                              <span class="red">￥{{tuan_info.price/tuan_info.people_num}}</span>
+                          </div>
+                          <div ng-if="tuan_info.flag==2||tuan_info.flag==3" class="col p-0 baituan_status_icon">
+                              <img src="img/baituan/baituan_fail_icon.png" alt="失败" />
+                          </div>
+                          <div ng-if="tuan_info.flag==7||tuan_info.flag==8" class="col p-0 baituan_status_icon">
+                              <img src="img/baituan/baituan_success_icon.png" alt="成功" />
+                          </div>
+                      </div>
+                    <div class="row p-0 row-center" >
+                        <div class="col p-0">
+                            <div class="row p-0 row-center" style="margin-top: 10px;">
+                                <div class="col p-0">
+                                    <span>{{tuan_info.people_num}}人团：还差</span>
+                                    <span class="red">{{tuan_info.people_num-tuan_info.join_num}}</span>人
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <button class="baituan_active_detail" style="" ui-sref="activityRule({type:'baituan'})">活动详情</button>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<!--拼团失败人数不够flag==2-->
+		<div id="baituan_fail">
+			<div class="baituan_flag2" ng-if="!isLoading && tuan_info.flag == 2" style="">
+	        <div>
+	        	<img src="img/baituan/cry_face.png" alt="" />
+	        	<span>由于人数不足，组团失败</span>
+	        </div>
+	    </div>
+			<!--拼团失败商品下架flag==3-->
+			<div  class="baituan_flag3" ng-if="!isLoading && tuan_info.flag == 3" style="">
+	        <div>
+	        	<img src="img/baituan/cry_face.png" alt="" />
+	        	<span>由于商品下架，组团失败</span>
+	        </div>
+	    </div>
+			
+		</div>
+		<!--拼团成功正在揭晓flag==7-->
+		<div ng-if="!isLoading && tuan_info.flag == 7" style="margin-top: 10px;">
+        <div class="dp-detailBox__orgBox">
+          <button class="dp-button dp-button--white" ng-click="gotoCountDetail(tuan_info.teamwar_id)">计算详情</button>
+          <p>团号： {{tuan_info.teamwar_id}}</p>
+
+          <p>揭晓倒计时： <em view-countdown remain-time="{{tuan_info.remain_time}}" timeout-callback="timeoutCallback()"></em>
+          </p>
+        </div>
+    </div>
+    <!--拼团成功已经揭晓flag==8-->
+    <div ng-if="!isLoading && tuan_info.flag == 8" id="baituan_publish">
+        <div class="dp-itemList__li" ng-repeat="luckyPerson in luckyPersons">
+          <div class="dp-itemList__content">
+            <div class="dp-itemList__img">
+              <img class="baituan_luckyman" ng-src="{{luckyPerson.icon}}" alt="头像"/>
+              <img ng-if="luckyPerson.uid==tuan_info.teamleader" class="baituan_tuan_icon" src="img/baituan/baituan_tuan_icon.png" alt="tuan" />
+            </div>
+            <div class="dp-itemList__desc">
+              <a ng-click="gotoHisPage()">
+                <p ng-if="luckyPerson.lucky_uid==0"><em class="blue">本期无获奖者!</em> </p>
+                <p ng-if="luckyPerson.lucky_uid!=0">获 奖 者： <em class="blue">{{luckyPerson.nick}}</em></p>
+                <!--<p ng-if="luckyPerson.lucky_uid!=0">获 奖 者： <em class="blue">{{luckyPerson.nick}}</em>（{{luckyPerson.lucky_ip.country}}） </p>-->
+              </a>
+              <p>团 号：{{tuan_info.teamwar_id}}</p>
+              <p>参与时间：{{luckyPerson.rt}}</p>
+              <p>揭晓时间：{{formatSimple(tuan_info.publish_time)}}</p>
+            </div>
+          </div>
+          <div class="red_mark">获奖名单</div>
+        </div>
+        <div class="dp-detailBox__orgBox">
+          <button class="dp-button dp-button--white" ng-click="gotoCountDetail()">计算详情</button>
+          <p style="line-height:36px;">幸运号码： {{luckyPersons[1].lucky_num}}</p>
+        </div>
+      </div>
+    
+    <div id="member_info_icon"  ng-if="!isLoading">
+    	<ul class="list">
+    		<li class="item">
+    			<ul class="row">
+    				<li class="col col-20" ng-repeat="member in members"  ng-if="member.uid == tuan_info.teamleader">
+    					<img ng-src="{{member.icon}}" alt="头像1" /><img class="baituan_tuan_icon" src="img/baituan/baituan_tuan_icon.png" alt="tuan" />
+    				</li>
+    			</ul>
+    			<ul class="row">
+    				<li class="col col-20" ng-repeat="icon in tuan_members_icon track by $index">
+    					<img ng-src="{{icon}}" alt="头像" />
+    				</li>
+    			</ul>
+    		</li>
+    	</ul>
+    </div>
+    <!--<div id="height20px"></div>-->
+    <div id="baituan_member_detail"  ng-if="!isLoading">
+    			<i class="up_sanjiaoxing"></i>
+    	<ul class="item baituan_tuanzhang">
+    		<li class="list"  ng-repeat="member in members" ng-if="tuan_info.teamleader == member.uid">
+	    			<img src="{{member.icon}}" title="头像"></img>
+	    			<span class="baituan_member_first">团长：{{member.nick}}</span>
+	    			<span class="baituan_member_second" >&nbsp;{{member.rt}}</span>&nbsp;
+    		</li>
+    	</ul>
+    	<ul class="item baituan_member">
+    		<li class="list" ng-repeat="member in members"  ng-if="tuan_info.teamleader != member.uid">
+	    			<i class="shuxian"></i>
+    				<img src="{{member.icon}}" title="头像"></img>
+	    			<span  class="baituan_member_first">成员：{{member.nick}}</span>
+	    			<span  class="baituan_member_second">{{member.rt}}</span>
+    		</li>
+    	</ul>
+    </div>
+	</ion-content>
+    <div id="baituan_footer" class="bar bar-footer" ng-if="!isLoading">
+  		<div class="row" ng-if="tuan_info.flag!=7&&tuan_info.flag!=8">
+  			<div ng-show="inArrayus(getCurrUserInfo().uid,tuan_name_arr)"  class="col baituan_keyShare" ng-click="baituan_doShare()">立即分享</div>
+  			<div ng-show="!inArrayus(getCurrUserInfo().uid,tuan_name_arr)"  class="col baituan_keyShare" ng-click="startToPay(tuan_info.teamwar_id)">参团</div>
+  			<a class="baituan_member_go col baituan_keyShare" href="#/baituandazhan">去开团</a>
+  		</div>
+  		<div class="row" ng-if="tuan_info.flag==7||tuan_info.flag==8">
+  			<div  class="col baituan_keyShare" ng-click="baituan_doShare()">立即分享</div>
+  			<a class="col baituan_member_go baituan_keyShare" href="#/baituandazhan">去开团</a>
+  		</div>
+	</div>
+		
+</ion-view>
+
+<div id="guidepop1" class="pop-wp"  style="display:none" ng-click="hideGuide1()">
+  <div class="pop pop--share" >
+    <img src="img/yaoqing.png" width="248" height="120" alt=""/>
+  </div>
+  <div class="mask"></div>
+</div>
+<div id="actionSheet_wrap" ng-show="isShowShare">
+    <div class="weui_mask_transition weui_fade_toggle show" id="mask" ></div>
+    <div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+        <h3 class="dp-grid__head tac" style="background-color: #ffffff">分享到</h3>
+        <div class="dp-grid dp-grid--3" style="padding: 0 10%;">
+
+            <a class="dp-grid__link"  href="javascript:;" ng-click="shareToFriendsCircle()">
+                <img class="dp-grid__img" src="img/pengyouquan_logo.png" alt=""/>
+                <p class="dp-grid__title">朋友圈</p>
+            </a>
+            <a class="dp-grid__link"   href="javascript:;" ng-click="shareToFriends()">
+                <img class="dp-grid__img" src="img/weixin_logo.png" alt=""/>
+                <p class="dp-grid__title">微信好友</p>
+            </a>
+           
+        </div>
+        <div class="weui_actionsheet_action" ng-click="hidePop()">
+            <div class="weui_actionsheet_cell" id="actionsheet_cancel" style="color: #888;">取消</div>
+        </div>
+    </div>
+</div>
+

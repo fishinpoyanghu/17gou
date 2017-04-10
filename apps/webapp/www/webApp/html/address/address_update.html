@@ -1,0 +1,92 @@
+<ion-view view-title="地址详情" hide-nav-bar="isHideNaviBar" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content scrollbar-y="false">
+
+        <div class="weui_cells weui_cells_form">
+
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">收货人</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="姓名" ng-model="addressInfo.name" maxlength="10">
+                </div>
+            </div>
+
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">电话号码</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="11位手机号" ng-model="addressInfo.mobile"
+                           maxlength="11">
+                </div>
+            </div>
+
+            <div class="weui_cell " ng-click="showAreaSelector('PROVINCE')">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">所在省</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  <span>{{addressInfo.province}}</span>
+                </div>
+            </div>
+
+            <div class="weui_cell " ng-click="showAreaSelector('CITY')">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">所在市</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  <span>{{addressInfo.city}}</span>
+                </div>
+            </div>
+
+            <div class="weui_cell " ng-click="showAreaSelector('COUNTY')">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">所在区</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  {{addressInfo.area}}
+                </div>
+            </div>
+
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">详细地址</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="街道门牌信息" ng-model="addressInfo.detail"
+                           maxlength="60">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell weui_cell_switch" ng-show="isShowDefaultSelect">
+                <div class="weui_cell_hd weui_cell_primary">设为默认地址</div>
+                <div class="weui_cell_ft">
+                    <input class="weui_switch" type="checkbox"
+                           ng-checked="getChecked()" ng-click="updateSelection()">
+                </div>
+            </div>
+        </div>
+
+        <div class="padding" style="margin-top: 20px;">
+            <button class="dp-button dp-button--yellow button-block" ng-click="updateAddress()">保存</button>
+            <button class="dp-button dp-button--gray button-block" style="margin-top: 15px;" ng-click="deleteAddress()">
+                删除
+            </button>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+<view-area-selector
+  dp-province-model="addressInfo.province"
+  dp-city-model="addressInfo.city"
+  dp-county-model="addressInfo.area"
+  dp-is-show="isShowSelector.show"
+  dp-type="isShowSelector.type">
+</view-area-selector>
+
+

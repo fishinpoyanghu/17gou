@@ -1,0 +1,142 @@
+<ion-view view-title="百团大战" hide-nav-bar="isHideNaviBar">
+  <ion-nav-buttons side="left">
+    <!--<button class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
+    </button>-->
+      <button class="dp-button button-icon ion-chevron-left" ng-click="go_preferential_activities()">
+      </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="dp-button    " ui-sref="activityRule({type:'baituan'})">
+      玩法
+    </button>
+  </ion-nav-buttons>
+  <style type="text/css">
+  	.bar-subheader{
+  		/*height: 130px;*/
+  	}
+  </style>
+  <!--<ion-content class="has-subheader classify-page" style="{{inWechatB ? 'top:0px;' : (inIosApp ? 'top:44px;' : 'top:44px;') }}" >-->
+  <a id="baituan_mainpage" class="item item-icon-left item-icon-right user-list-item item-icon-left2" href="#/tab/mainpage">
+    <i class="ion-ios-home" ></i>
+  </a>
+	<ion-content>
+    <ion-refresher
+      pulling-text=" 喂喂， 我可是有底线的！"
+      pulling-icon="ion-arrow-down-c"
+      on-refresh="refresh()"
+      >
+    </ion-refresher>
+
+		<ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-show="isLoading"></ion-spinner>
+		<img src="img/baituan/baituan_publish_icon.jpg" alt="介绍" ui-sref="activityRule({type:'baituan'})"/ ng-show="!isLoading">
+		<div ng-if="newPublish.length">
+		<!--<div>-->
+            <div class="list" style="margin-bottom:0;clear: both;">
+                <a class="item  item-icon-right user-list-item f-32 " href="#/baituan_publish" style="border-top:none ;padding:10px 15px;color:#333;">
+                    最新揭晓
+                    <span style="float: right;margin-right: 16px;color: #5F5A5A;">更多</span>
+                    <i class="icon ion-ios-arrow-right arrow c-9 "></i>
+                </a>
+            </div>
+            <div class="dp-broad dp-broad--bigImg clearfix" style=" background-color: #ffffff; ">
+                       <div class="dp-broad__li"  style="width: 33.333333%;margin-top:-1px;border-bottom: 1px solid #ededed;padding: 2px 4px;" ng-repeat="activity in newPublish">
+                           <a class="block" href="javascript:;" ng-click="gotoDetail(activity.activity_id)">
+                               <div class="dp-broad__img main-page-goods-img" style="height:90px;">
+                                   <img ng-src="{{activity.goods_img}}" />
+                               </div>
+                               <h3 class="dp-broad__title " style="height:16px;    white-space: nowrap;">{{activity.goods_title}}</h3>
+                           </a>
+                           <div class="text-center dm-nowrap" style="color:#f72331;font-size:14px;" ng-if="activity.flag==7">
+                               <span class="remain_time iconfont-clock" view-countdown remain-time="{{activity.remain_time}}" timeout-callback="timeoutCallback(activity)"></span>
+                           </div>
+                           <div class="text-center dm-nowrap" style="color:#f72331;font-size:12px;min-height: 22px;" ng-if="activity.flag==8">
+                               获奖者:{{activity.lucky_unick}}
+                           </div>
+                           <!--<img src="img/Calculation_details.jpg"  alt="" ng-click="gotoCountDetail(activity.activity_id)" style="background-size: 100%;display: block;width: 60%;margin: 1px auto 7px;">-->
+                </div>
+            </div>
+        </div>
+		<ul id="baituan_firstpage" ng-if="!isLoading">
+			<li class="baituan_opening_icon">
+				<div class="baituan_opening_content">
+					<span class="baituan_text">正在开团</span>
+					<img class="baituan_circle" src="img/baituan/baituan_circle_icon.png"/>
+					<img class="baituan_rect" src="img/baituan/baituan_icon.png"/>
+				</div>
+			</li>
+			<li id="baituan_opening">
+				<ul>
+    				<li class="baituan_page dp-broad__li clearfix" ng-repeat="broad in activity track by $index" ng-if="broad.flag==1"  ng-click="gotoJoinHisTuan(broad.goods_id)">
+                <div class="dp-broad__img" ng-click="gotoDetail(broad.activity_id)">
+                    <img ng-src="{{broad.main_img}}"/>
+                </div>
+                <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style="position:relative; margin-left: 75px;  padding-left: 10px;overflow: hidden; ">
+                    <h3 class="dm-nowrap-2 f-28" style="color: #333; margin-bottom: 5px;  overflow:hidden;padding-right: 26px;">{{broad.title}}</h3>
+                    <div class="row p-0 row-center" >
+                        <div class="col p-0">
+                            <div class="row p-0 row-center">
+                                <div class="col p-0">
+                                    <div class="progress_box" style="color: #888888; float:none;">
+                                        <div class="progress">
+                                        	<span class="num" view-progress progress="(((broad.join_num) / broad.people_num))"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="progress_text" style="padding:0 8px;font-size:10px;color:#666;">
+                                	<span class="progress_text1">{{broad.join_num}}人已参团</span>
+                                	<span>(共需{{broad.people_num}}人)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-0 row-center" style="margin-top: 10px;">
+                        <div class="col p-0">
+                            <span class="baituan_price1">￥{{broad.price/broad.people_num}}</span>
+                            <span class="baituan_price2">￥{{broad.original_price}}</span>
+                        </div>
+                        <button class="baituan_page_jointeam">参团</button>
+                    </div>
+                </div>
+            </li>
+            <li class="isDisplay" ng-if="isDiplay.opentuan_ed">暂无正在开团的商品</li>
+				</ul>
+			</li>
+			<li class="baituan_opening_icon baituan_opening_icon2">
+				<div class="baituan_opening_content">
+					<span class="baituan_text">等待开团</span>
+					<img class="baituan_circle" src="img/baituan/baituan_circle_icon.png"/>
+					<img class="baituan_rect" src="img/baituan/baituan_icon.png"/>
+				</div>
+			</li>
+			<li id="baituan_willOpen">
+				<ul>
+					<li  class="baituan_page dp-broad__li clearfix" ng-repeat="broad in activity track by $index" ng-if="broad.flag == 0"   ng-click="gotoJoinHisTuan(broad.goods_id)">
+                <div class="dp-broad__img" ng-click="gotoDetail(broad.activity_id)">
+                    <img ng-src="{{broad.main_img}}"/>
+                </div>
+                <div class="dp-broad__content" ng-click="gotoDetail(broad.activity_id)" style=" ">
+                    <h3 class="dm-nowrap-2 f-28">{{broad.title}}</h3>
+                    <div class="row p-0 row-center row-center1">
+                        <div class="col p-0">
+                            <i class="icon2 ion-ios-people-outline"></i>
+                            <span>{{broad.people_num}}人团</span>
+                        </div>
+                    </div>
+                    <div class="row p-0 row-center" style="margin-top: 10px;">
+                        <div class="col p-0">
+                            <span class="baituan_price1">￥{{broad.price/broad.people_num}}</span>
+                            <span class="baituan_price2">￥{{broad.original_price}}</span>
+                        </div>
+                        <button class="baituan_page_jointeam">去开团</button>
+                    </div>
+                </div>
+            </li>
+					<li  class="isDisplay" ng-if="isDiplay.will_opentuan">暂无等待开团的商品</li>
+				</ul>
+			</li>
+		</ul>
+  </ion-content>
+</ion-view>
+
+
+

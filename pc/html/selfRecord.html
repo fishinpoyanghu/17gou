@@ -1,0 +1,177 @@
+<div ms-controller="selfRecordCtrl">
+
+    <!-- E 会员资料 -->
+    <div id="content_box" class="">
+      
+        <div  class="member_right b_record_box" style="width:1200px;">
+            <!-- S 购买记录模块标题 -->
+            <ul class="b_record_title">
+                <li ms-class="b_record_this:li_index==1" ms-click="changeLi('1')"><a href="javascript:;">购买记录</a></li>
+                <li ms-class="b_record_this:li_index==2" ms-click="changeLi('2')"><a href="javascript:;">中奖记录</a></li>
+            </ul>
+ 
+
+            <!-- 购买记录 -->
+            <div class="b_record_buy" ms-if="li_index==1">
+                <div class="b_record_list b_record_cloud" style="display:block;">
+                    <div class="b_record_table">
+                        <table  style="width:100%">
+                            <tbody>
+                                <tr class="b_part_title">
+                                    <th class="b_th2" style="text-align:center">商品图片</th>
+                                    <th class="b_th2" style="text-align:center">商品信息</th>
+                                    <th class="b_th2" style="text-align:center">操作</th>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="buyData.length == 0&&!isLoading&&page==1">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">暂无数据</span>
+                            </a>
+                        </div>
+                        <div style="text-align:center;" ms-if="buyData.length == 0&&isLoading&&page==1">
+                            <img src="img/loading.gif" alt="加载动画" style="width: 400px;">
+                        </div>
+                        <table  style="width:100%">
+                            <tbody>
+                               
+                                <tr ms-repeat="buyData">
+                                    <td style="width: 400px;">
+                                        <a href="javascript:gotoGoods(2055,133)"><img ms-src="el.goods_img" alt=""></a>
+                                    </td>
+                                    <td style="width: 391px;">
+                                        <div class="b_goods_name">
+                                            <span><a href="javascript:void(0)">{{el.goods_title}}</a></span>
+                                            <div><span><a href="javascript:void(0)">期号 : {{el.activity_id}}</a></span></div>
+                                            <div class="b_progress_bar" style="position:relative;" ms-if="el.status==0">
+                                                <em style="position: absolute;" ms-css-width="{{((el.need_num - el.remain_num)/el.need_num)*100}}%"></em>
+                                            </div>
+                                            <dl class="b_progress" ms-if="el.status==0">
+                                                <dd class="b_progress_center" >
+                                                    <span style="color:#DD2726">{{el.need_num}}</span>
+                                                    <b>总需人次</b>
+                                                </dd>
+                                                <dd class="b_progress_right" >
+                                                    <span style="color:#DD2726">{{el.remain_num}}</span>
+                                                    <b>剩余</b>
+                                                </dd>
+                                            </dl>
+                                            <b style="color:#888;" >
+                                                Ta参与了 : <span style="color:#DD2726">{{el.user_num}}</span> 人次
+                                            </b>
+                                        </div>
+                                        <dl class="w_text" style="float:none;background:#ECECEC;padding:10px 20px;margin-top:10px;margin-left:25px;text-align: left;" ms-if="el.status == 2">
+                                            <dd style="line-height:25px;">获得者：<a ms-attr-href="#!/selfRecord/{{el.lucky_uid}}">{{el.lucky_unick}}</a> ({{el.lucky_uip.country}})</dd>
+                                            <dd style="line-height:25px;">幸运号码：<i>{{el.lucky_num}}</i></dd>
+                                            <dd style="line-height:25px;">本期参与：<i>{{el.lucky_user_num}}</i>人次</dd>
+                                            <dd style="line-height:25px;">揭晓时间：{{el.publish_time}}</dd>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <div style="margin-bottom:10px;">
+                                            <button style="background:#E21931;color:#fff;border-radius:5px;border:none;height:30px;width:50px;letter-space:2px;" ms-if="el.status==0" ms-click="addCartItem($event,el.$model)">跟买</button>
+                                        </div>
+                                        <a href="javascript:void(0);" style="color:#179aff;font-size:14px;" ms-click="checkNum(el.activity_id)">查看他的号码</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- 购买记录 -->
+            <!-- 中奖记录 -->
+            <div class="b_record_buy" ms-if="li_index==2">
+                <div class="b_record_list b_record_cloud" style="display:block;">
+                    <div class="b_record_table">
+                        <table  style="width:100%">
+                            <tbody>
+                                <tr class="b_part_title">
+                                    <th class="b_th2" style="text-align:center">商品图片</th>
+                                    <th class="b_th2" style="text-align:center">商品信息</th>
+                                    <th class="b_th2" style="text-align:center">操作</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="winData.length == 0&&!isLoading">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{page==1 ? '暂无中奖记录' : '该页数据为空'}}</span>
+                            </a>
+                        </div>
+                        <div style="text-align:center;" ms-if="winData.length == 0&&isLoading&&page==1">
+                            <img src="img/loading.gif" alt="加载动画" style="width: 400px;">
+                        </div>
+                        <table  style="width:100%">
+                            <tbody>
+                                <tr ms-repeat="winData">
+                                    <td style="width:400px;">
+                                        <a href="javascript:gotoGoods(2055,133)"><img ms-src="el.goods_img" alt=""></a>
+                                    </td>
+                                    <td style="width: 313px;padding-left: 86px;">
+                                        <div class="b_goods_name" ><span><a href="javascript:void(0)">{{el.goods_title}}</a></span>
+                                            <div><span><a href="javascript:void(0)">期号 : {{el.activity_id}}</a></span></div>
+                                            <div><span><a href="javascript:void(0)">总需 : {{el.need_num}}</a></span></div>
+                                            <div><span><a href="javascript:void(0)">幸运号码 : {{el.lucky_num}}</a></span></div>
+                                            <div><span><a href="javascript:void(0)">本期参与 : {{el.user_num}}</a></span></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                         <a href="javascript:void(0);" style="color:#179aff;font-size:14px;" ms-click="checkNum(el.activity_id)">查看他的号码</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+
+    <div class="pageStr" style="margin: 30px auto;" ms-css-display="{{(page ==1 && ((buyData.length == 0 && li_index == 1) || (winData.length == 0 && li_index == 2) ) && !isLoading) ? 'none' : ''}}">
+        <span ms-class="f-noClick:page==1" ms-click="getPrevPage">
+            <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+        </span>
+        <span class="current"><a>{{page}}</a></span>
+        <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+            <a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a>
+        </span>
+    </div>
+
+    <!-- 查看号码弹窗 -->
+    <div class="modal fade" id="numModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:135px;">
+            <div class="modal-content" style="width:350px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"  style="text-align:center;">
+               他的夺宝号码
+            </h4>
+                </div>
+                <div class="modal-body" style="padding:7px;">
+                    <table ms-if="!isInGetNum">
+                        <tr style="height:30px;" ms-repeat="myNum">
+                            <td style="width:100px;text-align:center" ms-repeat="el">{{el}}</td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center;padding:20px 0;" ms-if="isInGetNum">
+                        <img src="img/loading-small.gif" alt="加载动画" style="width: 80px;">
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding:0;text-align:center;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="border:0;width:326px;">关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

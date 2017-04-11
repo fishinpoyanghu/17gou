@@ -1,0 +1,131 @@
+<style>
+.showEditBox {
+    display: block;
+}
+
+select {
+    background: transparent;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 240px;
+    height: 34px;
+    -webkit-appearance: none;
+    margin-left: -10px;
+    margin-top: 2px;
+    border-width: 0px;
+    line-height: 34px;
+    font-size: 14px;
+    padding-right: 40px;
+}
+.c_new_address_detail {
+    margin-top:20px;
+}
+</style>
+<div ms-controller="addressCtrl">
+    <div class="b_sup_content">
+        <div  class=""> 
+            <div ms-include-src="'html/userMes.html'"></div>
+        </div>
+        <div  class="" id="content_box">
+            <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+            <div  class="member_right" style="padding-bottom: 20px;">
+                <div class="c_address" >
+                    <div class="c_address_detail c_new_address_detail" ms-repeat="data">
+                        <p class="c_p_bg c_p_bg_other"></p>
+                        <div class="c_address_operation" style="position:relative;">
+                            <div class="c_address_default" ms-if="el.is_default"><i></i>默认地址</div>
+                            <div style="color: #E21931;display: inline-block;cursor: pointer;position: absolute;top: -1px;left: 91px;" ms-if="winId != 'all'" ms-click="useAddress(el.address_id)">使用该地址</div>
+                            <div class="c_address_all_operation">
+                                <a href="javascript:void(0);" title="设为默认地址" class="c_set_default" ms-if="!el.is_default" ms-click="setDefault(el.$model)"></a>
+                                <a href="javascript:void(0);" title="编辑" class="c_set_edit" ms-click="editAddress(el.$model)"></a>
+                                <a href="javascript:void(0)" title="删除" class="c_set_delete" ms-click="deleteAddress(el.address_id)"></a>
+                            </div>
+                        </div>
+                        <div class="c_user_address">
+                            <p class="c_user_message">{{el.name}} {{el.mobile}}</p>
+                            <p >{{el.province}} {{el.city}} {{el.area}}</p>
+                            <p >{{el.detail}}</p>
+                        </div><span></span></div>
+                    <div class="c_add_address c_new_address_detail"><a href="javascript:void(0);" class="c_add_address_btn" ms-click="editAddress('add')"><i></i>增加新地址</a></div>
+                </div>
+            </div>
+            <!-- E 右侧 -->
+        </div>
+    </div>
+    <!--S 添加地址弹窗 -->
+    <div class="c_address_in c_mask_window" style="height: 400px; left: 30%; top: 240px;z-index:100;display:block;" ms-if="showEditBox">
+        <h3>{{editBoxTitle}}收货地址<em class="c_em_close" ms-click="closePop"><img src="img/close.png"></em></h3>
+        <div class="c_address">
+            <div class="c_form_con">
+                <label>收货人姓名：</label>
+                <div class="c_form_right">
+                    <input class="c_khname" type="text" placeholder="请输入真实姓名" maxlength="20" ms-duplex="editData.name">
+                    <p class="c_error">请输入真实姓名</p>
+                </div>
+                <div class="c_clear"></div>
+            </div>
+            <div class="c_form_con">
+                <label>收货人地区：</label>
+                <ul class="c_form_right">
+                    <li class="c_contact">
+                        <div class="select_showbox" >
+                            <select  style="display: block;padding-left: 10px;" ms-change="provincesSelect($event)" id="provinceNode">
+                                <option value="-1" ms-attr-selected="currentProvince == '-1'">请选择省份</option>
+                                <option  ms-repeat="allAreaData" ms-attr-selected="el.name == currentProvince" ms-attr-value="el.name" ms-attr-data-index="{{$index + 1}}">{{el.name}}</option>
+                            </select>
+                        </div>
+                        <span>省</span>
+                    </li>
+                    <li class="c_contact" >
+                        <div class="select_showbox" >
+                            <select  style="display: block;padding-left: 10px;" ms-change="citySelect($event)" id="cityNode">
+                                <option value="-1" ms-attr-selected="currentCity == '-1'">请选择城市</option>
+                                <option  ms-repeat="CityData" ms-attr-selected="el.name == currentCity" ms-attr-value="el.name" ms-attr-data-index="{{$index + 1}}">{{el.name}}</option>
+                            </select>
+                        </div>
+                        <span>市</span>
+                    </li>
+                    <li class="c_contact" >
+                        <div class="select_showbox" >
+                        <select  style="display: block;padding-left: 10px;" ms-change="areaSelect($event)">
+                                <option value="-1" ms-attr-selected="currentArea == '-1'">请选择区、县</option>
+                                <option  ms-repeat="AreaData" ms-attr-selected="el.name == currentArea" ms-attr-value="el.name" ms-attr-data-index="{{$index + 1}}">{{el.name}}</option>
+                        </select>
+                        </div>
+                        <span>县</span>
+                    </li>
+                </ul>
+                <div class="c_clear"></div>
+            </div>
+            <div class="c_form_con c_newform_con">
+                <label>收货人地址：</label>
+                <div class="c_form_right">
+                    <div class="c_address_infor"></div>
+                    <input class="c_details_address" type="text" placeholder="请输入收货人地址"  ms-duplex="editData.detail">
+                    <p class="c_error">请输入正确收货人地址</p>
+                </div>
+                <div class="c_clear"></div>
+            </div>
+            <div class="c_form_con">
+                <label>收货人手机：</label>
+                <div class="c_form_right">
+                    <input class="c_details_contact" type="text" placeholder="请输入收货人手机号" maxlength="11" ms-duplex="editData.mobile">
+                    <p class="c_error" >请输入收货人手机号</p>
+                </div>
+                <div class="c_clear"></div>
+            </div>
+            <div class="c_form_con" >
+                <div class="c_new_form_right">
+                    <input type="checkbox"  ms-duplex-checked="editData.is_default">
+                    <i>设为默认地址</i>
+                </div>
+            </div>
+            <div class="c_form_con">
+                <button class="c_save" ms-click="AddressEdit">{{isInEdit ? "保存中" : "保存"}}</button>
+                <button class="c_save_other" ms-click="closePop">取消</button>
+            </div>
+        </div>
+    </div>
+    <div class="a_world_bg js-c_exchange_bg" style="z-index:99;"  ms-if="showEditBox" ></div>
+</div>

@@ -1,0 +1,31 @@
+<!--揭晓进行时-右侧-->
+            <div class="w_during_right" ms-if="goodsData.status == 2" style="min-height:500px;">
+                <h3>最新一期</h3>
+                <div ms-if="!goodsData.new_activity_id" style="text-align:center;margin-top:40px;color:#666;">暂时没有最新一期了</div>
+                <div ms-if="goodsData.new_activity_id">
+                    <p>最新一期正在进行，赶紧参加吧！</p>
+                    <div class="w_latest_right1" style="position:relative;border:none;" >
+                        <div class="w_rightImg">
+                            <a class="w_goods_img" ms-href="#!/goods/{{goodsData.new_activity_id}}"><img ms-src="goodsData.goods_img[0]"></a>
+                        </div>
+                        <a class="w_goods_ddree" ms-href="#!/goods/{{goodsData.new_activity_id}}" style="font-size: 18px;">(第{{goodsData.new_activity_id}}期){{goodsData.goods_title}}</a>
+                        <b style="font-size: 18px;">（{{goodsData.goods_subtitle}}）</b><em >价值：￥{{goodsData.need_num}}</em>
+                       <!--  <ul class="w_number">
+                            <li class="w_amount" id="onlinePriceSell">10</li>
+                            <li class="w_amount w_amount_right" id="onlineSurplus">2</li>
+                            <li>已购买人次</li>
+                            <li class="w_amount_right">剩余人次</li>
+                        </ul> -->
+                        <div class="w_buy" style="margin-top:40px;"><a ms-href="#!/goods/{{goodsData.new_activity_id}}" >立即抢购</a></div>
+                    </div>
+                   <!--  <div class="w_cumulative">
+                        <strong>参与人次：</strong>
+                        <input type="text" id="cartTimes" class="w_detailsinputs w_new_detailsinputs times" onkeyup="bugTimesInput()" value="" min="1" max="2">
+                        <span class="w_subtracts" onclick="cutBuyTimes()"></span>
+                        <span class="w_pluss" onclick="addBuyTimes()"></span>
+                    </div> -->
+                    
+                    
+                </div>
+               
+            </div>

@@ -1,0 +1,74 @@
+<div ms-controller="helpCtrl">
+ 
+  <div class="c_cloud_guide "  >
+      <div class="help-main w1190">
+          <div  class="help-right-part">
+              <div class="help-right-part">
+                  <div class="help-in-rihgt-part">
+                      <h2>{{title}}</h2>
+                     
+                      <div class="help-content" ms-if="!isLoading" ms-html="content">
+
+                      </div>
+                      <div style="text-align:center;" ms-if="isLoading">
+                              <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="help-left-part">
+              <div class="help-nav">
+                  <h3>帮助中心</h3>
+                  <h4>新手指南</h4>
+                  <ul>
+                      <li><a href="#!/help/know" ms-class="{{currentPage == 'know' ? 'cur02' : ''}}" ><b></b>了解亿七购</a></li>
+                      <li><a href="#!/help/question" ms-class="{{currentPage == 'question' ? 'cur02' : ''}}"><b></b>常见问题</a></li>
+                      <!-- <li><a href="#!/help/rule" ms-class="{{currentPage == 'rule' ? 'cur02' : ''}}"><b></b>玩法规则</a></li>
+                      <li><a href="#!/help/redRule" ms-class="{{currentPage == 'redRule' ? 'cur02' : ''}}"><b></b>红包玩法</a></li>
+                      <li><a href="#!/help/lotteryRule" ms-class="{{currentPage == 'lotteryRule' ? 'cur02' : ''}}"><b></b>抽奖玩法</a></li> -->
+                      <li><a href="#!/help/ruleIntroduction" ms-class="{{currentPage == 'ruleIntroduction' ? 'cur02' : ''}}" ><b></b>规则介绍</a></li>
+                  </ul>
+                  <div class="hackbox"></div>
+                  <h4>亿七购保障</h4>
+                  <ul>
+                      <li><a href="#!/help/systemEnsure" ms-class="{{currentPage == 'systemEnsure' ? 'cur02' : ''}}" ><b></b>亿七购保障体系</a></li>
+                      <li><a href="#!/help/safetyPayment" ms-class="{{currentPage == 'safetyPayment' ? 'cur02' : ''}}" ><b></b>安全支付</a></li>
+                      <li><a href="#!/help/complaint" ms-class="{{currentPage == 'complaint' ? 'cur02' : ''}}" ><b></b>投诉建议</a></li>
+                  </ul>
+                  <div class="hackbox"></div>
+                  <h4>商品配送</h4>
+                  <ul>
+                      <li><a href="#!/help/deliveryMoney" ms-class="{{currentPage == 'deliveryMoney' ? 'cur02' : ''}}" ><b></b>配送费用</a></li>
+                      <li><a href="#!/help/sign" ms-class="{{currentPage == 'sign' ? 'cur02' : ''}}" ><b></b>商品验货与签收</a></li>
+                      <li><a href="#!/help/noReceive" ms-class="{{currentPage == 'noReceive' ? 'cur02' : ''}}" ><b></b>长时间未收到商品问题</a></li>
+                  </ul>
+                  <div class="hackbox"></div>
+                  <h4>关于亿七购</h4>
+                  <ul>
+                      <li><a href="#!/help/introduce" ms-class="{{currentPage == 'introduce' ? 'cur02' : ''}}" ><b></b>亿七购介绍</a></li>
+                      <li><a href="#!/help/serviceAgreement" ms-class="{{currentPage == 'serviceAgreement' ? 'cur02' : ''}}" ><b></b>服务协议</a></li>
+                      <li><a href="#!/help/contact" ms-class="{{currentPage == 'contact' ? 'cur02' : ''}}" ><b></b>联系我们</a></li>
+                  </ul>
+                  <div class="hackbox"></div>
+                  <h4>携手亿七购</h4>
+                  <ul>
+                      <li><a href="#!/help/cooperation" ms-class="{{currentPage == 'cooperation' ? 'cur02' : ''}}" ><b></b>商务合作</a></li>
+                      <li><a href="#!/help/invite" ms-class="{{currentPage == 'invite' ? 'cur02' : ''}}" ><b></b>邀请</a></li>
+                      <li><a href="#!/help/qq" ms-class="{{currentPage == 'qq' ? 'cur02' : ''}}" ><b></b>官方QQ交流群</a></li>
+                  </ul>
+                  <div class="hackbox"></div>
+              </div>
+             <!--  <div class="help-contact">
+                  <p>如果不能在帮助内容中找到答案，或者您有其他建议、投诉，您还可以：</p>
+                  <ul>
+                      <li class="CustomerCon"><a id="btnLeftQQ" href="javascript:;"  class="Customer"><b></b>在线客服</a></li>
+                      <li>电话客服热线(免长途费)</li>
+                      <li class="tel"><span>4000-588-688</span></li>
+                      <li>邮件联系: <a href="mailto:Service@1yyg.com">Service@1yyg.com</a></li>
+                  </ul>
+              </div> -->
+          </div>
+      </div>
+  </div>
+  
+</div>

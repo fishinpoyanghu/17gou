@@ -1,0 +1,291 @@
+<style>
+  .g-detailCon {
+      width: 1210px;
+      border: 1px solid #e4e4e4;
+      background: #f4f4f4;
+      margin:0 auto;
+      padding: 30px 0;
+      overflow: hidden;
+  }
+  .m-detail-middle {
+      width: 720px;
+      border-left: 1px solid #e4e4e4;
+      border-right: 1px solid #e4e4e4;
+      background: #fff;
+       margin:0 auto;
+  }
+  .single-info {
+      padding-top: 30px;
+  }
+  .single-info dl {
+      width: 640px;
+      margin: 0 auto;
+  }
+  .gray3 {
+      color: #333;
+  }
+  .single-info dt {
+      font-size: 24px;
+      line-height: 40px;
+      border-bottom: 1px solid #efefef;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      word-break: break-all;
+  }
+  .single-info dd.single-fufen {
+      position: relative;
+      overflow: visible;
+  }
+  .single-info dd {
+      width: 640px;
+      overflow: hidden;
+      color: #c2c2c2;
+  }
+  .gray6 {
+      color: #666!important;
+  }
+  .single-info dd p {
+      text-indent: 2em;
+      font-size: 14px;
+      line-height: 28px;
+      padding: 25px 0 20px;
+      word-break: break-all;
+  }
+  .single-info dd cite {
+      margin-right: 20px;
+  }
+  .single-info dd cite em {
+      color: #bbb;
+      margin-right: 2px;
+  }
+  .reply-total {
+      width: 640px;
+      padding: 30px 40px 12px;
+      border-bottom: 1px solid #f0f0f0;
+  }
+  .reply-total li.m-gxhf {
+      font-size: 16px;
+      padding-top: 3px;
+  }
+  .reply-total li.m-share {
+      position: relative;
+  }
+  .reply-total li.m-gxhf i {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-position: 0 -20px;
+      position: relative;
+      top: 4px;
+      _top: 2px;
+      margin-right: 5px;
+  }
+  .reply-total li.m-gxhf em {
+      margin: 0 3px;
+  }
+  .orange {
+      color: #f60!important;
+  }
+  .reply-total li.m-share p.u-xianmu {
+      height: 24px;
+      line-height: 24px;
+      position: relative;
+  }
+  .m-detail-right {
+      width: 267px;
+  }
+  .m-detail-left, .m-detail-middle, .m-detail-right {
+      float: left;
+  }
+  .m-detail-left {
+      width: 199px;
+      height: 1px;
+  }
+  .new-single {
+      width: 237px;
+      margin: 15px auto;
+  }
+  .new-single h4 {
+      font-size: 16px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e4e4e4;
+  }
+  .new-single li {
+      width: 237px;
+      margin-top: 5px;
+      overflow: hidden;
+      border-bottom: 1px solid #efefef;
+      padding: 10px 0 15px;
+      display: inline-block;
+  }
+  .new-single cite {
+      display: block;
+      height: 16px;
+      line-height: 16px;
+      color: #bababa;
+  }
+ 
+ 
+  .new-single cite em {
+      float: left;
+      display: block;
+      max-width: 196px;
+      height: 16px;
+      _line-height: 17px;
+      overflow: hidden;
+      margin-left: 3px;
+      display: inline;
+      word-break: break-all;
+  }
+  .new-single cite a {
+      color: #666;
+      font-size: 14px;
+  }
+  .new-single span {
+      clear: both;
+      display: block;
+      padding: 5px 0;
+  }
+  .new-single p {
+      margin-left: -10px;
+      overflow: hidden;
+      display: inline-block;
+  }
+  .new-single p a {
+      float: left;
+      cursor: pointer;
+      margin-left: 10px;
+  }
+  .new-single p img {
+      display: block;
+      height: 72px;
+  }
+</style>
+<div >
+    <div class="g-detailCon clrfix">
+        <div class="m-detail-left clrfix"></div>
+        <div class="m-detail-middle clrfix" style="overflow: hidden;">
+            <div ms-controller="shareDetailsCtrl">
+              <div style="text-align:center;padding:50px 0;" ms-if="isLoading">
+                      <img src="img/loading-small.gif" alt="加载动画" style="width:150px;">
+              </div>
+              <div class="single-info clrfix" ms-if="!isLoading">
+                  <dl>
+                      <dt class="gray3">{{shareData.show_title}}</dt>
+                      <dd class="single-fufen">
+                          <cite>{{shareData.show_time}}</cite>
+                          <cite><em >{{shareData.comments}}</em>人评论</cite></dd>
+                      <dd class="gray6">
+                          <p>{{shareData.show_desc}}</p>
+                      </dd>
+                      <dd style="text-align:center;">
+                        <div ms-repeat="shareData.show_imgs" style="margin-top: 10px;">
+                          <img  border="0" ms-attr-src="el" >
+                        </div>
+                        
+                      </dd>
+                  </dl>
+              </div>
+              <!-- <div class="reply-total clrfix" ms-if="!isLoading">
+                 共<em class="orange" >{{data.comments}}</em>条评论
+              </div> -->
+            </div>
+            
+            <!--晒单评论开始-->
+            <div  class="member_right" style="width:720px;margin-top:30px;" ms-controller="commentCtrl">
+                <div class="c_winning_expose_detail">
+                    <h1>评论详情 </h1>
+                    <div class="c_winning_expose_detail_in">
+                        <div class="c_list_detail_comment">
+                            <div class="c_comment_Me">
+                                <img class="c_Me_tx" src="img/default_icon.png">
+                                <div class="c_comment_Nologin" ms-if="!isLogin" style="width: 597px;">
+                                    <span></span>
+                                    请您 <a href="#!/login">登录</a> 或 <a href="#!/reg">注册</a> 后再评论
+                                </div>
+                                <div class="c_comment_login"  style="display: block;position:relative;width:600px;" ms-if="isLogin">
+                                    <div style="position:absolute;height:25px;width:100%;top:0;left:0;line-height:25px;padding-left:10px;padding-top:5px;" ms-if="isRespondUser">
+                                        回复@<span style="color:#E21931;">{{nick}}</span>
+                                        :
+                                        <a href="javascript:void(0)" style="position:absolute;right:17px;top:0;width:30px;" ms-click="cancelRespond">X</a>
+                                    </div>
+                                    <textarea  ms-duplex="commentText" ms-class="noPadding:!isRespondUser" style="width: 587px;"></textarea>
+                                    <p>
+                                        <a href="javascript:void(0);" style="color: #ffffff;background: #E21931" ms-click="submitCom">提交</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="text-align:center;" ms-if="data.length == 0&&!isFinished&&pageIndex==1">
+                                    <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+                            </div>
+                            <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="data.length == 0&&isFinished">
+                                <a href="javascript:;" >
+                                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                    <br/>
+                                    <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{pageIndex==1 ? '暂无评论,快来评论吧~' : '该页评论数据为空'}}</span>
+                                </a>
+                            </div>
+                            <ul class="c_comment_Lists">
+                                    <li ms-repeat="data" style="width:100%;">
+                                        <a href="javascript:void(0)" class="c_comment_Lists_head" ms-click="respondUser(el.$model)">
+                                            <img class="c_Me_tx" ms-src="el.icon">
+                                        </a>
+                                        <div class="c_comment_Lists_r" style="width:100%;">
+                                            <a href="javascript:void(0)" ms-click="respondUser(el.$model)">{{el.nick}}</a>
+                                            <p>
+                                                <span ms-if="el.comment_uid!=0" style="margin-left:-2px;font-size:14px;color:#777">
+                                                    回复
+                                                    <a href="javascript:void(0);"style="margin:0 7px;" ms-click="respondUser(el.$model)">{{el.comment_nick}}&nbsp;:</a>
+                                                </span>
+                                                {{el.text}}
+                                            </p>
+                                        </div>
+                                        <input type="hidden" ms-duplex="el.comment_uid">
+                                    </li>
+                            
+                              
+                            </ul>
+                            <div class="pageStr" ms-css-display="{{(pageIndex ==1 && data.length == 0 && isFinished) ? 'none' : ''}}">
+                                <span ms-class="f-noClick:pageIndex==1" ms-click="getPrevPage">
+                                    <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                                </span>
+                                <span class="current"><a>{{pageIndex}}</a></span>
+                                <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                                    <a>下一页<i class="f-tran f-tran-next">&gt;</i></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--晒单评论结束-->
+        </div>
+          <div class="m-detail-right clrfix">
+        
+          <!--最新晒单-->
+          <div class="new-single" ms-controller="shareListCtrl">
+              <h4 class="gray3">最新晒单</h4>
+              <div style="text-align:center;padding:50px 0;" ms-if="isGetShareList">
+                      <img src="img/loading-small.gif" alt="加载动画" style="width:150px;">
+              </div>
+              <div style="text-align:center;height:165px;padding-top:107.5px;margin-bottom:70px;" ms-if="shareList.length == 0&&!isGetShareList">
+                  <a href="#!/allClassify/all" >
+                      <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                      <br/>
+                      <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">暂时没有其他最新晒单~</span>
+                  </a>
+              </div>
+              <ul>
+                  <li ms-repeat="shareList">
+                      <cite><em><a ms-attr-href="#!/shareDetails/{{el.show_id}}" ms-attr-title="{{el.goods_title}}">{{el.show_title}}</a></em></cite><a rel="nofollow" ms-attr-href="#!/shareDetails/{{el.show_id}}"><span class="gray9">{{el.show_desc}}</span></a>
+                      <p>
+                          <a  ms-attr-href="#!/shareDetails/{{$outer.el.show_id}}" ms-repeat="el.show_imgs" style="margin-top: 10px;"><img ms-src="el" border="0" alt=""></a>
+                          
+                      </p>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+    </div>
+</div>

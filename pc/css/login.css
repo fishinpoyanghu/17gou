@@ -1,0 +1,89 @@
+@charset "utf-8";
+@import url(comm.css);
+body{font-family:microsoft Yahei;position: relative;}
+i,b{font-weight:normal;font-style:normal;}
+.w_bg_box{background:url(../images/bg.jpg) no-repeat top center;height:811px;width:100%;}
+.w_header{text-align:center;}
+/*2015-6-19 start*/
+/*2015-6-19 end*/
+.w_header .w_img_bottom img{width:303px;height:27px;}
+.w_header .w_img_bottom{margin-top:38px;margin-bottom:0px;}
+.w_header h2{font-size:26px;color:#333;margin-top:38px;}
+.w_header p{margin:20px 0px 40px;}
+.w_header p a{font-size:14px;color:#666;}
+.w_header p a:hover{color:#E21931;}
+/*content*/
+.loginContent{
+		min-width: 310px;
+		margin:0 auto;
+		padding:80px 0 0;
+		background: url(../img/login_bg.png) no-repeat bottom center;
+}
+.loginContent form{background:#fff;width:310px;padding:0;margin:0px auto;}
+.loginContent form .user,.loginContent form .pas,.loginContent form .c_user, .loginContent form .c_pas,.loginContent form .c_recommend{width:310px;padding-bottom:20px;position:relative;}
+.loginContent form .user span,.loginContent form .c_user span{position:absolute;display:block;width:25px;height:23px;background:url(../img/input-icon-all.png) no-repeat 0 -141px;margin:11px 12px;padding-right: 5px;border-right:1px solid #dcdcdc;}
+.loginContent form .pas span,.loginContent form .c_pas span{position:absolute;display:block;padding-right: 5px;border-right:1px solid #dcdcdc;width:25px;height:23px;background:url(../img/input-icon-all.png) no-repeat 0 -424px;margin:11px 12px;}
+.loginContent form .user input,.loginContent form .pas input,.loginContent form .c_user input,.loginContent form .c_pas input,.loginContent form .c_recommend input{
+width:258px;height:44px;line-height:44px\9;padding-left:50px;font-size: 14px;color: #ababab;font-family:Microsoft YaHei;border:1px solid #ccc;border-radius:2px;-o-border-radius:2px;-webkit-border-radius:2px;-ms-border-radius:2px;-moz-border-radius:2px;}
+.loginContent form .user input:focus,.loginContent form .user input:hover,.loginContent form .pas input:focus,.c_loginContent form .c_recommend input:focus.loginContent form .pas input:hover,.loginContent form .validCode input:focus,.loginContent form .validCode input:hover,.loginContent form .c_user input:focus,.loginContent form .c_pas input:hover,.c_loginContent form .c_recommend input:hover{outline:none;border:1px solid #E21931;}
+.denglu,.zhuce{border-radius:2px;-o-border-radius:2px;-webkit-border-radius:2px;-ms-border-radius:2px;-moz-border-radius:2px;
+height: 44px;line-height: 44px;background: #E21931;border: 0;color: #fff;text-align: center;cursor:pointer;width:310px;font-size: 18px;outline:0;font-family:"Microsoft YaHei";padding:0;}
+.zhuce{background:#fff;border:1px solid #c9c9cf;color:#666666;margin-top:20px;width:308px;}
+.w_other{margin-bottom:14px;color:#999;font-size:14px;width:310px;position:relative;}
+.w_other span,.w_other a{color:#999;font-size:14px;}
+/*2015-6-19 start*/
+.w_other span{margin-left:52px;}
+.w_other a{padding-left:5px;}
+/*.w_way{display:none;background:url(../images/login.jpg) no-repeat left center;width:310px;height:55px;position:absolute;bottom:-64px;left:0px;}*/
+/*.w_way a{display:block;float:left;margin-top:24px;margin-left:30px;}*/
+.w_other .w_way_con{vertical-align:-4px;}
+.zhanghao{margin-top:15px;font-size:14px;color:#999;}
+.zhanghao a{color:#E21931;}
+/*2015-6-19 end*/
+@media screen and (max-width:356px) and (min-width:200px){
+	.loginContent form{background:#fff;width:270px;padding:0;margin:0px auto;}
+	.loginContent form .user,.loginContent form .pas,.loginContent form .c_user, .loginContent form .c_pas,.loginContent form .c_recommend{width:270px;padding-bottom:20px;position:relative;}
+	.loginContent form .user span,.loginContent form .c_user span{position:absolute;display:block;width:25px;height:23px;background:url(../images/input-icon-all.png) no-repeat 0 -141px;margin:11px 12px;padding-right: 5px;border-right:1px solid #dcdcdc;}
+	.loginContent form .pas span,.loginContent form .c_pas span{position:absolute;display:block;padding-right: 5px;border-right:1px solid #dcdcdc;width:25px;height:23px;background:url(../img/input-icon-all.png) no-repeat 0 -424px;margin:11px 12px;}
+	.loginContent form .user input,.loginContent form .pas input,.validCode input,.loginContent form .c_user input,.loginContent form .c_pas input,.loginContent form .c_recommend input{
+	width:218px;height:44px;padding-left:50px;font-size: 14px;color: #ababab;font-family:Microsoft YaHei;border:1px solid #ccc;}
+	.loginContent form .user input:focus,.loginContent form .user input:hover,.loginContent form .pas input:focus,.c_loginContent form .c_recommend input:focus.loginContent form .pas input:hover,.loginContent form .validCode input:focus,.loginContent form .validCode input:hover,.loginContent form .c_user input:focus,.loginContent form .c_pas input:hover,.c_loginContent form .c_recommend input:hover{outline:none;border:1px solid #E21931;}
+	.denglu,.zhuce{
+	height: 44px;line-height: 44px;background: #E21931;border: 0;color: #fff;text-align: center;cursor:pointer;width:270px;font-size: 18px;outline:0;font-family:"Microsoft YaHei";padding:0;}
+	.zhuce{background:#fff;border:1px solid #c9c9cf;color:#666666;margin-top:20px;width:268px;}
+	.w_other{margin-top:20px;color:#999;font-size:14px;width:270px;position:relative;}
+	.w_other span,.w_other a{color:#999;font-size:14px;}
+	.w_other span{padding-right:5px;cursor:pointer;margin-left:74px;}
+	.w_other a{padding-left:5px;}
+	.w_way{display:none;background:url(../images/login_01.jpg) no-repeat left center;width:270px;height:55px;position:absolute;bottom:-64px;left:0px;}
+	.w_way a{display:block;float:left;margin-top:24px;margin-left:30px;}
+	.w_way .w_way_con{margin-left:110px;}
+}
+/*footer*/
+.w_footer{height:79px;font-size:12px;text-align:center;color:#5a5a5a;margin:50px 15px 10px;background:#fff;}
+
+/*2015-6-19 start*/
+.w_bg_box{background:url(../images/bg.jpg) no-repeat top center; height:811px;width:100%;}
+/*2015-6-19 end*/
+.w_footer{background:#333333;color:#fff;margin:0px;line-height:79px;}
+/*2015-6-19  添加 start*/
+.add_car{position:absolute;bottom:120px;left:200px;display:block;width:270px;height:116px;margin-left:-276px;}
+.add_financial{position:absolute;right:20px;bottom:144px;display:block;width:198px;height:310px;}
+/*2015-6-19  添加 end*/
+
+@media screen and (max-width:640px) and (min-width:200px){
+.loginContent{padding:30px 0 0;}
+}
+
+/*错误提示*/
+.w_error{left:52px;width:180px;}
+
+@media screen and (max-width:980px){
+.w_bg_box{background:none;}	
+}
+
+.w_other span{margin-left:22px;}
+.y_jsd-lo{position: absolute;width: 254px;height: 163px;border: 1px solid #cbcbcb;border-radius: 2px;background: #fff;z-index: 1;font-size: 12px;color: #555555;line-height: 24px;padding: 10px;right: -283px;top: -50px;display: none;}
+.y_way_con:hover .y_jsd-lo{display: block;}
+.y_jsd-lo a{color: #E21931;font-size: 12px;}
+.y_jsd-lo .img-jsd-l{position: absolute;left: -13px;top: 50px;}

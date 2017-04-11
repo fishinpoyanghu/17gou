@@ -1,0 +1,133 @@
+<div ms-controller="announcedCtrl">
+    <div class="w_con">
+        <div class="w_latest_title">
+            <h2 class="w_title w_title_one">
+                <a class="w_waiting" style="color: #555;cursor:default;" href="javascript:;">最新揭晓</a>
+            </h2>
+            <h2 class="w_title w_title_one w_title_one_right">
+                <a class="w_waiting" style="color: #555;cursor:default;" href="javascript:;">即将揭晓</a>
+            </h2>
+        </div>
+
+
+
+        <!--------------------------我暂时增加下面-------------------------------->
+        <!-- <div id="isolate_number">
+            <div class="w_different" ms-if="el.status==1">
+                <div class="w_countdown"><strong>揭晓倒计时</strong>
+                    <dd class="yTimes " style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;" ms-class="{{el.status==1 ? 'js-countdowm' : ''}}" ms-attr-end_time="{{(nowTime + el.remain_time*1000)}}" ms-if="el.status==1" ms-attr-activity_id="{{el.activity_id}}">
+                    </dd>
+                </div>
+            </div>
+            <input value="开始" id="start" type="button" ms-click="start" ms-visible="toggleStart"/>
+            <p class="isolate_result_txt" ms-visible="toggleTxt">获得者：<a ms-attr-href="#!/selfRecord/{{el.lucky_uid}}">{{el.lucky_unick}}</a></p>
+
+
+            <!--下面是随机数滚动-->
+             <!--<ul>
+                <li class="isolate" ms-repeat="array" ms-visible="toggleLi">{{el}}</li>
+            </ul>
+
+        </div> -->
+        <!---------------------------------------------------------->
+
+
+
+
+        <div class="w_announced">
+            <div class="w_announced_one">
+                <div style="text-align:center;" ms-if="isDisplayAnimation">
+                    <img src="img/loading.gif" alt="加载动画">
+                </div>
+                <ul>
+                    <li style="margin-bottom: 18px;" class="w_latest w_latest_color goods2811_18615" ms-repeat="newest">
+                        <div class="w_latestImg">
+                            <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank"><img ms-src="el.goods_img"></a>
+                        </div><a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">{{el.goods_title}}</a><b>商品价值：￥{{el.need_num}} <!-- <i>已满员</i> --></b>
+                        <div class="w_different" ms-if="el.status==1">
+                            <div class="w_countdown"><strong>揭晓倒计时</strong>
+                                <dd class="yTimes " style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;" ms-class="{{el.status==1 ? 'js-countdowm' : ''}}" ms-attr-end_time="{{(nowTime + el.remain_time*1000)}}" ms-if="el.status==1" ms-attr-activity_id="{{el.activity_id}}">
+                                </dd>
+                            </div>
+                        </div>
+                        <div class="w_different w_different_add" ms-if="el.status==2">
+                            <div class="w_figure"><img ms-attr-src="{{el.lucky_uicon}}" style="display: inline;">
+                            </div>
+                            <dl class="w_text">
+                                <dd>获得者：<a ms-attr-href="#!/selfRecord/{{el.lucky_uid}}">{{el.lucky_unick}}</a></dd>
+                                <dd>来自：<em>{{el.lucky_ip.country}}</em></dd>
+                                <dd>幸运号码：<i>{{el.lucky_num}}</i></dd>
+                                <dd>本期参与：<i>{{el.lucky_user_num}}</i>人次</dd>
+                                <dd>揭晓时间：{{el.publish_time}}</dd>
+                                <dd class="w_add_multiple_box"><span class="w_add_multiple">回报率：{{(el.need_num/el.lucky_user_num).toFixed(2)}} 倍</span><a class="w_span w_span_other" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank" >查看详情</a></dd>
+                            </dl>
+                        </div>
+
+                    </li>
+                </ul>
+                <div class="pageStr" style="margin: 64px auto;" ms-hide="pageIndex == 1&&newest.length == 0&&isFinished ">
+                    <span ms-class="f-noClick:pageIndex==1" ms-click="getPrevPage">
+                        <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                    </span>
+                    <!--<span class="current"><a>{{pageIndex}}</a></span>
+                    	测试
+                    <span class="not current"><a>{{pageIndex}}</a></span>
+                    <span class="not current"><a>{{pageIndex}}</a></span>
+                    <span class="not current"><a>{{pageIndex}}</a></span>
+                    <span class="not current"><a>{{pageIndex}}</a></span>
+                    <span class="not current">...</span>-->
+                    <span ms-class="not:el!=pageIndex" class="current" ms-click="getNextPage" ms-repeat-el="arrCount"><a>{{el}}</a></span>
+                    <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                        <a title="下一页" href="javascript:;"><i class="f-tran f-tran-next"></i>下一页&gt;</a>
+                    </span>
+                    <!--测试数据-->
+                    <span>共{{totalPages}}页，去第 <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-duplex="newPageIndex"/> 页 <a ms-click="getNextPage(1)"> 确定</a></span>
+                    <!--结束测试数据-->
+                </div>
+            </div>
+            <div class="yConCenterIn ">
+            	<div ms-if="!nextShowGoods.length">
+                    <img style="width: 400px" src="img/loading.gif" alt="加载动画">
+                </div>
+            	<ul style="margin-top: 0px;" class="next_show_goods w_goods_one">
+            	 	<li class="w_goods_details" ms-repeat="nextShowGoods">
+                                <div class="w_imgOut">
+                                    <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">
+
+                                        <img  class="lazyload" ms-attr-data-original="el.goods_img" style="display: inline;">
+
+
+                                    </a>
+                                </div>
+                                <a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">{{el.goods_title}}</a>
+                                <b>价值：￥{{el.need_num}}</b>
+                                <div class="w_line"><span ms-css-width="{{((el.need_num - el.remain_num)/el.need_num)*100}}%"></span></div>
+                                <ul class="w_number">
+                                    <li class="w_amount">{{el.need_num - el.remain_num}}</li>
+                                    <li class="w_amount">{{el.need_num}}</li>
+                                    <li class="w_amount">{{el.remain_num}}</li>
+                                    <li>已购买人次</li>
+                                    <li>总需人次</li>
+                                    <li>剩余人次</li>
+                                </ul>
+                                <dl class="w_rob" >
+                                    <dd><a class="w_slip" href="javascript:;" ms-click="addCartItem($event,el.$model,el.join_number,'home')">立即购买</a>
+                                        <!--<a href="javascript:;" class="w_slip2" ms-click="addCartItem($event,el.$model)"></a>-->
+                                        <div id="w_bot2" ms-controller="cartPageCtrl">  
+                                            <span class="label2">参与</span>
+                                            <span class="btn-minus2" ms-click="decrease(el,0,'index')">-</span>
+                                            <input type="text" class="w_bot2_input" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el,0,'index')" onafterpaste="this.value=this.value.replace(/\D/g,'')"   type="text" ms-duplex="el.join_number">
+                                            <span class="btn-plus2" ms-click="increase(el,0,'index')">+</span>
+                                            <span class="people_txt2">次</span>
+
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <span class="w_zone" ms-if="el.activity_type == 2">10元专区</span></li>
+                        
+            </ul>
+            </div>
+            <div class="w_clear"></div>
+        </div>
+    </div>
+</div>

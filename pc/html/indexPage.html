@@ -1,0 +1,317 @@
+<div ms-controller="indexPageCtrl" id="indexPage">
+    <div class="yBanner" ms-controller="banner">
+        <div id="banner" class="flexslider">
+        <style>
+            .flex-viewport {
+                overflow: hidden; position: relative;text-align: center;
+            }
+            .flex-viewport img,.flex-viewport a {
+                display: block;
+                width: 100%;
+            }
+        </style>
+            <div class="flex-viewport" >
+                <ul class="slides">
+                    <li ms-repeat="pics">
+                        <a ms-href="el.href ? el.href : 'javascript:;' ">
+                            <img ms-src="el.img" style="background-position:center 0px;">
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="yscroll_list">
+        <div class="yscroll_listin">
+            <span><i></i><a href="javascript:;" target="_blank">最新公告：</a></span>
+            <ul class="yscroll_list_left">
+                <li ms-repeat="luckyData">
+                    <p class="yscrollfont"><a ms-attr-href="#!/goods/{{el.goods_id}}">恭喜 {{el.name}} 获得 {{el.goods_name}}</a></p>
+                    <p class="yscrolltime" style="width:165px;">{{el.ut*1000|date("yyyy-MM-dd HH:mm:ss")}}</p>
+                </li>
+            </ul>
+            <ul class="yscroll_list_right">
+                <a href="#!/announced" target="_blank"><span></span><em>更多</em></a>
+            </ul>
+        </div>
+    </div>
+    <div class="sd_yContent">
+        <div class="yContent">
+            <div class="yConNew yCon" style="position: relative;margin-top:30px;">
+        	<img ms-if="newGoodList.length" src="./img/announced.png" alt="最新揭晓" />
+
+                <div class="yConulout">
+                    <div class="module_loading">
+                        <div style="text-align:center;" ms-if="isGetNewGoods" style="height:400px;">
+                            <img src="img/loading.gif" alt="加载动画" style="height:400px;">
+                        </div>
+                        <ul>
+                            <li class="yTimesLi" ms-repeat="newGoodList">
+                                <dl class="yTimesDl">
+                                    <dd class="yddImg">
+                                        <a ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank"><img class="lazy_publish" ms-src="el.goods_img"></a>
+                                    </dd>
+                                    <dd class="yddName"><a ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank" style="color：#000 ;font-weight：blod;font-size:13px;">{{el.goods_title}}</a></dd>
+                                    <dd class="yGray">价值 <span >￥{{el.need_num}}</span></dd>
+                                    <!--<dd class="yTimes " style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;" ms-class="{{el.status==1 ? 'js-countdowm' : ''}}" ms-attr-end_time="{{(nowTime + el.remain_time*1000)}}" ms-if="el.status==1" ms-attr-activity_id="{{el.activity_id}}">-->
+                                    <dd class="yTimes " style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;" ms-class="{{el.status==1 ? 'js-countdowm' : ''}}" ms-attr-end_time="{{(nowTime + el.remain_time*1000)}}" ms-attr-activity_id="{{el.activity_id}}">
+                                    </dd>
+                                    <dd class="yTimes" style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;text-align: left;" ms-if="el.status==2">
+                                        获奖者 ： {{el.lucky_unick}}
+                                        <br/>
+                                        幸运码 ： {{el.lucky_num}}
+                                    </dd>
+                                </dl><strong></strong>
+                            </li>
+                            <!--暂时不要，以后再改-->
+                            <!--<li class="yTimesLi" ms-if="newGoodList.length">
+                            	<dl class="realTimeInfo">
+                            		<dt>
+                            			<span ms-click="playNews(1)">最新揭晓</span>
+                            			<b></b>
+                            			<span ms-click="playNews(0)">玩家动态</span>
+                            		</dt>
+                            		<dd ms-repeat="palyNewsList">
+                            			恭喜 {{el.lucky_unick}} 获得价值 ￥{{el.need_num}}的{{el.goods_title}}
+                            		</dd>
+                            	</dl>
+                            </li>-->
+                            <!--暂时不要，以后再改 end-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img  ms-if="newGoodList.length" class="activeLink" src="./img/activeLink1.png"/>
+        <div>
+            <div class="yCon yCon0 yConCenter" >
+                <h2>
+                        <i>1F</i>
+                        <a href="#!/allClassify/all?order_key=weight" class="yCon-title"  target="_blank">最热商品</a>
+                        <a href="#!/allClassify/all?order_key=weight" class="yMoreLink" target="_blank"><em>更多</em></a>
+                    </h2>
+                <div class="yConCenterIn">
+                    <div class="yConCenterInList" style="display: block;">
+                        <div style="text-align:center;" ms-if="isGetHotGoods" style="height:400px;">
+                            <img src="img/loading.gif" alt="加载动画" style="height:400px;">
+                        </div>
+                        <ul class="w_goods_one">
+                            <li class="w_goods_details" ms-repeat="good">
+                                <div class="w_imgOut">
+                                    <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank"><img class="lazy9" ms-src="el.goods_img"></a>
+                                </div><a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">{{el.goods_title}}</a><b>价值：￥{{el.need_num}}</b>
+
+
+                                    <div class="w_line"><span ms-css-width="{{(el.need_num - el.remain_num)/el.need_num*100}}%"></span></div>
+                                    <ul class="w_number">
+                                        <li class="w_amount">{{el.need_num-el.remain_num}}</li>
+                                        <li class="w_amount"> {{el.need_num}}</li>
+                                        <li class="w_amount">{{el.remain_num}}</li>
+                                        <li>已购买人次</li>
+                                        <li>总需人次</li>
+                                        <li>剩余人次</li>
+                                    </ul>
+                                    <dl class="w_rob"  >
+                                        <dd><a class="w_slip" href="javascript:;" ms-click="addCartItem($event,el.$model,el.join_number,'home')">立即购买</a>
+
+                                            <div id="w_bot2"  ms-controller="cartPageCtrl">
+                                                <span class="label2">参与</span>
+                                                <span class="btn-minus2" ms-click="decrease(el,0,'index')">-</span>
+                                                <input type="text" class="w_bot2_input" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el,0,'index')" onafterpaste="this.value=this.value.replace(/\D/g,'')"   type="text" ms-duplex="el.join_number">
+                                                <span class="btn-plus2" ms-click="increase(el,0,'index')">+</span>
+                                                <span class="people_txt2">次</span>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <span class="w_zone" ms-if="el.activity_type == 2">10元专区</span>
+									<strong></strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <img  ms-if="newGoodList.length" class="activeLink" src="./img/activeLink.jpg"/>
+            <div class="yCon yCon1 yConCenter" ms-repeat="goodsBlock">
+                <h2 ms-if="el.goods_type_id != null">
+                        <i>{{$index + 2}}F</i>
+                        <a ms-attr-href="#!/allClassify/{{el.goods_type_id}}" class="yCon-title"  target="_blank">{{el.blockTitle}}</a>
+                        <a ms-attr-href="#!/allClassify/{{el.goods_type_id}}" class="yMoreLink"  target="_blank"><em>更多</em></a>
+                        <ul ></ul>
+                </h2>
+                <h2 ms-if="el.goods_type_id == null">
+                        <i>{{$index + 2}}F</i>
+                        <a href="javascript:;" class="yCon-title"  target="_blank">{{el.blockTitle}}</a>
+                        <!-- <a href="javascript:;" class="yMoreLink"  target="_blank"><em>更多</em></a> -->
+                        <ul style="width:1050px;">
+                            <li style="width: auto;height:auto;"   ms-repeat="classifyList" ms-class="{{changeActiveType == el.goods_type_id ? 'change-active' : ''}}">
+                                <a href="javascript:;" style="display: inline;" ms-if="el.goods_type_id != null" ms-click="changeType(el.goods_type_id)">{{el.name}}</a>
+                                <!--<em style="margin-left: 6px;" ms-if="$index != (classifyList.length-1)">/</em>-->
+                            </li>
+
+                        </ul>
+                </h2>
+                <div class="yConCenterIn">
+                    <div class="yConCenterInList" style="display: block;">
+                        <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="el.goodsList.length == 0">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">该分类暂时没有商品</span>
+                            </a>
+                        </div>
+                        <ul class="w_goods_one">
+                            <li class="w_goods_details" ms-repeat="el.goodsList">
+                                <div class="w_imgOut">
+                                    <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">
+
+                                        <img  class="lazyload" ms-attr-data-original="el.goods_img" style="display: inline;">
+
+
+                                    </a>
+                                </div>
+                                <a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">{{el.goods_title}}</a>
+                                <b>价值：￥{{el.need_num}}</b>
+                                <div class="w_line"><span ms-css-width="{{((el.need_num - el.remain_num)/el.need_num)*100}}%"></span></div>
+                                <ul class="w_number">
+                                    <li class="w_amount">{{el.need_num - el.remain_num}}</li>
+                                    <li class="w_amount">{{el.need_num}}</li>
+                                    <li class="w_amount">{{el.remain_num}}</li>
+                                    <li>已购买人次</li>
+                                    <li>总需人次</li>
+                                    <li>剩余人次</li>
+                                </ul>
+                                <dl class="w_rob" >
+                                    <dd><a class="w_slip" href="javascript:;" ms-click="addCartItem($event,el.$model,el.join_number,'home')">立即购买</a>
+                                        <!--<a href="javascript:;" class="w_slip2" ms-click="addCartItem($event,el.$model)"></a>-->
+                                        <div id="w_bot2" ms-controller="cartPageCtrl">  
+                                            <span class="label2">参与</span>
+                                            <span class="btn-minus2" ms-click="decrease(el,0,'index')">-</span>
+                                            <input type="text" class="w_bot2_input" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el,0,'index')" onafterpaste="this.value=this.value.replace(/\D/g,'')"   type="text" ms-duplex="el.join_number">
+                                            <span class="btn-plus2" ms-click="increase(el,0,'index')">+</span>
+                                            <span class="people_txt2">次</span>
+
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <span class="w_zone" ms-if="el.activity_type == 2">10元专区</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--主页晒单-->
+            <div ms-if="isShare"  class="yCon yCon2 yConCenter" ms-repeat="shareList">
+                <h2>
+                        <i>{{el.shareIndex}}F</i>
+                        <a href="#!/share" class="yCon-title"  target="_blank">{{el.blockTitle}}</a>
+                        <a href="#!/share" class="yMoreLink"  target="_blank"><em>更多</em></a>
+                        <ul ></ul>
+                </h2>
+                <div class="yConCenterIn" style="height: 0px;">
+                    <!--<div class="yConCenterInList" style="display: block;" ms-if="el.goodsList.length == 0">
+                        <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="el.goodsList.length == 0">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">该分类暂时没有晒单</span>
+                            </a>
+                        </div>
+                    </div>-->
+                </div>
+                <div>
+		            <dl style="margin-top: 10px;">
+		                <dd class="index_share"  ms-repeat="el.goodsList">
+		                	<div style="margin-right:20px;float: left;width: 130px;height: 130px; overflow: hidden;">
+			                    <a ms-href="#!/shareDetails/{{el.show_id}}" target="_blank">
+			                    	<img  ms-src="el.show_imgs[0]">
+			                    </a>
+		                    </div>
+		                    <p style="font-size: 16px;">
+		                    	{{el.show_desc}}
+		                    </p>
+		                    <div style="position: absolute;right: 57px;bottom: 0px;height: 46px; font-size: 18px;">
+		                        <a target="_blank" ms-attr-href="#!/selfRecord/{{el.uid}}">
+		                            ————&nbsp;<em style="font-size: 18px;color: #73C6F2;">{{el.unick}}</em>&nbsp;{{el.show_time}}
+		                        </a>
+		                        <!--<a ms-href="#!/comment/{{el.show_id}}">{{el.comments}}</a>-->
+		                    </div>
+		                </dd>
+		            </dl>
+        		</div>
+            </div>
+        </div>
+    </div>
+
+
+	<!--固定导航-->
+    <div class="nav_fixed r-fixed" id="nav_fixed" ms-if="(isDisplayNav && navItem.length)" style="visibility: visible;">
+    	  <ul class="r-fixed-nav">
+    	  	
+            <li class="toolbar-item toolbar-item-no">
+                <a style="height: 40px; line-height: 40px;background:url(./img/nav_icon.png) no-repeat -105px -36px;background-color: #E21931;">
+                	
+                </a>
+                <a style="height: 40px; line-height: 40px;background:url(./img/sel.png) no-repeat -105px -36px;background-color: #E21931;">
+                	
+                </a>
+            </li>
+        </ul>
+        <ul class="r-fixed-nav">
+        	<!--自动获取后台代码，暂时不用，先注释-->
+            <!--<li style="background-color: #626262;" class="toolbar-item"  ms-repeat="navItem">
+                <a href="javascript:void(0);">{{ el }}</a>
+            </li>-->
+            <!--固定代码，暂时这样，以后删除-->
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -77px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -116px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -152px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -188px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -225px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -262px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -299px;">
+                </a>
+            </li>
+            <li style="background-color: #626262;"  class="toolbar-item">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -336px;">
+                </a>
+            </li>
+        </ul>
+        <ul  class="r-fixed-nav">
+        	<li style="background-color: #ADADAD;"  class="toolbar-item toolbar-item-no" ms-click="scrollTop">
+                <a style="background:url(./img/nav_icon.png) no-repeat -105px -375px;">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--固定导航 end-->
+
+</div>
+<style type="text/css">
+	.index_share{
+		display: inline-block;
+		width: 560px;
+		box-sizing: content-box;
+		border: 1px solid #DDDDDD;
+		padding:20px;
+		position: relative;
+	}
+</style>

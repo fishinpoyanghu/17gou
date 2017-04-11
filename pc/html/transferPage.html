@@ -1,0 +1,31 @@
+<div class="ygqq_login" ms-controller="transferPageCtrl">
+    <div class="ygqq_login_logo ygqq_register_logo">
+    </div>
+    <div class="ygqq_login_form" style="position:relative;">
+        <div style="    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 2;
+    min-height: 200px;" ms-if="isLoading">
+                    <img src="img/loading-small.gif" alt="加载动画" style="width:100px;">
+            </div>
+        <form class="ygqq_form" style="display:block;" >
+            
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="text" placeholder="请输入邀请码，没有则不填" ms-duplex="inviteCode">
+            </div>
+            <div class="ygqq_register_xy">
+                <input class="ygqq_button" ms-click="doBind" type="button" ms-attr-value="{{isBinding ? '绑定中...' : '绑定邀请码'}}">
+            </div>
+
+            <div class="ygqq_login_text ygqq_register_text" style="text-align: center;text-decoration: underline">
+                <span><a href="#!/" >我没有邀请码,直接进入</a></span>
+            </div>
+           
+        </form>
+    </div>
+</div>
+

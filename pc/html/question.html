@@ -1,0 +1,24 @@
+
+<div ms-controller="questionCtrl">
+  <div class="c_cloud_guide">
+    <h4 class="w_guide">
+      <a href="#!/question" ms-class="{{'常见问题' == title ? 'w_accord' : ''}}">常见问题</a>
+      <a  href="#!/rule" ms-class="{{'玩法规则' == title ? 'w_accord' : ''}}">玩法规则</a>
+      <a  href="#!/redRule" ms-class="{{'红包玩法' == title ? 'w_accord' : ''}}">红包玩法</a>
+      <a  href="#!/lotteryRule" ms-class="{{'抽奖玩法' == title ? 'w_accord' : ''}}">抽奖玩法</a>
+    </h4>
+  </div>
+  <div class="c_cloud_guide "  style=" border: 1px solid #E5E5E5;">
+
+      <h2 class="c_know_cluod">{{title}}</h2>
+      <h2 class="c_know_cluod">{{title}}</h2>
+      <div class="w_common_question_box ">
+          <div  class="c_guide_list c_common_question service_agreement " style="display:block;position: relative;"  ms-html="content">
+
+          </div>
+          <div style="text-align:center;" ms-if="isLoading">
+                  <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+          </div>
+      </div>
+  </div>
+</div>

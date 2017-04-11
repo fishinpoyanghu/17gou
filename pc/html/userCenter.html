@@ -1,0 +1,48 @@
+<div ms-controller="userCenterCtrl">
+    <div class="b_sup_content">
+        <div  class="">
+            <div ms-include-src="'html/userMes.html'"></div>
+        </div>
+        <div id="content_box" class="">
+            <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+            <div class="member_right b_record_box">
+               <ul class="c_main_income">
+                    <li >
+                        <div class="c_money_type">余额</div>
+                        <div><span ms-if="!isLoadingMoney">{{money}}</span><img ms-if="isLoadingMoney" src="img/loading-small.gif" style="width:50px;"/></div>
+                        
+                        <a href="#!/balance_detail" class="c-look-details">查看余额明细</a>
+                    </li>
+                    <div class="c_right_line"></div>
+                    <li class="c_income">
+                        <div class="c_money_type">佣金<i></i></div>
+                        <div>
+                            <span style="color:#f57403;" ms-if="!isLoadingInviteInfo">{{inviteInfo}}</span>
+                            <img ms-if="isLoadingInviteInfo" src="img/loading-small.gif" style="width:50px;"/>
+                        </div>
+                        <a href="#!/inviteMoney" class="c-look-details">查看佣金明细</a>
+                    </li>
+                    <div class="c_right_line"></div>
+                    <div class="c_right_line"></div>
+                    <li class="c_income">
+                        <div class="c_money_type">积分</div>
+                        <div>
+                            <span style="color:#f57403;" ms-if="!isLoadingPoint">{{point}}</span>
+                            <img ms-if="isLoadingPoint" src="img/loading-small.gif" style="width:50px;"/>
+                        </div>
+                      <!--   <div>
+                            <img src="img/loading-small.gif" alt="加载动画" style="height:20px;">
+                        </div> -->
+                        <a href="#!/myPoint" class="c-look-details">查看积分明细</a>
+                    </li>
+                    <div class="c_right_line"></div>
+                    <li>
+                        <a href="#!/recharge"  class="c_main_recharge" style="margin-top:40px;color:#ffffff;">充值</a>
+                    </li>
+                    <div class="c_clear"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+</div>

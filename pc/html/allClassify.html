@@ -1,0 +1,192 @@
+<style>
+
+::-ms-clear, ::-ms-reveal{display: none;}
+	.c_rob_box {
+	    background: #f3f3f3 none repeat scroll 0 0;
+	    margin: 0 -18px;
+	    text-align: center;
+	}
+    .c_rob_box .w_rob{
+      overflow: hidden;
+      margin:0px 18px;
+      padding:2px 0px 14px;
+    }
+    .c_rob_box .c_cumulative_box{
+      padding:14px 0px;
+      position: relative;
+    }
+    .c_rob_box .c_cumulative_box strong{
+      font-size:14px;
+      color:#333;
+      font-style: normal;
+    font-weight: 500;
+    }
+    .c_rob_box .c_detailsinputs{
+      width:120px;
+      height:28px;
+      border:1px solid #ddd;
+      text-align: center;
+      color:#666;
+    }
+    .c_rob_box span{
+      display: block;
+      font-size:20px;
+      color:#555;
+      position: absolute;
+      width:30px;
+      height:30px;
+      top:14px;
+      cursor: pointer;
+    }
+    .c_rob_box .c_addnew_subtracts{
+      left:127px;
+      border-right:1px solid #ddd;
+    }
+    .c_rob_box .c_addnew_pluss{
+      left:218px;
+      border-left:1px solid #ddd;
+    }
+/*    .w_goods_details{
+      height:387px;
+    }*/
+    .w_product_con{
+      position: relative;
+    }
+    .w_product_con .c_join_all{
+      position: absolute;
+      right:0px;
+      top:0px;
+      display: block;
+      width:98px;
+      height:32px;
+      background: #E21931;
+      border-radius: 4px;
+      border-bottom:2px solid #E21931;
+      font-size:16px;
+      color:#fff;
+      line-height: 32px;
+      text-align: center;
+      cursor:pointer;
+    }
+
+
+.w_specific_class1 ul li{
+    width:80px;
+    text-align: center;
+    margin:0px 12px 10px;
+    height:20px;
+}
+.w_specific_class1 ul li a{
+    display:block;
+    height:20px;
+    padding:0px 6px;
+    line-height: 20px;
+  }
+.w_specific_class1 ul li .c_addspans_icon{
+    display:block;
+    width:100%;
+    height:20px;
+    vertical-align: middle;
+  }
+.c_newgoods_brand .c_newgoods_brand_name{
+  height:20px;
+  line-height: 20px;
+}
+</style>
+<div ms-controller="allClassifyCtrl">
+    <div class="w_con">
+        <h4 class="w_guide"><a href="#!/">首页</a><a  ms-class="{{'all' == goods_type_id ? 'w_accord' : ''}}" href="javascript:void(0)" ms-click="changeGoodsType('all')">全部商品</a></h4>
+        <div class="w_goods_nav">
+            <h2>全部商品<!-- <span>（共<a href="javascript:void(0)">1095</a>件商品）</span> --></h2>
+            <div class="w_choose">
+                <dl class="w_choose_list">
+                    <dd ms-repeat="classifyList" ms-click="changeGoodsType(el.goods_type_id)">
+                        <a href="javascript:void(0);" ms-class="{{el.goods_type_id == goods_type_id ? 'w_selected' : ''}}">
+                            <b>{{el.name}}</b>
+                        </a>
+                    </dd>
+                    <!-- <dd class="w_special"><a href="javascript:void(0);" ><span class="w_icon w_icon_eight"></span><b>其他商品</b></a></dd> -->
+                    <div class="w_clear"></div>
+                </dl>
+            </div>
+        </div>
+        <div class="w_product_con">
+            <dl class="w_new">
+                <dd>排列：</dd>
+                <dd><a href="javascript:void(0)" ms-class="{{order_key == 'ing' ? 'w_announced' : ''}}" ms-click="changeOrderKey('ing','none')">即将揭晓</a></dd>
+                <!-- <dd><a href="javascript:void(0)" >剩余人次</a></dd> -->
+                <dd><a href="javascript:void(0)" ms-class="{{order_key == 'weight' ? 'w_announced' : ''}}" ms-click="changeOrderKey('weight','none')">人气</a></dd>
+                <dd><a href="javascript:void(0)" ms-class="{{order_key == 'time' ? 'w_announced' : ''}}" ms-click="changeOrderKey('time','none')">最新商品</a></dd>
+                <dd>
+                    <a class="w_last" href="javascript:void(0)" ms-class="{{order_key == 'num' ? 'w_announced' : ''}}" ms-click="changeOrderKey('num',order_type)">
+                        价格
+                        <span>
+                            <img ms-attr-src="{{order_key == 'num' ? 'img/jia_01.png' : 'img/jia_03.png'}}" style="position:absolute;top:0;">
+                        </span>
+                        <span class="w_jian_tou">
+                            <img ms-attr-src="{{order_key == 'num' ? 'img/jia.png' : 'img/jia_06.png'}}" style="position:absolute;top:0;">
+                        </span>
+                    </a>
+                </dd>
+            </dl>
+            <!-- <a class="c_join_all" style="" href="javascript:addAllGoodsToCart()">全部参与</a> -->
+        </div>
+        <!--商品列表-->
+        <div class="w_goods_con yConCenterIn" style="height: auto;border-right: 0;border-top: none;overflow: initial;position: relative;margin-top: 10px;">
+            <div style="text-align:center;padding:50px 0;" ms-if="isDisplayAnimation">
+                <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+            </div>
+            <div style="text-align:center;height:165px;padding-top:107.5px;margin-bottom:70px;" ms-if="goodsList.length == 0&&!isLoading">
+                <a href="javascript:;" >
+                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                    <br/>
+                    <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{page == 1 ? '暂时没有数据~' : '该页暂时没有数据~'}}</span>
+                </a>
+            </div>
+            <ul class="w_goods_one">
+                <li class="w_goods_details" ms-repeat="goodsList">
+                    <div class="w_imgOut">
+                        <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">
+                            <img   ms-attr-src="el.goods_img" style="display: inline;">
+                        </a>
+                    </div>
+                    <a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" target="_blank">{{el.goods_title}}</a>
+                    <b>价值：￥{{el.need_num}}</b>
+                    <div class="w_line"><span ms-css-width="{{((el.need_num - el.remain_num)/el.need_num)*100}}%"></span></div>
+                    <ul class="w_number">
+                        <li class="w_amount">{{el.need_num - el.remain_num}}</li>
+                        <li class="w_amount">{{el.need_num}}</li>
+                        <li class="w_amount">{{el.remain_num}}</li>
+                        <li>已购买人次</li>
+                        <li>总需人次</li>
+                        <li>剩余人次</li>
+                    </ul>
+                    <dl class="w_rob">
+                        <dd><a class="w_slip"  href="javascript:;" ms-click="addCartItem($event,el.$model,el.join_number,'home')">立即购买</a>
+                        </dd>
+                    </dl>
+                    <div id="w_bot4"  ms-controller="cartPageCtrl">
+                        <span class="label2">参与</span>
+                        <span class="btn-minus2" ms-click="decrease(el,0,'index')">-</span>
+                        <input type="text" class="w_bot2_input" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el,0,'index')" onafterpaste="this.value=this.value.replace(/\D/g,'')"   type="text" ms-duplex="el.join_number">
+                        <span class="btn-plus2" ms-click="increase(el,0,'index')">+</span>
+                        <span class="people_txt2">次</span>
+                    </div>
+                    <span class="w_zone" ms-if="el.activity_type == 3">限购商品</span>
+					<span class="w_zone" ms-if="el.activity_type == 2">10元专区</span>
+                </li>
+              
+            </ul>
+        </div>
+        <div class="pageStr" style="margin: 40px auto;"  ms-css-display="{{(page ==1 && goodsList.length == 0 && !isLoading) ? 'none' : ''}}">
+            <span ms-class="{{page == 1 ? 'f-noClick' : ''}}"><a href="javascript:;" ms-click="prevPage()"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span>
+            <!--<span class="current"><a>{{page}}</a></span>-->
+            <span ms-class="not:el!=page" class="current" ms-click="nextPage" ms-repeat-el="arrCount"><a>{{el}}</a></span>
+            <span ms-class="{{pageOver ? 'f-noClick' : ''}}"><a title="下一页" href="javascript:;" class="nextPage" ms-click="nextPage()">下一页<i class="f-tran f-tran-next">&gt;</i></a></span>
+            <!--测试数据-->
+                    <span>共{{totalPages}}页，去第 <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-duplex="newPageIndex"/> 页 <a ms-click="nextPage(1)"> 确定</a></span>
+            <!--结束测试数据-->
+        </div>
+    </div>
+</div>
+    

@@ -1,0 +1,82 @@
+<div class="w_con_other w_con_other1" ms-controller="tenYuanCtrl">
+   <img width="100%" src="./img/tenyuan_logo.png"/>
+    <div class="w_con">
+        <div class="w_latest_title">
+            <h2 class="w_title w_title_one" style="width: 100%;">
+                <a class="w_waiting" style="color: #555;cursor:default;" href="javascript:;">所有商品</a>
+            </h2>
+            <!--<h2 class="w_title w_title_two" style="background:#E21931;color:#fff;font-weight:normal;border-color:#E21931;font-size: 14px;">&nbsp;&nbsp;10元专区 规则说明</h2>-->
+        </div>
+        <div class="w_announced">
+            <div class="w_announced_one" style="width: 100%;">
+                <div class="w_goods_con">
+                    <div style="text-align:center;" ms-if="isDisplayAnimation">
+                        <img src="img/loading.gif" alt="加载动画">
+                    </div>
+                    <div style="text-align:center;height:165px;padding-top:107.5px;margin-bottom:70px;" ms-if="data.length == 0&&isFinished&&startIndex==1">
+                        <a href="#!/allClassify/all" >
+                            <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                            <br/>
+                            <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">10元专区暂时没有数据，点我到全部商品分类无看看吧吧~</span>
+                        </a>
+                    </div>
+                    <ul class="w_goods_one w_goods_two w_goods_two1">
+                        <li class="w_goods_details  w_special_other c_newgoods_details" ms-repeat="data">
+                            <div class="w_imgOut">
+                                <a class="w_goods_img" ms-attr-href="#!/goods/{{el.activity_id}}"><img ms-src="el.goods_img" style="display: inline;">
+                                </a>
+                            </div><a class="w_goods_three" ms-attr-href="#!/goods/{{el.activity_id}}" ms-attr-title="{{el.goods_title}}">{{el.goods_title}}</a><b>价值：￥{{el.need_num}}</b>
+                            <div class="w_line"><span ms-css-width="{{((el.need_num - el.remain_num)/el.need_num)*100}}%"></span></div>
+                            <ul class="w_number">
+                                <li class="w_amount">{{el.need_num-el.remain_num}}</li>
+                                <li class="w_amount">{{el.need_num}}</li>
+                                <li class="w_amount">{{el.remain_num}}</li>
+                                <li>已购买人次</li>
+                                <li>总需人次</li>
+                                <li>剩余人次</li>
+                            </ul>
+                            <dl class="w_rob"  >
+                                <dd><a class="w_slip" href="javascript:;" ms-click="addCartItem($event,el.$model,el.join_number,'home')">立即购买</a>
+                                    <!--<a href="javascript:;" class="w_slip2" ms-click="addCartItem($event,el.$model)"></a>-->
+                                    <div id="w_bot2"  ms-controller="cartPageCtrl">
+                                        <span class="label2">参与</span>
+                                        <span class="btn-minus2" ms-click="decrease(el,0,'index')">-</span>
+                                        <input type="text" class="w_bot2_input" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el,0,'index')" onafterpaste="this.value=this.value.replace(/\D/g,'')"   type="text" ms-duplex="el.join_number">
+                                        <span class="btn-plus2" ms-click="increase(el,0,'index')">+</span>
+                                        <span class="people_txt2">次</span>
+                                    </div>
+                                </dd>
+                            </dl>
+                            <span class="w_zone w_zone_xg">10元专区</span>
+                        </li>
+                    </ul>
+                </div>
+                <div  class="pageStr" style="margin: 64px auto;" ms-if="!(data.length==0&&pageIndex==1)">
+                    <span ms-class="f-noClick:pageIndex==1" ms-click="getPrevPage">
+                        <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                    </span>
+                    <span ms-class="not:el!=pageIndex" class="current" ms-click="getNextPage" ms-repeat-el="arrCount"><a>{{el}}</a></span>
+                    <!--<span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                        <a>下一页<i class="f-tran f-tran-next">&gt;</i></a>
+                    </span>-->
+                    <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                        <a title="下一页" href="javascript:;"><i class="f-tran f-tran-next"></i>下一页&gt;</a>
+                    </span>
+                    <!--测试数据-->
+                    <span>共{{totalPages}}页，去第 <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-duplex="newPageIndex"/> 页 <a ms-click="getNextPage(1)"> 确定</a></span>
+                    <!--结束测试数据-->
+                </div>
+            </div>
+            <!--<div class="w_announced_two" style="margin-top: -3px;">
+                <div style="padding:10px;line-height: 24px;">
+                	<ul>
+                		<li><span>1</span>、当商品属于<b>10元专区</b><i></i>类别时，商品图片上面<br>会有“10元专区”标记</li>
+                		<li><span>2</span>、10元专区每样商品购买数量为<b>10的倍数</b>，感谢您的参与！</li>
+                	</ul>
+                </div>
+                
+            </div>-->
+            <div class="w_clear"></div>
+        </div>
+       
+    </div>

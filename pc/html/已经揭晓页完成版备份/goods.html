@@ -1,0 +1,509 @@
+
+<div ms-controller='goodsPageCtrl'> 
+    <!-- 已经揭晓start -->
+    <div  >
+        <div class="w_con" >
+            <div style="text-align:center;padding:50px 0;" ms-if="isLoading">
+                <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+            </div>
+            <!--揭晓进行时-左侧-->
+            <div class="w_during_left" ms-if="goodsData.status == 2">
+                <h4 class="w_guide"><a href="#!/">首页</a><a href="#!/allClassify/all">全部商品</a><a class="w_accord" href="javascript:;">商品详情</a></h4>
+                <div class="w_during_graphic">
+                    <div class="w_during_figure" style="position:relative;">
+                        <img  ms-attr-src="goodsData.goods_img[0]">
+                        <a class="go_to_new_item" ms-href="#!/goods/{{goodsData.new_activity_id}}">前往最新一期</a>
+                    </div>
+                    <div class="w_during_wen" style="position:relative;">
+                        <h1 style="font-size: 18px;">（第{{goodsData.activity_id}}期）{{goodsData.goods_title}}<i style="color:#E21931;margin-left:4px;font-size:18px;">（{{goodsData.goods_subtitle}}）</i></h1>
+                        <div class="w_add_doing" >
+                            <p class="w_add_doing_noleft">揭晓结果<b>幸运号码</b></p>
+                            <div class="w_addBg_other">
+                                <p class="w_results">{{goodsData.lucky_num}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w_clear"></div>
+                </div>
+                <div class="w_during_winner" style="position:relative;">
+                    <div class="w_winner_left">
+                        <div class="w_winner_figure"><img  ms-src="{{goodsData.lucky_uicon}}"></div>
+                        <dl class="w_winner_wen">
+                            <dd class="w_red" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">恭喜<span><a ms-attr-href="#!/selfRecord/{{goodsData.lucky_uid}}">{{goodsData.lucky_unick}}</a>（{{goodsData.lucky_ip.country}}）</span> 获得了本期商品</dd>
+                            <dd>本期夺宝：<i >{{goodsData.lucky_user_num}}</i>人次 <a  href="javascript:void(0)" class="w_other_ren" ms-click="getShowMyCodes()">点击查看</a></dd>
+                            <dd >揭晓时间：{{goodsData.publish_time}}</dd>
+                        </dl>
+                    </div>
+                    <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length > 0 && isLogin">
+                        <dd class="w_winner_list" >
+                            <label>您的本期夺宝号码：</label>
+                            <ul class="con1" style="height:72px;overflow:hidden;">
+                                <li>
+                                    <span ms-repeat="goodsData.user_lucky_num" style="display:inline-block;padding-bottom: 2px;">{{el}}</span>
+
+                                </li>
+                            </ul>
+                            <div class="w_clear"></div>
+                        </dd><span ms-click="getShowMyCodes('me')" class="w_winner_more c_show_all" >显示全部<b>&gt;</b></span>
+                    </dl>
+
+                    <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length == 0 && isLogin">
+                        <dd class="w_winner_list" style="text-align:center;font-size:18px;margin-top: 45px;color:#E21931;">
+                            您未参与本期购买
+                        </dd>
+                    </dl>
+
+                    <dl class="w_winner_right" ms-if="!isLogin">
+                        <dd class="w_winner_list" >
+                            <span class="w_not_logged"><a href="javascript:;" ms-click="login()">请登录</a>，查看你的夺宝号码！</span>
+                        </dd>
+                    </dl>
+
+                </div>
+               
+                <div class="w_big_text_box" style="margin-top: 28px;">
+                    <div class="w_big_text" >
+                        <h3>我们有严谨的幸运号码计算规则，保证公平公正公开</h3>
+                    </div>
+                    <div class="w_calculate" >
+                        <p>计算公式</p>
+                        <ul class="w_calculate_in" style="/*background: url(img/during1_16.png) no-repeat;*/">
+                            <li class="w_details_first"><em >{{countDetials.lucky_num}}</em><span>本期幸运号码</span></li>
+                            <li style="margin:0;border:none;width: 20px;line-height: 40px;"><em>=(</em></li>
+                            <li class="w_details_second " style="width:182px;"><em >{{countDetials.value_a}}</em><span>50个时间求和</span>
+                                <div class="w_two_con">
+                                    <i></i>
+                                    <p class="w_two_text">截止该商品开奖时间点前全站<strong>最后50条</strong>（不足50时，取实际参与数）参与记录的总和</p>
+                                </div>
+                            </li>
+                            <li style="margin:0;border:none;width: 7px;line-height: 40px;"><em>+</em></li>
+                            <li class="w_details_fourth" style="width:165px;"><em >{{countDetials.value_b}}</em><span>最新一期重庆时时彩开奖号码</span></li>
+                            <li style="margin:0;border:none;width: 28px;line-height: 40px;">
+                            	<em style="line-height: 21px;">) %<span style="width: 32px;">(取余)</span></em>
+                            </li>
+                            <li class="w_details_fourth"><em >{{countDetials.need_num}}</em><span>该奖品总需人次</span></li>
+                            <li style="margin:0;border:none;width: 7px;line-height: 40px;"><em>+</em></li>
+                            <li class="w_details_fifth"><em>10000001</em><span>原始数</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+
+            <!--揭晓进行时-右侧-->
+            <div class="w_during_right" ms-if="goodsData.status == 2" style="min-height:500px;">
+                <h3>往期中奖信息</h3>
+                <div ms-if="!goodsData.lastlist.length" style="text-align:center;margin-top:40px;color:#666;">暂时没有往期数据</div>
+                <ul class="last-item_recode">
+                	<li class="last-item_recode_single" ms-repeat="goodsData.lastlist">
+                		<ul ms-click="jumpActiveIssue(el.activity_id)">
+                			<li class="last_item_issue">期&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：{{el.activity_id}}</li>
+                			<li class="last_item_luckyPerson">
+                				中&nbsp;&nbsp;奖&nbsp;者：<a ms-href="#!/selfRecord/{{el.luck_uid}}">{{el.lucky_unick}}</a>
+                					<span >({{el.lucky_ip.country}})</span>
+                			</li>
+                			<li class="last_item_luckyNum">
+                				幸运号码：<label >{{el.lucky_num}}</label>
+                			</li>
+                			<li class="last_item_joinNum">
+                				本期参与：<label >{{el.lucky_user_num}}</label>人次
+                			</li>
+                			<li class="last_item_joinTime">
+                				揭晓时间：{{el.publish_time*1000|date("yyyy-MM-dd HH:mm:ss" }}
+                			</li>
+                		</ul>
+                	</li>
+                </ul>
+               
+            </div>
+
+            <div class="w_details_left" ms-if="goodsData.status == 0">
+                <h4 class="w_guide"><a href="#!/">首页</a><a href="#!/allClassify/all">全部商品</a><a class="w_accord" href="javascript:;">商品详情</a></h4>
+                <div class="w_details_top">
+                    <div class="w_details_choose" style="position:relative;">
+                        <dl class="w_big_img">
+                            <!-- 大图 -->
+                            <dd><img ms-src="bigImg"></dd>
+                        </dl>
+                        <ul class="w_small_img">
+                            <i class="w_modified"></i>
+                            <li ms-class="{{imgIndex == $index ? 'w_small_color' : ''}}" ms-repeat="goodsData.goods_img" ms-mouseover="clickSmallImg($index,el)" style="cursor:pointer;"><img ms-src="el"></li>
+                            <!-- 小图 -->
+                        </ul>
+                    </div>
+                    <div class="w_details_text" style="position:relative;">
+                      
+                        <div class="zhengchang">
+                            <!-- 正常购买 -->
+                            <p style="font-size: 18px;">
+                                （第{{goodsData.activity_id}}期）{{goodsData.goods_title}}<i style="color:rgb(255, 0, 0)"> {{goodsData.goods_subtitle}}</i>
+                            </p>
+                            <input type="hidden" value="1" >
+                            <b>价值：￥<span >{{goodsData.need_num}}</span></b>
+                            <div class="w_line"><span  ms-css-width="{{((goodsData.need_num - goodsData.remain_num)/goodsData.need_num)*100}}%"></span></div>
+                            <ul class="w_number333">
+                                <li class="w_amount w_amount_one" >{{goodsData.need_num - goodsData.remain_num}}</li>
+                                <li class="w_amount" >{{goodsData.need_num}}</li>
+                                <li class="w_amount  w_amount_two w_amount_val" >{{goodsData.remain_num}}</li>
+                                <li class="w_amount_one">已参与</li>
+                                <li>总需人次</li>
+                                <li class="w_amount_two">剩余人次</li>
+                            </ul>
+                            <div class="w_cumulative w_cumulative_another">
+                                <strong>夺宝：</strong>
+                                <input type="text" class="w_detailsinputs w_detailsinputs_one times"  min="1"  maxlength="7" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-keyup="editJoinNumber(goodsData)" onafterpaste="this.value=this.value.replace(/\D/g,'')" ms-duplex="join_number">
+                                <span class="w_subtracts_one" ms-click="decrease(goodsData)"></span>
+                                <span class="w_pluss_one" ms-click="increase(goodsData)"></span>
+                                <em class="w_purchasing_other" style="display: none"></em>
+                                <!-- <i>10</i><i>20</i><i>50</i><i>100</i>
+                                <em>包尾</em> -->
+                                <strong class="w_tail">人次</strong>
+                            </div>
+                            <dl class="w_rob w_rob_another y_rob_another">
+                                <dd><a id="iWantyg" href="javascript:void(0)" ms-click="makeOrder(goodsData.$model)">立即购买</a></dd>
+                                <dd class="w_slip_out">
+                                    <a class="w_slip_in" href="javascript:void(0)" ms-click="addCartItem($event,goodsData.$model,join_number)">加入购物车</a>
+                                </dd>
+                                <div class="w_clear"></div>
+                            </dl>
+                        </div>
+                        <ul class="w_security">
+                            <li class="w_security_one">公平公正公开</li>
+                            <li class="w_security_two">品质保障</li>
+                            <li class="w_security_three">全国免运费（港澳除外）</li>
+                            <li class="w_security_four">权益保障</li>
+                            <div class="w_clear"></div>
+                        </ul>
+                        <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length > 0 && isLogin">
+                            <dd class="w_winner_list" >
+                                <label>您的本期夺宝号码：</label>
+                                <ul class="con1" style="height:72px;overflow:hidden;">
+                                    <li>
+                                        <span ms-repeat="goodsData.user_lucky_num" style="display:inline-block;padding-bottom: 2px;">{{el}}</span>
+
+                                    </li>
+                                </ul>
+                                <div class="w_clear"></div>
+                            </dd><span ms-click="getShowMyCodes()" class="w_winner_more c_show_all" >显示全部<b>&gt;</b></span>
+                        </dl>
+
+                        <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length == 0 && isLogin">
+                            <dd class="w_winner_list" style="text-align:center;font-size:18px;margin-top: 45px;color:#E21931;">
+                                您未参与本期购买
+                            </dd>
+                        </dl>
+
+                        <dl class="w_winner_right" ms-if="!isLogin">
+                            <dd class="w_winner_list" >
+                                <span class="w_not_logged"><a href="javascript:;" ms-click="login()">请登录</a>，查看你的夺宝号码！</span>
+                            </dd>
+                        </dl>
+                        <!--未登录结束-->
+                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1468835418511">
+                            <a href=" /goods/goods3107-26.html#" class="bds_more" data-cmd="more"></a>
+                            <a href=" /goods/goods3107-26.html#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href=" /goods/goods3107-26.html#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href=" /goods/goods3107-26.html#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href=" /goods/goods3107-26.html#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href=" /goods/goods3107-26.html#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--揭晓前-->
+            <div class="w_details_right" style="position:relative;" ms-if="goodsData.status == 0">
+                <h3>上期揭晓信息</h3>
+                <div class="w_time_info">
+                    <div ms-if="!goodsData.last.lucky_num" style="text-align: center;margin-top: 30px;color: #666;">
+                        暂无上期揭晓数据
+                    </div>
+                    <div class="w_information" ms-if="goodsData.last.lucky_num">
+                        <div class="w_information_img">
+                            <a  ms-href="#!/goods/{{goodsData.last.activity_id}}"><img  ms-src="goodsData.goods_img[0]" style="display: inline;">
+                               
+                            </a>
+                        </div>
+                        <p>恭喜<a ms-attr-href="#!/selfRecord/{{el.lucky_uid}}">{{goodsData.last.lucky_unick}}</a><span >({{goodsData.last.lucky_ip.country}})</span>获得该期奖品</p>
+                        <dl class="w_winner_wen">
+                            <!-- <dd>用户ID：<#=goods.userId #>(用户唯一不变标识)</dd> -->
+                            <dd>期&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：
+                                <label >{{goodsData.last.activity_id}}</label>
+                            </dd>
+                            <dd>幸运号码：
+                                <label >{{goodsData.last.lucky_num}}</label>
+                            </dd>
+                            <dd>本期参与：
+                                <label >{{goodsData.last.lucky_user_num}}</label>人次</dd>
+                            <dd >揭晓时间：{{goodsData.last.publish_time*1000|date("yyyy-MM-dd HH:mm:ss" }}</dd>
+                            <dd><a  ms-href="#!/goods/{{goodsData.last.activity_id}}">查看详情</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                <div class="w_clear"></div>
+               
+            </div>
+
+            <!--揭晓进行时-左侧-->
+            <div class="w_during_left" ms-if="goodsData.status == 1">
+                <h4 class="w_guide"><a href="#!/">首页</a><a href="#!/allClassify/all">全部商品</a><a class="w_accord" href="javascript:;">商品详情</a></h4>
+                <div class="w_during_graphic">
+                    <div class="w_during_figure" style="position:relative;">
+                        <img  ms-src="goodsData.goods_img[0]">
+                    </div>
+                    <div class="w_during_wen" style="position:relative;">
+                        <h1 >{{goodsData.goods_title}}<i style="color:#E21931;font-style:normal;margin-left:4px;"></i></h1>
+                        <div class="w_add_doing" >
+                            <!-- <span class="w_add_doing_left">揭晓倒计时</span> -->
+                            <div class="w_addBg js-countdown" ms-attr-activity_id="{{goodsData.activity_id}}" ms-class="{{goodsData.status==1 ? 'js-countdowm' : ''}}" ms-attr-end_time="{{(nowTime + goodsData.remain_time*1000)}}" style="color:#E21931;font-size:18px;overflow: hidden;text-overflow:ellipsis; white-space: nowrap;text-align:center;">
+                            </div>
+                            <div  class="w_add_newimg"><img  src="img/one.png"></div>
+                        </div>
+                    </div>
+                    <div class="w_clear"></div>
+                </div>
+                <div class="w_during_winner" style="position:relative;">
+                    <div class="w_winner_left">
+                        <div class="w_winner_left_box"><img ms-src="goodsData.goods_img[0]"> </div>
+                        <p class="w_winner_left_text">谁将会是本期幸运儿？</p>
+                    </div>
+                    <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length > 0 && isLogin">
+                                                <dd class="w_winner_list" >
+                                                    <label>您的本期夺宝号码：</label>
+                                                    <ul class="con1" style="height:72px;overflow:hidden;">
+                                                        <li>
+                                                            <span ms-repeat="goodsData.user_lucky_num" style="display:inline-block;padding-bottom: 2px;">{{el}}</span>
+
+                                                        </li>
+                                                    </ul>
+                                                    <div class="w_clear"></div>
+                                                </dd><span ms-click="getShowMyCodes()" class="w_winner_more c_show_all" >显示全部<b>&gt;</b></span>
+                                            </dl>
+
+                                            <dl class="w_winner_right" ms-if="goodsData.user_lucky_num.length == 0 && isLogin">
+                                                <dd class="w_winner_list" style="text-align:center;font-size:18px;margin-top: 45px;color:#E21931;">
+                                                    您未参与本期购买
+                                                </dd>
+                                            </dl>
+
+                                            <dl class="w_winner_right" ms-if="!isLogin">
+                                                <dd class="w_winner_list" >
+                                                    <span class="w_not_logged"><a href="javascript:;" ms-click="login()">请登录</a>，查看你的夺宝号码！</span>
+                                                </dd>
+                                            </dl>
+                </div>
+               
+            </div>
+            <div class="w_during_right" ms-if="goodsData.status == 1" style="min-height:400px;">
+                            <h3>最新一期</h3>
+                            <div ms-if="!goodsData.new_activity_id" style="text-align:center;margin-top:40px;color:#666;">暂时没有最新一期了</div>
+                            <div ms-if="goodsData.new_activity_id">
+                                <p>最新一期正在进行，赶紧参加吧！</p>
+                                <div class="w_latest_right1" style="position:relative;border:none;" >
+                                    <div class="w_rightImg">
+                                        <a class="w_goods_img" ms-href="#!/goods/{{goodsData.new_activity_id}}"><img ms-src="goodsData.goods_img[0]"></a>
+                                    </div>
+                                    <a class="w_goods_ddree" href=" /goods/goods2816-17832.html" style="font-size: 18px;"> (第{{goodsData.new_activity_id}}期){{goodsData.goods_title}}</a>
+                                    <b style="font-size: 18px;">（{{goodsData.goods_subtitle}}）</b><em id="onlinePriceTotal">价值：￥{{goodsData.need_num}}</em>
+                                   <!--  <ul class="w_number">
+                                        <li class="w_amount" id="onlinePriceSell">10</li>
+                                        <li class="w_amount w_amount_right" id="onlineSurplus">2</li>
+                                        <li>已购买人次</li>
+                                        <li class="w_amount_right">剩余人次</li>
+                                    </ul> -->
+                                    <div class="w_buy" style="margin-top:20px;margin-bottom:20px;"><a ms-href="#!/goods/{{goodsData.new_activity_id}}" >立即抢购</a></div>
+                                </div>
+                               <!--  <div class="w_cumulative">
+                                    <strong>参与人次：</strong>
+                                    <input type="text" id="cartTimes" class="w_detailsinputs w_new_detailsinputs times" onkeyup="bugTimesInput()" value="" min="1" max="2">
+                                    <span class="w_subtracts" onclick="cutBuyTimes()"></span>
+                                    <span class="w_pluss" onclick="addBuyTimes()"></span>
+                                </div> -->
+                                
+                                
+                            </div>
+                           
+                        </div>
+            <div class="w_clear"></div>
+            <!--选项卡-->
+            <div class="w_calculate_results pgp">
+                <dl class="w_calculate_nav">
+                    <dd ms-click="changeBlock('0')" ms-class="{{blockIndex == '0' ? 'w_results_arrow' : ''}}" ms-if="goodsData.status == 2">计算结果</dd>
+                    <dd ms-click="changeBlock('0')" ms-class="{{blockIndex == '0' ? 'w_results_arrow' : ''}}" ms-if="goodsData.status != 2">商品详情</dd>
+                    <dd ms-click="changeBlock('1')" ms-class="{{blockIndex == '1' ? 'w_results_arrow' : ''}}">所有参与记录</dd>
+                    <dd ms-click="changeBlock('2')" ms-class="{{blockIndex == '2' ? 'w_results_arrow' : ''}}">晒单</dd>
+                    <span style="width:613px"></span>
+                </dl>
+                <div class="w_calculate_con">
+                    <div class="w_prize_con w_prize_img c_newest_prize_con" style="display: block;width: 750px;margin: 0 auto;" ms-html="ImgDetials" ms-if="goodsData.status != 2 && blockIndex == '0'">
+                        <!-- 商品详情 -->
+                    </div>
+                    <div class="w_calculate_one" style="position:relative;display:block" ms-if="goodsData.status == 2 && blockIndex == '0'">
+                        <div class="w_rules">
+                            <div class="w_rules_left" >
+                                <img ms-src="goodsData.goods_img[0]" style="height:auto;">
+                            </div>
+                            <div class="w_rules_right">
+                                <p>（1） 奖品的最后一个号码分配完毕后，将公示该分配时间点前本站全部奖品的最后50个参与时间；</p>
+                                <p>（2） 将这50个时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如2016-07-20 20:15:25.362则为20160720201525362）；</p>
+                                <p>（3） 将上一步的数值A再加上最新一期重庆时时彩的开奖号码数值B,得到数值C</p>
+                                <p>（4） 数值C除以该奖品总需人次得到的余数 + 原始数 10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该奖品。</p>
+                            </div>
+                        </div>
+                        <ul class="w_winner_name">
+                            <dl style="text-align:center;">
+                                <dd class="w_time" style="width:232px;padding-left:0;">夺宝时间</dd>
+                                <dd class="w_account">会员账号</dd>
+                                <dd class="w_name">商品名称</dd>
+                                <dd class="w_people">购买人次</dd>
+                            </dl>
+                            <div class="w_clear"></div>
+                            <p>截止该商品最后夺宝时间最后50条全站夺宝参与记录</p>
+                            <!--计算结果-->
+                            <ul class="w_specific">
+                               <!--  <li class="w_special_li" onclick="show100Order()">展开全部50条数据
+                                    <s></s>
+                                </li>
+                                <li class="w_special_li_other" onclick="hide100Order()">收起
+                                    <s class="w_special_s"></s>
+                                </li> -->
+                               
+                                <li ms-repeat="countDetials.a_detail" style="text-align:center;">
+                                    <ul class="w_specific_left">
+                                        <li><i>{{el.time}}</i></li>
+                                    </ul>
+                                    <ul class="w_specific_right">
+                                        <li class="w_account"><a ms-attr-href="#!/selfRecord/{{el.uid}}">{{el.unick}}</a></li>
+                                        <li class="w_name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a ms-href="#!/goods/{{el.activity_id}}">{{el.title}}</a></li>
+                                        <li class="w_people" style="text-align: center;">{{el.num}}人次</li>
+                                    </ul>
+                                </li>
+                                <div class="w_count"><strong class="w_new_results">计算结果</strong>
+                                    <div class="w_count_one">
+                                        <li>1、求和： {{countDetials.value_a}} (上面50条购买记录时间取值相加之和)</li>
+                                        <li>2、加时时彩： {{countDetials.value_b}} (最新一期重庆时时彩开奖号码)</li>
+                                        <li><span>3、求余：({{countDetials.value_a}} +  {{countDetials.value_b}})% {{countDetials.need_num}}(奖品需要人次) =</span><b style="display: inline-block;width: auto;padding: 0 10px;">{{countDetials.lucky_num - 10000001}}</b><span>（余数）</span><em class="w_tips"></em>
+                                            <div class="w_answer w_answer_xiu">
+                                                <p><span>余数：</span>指整数除法中，被除数未被除数除尽部分。“例如27除以6，商数为4，余数为3”</p>
+                                            </div>
+                                        </li>
+                                        <li><span>4、</span><b style="display: inline-block;width: auto;padding: 0 10px;">{{countDetials.lucky_num - 10000001}}</b><span>（余数）+10000001=</span><b style="display: inline-block;width: auto;padding: 0 10px;">{{countDetials.lucky_num}}</b></li>
+                                        <li class="w_count_last">最终结果：{{countDetials.lucky_num}}</li>
+                                    </div>
+                                </div>
+                               
+                                <div class="w_clear"></div>
+                            </ul>
+                        </ul>
+                    </div>
+                    <!--所有参与记录-->
+                    <div class="w_calculate_one w_calculate_two" style="display: block;" ms-if="blockIndex == '1'">
+                        
+                        
+                        
+
+                        <table class="w_yun_con" cellspacing="0" cellpadding="0">
+                            <tbody style="text-align:center;">
+                                <tr>
+                                    <th style="text-align:center;">时间</th>
+                                    <th style="text-align:center;" >昵称</th>
+                                    <th style="text-align:center;">参与人次</th>
+                                    <th style="text-align:center;">IP</th>
+                                </tr>
+                                <tr ms-repeat="joinListData.data">
+                                    <td>{{el.join_time}}</td>
+                                    <td>
+                                        <a ms-attr-href="#!/selfRecord/{{el.uid}}"><img   ms-src="{{el.uicon}}" style="display: inline;">
+                                            <tt class="name">{{el.unick}}</tt>
+                                        </a>
+                                    </td>
+                                    <td class="w_hover_add w_hover_add_other" style="width:160px;"><strong>{{el.user_num}}</strong><span style="display: none;">查看夺宝号码</span>
+                                       
+                                    </td>
+                                    <td>({{el.ip.country}})</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="joinListData.data.length == 0&&!joinListData.isLoading">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{joinListData.page==1 ? '暂无参与记录~' : '该页参与记录为空'}}</span>
+                            </a>
+                        </div>
+                        <div style="text-align:center;padding:50px 0;" ms-if="joinListData.isLoading&&joinListData.data.length == 0&&joinListData.page == 1">
+                                <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+                        </div>
+                        <div  class="pageStr" style="margin: 30px auto;"  ms-css-display="{{(joinListData.page ==1 && joinListData.data.length == 0 && !joinListData.isLoading) ? 'none' : ''}}">
+                            <span ms-class="{{joinListData.page > 1 ? '' : 'f-noClick'}}"><a href="javascript:;" ms-click="prevJoinPage()"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span>
+                            <span class="current"><a>{{joinListData.page}}</a></span>
+                            <span ms-class="{{joinListData.hasNext ? '' : 'f-noClick'}}"><a href="javascript:;" ms-click="nextJoinPage()">下一页<i class="f-tran f-tran-next">&gt;</i></a></span>
+                        </div>
+                    </div>
+
+                    <!--晒单-->
+                    <div class="w_calculate_one" style="display: block;clear: both;overflow: hidden;" ms-if="blockIndex == '2'">
+                        <dl class="w_share_one" style="clear: both;overflow: hidden;">
+                            <div style="text-align:center;padding:50px 0;" ms-if="shareListData.isLoading&&shareListData.data.length == 0&&shareListData.page == 1">
+                                    <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+                            </div>
+                            <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="shareListData.data.length == 0&&!shareListData.isLoading">
+                                <a href="javascript:;" >
+                                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                    <br/>
+                                    <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{joinListData.page==1 ? '该商品暂无晒单~' : '该页晒单为空'}}</span>
+                                </a>
+                            </div>
+                            <dd class="w_oneself_share" ms-repeat="shareListData.data">
+                                <a ms-href="#!/goods/{{el.activity_id}}"><img style="display: inline;" ms-src="{{el.show_imgs[0]}}">
+                                   
+                                </a><a ms-href="#!/goods/{{el.activity_id}}">{{el.goods_title}}</a>
+                                <p  style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;display:block;">{{el.show_desc}}
+                                    <br>{{el.show_time}}</p>
+                                <div class="w_single">
+                                    <a href="javascript:;" class="w_em">
+                                        <div class="w_f1"><img ms-src="{{el.uicon}}"></div><em>{{el.unick}}</em></a><a ms-href="#!/comment/{{el.show_id}}">{{el.comments}}</a></div>
+                            </dd>
+                        </dl>
+                         <div  class="pageStr" style="margin: 30px auto;" ms-css-display="{{(shareListData.page ==1 && shareListData.data.length == 0 && !shareListData.isLoading) ? 'none' : ''}}">
+                            <span ms-class="{{shareListData.page > 1 ? '' : 'f-noClick'}}"><a href="javascript:;" ms-click="prevSharePage()"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span>
+                            <span class="current"><a>{{shareListData.page}}</a></span>
+                            <span ms-class="{{shareListData.hasNext ? '' : 'f-noClick'}}"><a href="javascript:;" ms-click="nextSharePage()">下一页<i class="f-tran f-tran-next" >&gt;</i></a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="goodsNumModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:135px;">
+            <div class="modal-content" style="width:350px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"  style="text-align:center;">
+               您的本期夺宝号码
+            </h4>
+                </div>
+                <div class="modal-body" style="padding:7px;">
+                    <table>
+                        <tr style="height:30px;" ms-repeat="myAllNum">
+                            <td style="width:100px;text-align:center" ms-repeat="el">{{el}}</td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center;padding:50px 0;" ms-if="myAllNumLoading">
+                        <img src="img/loading-small.gif" alt="加载动画" style="width:100px;">
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding:0;text-align:center;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="border:0;width:100%">关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

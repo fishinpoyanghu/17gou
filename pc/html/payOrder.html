@@ -1,0 +1,92 @@
+<div ms-controller="payPageCtrl">
+    <div class="c_my_cart" >
+        <div class="c_shop_bag">
+            <h4 >支付订单</h4>
+            <div class="catbox c_goods_info" >
+                <table >
+                    <thead>
+                        <tr style="border-bottom:1px solid #ddd;">
+                            <th style="text-align:center;"><span >参与商品</span></th>
+                            <th style="text-align:center;">云购价格</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr ms-repeat="order_data.result_data">
+                            
+                            <td class="goods">
+                                {{el.goods_title}}
+                            </td>
+                            <td class=" w_price" >{{el.user_num}}</td>
+                            
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="c_total c_order_total"  style="margin-top:5px;position:relative;">
+                    <div class="fr total">
+                        <span class="c_total_text">支付总额：</span><span >{{order_data.order_money}}</span>
+                        <span >余额</span></div>
+                </div>
+                <div class="c_user_reduce_box">
+                    <div class="c_user_reduce" style="margin:0 10px;border:0px;">
+                        使用账户余额支付，当前账户余额：
+                        <span><span >{{order_data.remain_money}}</span></span>&nbsp;&nbsp;余额&nbsp;&nbsp;(小数位不参与计算)</div>
+                    <div class="c_user_reduce" style="margin:0 10px;border:0px;" ms-if="order_data.need_money > 0">
+                        <span class="dp-section__name">还需支付</span>
+                        <span class="dp-section__desc" style="color: #f44336;">{{order_data.need_money}}元</span>
+                    </div>
+                </div>
+                <div class="c_remind_bj" style="height: 1713px;"></div>
+                <div ms-if="order_data.need_money > 0">
+                    <p style="padding:10px;font-size:14px;font-weight:bold;">至少选择一种支付方式</p>
+                    <ul class="c_pay_way c_cloud_way c_pay_margin" style="margin:10px;">
+                        <i>支付方式：</i>
+                        <li class="c_paypal " ms-class="{{payWay == '2' ? 'c_pay_this' : ''}}" ms-click="selectPayWay('2')"><a href="javascript:void(0);" style="display: block; width: 120px; height: 100%; float: right;">支付宝</a>
+                            <span class="c_right_bottom"></span>
+                        </li>
+                        <li class=" c_kik_icon" ms-class="{{payWay == '1' ? 'c_pay_this' : ''}}"  ms-click="selectPayWay('1')"><a href="javascript:void(0);" style="display: block; width: 115px; height: 100%; float: right;">微信支付</a>
+                            <span class="c_right_bottom"></span>
+                        </li>
+                        <!--<li class=" c_unionPay" ms-class="{{payWay == '3' ? 'c_pay_this' : ''}}"  ms-click="selectPayWay('3')"><a href="javascript:void(0);" style="display: block; width: 91px; height: 100%; float: right;">银联支付</a>
+                            <span class="c_right_bottom"></span>
+                        </li>-->
+                        
+                        <div class="clear:both;"></div>
+                    </ul>
+                </div>
+                
+                <div class="c_total_back"><a href="javascript:void(0)"  class="c_account_btn c_total_pay confirmPay" ms-click="pay(p_cartInfo)">{{inPay ? '支付中' : '确认支付'}}</a></div>
+                <div class="clear" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="wechatPayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ms-if="showWechatPay">
+        <div class="modal-dialog" style="width:1000px;">
+            <div class="modal-content" style="width:1000px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"  style="text-align:center;">
+               <p>请使用微信扫描下方二维码完成支付</p>
+            </h4>
+                </div>
+                <div class="modal-body" style="padding:7px;">
+                   <div class="" style="text-align:center;">
+                            <p class="c_kik_img">
+                                <span class="c_kik_left"><img ms-src="codeUrl" border="0" alt=""></span>
+                                <span class="c_kik_right"><img src="img/wphone.jpg" border="0" alt=""></span>
+                            </p>
+                            <div class="c_kik_info" style="margin-top:0;padding-top:10px;">
+                                <p>订单：{{order_num}}</p>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>

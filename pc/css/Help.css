@@ -1,0 +1,182 @@
+﻿@charset "utf-8";
+.textindent {
+    text-indent: 2em;
+}
+
+.help-main {
+    margin: 10px auto;
+    overflow: hidden;
+    color: #666;
+}
+
+.help-left-part {
+    float: left;
+    width: 240px;
+}
+
+.help-right-part {
+    float: right;
+    width: 940px;
+}
+
+.help-in-rihgt-part {
+    float: right;
+    width: 908px;
+    min-height: 676px;
+    border: 1px solid #e4e4e4;
+    padding: 15px;
+}
+
+.help-nav {
+    border: 1px solid #e4e4e4;
+    border-bottom: 0 none;
+}
+
+.help-nav h3 {
+    font-size: 22px;
+    height: 46px;
+    line-height: 46px;
+    padding-left: 40px;
+    color: #E21931;
+    border-bottom: 2px solid #E21931;
+    background: url(../img/help-new.png) no-repeat -4% 100%;
+    background-size: 59px;
+}
+
+.help-nav h4 {
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 18px;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #999;
+    background: #f7f7f7;
+}
+
+.help-nav ul {
+    padding-left: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.help-nav ul li {
+    height: 26px;
+}
+
+.help-nav ul li a {
+    color: #666;
+}
+
+
+
+.help-in-rihgt-part h2 {
+    font-size: 24px;
+    height: 46px;
+    line-height: 40px;
+    _line-height: 46px;
+    color: #666;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+
+.help-content {
+    font-size: 14px;
+    line-height: 30px;
+    padding: 15px;
+}
+
+.help-content h3,
+.help-content h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.help-content .rule {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.help-content .rule b {
+    font-weight: normal;
+}
+
+.help-content .mat0 {
+    margin-top: 0;
+}
+
+.help-contact {
+    margin-top: 10px;
+    border: 1px solid #e4e4e4;
+    padding: 15px;
+    color: #999;
+}
+
+.help-contact a {
+    color: #999;
+}
+
+.help-contact a:hover {
+    color: #E21931;
+}
+
+.help-contact .CustomerCon {
+    padding: 15px 0 10px 0;
+}
+
+
+.help-contact .Customer {
+    width: 128px;
+    height: 26px;
+    line-height: 24px;
+    _height: 20px;
+    _padding-top: 6px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3px;
+    background: #FF6500;
+    font-size: 14px;
+    color: #fff;
+}
+
+.help-contact .Customer:hover {
+    color: #fff;
+}
+
+.help-contact .Customer b {
+    width: 13px;
+    height: 14px;
+    display: inline-block;
+    background: url(../img/help-new.png) 0 -46px no-repeat;
+    vertical-align: -2px;
+    margin-right: 8px;
+    position: relative;
+    _top: -2px;
+}
+
+.help-contact .tel {
+    font-size: 25px;
+    font-family: Arial;
+    color: #E21931;
+    padding-bottom: 10px;
+}
+
+.help-nav ul li a.cur02 {
+    color: #E21931;
+    position: relative;
+    font-weight: bold;
+}
+
+.help-nav ul li a.cur02 b {
+    width: 6px;
+    height: 6px;
+    overflow: hidden;
+    background: #E21931;
+    display: inline-block;
+    position: absolute;
+    left: -13px;
+    top: 7px;
+    border-radius: 100%;
+}

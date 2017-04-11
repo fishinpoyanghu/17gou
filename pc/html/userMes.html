@@ -1,0 +1,68 @@
+<div ms-controller="signCtrl">
+<div class="c_homepage_header" style="background: url(&quot;img/morning.jpg&quot;) no-repeat;" >
+    <div class="c_homepage_headercon">
+        <div class="c_headercon_left">
+            <div class="c_investor_img">
+                <a href="javascript:void(0);" id="imgWrap"  ms-mouseenter="iconHover()">
+                    <img ms-src="userData.icon" >
+                    <span class="c_text_top">编辑头像</span>
+                    <div class="c_top_bg"></div>
+                    
+                    
+                </a>
+            </div>
+            <div class="c_investor_details">
+                <p><span >您好</span>, <a href="javascript:void(0);" >{{userData.nick}}</a> 
+                	<!--<a href="javascript:;" class="modi-nick" ms-click="modifyNick()">修改</a>-->
+                </p>
+                <ul class="c_investor_ul">
+                    <li>ID：<span >{{userData.uid}}</span><i ms-if="/^(13|18|15|14|17)\d{9}$/i.test(userData.name)">|</i></li>
+                    <li  ms-if="/^(13|18|15|14|17)\d{9}$/i.test(userData.name)">手机：<span >{{userData.name}}</span>
+                        <!--  <a href="javascript:;">修改</a><i>|</i> --> </li>
+                    <!-- <li>昵称：
+                        <input id="updateNickName" value="" maxlength="15" style="display: none;" type="text"><a href="javascript:void(0)" style="color:#fff;" id="nicknamemsg">3037</a><i></i></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="c_headercon_right">
+            <a href="javascript:void(0);" class="c_personage_data" ms-click="sign">
+                <span >今日签到</span>
+            </a>
+            <a href="javascript:void(0)" class="c_login_code" ms-click="init_changePwd_box">
+                <span>修改密码</span>
+            </a>
+            <a href="#!/address/all" class="c_real_name">
+                <span>收货地址</span>
+            </a>
+            <!--  <a href="/member_new/save.do" class="c_deal_code">
+                    <span>实名认证</span>
+                </a>-->
+        </div>
+    </div>
+</div>
+    
+
+    <div class="a_login_fixed_box  a_login_register_box loginContent js-changePwd" style="z-index: 1012;">
+        <h4 class="a_world_title">修改密码</h4>
+        <form class="a_login_register_form a_login_form">
+            <!-- <div class="pas" >
+                <span></span>
+                <input name="retPassword"  type="password" placeholder="当前密码" ms-duplex="passwordObject.oldPassword">
+            </div> -->
+            <div class="pas" >
+                <span></span>
+                <input name="retPassword"  type="password" placeholder="请输入新密码" ms-duplex="passwordObject.newPassPassword">
+            </div>
+            <div class="pas" >
+                <span></span>
+                <input name="retPassword"  type="password" placeholder="请再次输入新密码" ms-duplex="passwordObject.newPasswordAgain">
+            </div>
+
+            <a href="javascript:void(0);" class="a_login_btn_go" ms-click="changePwd">修改密码</a>
+        </form>
+        <span class="a_world_close a_login_world_close" ms-click="hidePwdBox"></span>
+    </div>
+    <!--S 遮罩背景 -->
+    <div class="a_world_bg" style="z-index: 1011;"></div>
+
+</div>

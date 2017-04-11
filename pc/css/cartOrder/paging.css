@@ -1,0 +1,9 @@
+@charset "utf-8";
+.y_PageNums li{cursor:pointer;margin-left:7px;float: left;width: 30px;height: 30px;border: 1px solid #dddddd;line-height: 30px;text-align: center;color: #545454;font-size: 14px;border-radius: 2px;}
+.y_details_con2right .y_PageNums li{width: 20px;height: 20px;line-height: 20px;font-size: 12px;}
+.y_PageNums li.y_previousPage,.y_PageNums li.y_nextPage{width: 70px;height: 30px;border:1px solid #E21931;}
+.y_details_con2right .y_PageNums li.y_previousPage,.y_details_con2right .y_PageNums li.y_nextPage{width: 50px;height: 20px;border:1px solid #00a9e9;}
+.y_PageNums{margin: 107px auto 120px;overflow: hidden;}
+.y_details_con2right .y_PageNums{margin-top:30px;}
+.y_PageNums li.y_previousPage:hover,.y_PageNums li.y_nextPage:hover{color: #E21931;}
+.y_PageNums li.y_PageNumsclick{color: #fff;background-color: #E21931;}

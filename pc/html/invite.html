@@ -1,0 +1,153 @@
+<div ms-controller="inviteCtrl">
+    <div class="b_sup_content">
+        <div id="member_top" class="">
+            <div ms-include-src="'html/userMes.html'"></div>
+            
+        </div>
+       
+        <div id="content_box" class="">
+
+            <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+           
+            <div id="member_right" class="member_right b_record_box">
+              
+                <ul class="b_record_title">
+                    <li ms-class="b_record_this:li_index==1" ms-click="changeLi('1')"><a href="javascript:;">去邀请好友</a></li>
+                    <li ms-class="b_record_this:li_index==2" ms-click="changeLi('2')"><a href="javascript:;">好友邀请记录</a></li>
+                </ul>
+                
+                <div class="b_record_buy" ms-if="li_index==1">
+
+                    <div class="b_record_list b_record_cloud" style="display:block;">
+                        <img src="img/invite_banner.png">
+                        <div class="a_invite_link">
+                            <em>您的邀请链接</em>
+                            <span style="    padding: 0 0px 0 27px;position:relative;"> 
+                                <input type="text" readonly="true" ms-attr-value="{{getBasePcUrl + '#!/bootstrap/' + (goInviteData.invite_code ? goInviteData.invite_code : '')}}" style="border:none;width:460px;" />
+                             
+                            <img ms-if="isInGetCode" src="img/loading-small.gif" style="width:30px;position: absolute;top: 10px;left: 420px;">
+                            </span>
+
+                            <span style="padding:0 15px;cursor:pointer;" ms-if="!isInGetCode" ms-attr-data-clipboard-text="{{getBasePcUrl + '#!/bootstrap/' + (goInviteData.invite_code ? goInviteData.invite_code : '')}}" id="linkNode" ms-click="copyLink('#linkNode')">复制</span>
+                        </div>
+                        <div class="a_invite_link">
+                            <em>您的邀请码&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                            <span style="padding: 0 1px 0 27px;position: relative;">
+                                <input type="text" readonly="true" ms-attr-value="{{goInviteData.invite_code}}" style="border:none;" />
+                                <img ms-if="isInGetCode" src="img/loading-small.gif" style="width: 30px;position: absolute;left: 28px;top: 9px;"></span>
+
+                            <span style="padding:0 15px;cursor:pointer;" ms-if="!isInGetCode" ms-attr-data-clipboard-text="{{goInviteData.invite_code}}" ms-click="copyLink('#codeNode')" id="codeNode">复制</span> &nbsp;&nbsp;&nbsp;您的好友注册时记得告诉他您的邀请码哦~
+                        </div>
+                        <div class="a_invite_link_share" style="padding-top: 10px;padding-left: 350px;height: 60px;">
+                            <div class="bdsharebuttonbox" >
+                                <!-- <a href="#" class="bds_more" data-cmd="more"></a> -->
+                                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                                <!-- <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a> -->
+                                <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                            </div>
+                            <!--<div class="a_invite_share_list a_invite_share_qq">
+                                <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1467701055852">
+                                    <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=%E4%BA%91%E8%B4%AD%E5%85%A8%E7%90%83%20%E5%BF%AB%E4%B9%90%E8%B4%AD&amp;summary=%E8%BF%99%E7%AD%89%E5%A5%BD%E4%BA%8B%E6%80%8E%E8%83%BD%E7%8B%AC%E4%BA%AB%EF%BC%8C%E4%B8%80%E5%9D%97%E9%92%B1%E5%B0%B1%E8%83%BD%E4%B9%B0iPhone6s%EF%BC%8C10%E5%85%83%E5%B0%B1%E8%83%BD%E5%BC%80%E8%B5%B0%E8%BD%BF%E8%BD%A6%EF%BC%8C%E4%B8%80%E8%B5%B7%E7%8E%A9%E8%B5%B7%E6%9D%A5%EF%BC%81&amp;url=http%3A%2F%2Fwww.ygqq.com%2Fapi%2Fuc%2Fregister.html%3Fcode%3DYG15622163037&amp;pics= /static/img/icon/share-3.jpg" class="bds_qzone" id="qq_share_link" target="_blank" title="分享到QQ空间"></a>
+                                    <span></span>
+                                </div>
+                                <script>
+                                window._bd_share_config = {
+                                    "common": {
+                                        "bdSnsKey": {},
+                                        "bdText": "",
+                                        "bdMini": "2",
+                                        "bdMiniList": false,
+                                        "bdPic": "",
+                                        "bdStyle": "0",
+                                        "bdSize": "16"
+                                    },
+                                    "share": {}
+                                };
+                                with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                                </script>
+                            </div>
+                            <div class="a_invite_share_list a_invite_share_click a_invite_share_wx">
+                                <span></span>
+                                <div class="a_invite_share_click_down">
+                                    <img id="wxImg" src="./邀请好友-亿七购_files/wx_qrCode.do">
+                                </div>
+                            </div>
+                            <div class="a_invite_share_list a_invite_share_click a_invite_share_dx">
+                                &lt;!&ndash; <span></span> &ndash;&gt;
+                                <div class="a_invite_share_click_down">
+                                    <form>
+                                        <p class="a_share_dx_p" id="invite_notice">我是3037，邀您一起去云购，记得注册时填写我的邀请码：YG15622163037,点击 /api/uc/register.do
+                                        </p>
+                                        <input id="toMobile" onkeydown="$(&#39;#sendSMS&#39;).html(&#39;发送&#39;);" maxlength="11" type="text" placeholder="对方手机号">
+                                        <label>
+                                            <input id="validCode" style="ime-mode:disabled " class="a_invite_share_click_down_input" type="text" placeholder="验证码">
+                                            <em><img id="validCodeImg" src="./邀请好友-亿七购_files/validCode.do" onclick="reloadValidCode();" width="84px" height="28px"></em>
+                                        </label>
+                                        <a id="sendSMS" href="javascript:void(0);" onclick="sendSMS();">发送</a>
+                                    </form>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="a_invite_font">
+                            <h2>活动规则</h2>
+                            <p>一、邀请人奖励</p>
+                            <p class="a_invite_font1">1、您邀请的好友充值，您可得好友充值金额的5%作为佣金。 在【我的亿七购】的【我的佣金】里可看到您的每次佣金来源记录。</p>
+                            <p style="margin-top:15px;">二、被邀请人奖励</p>
+                            <p class="a_invite_font1"> 被推荐的好友手机认证成功可获得<span >100</span>积分</p>
+                        </div>
+                    </div>
+                    <!--E 去邀请好友 -->
+                </div>
+                <div class="b_record_list c_expose_box" style="display:block;" ms-if="li_index==2">
+                        <div class="b_record_table">
+                            <table  style="width:100%;">
+                                <tbody>
+                                    <tr class="b_part_title">
+                                        <th class="b_th2" style="text-align:center">用户名</th>
+                                        <th class="b_th2" style="text-align:center">时间</th>
+                                        <th class="b_th2" style="text-align:center">级别</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align:center;padding:80px 20px;" ms-if="recordData.length == 0&&isGetInviteUser">
+                                    <img src="img/loading-small.gif" alt="加载动画" style="width:150px;">
+                            </div>
+                            <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="recordData.length == 0&&!isGetInviteUser">
+                                <a href="javascript:;" >
+                                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                    <br/>
+                                    <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">暂时没有邀请过好友，赶紧去邀请好友吧~</span>
+                                </a>
+                            </div>
+                            <table  style="width:100%;">
+                                <tbody>
+                                    <!-- <tr class="b_part_title">
+                                        <th class="b_th2" style="text-align:center">用户名</th>
+                                        <th class="b_th2" style="text-align:center">时间</th>
+                                        <th class="b_th2" style="text-align:center">级别</th>
+                                    </tr> -->
+                                    <tr ms-repeat="recordData">
+                                        <td style="text-align:center">
+                                            <div>{{el.nick}}</div>
+                                        </td>
+                                        <td ><em class="b_color2">{{el.rt*1000|date("yyyy-MM-dd HH:mm:ss")}}</em></td>
+                                        <td><em ><em class="b_color" style="font-size:16px;">{{el.level}}</em></em>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- S 分页 -->
+                    </div>
+
+            </div>
+            <!-- E 右侧 -->
+        </div>
+    </div>
+    <!--S 遮罩背景 -->
+    <div class="c_exchange_bg" style="height: 1272px;"></div>
+    <!--E 遮罩背景 -->
+</div>

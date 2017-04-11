@@ -1,0 +1,116 @@
+
+.f-tran {
+    font-family: "宋体";
+}
+
+a {
+    outline: medium none;
+    text-decoration: none;
+}
+em, i {
+    font-style: normal;
+    font-weight: normal;
+}
+input {
+    box-sizing: content-box;
+    font-size: 100%;
+}
+
+.pageStr {
+    clear: both;
+    font-size: 14px;
+    height: 31px;
+    text-align: center;
+    margin: 40px auto;
+}
+
+.pageStr span{
+    color: #999;
+    height: 31px;
+    line-height: 31px;
+    margin: 0 4px;
+}
+
+.pageStr span a {
+    border: 1px solid #e4e4e4;
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+    height: 29px;
+    line-height: 29px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.pageStr span.current a {
+    background: #E21931 none repeat scroll 0 0;
+    border: 1px solid #E21931;
+    color: #fff;
+    font-weight: bold;
+}
+.pageStr span.current a:hover {
+   color: #FFFFFF;
+}
+.pageStr span.not a:hover {
+   color: #E21931;
+}
+.pageStr span.not a {
+    background: #FFFFFF none repeat scroll 0 0;
+    border: 1px solid #f4f4f4;
+    color: #999;
+    font-weight: bold;
+}
+.pageStr span a:hover {
+    border: 1px solid #E21931;
+    color: #E21931;
+}
+.pageStr span.f-noClick a {
+    background: #f4f4f4 none repeat scroll 0 0;
+    color: #cbcbcb;
+    cursor: default;
+}
+.pageStr span.f-noClick a:hover {
+    border: 1px solid #e6e6e6;
+    color: #cbcbcb;
+}
+
+.pageStr span em {
+    margin: 0 3px;
+}
+
+.pageStr span input {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border-color: #bfbfbf #e6e6e6 #e6e6e6 #bfbfbf;
+    border-style: solid;
+    border-width: 1px;
+    color: #9d9d9d;
+    height: 29px;
+    line-height: 29px;
+    margin-right: 3px;
+    position: relative;
+    text-align: center;
+    width: 45px;
+}
+.f-tran-next {
+    margin-left: 5px;
+}
+.f-tran-prev {
+    margin-right: 5px;
+}
+
+.f-mar-left {
+    margin-left: 10px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

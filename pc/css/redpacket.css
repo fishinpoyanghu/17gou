@@ -1,0 +1,133 @@
+
+
+
+.free-header {
+  height: 510px;
+  background: url(../img/header-bg.jpg) no-repeat center center; }
+  .free-header .free-header-content {
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    background: url(../img/header-content.jpg) no-repeat center center; }
+
+.free-top {
+  height: 387px;
+  background: url(../img/top-bg.jpg) no-repeat center center; }
+  .free-top .free-top-content {
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    background: url(../img/top-content.jpg) no-repeat center center;
+    position: relative; }
+    .free-top .free-top-content .login {
+      height: 70px;
+      width: 340px;
+      display: inline-block;
+      border: 1px solid red;
+      line-height: 70px;
+      text-align: center;
+      background: #DD3652;
+      font-size: 24px;
+      color: #fff;
+      border-radius: 10px;
+      position: absolute;
+      top: 95px;
+      left: 30%;
+      cursor: pointer; }
+
+.free-redpacket {
+  min-height: 900px; }
+  .free-redpacket .redpacket-content {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto; }
+    .free-redpacket .redpacket-content .redpacket-title {
+      font-size: 24px;
+      color: #ffff00;
+      padding-top: 40px;
+      text-align: center;
+      padding-bottom: 150px; }
+    .free-redpacket .redpacket-content .redpacket-3 {
+      height: 240px;
+      width: 465px;
+      background: #FEEAB8;
+      padding-top: 15px;
+      display: inline-block;
+      position: relative; }
+      .free-redpacket .redpacket-content .redpacket-3 .redpacket-int {
+        position: absolute;
+        top: 60px;
+        left: 220px;
+        display: inline-block;
+        color: #df3121;
+        font-size: 16px;
+        font-weight: bold; }
+        .free-redpacket .redpacket-content .redpacket-3 .redpacket-int p {
+          margin-bottom: 5px; }
+        .free-redpacket .redpacket-content .redpacket-3 .redpacket-int .exchange {
+          display: inline-block;
+          width: 150px;
+          height: 45px;
+          background: #FBDA30;
+          color: #df3121;
+          font-size: 18px;
+          line-height: 45px;
+          text-align: center;
+          margin-top: 15px;
+          cursor: pointer; }
+
+.free-rule {
+  margin-top: 60px;
+  height: 1000px; }
+  .free-rule .rule-content {
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    background: #FEEAB8; }
+    .free-rule .rule-content .rule-title {
+      text-align: center;
+      padding-top: 35px; }
+    .free-rule .rule-content .rule-item {
+      width: 820px;
+      margin: 0 auto;
+      margin-top: 70px; }
+      .free-rule .rule-content .rule-item p {
+        font-size: 18px;
+        color: #b72e04;
+        margin-bottom: 26px; }
+      .free-rule .rule-content .rule-item .num {
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        border-radius: 50%;
+        background: #B80D20;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        line-height: 30px;
+        margin-right: 16px;
+        vertical-align: top; }
+    .free-rule .rule-content .give-redpacket {
+      height: 350px;
+      width: 870px;
+      background: #FEE8A0;
+      margin: 0 auto;
+      margin-top: 35px; }
+      .free-rule .rule-content .give-redpacket .give-redpacket-title {
+        font-size: 24px;
+        color: #a34500;
+        padding-top: 17px;
+        text-align: center; }
+      .free-rule .rule-content .give-redpacket table {
+        color: #a34500;
+        font-size: 18px;
+        margin: 0 auto;
+        margin-top: 30px; }
+        .free-rule .rule-content .give-redpacket table td {
+          border: 1px solid #a34500;
+          width: 140px;
+          height: 60px;
+          line-height: 60px;
+          text-align: center; }
+
+

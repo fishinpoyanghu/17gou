@@ -1,0 +1,60 @@
+<div class="b_sup_content" ms-controller="myNewCtrl">
+    <div  class="">
+        <div ms-include-src="'html/userMes.html'"></div>
+    </div>
+    <div id="content_box" class="">
+        <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+        <div class="member_right">
+            <ul class="b_record_title expose_b_record_title">
+                <li ms-class="b_record_this:li_index==1" ms-click="changeLi('1')"><a href="javascript:;">通知消息</a></li>
+                <li ms-class="b_record_this:li_index==2" ms-click="changeLi('2')"><a href="javascript:;">系统消息</a></li>
+            </ul>
+            <div>
+                <div class="b_record_list c_expose_box" style="display:block;">
+                    <div style="text-align:center;" ms-if="((systemData.length == 0 && li_index==2) || (notifyData.length == 0 && li_index==1)) &&isLoading&&page==1">
+                            <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+                    </div>
+                    <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="((systemData.length == 0 && li_index==2) || (notifyData.length == 0 && li_index==1))&&!isLoading">
+                        <a href="javascript:;" >
+                            <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                            <br/>
+                            <span style="margin-top: 20px;color: #fff;font-size: 18px;display: inline-block;">{{page==1 ? '暂无消息' : '该页没有消息了'}}</span>
+                        </a>
+                    </div>
+                    <div class="b_record_table">
+                        <table  style="width:100%;" ms-if="li_index==1">
+                            <tbody>
+                                <tr ms-repeat="notifyData">
+                                    <td style="width:100%;text-align:left;text-indent:2em">
+                                        <div style="margin-top:-5px;">{{el.content}}</div>
+                                        <div style="margin-top:5px;color:#a4a4a4">{{el.rt}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table  style="width:100%;" ms-if="li_index==2">
+                            <tbody>
+                                <tr ms-repeat="systemData">
+                                    <td style="width:100%;text-align:left;text-indent:2em">
+                                        <div style="margin-top:-5px;">{{el.title}}</div>
+                                        <div>{{el.content}}</div>
+                                        <div style="margin-top:5px;color:#a4a4a4">{{el.rt}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pageStr" style="margin: 30px auto;" ms-css-display="{{(page ==1 && ((notifyData.length == 0 && li_index == 1) || (systemData.length == 0 && li_index == 2) ) && !isLoading) ? 'none' : ''}}">
+        <span ms-class="f-noClick:page==1" ms-click="getPrevPage">
+            <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+        </span>
+        <span class="current"><a>{{page}}</a></span>
+        <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+            <a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a>
+        </span>
+    </div>
+</div>

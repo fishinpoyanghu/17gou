@@ -1,0 +1,34 @@
+<div class="loginContent" ms-controller="loginCtrl" style="padding: 30px 0 200px 0;">
+    <div style="text-align:center;margin-top:20px;">
+        <img src="img/logo.png" alt="logo" style="width:350px;">
+    </div>
+    <form method="post">
+        <div class="user">
+            <span></span>
+            <input type="text" name="username" class="border" value="" maxlength="30" style="color: rgb(201, 201, 207);" ms-duplex="phone" placeholder="请输入手机号码">
+            <p class="c_error w_error c_error_username" style="display: none;"></p>
+        </div>
+        <div class="pas">
+            <span></span>
+            <input type="password" name="password" value="" maxlength="20" ms-duplex="password" ms-keyup="enter($event)" placeholder="请输入密码">
+            <p style="margin-top: 10px;color: #E21931;">{{error_tips}}</p>
+        </div>
+        <div class="w_other">
+            <a href="#!/findPwd">忘记密码？</a>
+        </div>
+        <input type="button" class="denglu" ms-attr-value="{{isInLogin ? '登录中...' : '立即登录'}}" ms-click="loginSubmit2()" />
+        <p class="zhanghao">没有账号？<a href="#!/reg">免费注册</a> </p>
+
+
+        <div style="margin-top: 7px" class="ygqq_login_other">
+            <span><b class="ygqq_b"></b><h3>第三方登录</h3><b class="ygqq_b"></b></span>
+            <ul class="yygqq_login_other_ul" style="text-align: center;">
+                <li class="ygqq_wx ygqq_wx_all" style="display: inline-block;float:none;">
+                    <a href="https://open.weixin.qq.com/connect/qrconnect?appid=wxf3905c189d8faa14&redirect_uri=http%3a%2f%2fwww.yiqigou888.com%2fapps%2fapi%2fwww%2f%3fc%3dweixin%26a%3dpclogin&response_type=code&scope=snsapi_login#wechat_redirect"></a>
+                </li>
+                
+            </ul>
+        </div>
+
+    </form>
+</div>

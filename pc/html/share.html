@@ -1,0 +1,50 @@
+<div ms-controller="shareCtrl">
+    <div class="w_header_nav" style="height:auto;"><img ms-src="img/share_02.jpg?t={{nowTime}}" style="height:auto;"></div>
+    <div class="w_con">
+        <!-- <h2 class="w_title">全部晒单</h2> -->
+        <div class="w_product_con" style="border:1px solid #ddd;padding-bottom:10px;">
+            <dl class="w_new">
+                <dd>筛选：</dd>
+                <dd><a href="javascript:void(0)" ms-class="{{type == 'hot' ? 'w_announced' : ''}}" ms-click="changeType('hot')">按人气</a></dd>
+                <dd><a href="javascript:void(0)" ms-class="{{type == 'comment' ? 'w_announced' : ''}}" ms-click="changeType('comment')">按评论数</a></dd>
+                <dd><a href="javascript:void(0)" ms-class="{{type == 'time' ? 'w_announced' : ''}}" ms-click="changeType('time')">按时间</a></dd>
+            </dl>
+        </div>
+        <div class="w_share" style="margin-top:10px;">
+            <dl class="w_share_one">
+                <div style="text-align:center;padding:50px 0;" ms-if="isDisplayAnimation">
+                    <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+                </div>
+                <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="good.length == 0&&isFinshed">
+                    <a href="javascript:;" >
+                        <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                        <br/>
+                        <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{pageIndex==1 ? '暂无晒单~' : '该页晒单数据为空'}}</span>
+                    </a>
+                </div>
+                <dd class="w_oneself_share" ms-repeat="good">
+                    <a ms-href="#!/shareDetails/{{el.show_id}}" style="height: 346px;line-height: 346px;"><img  ms-src="el.show_imgs[0]" max-height:346px;">
+                    </a><a ms-href="#!/shareDetails/{{el.show_id}}">{{el.goods_title}}</a>
+                    <p style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;display:block;">{{el.show_desc}}
+                        <br>{{el.show_time}}</p>
+                    <div class="w_single">
+                        <a ms-attr-href="#!/selfRecord/{{el.uid}}" class="w_em">
+                            <div class="w_f1"><img ms-src="el.uicon"></div>
+                            <em>{{el.unick}}</em>
+                        </a>
+                        <a ms-href="#!/comment/{{el.show_id}}">{{el.comments}}</a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="pageStr" style="margin: 40px auto;" ms-css-display="{{(pageIndex ==1 && good.length == 0 && isFinshed) ? 'none' : ''}}">
+            <span ms-class="f-noClick:pageIndex==1" ms-click="getPrevPage"><a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span>
+            <!--<span class="current"><a>{{pageIndex}}</a></span>-->
+            <span ms-class="not:el!=pageIndex" class="current" ms-click="getNextPage" ms-repeat-el="arrCount"><a>{{el}}</a></span>
+            <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage"><a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a></span>
+            <!--测试数据-->
+                    <span>共{{totalPages}}页，去第 <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-duplex="newPageIndex"/> 页 <a ms-click="getNextPage(1)"> 确定</a></span>
+            <!--结束测试数据-->
+        </div>
+    </div>
+</div>

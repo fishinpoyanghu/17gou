@@ -1,0 +1,84 @@
+<style>
+.noPadding {
+    padding: 0 !important;
+    padding-left: 5px !important;
+    padding-top: 5px !important;
+    height: 88px !important;
+}
+</style>
+<div ms-controller="commentCtrl">
+    <div class="b_sup_content">
+        <div id="content_box" class="">
+            <div id="member_left" class="member_left">
+                <div class="c_left_side">
+                </div>
+            </div>
+            <div  class="member_right" style="width:1208px;">
+                <div class="c_winning_expose_detail">
+                    <h1>评论详情 </h1>
+                    <div class="c_winning_expose_detail_in">
+                        <div class="c_list_detail_comment">
+                            <div class="c_comment_Me">
+                                <img class="c_Me_tx" src="img/default_icon.png">
+                                <div class="c_comment_Nologin" ms-if="!isLogin" style="width: 1080px;">
+                                    <span></span>
+                                    请您 <a href="#!/login">登录</a> 或 <a href="#!/reg">注册</a> 后再评论
+                                </div>
+                                <div class="c_comment_login"  style="display: block;position:relative;width:1085px;" ms-if="isLogin">
+                                    <div style="position:absolute;height:25px;width:100%;top:0;left:0;line-height:25px;padding-left:10px;padding-top:5px;" ms-if="isRespondUser">
+                                        回复@<span style="color:#E21931;">{{nick}}</span>
+                                        :
+                                        <a href="javascript:void(0)" style="position:absolute;right:17px;top:0;width:30px;" ms-click="cancelRespond">X</a>
+                                    </div>
+                                    <textarea  ms-duplex="commentText" ms-class="noPadding:!isRespondUser" style="width: 1080px;"></textarea>
+                                    <p>
+                                        <a href="javascript:void(0);" style="color: #ffffff;background: #E21931" ms-click="submitCom">提交</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="text-align:center;" ms-if="data.length == 0&&!isFinished&&pageIndex==1">
+                                    <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+                            </div>
+                            <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="data.length == 0&&isFinished">
+                                <a href="javascript:;" >
+                                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                    <br/>
+                                    <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{pageIndex==1 ? '暂无评论，快来评论吧~' : '该页评论数据为空'}}</span>
+                                </a>
+                            </div>
+                            <ul class="c_comment_Lists">
+                                    <li ms-repeat="data" style="width:100%;">
+                                        <a href="javascript:void(0)" class="c_comment_Lists_head" ms-click="respondUser(el.$model)">
+                                            <img class="c_Me_tx" ms-src="el.icon">
+                                        </a>
+                                        <div class="c_comment_Lists_r">
+                                            <a href="javascript:void(0)" ms-click="respondUser(el.$model)">{{el.nick}}</a>
+                                            <p>
+                                                <span ms-if="el.comment_uid!=0" style="margin-left:-2px;font-size:14px;color:#777">
+                                                    回复
+                                                    <a href="javascript:void(0);"style="margin:0 7px;" ms-click="respondUser(el.$model)">{{el.comment_nick}}&nbsp;:</a>
+                                                </span>
+                                                {{el.text}}
+                                            </p>
+                                        </div>
+                                        <input type="hidden" ms-duplex="el.comment_uid">
+                                    </li>
+                            
+                              
+                            </ul>
+                            <div class="pageStr" ms-css-display="{{(pageIndex ==1 && data.length == 0 && isFinished) ? 'none' : ''}}">
+                                <span ms-class="f-noClick:pageIndex==1" ms-click="getPrevPage">
+                                    <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                                </span>
+                                <span class="current"><a>{{pageIndex}}</a></span>
+                                <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                                    <a>下一页<i class="f-tran f-tran-next">&gt;</i></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

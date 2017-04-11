@@ -1,0 +1,79 @@
+<div ms-controller="rechargeCtrl">
+    <div class="c_recharge">
+        <div class="c_recharge_num" style="margin-bottom: 50px;">
+            <ul class="c_select_money" style="margin-bottom: 0;">
+                <i>选择金额：</i>
+                <li ms-repeat="moneyData" ms-click="selectThisMoney($index)" ms-class="{{selectIndex == $index ? 'c_pay_this' : ''}}"><a href="javascript:void(0);" >{{el}}元</a>
+                </li>
+                <li  style="text-align: left; padding-left: 10px; width: 138px;"  ms-click="selectThisMoney('-1')" ms-class="{{selectIndex == -1 ? 'c_pay_this' : ''}}" >
+                    <input type="text"  placeholder="请输入其他金额" maxlength="6"  style="background: #fff; width: 120px; border: none; height: 48px; line-height: 50px\9;" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" ms-duplex="inputMoney">
+                </li>
+                <div style="clear: both;"></div>
+            </ul>
+            <ul class="c_pay_way c_cloud_way c_pay_margin" style="margin: 60px 0 -16px;">
+                <i>支付方式：</i>
+                <li class=" c_kik_icon" ms-class="{{payWay == '1' ? 'c_pay_this' : ''}}"  ms-click="selectPayWay('1')"><a href="javascript:void(0);" style="display: block; width: 115px; height: 100%; float: right;">微信支付</a>
+                    <span class="c_right_bottom"></span></li>
+                <li class="c_paypal " ms-class="{{payWay == '2' ? 'c_pay_this' : ''}}" ms-click="selectPayWay('2')"><a href="javascript:void(0);" style="display: block; width: 120px; height: 100%; float: right;">支付宝</a>
+                    <span class="c_right_bottom"></span></li>
+                <div class="clear:both;"></div>
+            </ul>
+            <div class="c_total_back" style="float: none; clear: both;">
+                <input  type="submit" class="c_recharge_btn c_quick_recharge" value="立即充值" style="cursor:pointer" ms-click="getRecharge()"> <!-- <span class="c_pay_protocal"><input type="checkbox" id="checkbox" checked="checked"><b>我已阅读并同意</b><i>《服务协议》</i></span> -->
+            </div>
+            <div class="clear"></div>
+            <div class="c_warm_info" style="padding: 0 80px 0 58px;">
+                <p class="c_warm_title">温馨提示：</p>
+                <div class="c_reminder_box">
+                    <p>
+                        若您在充值过程中遇到问题，可拨打<a href="javascript:;" target="_blank" style="color: #E21931;">400-8253-551</a>进行人工处理。
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 充值提醒弹窗 -->
+    <div class="c_recharge_remind" style="display: none; left: 397px; top: 310.5px;">
+        <h4 class="c_update_title">
+                    充值提醒<span class="c_remind_close"></span>
+                </h4>
+        <p class="c_pay_remind">请您在新开的页面上完成支付！</p>
+        <p>付款完成之前，请不要关闭本窗口！</p>
+        <p>完成付款后根据您的个人情况完成此操作！</p>
+        <p class="c_remind_btn">
+            <a href="javascript:;">查看充值记录</a><a href="javascript:;">重选支付方式</a>
+        </p>
+        <div class="c_qq_close"></div>
+    </div>
+
+    <div class="modal fade" id="wechatPayModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ms-if="showWechatPay">
+        <div class="modal-dialog" style="width:1000px;">
+            <div class="modal-content" style="width:1000px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"  style="text-align:center;">
+               <p>请使用微信扫描下方二维码完成支付</p>
+            </h4>
+                </div>
+                <div class="modal-body" style="padding:7px;">
+                   <div class="" style="text-align:center;">
+                            <p class="c_kik_img">
+                                <span class="c_kik_left"><img ms-src="codeUrl" border="0" alt=""></span>
+                                <span class="c_kik_right"><img src="img/wphone.jpg" border="0" alt=""></span>
+                            </p>
+                            <div class="c_kik_info" style="margin-top:0;padding-top:10px;">
+                                <p>订单：{{order_num}}</p>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+
+</div>

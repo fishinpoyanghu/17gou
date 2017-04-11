@@ -1,0 +1,159 @@
+<div ms-controller="recordWinCtrl">
+    <div ms-include-src="'html/userMes.html'" ms-controller="signCtrl"></div>
+    <div id="content_box" class="">
+        <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+        <div id="member_right" class="member_right b_record_box" >
+            <div class="b_record_buy">
+                <div class="b_record_list b_record_cloud" style="display:block;">
+                    <div class="b_record_table">
+                        
+                      
+
+                       
+
+                        <table >
+                            <tbody>
+                                <tr class="b_part_title">
+                                    <th class="b_th1" style="text-align:center;">奖品图片</th>
+                                    <th class="b_th2" style="text-align:center;">奖品信息</th>
+                                    <th class="b_th4" style="text-align:center;">物流信息</th>
+                                    <th class="b_th5"></th>
+                                    <th class="b_th6" style="text-align:center;">操作</th>
+                                </tr>
+                                <tr ms-repeat="data">
+                                    <td>
+                                        <a href="javascript:void(0);"><img ms-attr-src="el.goods_img"></a>
+                                    </td>
+                                    <td>
+                                        <div class="b_goods_name" style="margin-left:60px;">
+                                            <span>
+                                                <a href="javascript:void(0);">(第{{el.activity_id}}期) {{el.goods_title}}</a>
+                                            </span>
+                                            <b>总需：{{el.need_num}}人次</b>
+                                            <p>幸运号码：<i>{{el.lucky_num}}</i>，总共参与了<i>{{el.need_num}}</i>人次</p>
+                                        </div>
+                                    </td>
+                                    <td class="" style="text-align:left">
+                                        <em>物流状态 : 
+                                            <b style="color:#E21931;cursor:pointer">{{el.logistics_stat==0 ? '等待发货' : (el.logistics_stat==1 ? '未签收' : '已签收')}}</b>
+                                        </br>
+                                        收货地址 : 
+                                            <b style="color:#E21931;cursor:pointer"></b>{{el.address}}</br>快递单号 : 
+                                            <b style="color:#E21931;cursor:pointer">{{el.logistics_order}}</b>
+                                            </br>
+                                        </em>
+                                    </td>
+                                    <td></td>
+                                    <td class="add_change_btn" >
+                                        <a  style="color:#179aff" ms-click="checkMyNum(el.activity_id)" data-toggle="modal" data-target="#myModal">查看我的号码</a>
+                                        <a ms-href="#!/address/{{el.activity_id}}" ms-if="el.logistics_stat==0">
+                                            <em  class="b_btn" style="margin-top:5px;width:86px;">{{el.address==''?'确认收货地址':'修改收货地址'}}</em>
+                                        </a>
+
+                                        <a  ms-if="el.logistics_stat==1" href="javascript:;" ms-click="confirmReceive(el)">
+                                            <em  class="b_btn" style="margin-top:5px;width:86px;">签收</em>
+                                        </a>
+                                        <a href="javascript:void(0)" ms-if="el.logistics_stat==2"  ms-click="share(el)">
+                                            <em  class="b_btn" style="margin-top:5px;width:86px;">晒单分享</em>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="text-align:center;padding:50px 0;" ms-if="data.length == 0&&!isFinshed&&page==1">
+                            <img src="img/loading-small.gif" alt="加载动画" style="width:120px;">
+                        </div>
+                        <div style="text-align:center;height:165px;padding-top:107.5px;margin-bottom:70px;" ms-if="data.length == 0 &&isFinshed">
+                            <a href="javascript:;" >
+                                <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                                <br/>
+                                <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">{{page == 1 ? '暂时没有中奖纪录~' : '该页暂时没有中奖纪录~'}}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pageStr" style="margin: 40px auto;"  ms-css-display="{{(page ==1 && data.length == 0 && isFinshed) ? 'none' : ''}}" >
+                        <span ms-class="f-noClick:page==1" ms-click="getPrevPage">
+                            <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                        </span>
+                        <span class="current"><a>{{page}}</a></span>
+                        <span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage">
+                            <a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- S 中奖记录模块内容 -->
+        </div>
+        <!-- E 右侧 -->
+    </div>
+    <div class="modal-piclib dm-modal modal fade in" id="shareEdit" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tabpane_newpic" data-toggle="tab" aria-expanded="true">编辑晒单</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" >
+                        <div class="modal-body upload-newpic">
+                            <div>
+                                <input type="text" placeholder="标题(可选,最大长度20字节)" style="height:30px;width:500px;padding:0 10px;" ms-duplex="shareData.show_title">
+                            </div>
+                            <div>
+                                <textarea cols="30" rows="10" placeholder="正文内容...(最大长度140字节)" style="height:100px;width:500px;padding:10px;margin-top:15px;" ms-duplex="shareData.show_desc"></textarea>
+                            </div>
+                            <div class="add-pic" style="margin-top:15px;">
+                                <div class="item" style="display:inline-block;width:60px;height:60px;vertical-align:middle" ms-repeat="shareData.img">
+                                    <img ms-src="el" alt="" style="width:100%;height:100%;">
+                                </div>
+                                <div class="item" style="display:inline-block;width:60px;height:60px;vertical-align:middle" ms-if="shareData.img.length < 5">
+                                    <a class="btn-add js-upload" style="position: relative;display:block;width:100%;height:100%;line-height:53px;text-align:center;border:1px dashed #ddd;overflow：hidden;cursor:pointer;" id="shareUpLoad">
+                                        <i class="dm-icon-jia dm-icon" style="color:#ddd;font-size:52px;  ">+</i>
+                                    </a>
+                                </div>
+                                <p class="tips help-block" style="font-size:14px;">上传的图片小于1MB，格式为jpg，png。</p>
+                            </div>
+                            <!--  <h5 class="dn">网络图片</h5>
+                            <div class="dn"><span class="dm-input dib vam"><input type="text" class="form-control ipt-width-long" placeholder="请贴入网络图片地址"></span>&nbsp;&nbsp;
+                                <button class="btn-default btn-small btn">提取</button>
+                            </div> -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-large btn-orange btn " style="width:100px;" ms-click="shareRelease()">{{isInShareRelease ? '发布中' : '发布'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 查看我的号码弹窗 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:135px;">
+            <div class="modal-content" style="width:350px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align:center;">
+               我的夺宝号码
+            </h4>
+                </div>
+                <div class="modal-body" style="padding:7px;">
+                    <table>
+                        <tr style="height:30px;" ms-repeat="myNum">
+                            <td style="width:100px;text-align:center" ms-repeat="el">{{el}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer" style="padding:0;text-align:center;">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="border:0;width:326px;">关闭
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="b_sup_content" ms-controller="exposeCtrl">
+    <div id="member_top" class="">
+        <div ms-include-src="'html/userMes.html'"></div>
+    </div>
+    <div id="content_box" class="">
+       <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+        <div id="member_right" class="member_right">
+            <ul class="b_record_title expose_b_record_title">
+                <li class="b_record_this"><a href="javascript:;">我的晒单</a></li>
+            </ul>
+            <div>
+                <div class="b_record_list c_expose_box" style="display:block;">
+                   <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="data.length == 0&&!isLoading&&page==1">
+                     <a href="#!/allClassify/all" >
+                         <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                         <br/>
+                         <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">暂无晒单数据，立即去购买</span>
+                     </a>
+                 </div>
+                 <div style="text-align:center;" ms-if="data.length == 0&&isLoading&&page==1">
+                     <img src="img/loading.gif" alt="加载动画" style="width: 400px;">
+                 </div>
+                    <dl class="w_share_one">
+                        <dd class="w_oneself_share" ms-repeat="data">
+                            <a ms-attr-href="#!/goods/{{el.activity_id}}" style="height: 346px;line-height: 346px;">
+                                <img style="display: inline;" ms-src="el.show_imgs[0]" style="height:auto;display: inline;max-height:346px;">
+                            </a>
+                            <a ms-attr-href="#!/goods/{{el.activity_id}}">{{el.goods_title}}</a>
+                            <p style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;display:block;">{{el.show_desc}}
+                                <br>{{el.show_time}}</p>
+                            <div class="w_single">
+                                <a ms-attr-href="#!/selfRecord/{{el.uid}}" class="w_em">
+                                    <div class="w_f1">
+                                        <img ms-src="el.uicon">
+                                    </div>
+                                    <em >{{el.unick}}</em>
+                                </a>
+                                <a href="#!/comment/8">{{el.comments}}</a>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pageStr" style="margin: 64px auto;" ms-if="!(data.length==0&&page==1)"><span ms-class="f-noClick:page==1" ms-click="getPrevPage"><a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span><span class="current"><a>{{page}}</a></span><span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage"><a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a></span></div>
+</div>

@@ -1,0 +1,52 @@
+<div class="b_sup_content" ms-controller="balanceCtrl">
+    <div id="member_top" class="">
+        <div ms-include-src="'html/userMes.html'"></div>
+        <div class="c_box_bg" style="height: 1272px;"></div>
+    </div>
+    <div id="content_box" class="">
+        <div class="member_left" ms-widget="leftSide,?,$leftSideOpts"></div>
+        <div id="member_right" class="member_right">
+            <div>
+                <div class="b_record_list c_expose_box" style="display:block;">
+                    <!-- <div class="b_record_table c_expose_table">
+                            <table id="sunSingleList">
+                                <div style="text-align:center;width:948px;height:165px;padding-top:107.5px;"><img src="img/single_self.png" alt="暂无数据"></div>
+                            </table>
+                    </div> -->
+                    <h3 style="text-align:center;font-size: 18px;border-bottom: 1px solid #E3E3E3;padding:10px 0 20px 0;">当前余额 : {{title.money}}</h3>
+                    <div style="text-align:center;width:948px;height:165px;padding-top:107.5px;" ms-if="data.length == 0&&!isLoading&&page==1">
+                        <a href="javascript:;" >
+                            <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                            <br/>
+                            <span style="margin-top: 20px;color: #999;font-size: 18px;display: inline-block;">暂无余额明细</span>
+                        </a>
+                    </div>
+                    <div style="text-align:center;" ms-if="data.length == 0&&isLoading&&page==1">
+                        <img src="img/loading.gif" alt="加载动画" style="width: 400px;">
+                    </div>
+                    <div class="b_record_table">
+                        <table style="width:100%;">
+                            <tbody>
+                                <!-- <tr class="b_part_title">
+                                    <th class="b_th2" style="text-align:center"></th>
+                                    <th class="b_th2" style="text-align:center">当前余额 : {{title.money}}</th>
+                                    <th class="b_th2" style="text-align:center"></th>
+                                    <th class="b_th3"></th>
+                                </tr> -->
+                                <tr ms-repeat="data">
+                                    <td style="text-align:center;font-size:14px;">
+                                        来源于 : {{el.desc}}
+                                    </td>
+                                    <td><em id="addressTd_0"><em class="b_color" style="font-size:16px;">¥ : {{el.money}}</em></em>
+                                    </td>
+                                    <td id="statusTd_0"><em class="b_color2">{{el.ut*1000|date("yyyy-MM-dd HH:mm:ss")}}</em></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="pageStr" style="margin: 64px auto;" ms-if="!(data.length==0&&page==1)"><span ms-class="f-noClick:page==1" ms-click="getPrevPage"><a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a></span><span class="current"><a>{{page}}</a></span><span ms-class="f-noClick:!hasNextPage" ms-click="getNextPage"><a title="下一页" href="javascript:;" class="nextPage">下一页<i class="f-tran f-tran-next">&gt;</i></a></span></div>
+            </div>
+        </div>
+    </div>
+</div>

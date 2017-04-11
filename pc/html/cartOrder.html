@@ -1,0 +1,73 @@
+<div ms-controller="cartPageCtrl">
+    <div class="c_my_cart" >
+        <div class="c_shop_bag">
+            <h4 >我的购物车</h4>
+            <!-- 购物车为空 start -->
+            <div class="c_no_goods" ms-if="p_cartInfo.length == 0">
+                <div class="c_no_right y_no_left"><img src="img/shop_bag_no.png"></div>
+                <div class="c_no_left y_no_right">
+                    <p>你的购物车还是空的赶紧行动吧！</p>
+                    <a href="#!/allClassify/all" class="c_quick_shop" >马上去购物</a>
+                </div>
+            </div>
+            <!-- 购物车为空 end -->
+            <div class="catbox c_goods_info" ms-if="p_cartInfo.length > 0">
+                <table >
+                    <thead>
+                        <tr style="border-bottom:1px solid #ddd;">
+                            <th></th>
+                            <th style="text-align:center;"><span class="c_goods_text">商品</span></th>
+                            <th style="text-align:center;">剩余人次</th>
+                            <th style="text-align:center;">云购价格</th>
+                            <th style="width:100px;text-align:center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listTable">
+                        <tr  ms-repeat="p_cartInfo">
+                            <td>
+                                <input name="checkCart"   class="check-one check" type="checkbox" ms-attr-checked="el.isSelected" ms-click="selectGoods($event,el)">
+                            </td>
+                            <td class="goods">
+                                <a ms-attr-href="#!/goods/{{el.activity_id}}">
+                                    <img ms-attr-src=" typeof el.goods_img == 'object' ? el.goods_img[0] : el.goods_img" >
+                                </a>
+                                <span>
+                                    <em style="background:#9AD000;padding: 3px 5px;color: #fff;font-size: 12px;" ms-if="el.activity_type == 2">10元专区</em>
+                                    <a ms-attr-href="#!/goods/{{el.activity_id}}" >{{el.goods_title}}</a>
+                                </span>
+                                <b class="c_goods_price">总需<i>{{el.need_num}}</i>人次参与，还剩<i>{{el.remain_num}}</i>人次</b>
+                            </td>
+                            <td class="price w_price" >{{el.remain_num}}</td>
+                            <td class="count">
+                                <div class="w_one_new">
+                                    <span class="reduce"  ms-click="decrease(el)">-</span>
+                                    <input width="70px" onmouseover="<!--this.focus();this.select();-->" class="count-input js-count-input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" ms-blur="editJoinNumber(el)" onafterpaste="this.value=this.value.replace(/\D/g,'')" ms-duplex="el.join_number">
+                                    <span class="add" ms-click="increase(el)">+</span>
+                                </div>
+                            </td>
+                            <td class="operation"><span class="delete" ms-click="removeCartItem($index)">删除</span></td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="c_total c_order_total"  style="margin-top:5px;position:relative;">
+                    <label class="fl select-all">
+                        <input  type="checkbox"  class="check-all check" ms-click="cartCheckAll($event)">&nbsp;全选</label>
+                    <a class="fl delete" href="javascript:;" ms-click="removeCartMutiItem('showConfirm')" >删除</a>
+                    <div class="fr total">
+                        <span class="c_total_text">支付总额：</span><span >{{getCartTotalNum()}} 余额</span>
+                    
+                </div>
+                <div class="c_total_back"><a href="javascript:void(0)"  class="c_account_btn c_total_pay confirmPay" ms-click="makeOrder(p_cartInfo)">{{isMakingOrder ? '结算中' : '结算'}}</a></div>
+                <div class="clear" ></div>
+                <!-- <div class="w_miss_problem">
+                    <p>
+                        付款遇到问题:</p>
+                    <p>1、如您未开通网上银行，即可以使用储蓄卡快捷支付轻松完成付款；</p>
+                    <p>2、如果银行卡已经扣款，但您的账户中没有显示，有可能因为网络原因导致，请及时联系客服 400-820-8888。</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

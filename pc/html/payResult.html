@@ -1,0 +1,64 @@
+<style>
+    .buy-num {
+        margin-top:5px;
+    }
+    .buy-num span {
+        margin: 5px 10px;
+        margin-left:0;
+        display: inline-block;
+    }
+    .buy-num-wrap {
+        color:#333;background-color:#f2f2f2;
+        margin-top:10px;
+    }
+</style>
+<div ms-controller="payResultCtrl">
+    <div class="c_my_cart" >
+        <div class="c_shop_bag">
+            <h4 >支付结果</h4>
+            <div class="catbox c_goods_info pay-result" >
+                <!-- <div style="text-align:center;padding:15px;">
+                    <img src="img/succ.png" alt="">
+                    <p style="font-size: 18px;color: rgb(26, 193, 97);">恭喜您，参与成功!</p>
+
+                </div> -->
+
+                <div  class="buy-num-wrap" ms-repeat="result_data">
+                    <div style="padding:10px 10px 0 10px;">
+                        <span style="color:#9B9B9B;">商品名称：</span>{{el.goods_title}}
+                    </div>
+                    <div style="padding:5px 10px 10px 10px;" ms-if="el.status == 1">
+                        <p style="color:#9B9B9B;"> 您已成功参与了 <span style="color:#e73939;">{{el.total}}</span> 人次夺宝，您的夺宝号码如下：</p>
+                        <div  class="buy-num" >
+                            <span ms-repeat="el.activity_num">{{el}}</span>
+                        </div>
+                        
+                    </div>
+                    <div style="padding:5px 10px 10px 10px;" ms-if="el.status == 2">
+                        <p style="color:#9B9B9B;"> 剩余人次不足，仅抢到 <span style="color:#e73939;">{{el.total}}</span> 人次，您的夺宝号码如下：</p>
+                        <div  class="buy-num" >
+                            <span ms-repeat="el.activity_num">{{el}}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div style="padding:5px 10px 10px 10px;" ms-if="el.status == 3">
+                        <p style="color:#9B9B9B;"> 参与失败，商品被抢光了~</p>
+                        
+                    </div>
+                </div>
+                <div class="c_total_back"><a href="#!/"  class="c_account_btn c_total_pay confirmPay" >继续云购</a></div>
+                <div class="clear" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="c_address_bj" style="height: 1406px;"></div>
+    <div class="c_pay_bj" style="height: 1713px;display:none;"></div>
+    <div class="c_pay_wait" style="left: 442px; top: 313.5px; display: none;text-align:center;">
+        <h3>您所购买的商品正在支付中</h3>
+        <p style="margin-top:50px;">
+            <img width="110" src="img/loading.gif">
+        </p>
+        <p style="margin-top:5px;">支付 <span id="priceTotal2">11</span>余额，正在支付...</p>
+    </div>
+</div>

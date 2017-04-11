@@ -1,0 +1,103 @@
+<style type="text/css">
+.input::-ms-clear {
+    display: none;
+}
+</style>
+<style>
+.add_car {
+    position: absolute;
+    bottom: 120px;
+    left: 200px;
+    display: block;
+    width: 270px;
+    height: 116px;
+    margin-left: -276px;
+}
+
+.add_financial {
+    position: absolute;
+    right: 20px;
+    bottom: 144px;
+    display: block;
+    width: 198px;
+    height: 310px;
+}
+
+.c_add_ygqq {
+    position: absolute;
+    top: 264px;
+    right: 434px;
+    display: block;
+    width: 130px;
+    height: 170px;
+    cursor: pointer;
+    margin-right: -452px;
+}
+</style>
+<div class="ygqq_login" ms-controller="regCtrl">
+    <div class="ygqq_login_logo ygqq_register_logo">
+    </div>
+    <div class="ygqq_login_form">
+        <form class="ygqq_form" style="display:block">
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="text" id="mobile" name="mobile" maxlength="11" placeholder="请输入手机号" ms-duplex="data.phone">
+                <i class="ygqq_i"></i>
+            </div>
+            
+            
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input type="text" id="smsCode" placeholder="请输入验证码" class="ygqq_login_dx_ym" ms-duplex="data.picCode">
+                <i class="ygqq_i1"></i>
+                <a href="javascript:void(0);" ms-click="changeGetCodeUrl">
+                  <img ms-src="picCode" alt="" style="height:44px;width:127px;margin-left:15px;">
+                </a>              
+            </div>
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input type="text" id="smsCode" placeholder="请输入短信验证码" class="ygqq_login_dx_ym" ms-duplex="data.mcode">
+                <i class="ygqq_i1"></i>
+                <a href="javascript:void(0);" class="ygqq_login_dx_a ygqq_register_dx_a" ms-click="getMesCode">{{codeTxt}}</a>
+            </div>
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="text" id="mobile" name="nickname" placeholder="请输入昵称" ms-duplex="data.nickname">
+                <i class="ygqq_i"></i>
+            </div>
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="password" name="pas" placeholder="请输入6-15位的密码" ms-duplex="data.password1">
+                <span><font style="color:red">*</font>密码必须由字母和数字组成</span>
+            </div>
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="password" name="pas" placeholder="请再次输入密码" ms-duplex="data.password2">
+                <span><font style="color:red">*</font>密码必须由字母和数字组成</span>
+            </div>
+            <div class="ygqq_login_dx_input ygqq_register_dx_input ygqq_ts">
+                <input class="input" type="hidden" placeholder="请输入邀请码，没有则不填" ms-duplex="data.inviteCode">
+            </div>
+            <div class="ygqq_register_xy">
+                <input class="ygqq_button" ms-click="doRegister" type="button" value="同意协议并注册">
+                <div class="b_login_btn_xy" style="display: none;">
+                    <p>点击注册即同意亿七购</p>
+                    <a style="color:#E21931;cursor:pointer;">用户协议</a>
+                    <div class="b_contract-arrow"></div>
+                </div>
+            </div>
+            <div class="ygqq_login_text ygqq_register_text">
+                <span>已有账号？<a href="javascript:void(0)" ms-click="goLogin">登录</a></span>
+            </div>
+            <!-- <div class="ygqq_login_other">
+                <span><b class="ygqq_b"></b><h3>第三方登录</h3><b class="ygqq_b"></b></span>
+                <ul class="yygqq_login_other_ul">
+                    <li class="ygqq_qq ygqq_qq_all">
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li class="ygqq_wx ygqq_wx_all">
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li class="ygqq_wb">
+                        <a href="javascript:;"></a>
+                    </li>
+                </ul>
+            </div> -->
+        </form>
+    </div>
+</div>
+

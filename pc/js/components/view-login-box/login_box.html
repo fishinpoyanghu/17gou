@@ -1,0 +1,42 @@
+  <!-- 登录 -->
+    <div class="a_login_fixed_box js-login-box a_login_register_box loginContent" style="z-index: 1012;" ms-if="showBox">
+        <h4 class="a_world_title" ms-if="!showWechatBlock">亿七购账号登录</h4>
+        <h4 class="a_world_title" ms-if="showWechatBlock">亿七购微信登录</h4>
+        <form class="a_login_register_form a_login_form" ms-if="!showWechatBlock">
+            <p class="login-box-error">{{error_tips}}</p>
+            <div class="user" >
+                <span></span>
+                <input type="text" name="username"  class="border" placeholder="手机号" maxlength="11" ms-duplex="phone">
+            </div>
+            <div class="pas" >
+                <span></span>
+                <input name="retPassword"  type="password" placeholder="请输入密码" ms-duplex="password">
+            </div>
+            <a href="javascript:void(0);" class="a_login_btn_go" ms-click="loginSubmit">{{isLoginFinshed ? '立即登录' : '登录中'}}</a>
+            <a href="#!/findPwd" class="cz_ps" ms-click="hide_login_box">忘记密码？</a>
+            <a href="#!/reg" class="cz_ps" style="margin-left: 162px;" ms-click="hide_login_box">立即注册</a>
+            <div style="margin-top: 7px" class="ygqq_login_other">
+                <span><b class="ygqq_b"></b><h3>第三方登录</h3><b class="ygqq_b"></b></span>
+                <ul class="yygqq_login_other_ul" style="text-align: center;">
+                   <!--  <li class="ygqq_qq ygqq_qq_all">
+                        <a href="javascript:;"></a>
+                    </li> -->
+                    <li class="ygqq_wx ygqq_wx_all" style="display: inline-block;float:none;">
+                        <a href="javascript:;" ms-click="wechatLogin"></a>
+                    </li>
+                  <!--   <li class="ygqq_wb">
+                        <a href="javascript:;"></a>
+                    </li> -->
+                </ul>
+            </div>
+        </form>
+        <form class="a_login_register_form a_login_form" ms-if="showWechatBlock" >
+           <div style="text-align:center;width: 200px;height: 200px;margin: 0 auto;">
+               <img ms-src="codeUrl" alt="微信登录二维码" style="max-width:100%;max-height:100%;">
+           </div>
+          <a href="javascript:void(0);" class="a_login_btn_go" ms-click="hideWechatLogin()" style="margin-top:30px;">使用手机账号登录</a>
+        </form>
+        <span class="a_world_close a_login_world_close" ms-click="hide_login_box"></span>
+    </div>
+    <!--S 遮罩背景 -->
+    <div class="a_world_bg js-login-mask" style="z-index: 1011;" ms-click="hide_login_box" ms-if="showBox"></div>

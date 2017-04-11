@@ -1,0 +1,62 @@
+<style>
+.mgl60 {
+    margin-left: 60px;
+}
+</style>
+<div style="background:#EB4662;padding-bottom:150px;" ms-controller="redpacketCtrl">
+    <div class="free-header">
+        <div class="free-header-content"></div>
+    </div>
+    <div class="free-top">
+        <div class="free-top-content">
+        </div>
+    </div>
+    <div class="free-redpacket">
+        <div class="redpacket-content">
+            <h2 class="redpacket-title">每天10:00、16:00、20:00限量开抢</h2>
+            <div style="text-align:center;" ms-if="redList.length == 0&&isLoading&&page==1">
+                    <img src="img/loading.gif" alt="加载动画" style="width:300px;">
+            </div>
+            <div style="text-align:center;height:165px;padding-top:107.5px;" ms-if="redList.length == 0&&!isLoading">
+                <a href="javascript:;" >
+                    <img style="width:100px;" src="img/empty.png" alt="暂无数据">
+                    <br/>
+                    <span style="margin-top: 20px;color: #fff;font-size: 18px;display: inline-block;">{{page==1 ? '暂无红包' : '该页没有红包了'}}</span>
+                </a>
+            </div>
+            <div class="redpacket-3" style="margin-bottom:60px;" ms-repeat="redList" ms-class="mgl60:$index%2!=0">
+                <p style="text-align:center;font-size:22px;">{{el.title}} <span style="margin-left:15px;">【{{el.sub_title}}】</span></p>
+                <span style="position:absolute;top:150px;
+                left:43px;color:#FBDA30;font-size:35px;">{{el.price}}</span>
+                <img src="img/redpacket-bg.png" height="186" width="174" alt="" style="margin-left:10px;vertical-align:middle">
+                <div class="redpacket-int ">
+                    <p>{{el.price}}元红包</p>
+                    <p>消耗：{{el.point}}积分</p>
+                    <p>期数：第{{el.activity_id}}期</p>
+                    <p>已参与人数/总需人数：{{el.user_num}}/{{el.need_num}}</p>
+                    <p>揭晓状态：{{el.flag == 0 ? '进行中' : (el.flag == 1 ? '揭晓中' : '已揭晓')}}</p>
+                    <span class="exchange" style="margin-top:5px;" ms-click="join(el.$model)" ms-if="el.flag == 0">立即兑换</span>
+                   <!--  <span class="exchange" style="margin-top:5px;" ms-click="packetDetails(el.$model)" ms-if="el.flag == 2">查看详情</span>
+                    
+                    <div ms-if="el.flag == 0">
+                        <span class="exchange" style="margin-top:5px;width:100px;" ms-click="join(el.$model)" >立即兑换</span>
+                        <span class="exchange" style="margin-top:5px;width:100px;margin-left: 10px;" ms-click="packetDetails(el.$model)" >查看详情</span>
+                    </div> -->
+                </div>
+            </div>
+            <div class="pageStr" ms-css-display="{{(page ==1 && redList.length == 0 && !isLoading) ? 'none' : ''}}">
+                <span ms-class="f-noClick:page==1" ms-click="prevPage">
+                    <a href="javascript:;"><i class="f-tran f-tran-prev">&lt;</i>上一页</a>
+                </span>
+                <span class="current"><a>{{page}}</a></span>
+                <span ms-class="f-noClick:pageOver" ms-click="nextPage">
+                    <a>下一页<i class="f-tran f-tran-next">&gt;</i></a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+<img src="./img/charity/charity_01.jpg"/>

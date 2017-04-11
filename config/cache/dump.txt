@@ -1,0 +1,2 @@
+cache.inc.php定义了所有的缓存服务器列表
+xxx.cache.php定义了各个应用需要用到的缓存别名

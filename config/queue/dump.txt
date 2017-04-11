@@ -1,0 +1,2 @@
+queue.inc.php定义了所有的队列服务器列表
+xxx.cache.php定义了各个应用需要用到的队列别名

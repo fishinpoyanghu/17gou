@@ -21,6 +21,7 @@ define(['app','utils/httpRequest'],function(app){
         getSearchHotWord:getSearchHotWord,  //进入搜索页面获取热搜关键字
         getRecordListUrl:getRecordListUrl,
         getRecordListUrl2:getRecordListUrl2,
+          getGameOrderUrl:getGameOrderUrl,
         getWinRecordListUrl:getWinRecordListUrl,
         getShareRecordListUrl:getShareRecordListUrl,
         getOderResultUrl : getOderResultUrl,
@@ -458,6 +459,15 @@ define(['app','utils/httpRequest'],function(app){
             return url
 
         }
+
+        //游戏记录数据
+        function getGameOrderUrl(){
+            var  url='?c=nc_games&a=game_order';
+            return url
+
+        }
+
+
 
       function getWinRecordListUrl(){
         var url = '?c=nc_record&a=win_record_list';

@@ -84,9 +84,9 @@ define(
 						}, null)
 					}
 
-					$scope.getLuckyData = [];
+					/*$scope.getLuckyData = [];*/
 					//获取最近中奖消息
-					function getLuckyData_1() {
+				/*	function getLuckyData_1() {
 						ActivityModel.getluckyInfo(function(xhr, re) {
 							var code = re.code;
 							if(code == 0) {
@@ -101,7 +101,7 @@ define(
 						}, function(response, data) {
 							ToastUtils.showMsgWithCode(7, '获取最近中奖消息失败：' + '状态码：' + response.status);
 						}, null)
-					}
+					}*/
 
 					function initConfig() {
 						$scope.isLoadFinished = true;
@@ -119,7 +119,7 @@ define(
 							pageCount: 20
 						}]
 
-						getLuckyData_1();
+						/*getLuckyData_1();*/
 						getHomeNewPublish()
 						$scope.getData(true)
 					}
@@ -127,6 +127,7 @@ define(
 					$scope.doRefresh = function() {
 						initConfig()
 					};
+/*
 					$scope.timeoutCallback = function(activity) {
 						GoodsModel.getGoodsDetail(activity.activity_id, function(response, data) {
 							if(data.code == 0) {
@@ -145,6 +146,7 @@ define(
 						});
 
 					};
+*/
 
 					function getHomeNewPublish() {
 						ActivityModel.getHomeNewPublish(function(xhr, re) {

@@ -524,6 +524,9 @@ define([
 					}
 				};
 				$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+					//游戏里购买福袋设置storage为true；
+					console.log(Storage.get('newGameBuyFuDai'));
+					
 					$scope.fromWhichState = fromState.name;
 					$scope.buyNow = true; //此处是兼容其他地方带不进参数过来支付页面
 					console.log(fromState.name)
@@ -532,7 +535,7 @@ define([
 					}
 
 					if(toState.name !== 'pay') return; ////activity-lastPublishes  往期揭晓  activity-fullIntroduce 图文详情  activity-shareOrder 晒单分享  //activity-joinRecords 参与记录
-					if(fromState.name == 'activity-goodsDetail' || fromState.name == 'activity-lastPublishes' || fromState.name == 'activity-fullIntroduce' || fromState.name == 'activity-shareOrder' || fromState.name == 'activity-joinRecords' || fromState.name =='baituan_member/:team'|| fromState.name =='pintuan_apply' || fromState.name =='chongzhi'|| fromState.name == 'tab.account2'|| fromState.name == 'hispage'||fromState.name=='myIndianaRecord') {
+					if(Storage.get('newGameBuyFuDai')||fromState.name == 'activity-goodsDetail' || fromState.name == 'activity-lastPublishes' || fromState.name == 'activity-fullIntroduce' || fromState.name == 'activity-shareOrder' || fromState.name == 'activity-joinRecords' || fromState.name =='baituan_member/:team'|| fromState.name =='pintuan_apply' || fromState.name =='chongzhi'|| fromState.name == 'tab.account2'|| fromState.name == 'hispage'||fromState.name=='myIndianaRecord') {
 						$scope.buyNow = true;
 					} else {
 						$scope.buyNow = false;

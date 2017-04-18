@@ -4,7 +4,7 @@ require.config({
   //baseUrl: '/',
   baseUrl: 'webApp',
   waitSeconds: 0,
-  urlArgs: "v=209924517121125612356",
+  urlArgs: "v=5634891",
   paths: {
     'angular': 'lib/ionic/js/angular/angular.min',
     'angularAnimate':   'lib/ionic/js/angular/angular-animate.min',

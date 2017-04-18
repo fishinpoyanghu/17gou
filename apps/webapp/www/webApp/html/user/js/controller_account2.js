@@ -12,8 +12,8 @@ define(['app',
 	'html/common/storage',
 
 ], function(app) {
-	app.controller('AccountCtrl2', ['$scope', '$state', '$ionicHistory', '$ionicActionSheet', '$ionicLoading', '$ionicPopup', 'userInfo', 'userModel', 'AppModel','ToastUtils', 'Storage', '$timeout', '$document', '$window',
-		function($scope, $state, $ionicHistory, $ionicActionSheet, $ionicLoading, $ionicPopup, userInfo, userModel, AppModel, ToastUtils, Storage, $timeout, $document, $window) {
+	app.controller('AccountCtrl2', ['$scope', '$state', '$ionicHistory', '$ionicActionSheet', '$ionicLoading', '$ionicPopup', 'userInfo', 'userModel', 'AppModel','ToastUtils', 'Storage', '$timeout', '$document', '$window','$ionicScrollDelegate',
+		function($scope, $state, $ionicHistory, $ionicActionSheet, $ionicLoading, $ionicPopup, userInfo, userModel, AppModel, ToastUtils, Storage, $timeout, $document, $window,  $ionicScrollDelegate) {
 
 
 //			$scope.fudai.num = 1;
@@ -26,14 +26,33 @@ define(['app',
                 maxnum:10       //单次最多开10个
 			}
 
-			var sessId;
+            function bangdingPhone(){
+                $timeout(function(){
+                    var bdphone=userInfo.getUserInfo().phone;
+                    console.log(userInfo.getUserInfo().phone);
+                    $scope.showPhone = function(phone) {
+                        return(/^(13|18|15|14|17)\d{9}$/i.test(phone))
+                    };
+                    if(!$scope.showPhone(bdphone)){
+                        document.getElementById("account").style.top="44px";
+                    }
+                    else if($scope.showPhone(bdphone)){
+                        document.getElementById("account").style.top="0px";
+                    }
+
+                },1000);
+            };
+            bangdingPhone();
+
+            var sessId;
 			$scope.$on('$ionicView.beforeEnter', function(ev, data) {
+                $ionicScrollDelegate.scrollTop(true);
 				//获取用户信息
 				sessId = Storage.get("sessId");
 				userInfo.requestInfo();
-				/* var bindphonemsg=Storage.get('bindphonemsg');  
+				/* var bindphonemsg=Storage.get('bindphonemsg');
 				 if(typeof(bindphonemsg)=='undefined' && sessId){
-				      bindphone(); 已经在微信注册入口处绑定判断是否绑定手机 
+				      bindphone(); 已经在微信注册入口处绑定判断是否绑定手机
 				 }*/
 				getMyPoint();
 
@@ -49,7 +68,13 @@ define(['app',
 					$scope.showChongZhi = true;
 				}
 
-			})
+                bangdingPhone();
+
+			});
+
+
+
+
 
 			function getMyPoint() {
 				userModel.getMyPoint(function(xhr, re) {
@@ -129,14 +154,26 @@ define(['app',
 
 				return userInfo.getUserInfo();
 			};
+
 			var n = userInfo.getUserInfo()
 
 			/**
 			 * 跳转到个人资料页面
 			 */
 			$scope.startToUserDetail = function() {
+
 				$state.go('userDetail');
 			};
+            /**
+			 * 跳转到绑定手机号页面
+			 */
+			$scope.startToBoundPhoneNum = function() {
+
+				$state.go('BoundPhoneNumber');
+			};
+
+
+
 			/**
 			 * 跳转到余额详情页面
 			 */

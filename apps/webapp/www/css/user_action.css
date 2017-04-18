@@ -172,7 +172,9 @@ img {
 	font-size: 14px;
 }
 
-@media screen and (min-width: 320px) {}
+@media screen and (max-width: 320px) {
+
+}
 
 @media screen and (min-width: 375px) {}
 
@@ -1241,10 +1243,7 @@ textarea {
     bottom:60%;
     width: 98%;
     transform: translateX(-50%) translateY(50%);
-    animation:paper_move_up 0.8s;
-    -moz-animation:paper_move_up .8s;
-    -webkit-animation:paper_move_up .8s;
-    -o-animation:paper_move_up .8s;
+
 }
 @keyframes paper_move_up
 {
@@ -2269,3 +2268,76 @@ input[type=range]:focus::-ms-fill-upper {
     font-size: 1.6rem;
 }
 /*退出登录 end*/
+
+
+
+/*个人中心的顶部温馨提示栏 start*/
+#admonishBox{
+    width: 100%;
+    height: 44px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    background: white;
+    border-bottom:1px solid #BCC4C7;
+}
+
+#admonishBox>img{
+    position: absolute;
+    left: 4%;
+    top: 50%;
+    width: 8%;
+    background-size: 100%;
+    transform: translateY(-50%);
+}
+
+#admonishBox>h2{
+    text-align: left;
+    font-size: 16px;
+    line-height: 44px;
+    color: #8D8D8D;
+    margin-left: 14%;
+}
+#admonishBox>i{
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    font-size: 16px;
+    color: #8D8D8D;
+    transform: translateY(-50%);
+}
+#admonishBox .blue{
+    color:#4888EC;
+    border-bottom: 1px solid #4888EC;
+}
+
+@media(max-width:320px){
+    #admonishBox>img{
+        position: absolute;
+        left: 3%;
+        top: 50%;
+        width: 8%;
+        background-size: 100%;
+        transform: translateY(-50%);
+    }
+
+    #admonishBox>h2{
+        text-align: left;
+        font-size: 14px;
+        line-height: 44px;
+        color:#8D8D8D;
+        margin-left:14%;
+    }
+    #admonishBox>i{
+        position: absolute;
+        right: 3%;
+        top: 50%;
+        font-size: 16px;
+        color: #8D8D8D;
+        transform: translateY(-50%);
+    }
+}
+
+
+
+/*个人中心的顶部温馨提示栏 end*/

@@ -4,7 +4,7 @@
 
 /**
  * 购物栏组件
- * @name viewBuyFooter
+ * @name viewChoiceFooter
  * @restrict E
  *
  * @description

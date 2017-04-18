@@ -30,11 +30,11 @@
         </button>
     </ion-nav-buttons>-->
 
-    <ion-content scroll="false" style="margin-bottom: 50px;">
+    <ion-content  style="margin-bottom:50px;">
 
         <div class="dp-blank20"></div>
 
-        <div class="dp-inputbox__container">
+        <div class="dp- inputbox__container">
 
           <view-input type="phone" dp-input-hint="registerPageInputHint.phoneNumberHint"
                       dp-input-model="registerInfo.phoneNumber" dp-input-max-length="11"></view-input>
@@ -57,14 +57,18 @@
 
         </div>
 
-        <div class="padding">
+        <div style="padding:0 10px;">
             <button class="button button-block dp-button"
                     ng-class="{true:'dp-button--on',false:'dp-button--off'}[isEnableRegister()]"
                     ng-click="bindphone()" ng-disabled="!isEnableRegister()" style="font-size: 18px;">确定</button>
 
 
         </div>
-
+        
+        <div class="clearfix" style="padding:0 10px;">
+            <img src="img/account/bdsj.png" alt="">
+        </div>
+        
     </ion-content>
 
 <!--    <ion-footer-bar id="footer_tab">

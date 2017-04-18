@@ -27,12 +27,12 @@ define(['app','html/common/storage'], function (app) {
         scope.good_type13 = false;          //商品类型为1~3时，good_type13为真就显示，good_type4为假就不显示。
         var unit;
         var buttonType;
-
+console.log(scope.isShowAddPay)
         scope.$on('view-buy-pop.show', function (event, goodsInfo) {
-          scope.showAddPay(goodsInfo);
+          	scope.showAddPay(goodsInfo);
         });
         scope.$on('view-buy-pop.hide', function (event) {
-          scope.closeAddPay();
+          	scope.closeAddPay();
         });
 
         /*根据按钮的内容，判断弹窗的类型*/

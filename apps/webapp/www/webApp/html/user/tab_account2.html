@@ -1,6 +1,13 @@
 <ion-view view-title="我" hide-nav-bar="true" on-swipe-right="goPre()">
+    <div id="admonishBox" ng-if="!showPhone(getCurrUserInfo().phone)" ng-click="startToBoundPhoneNum()">
+        <img src="img/account/admonished.png" alt="">
+        <h2>您的账号信息暂不完善，<em class="blue">请完善资料</em></h2>
+        <i class="ion-chevron-right"></i>
+    </div>
 
-    <ion-content class="user-page2" id="account">
+
+    <ion-content class="user-page2" id="account" style=" margin: 0px;padding: 0px;">
+
         <div id="agent_platform">
             <div class="agent-platform-main">
                 <div class="agent-platform-content">
@@ -8,7 +15,8 @@
                     <div id="agency_header">
                         <div class="agency_title">
                             <div class="agency_content">
-                                <div class="agency_user_image" ng-click="startToUserDetail()">
+                                <!--<div class="agency_user_image"  ng-click="startToUserDetail()">-->
+                                <div class="agency_user_image"  ui-sref="zhuawawa">
                                     <div class="agency_user_image_content">
                                         <!--<img src="img/ben.png" alt="">-->
                                         <img ng-src="{{getCurrUserInfo().icon}}" />
@@ -50,7 +58,11 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                             </p>
                         </div>
                         <div class="fudai_btn">
-                            <a class="dp-account__btn2" href="javascript:;" style="background-color:#D53127;" ng-show="showChongZhi" ng-click="open_fd()">开福袋</a>
+                           <!-- <a class="dp-account__btn2" href="javascript:;" style="background-color:#D53127;" ng-show="showChongZhi" ng-click="open_fd()">开福袋</a>-->
+                            <a class="clearfix" href="javascript:;" ng-show="showChongZhi" ng-click="open_fd()">
+                                <img src="img/account/openly.png" alt="">
+                            </a>
+
                         </div>
                     </div>
 
@@ -65,7 +77,7 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                                 <img src="img/icon/fudai.png" alt="">
                                 <div class="function-text">福袋</div>
                             </div>
-                            
+
                             <div class="col no-padding" ng-click="startToWinningRecord()">
                                 <img src="img/icon/c2.png" alt="">
                                 <div class="function-text">获奖记录</div>
@@ -89,7 +101,7 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
 
                         </div>
                         <div class="row no-padding function-box">
-                        	<div class="col no-padding" ng-click="startToPintuanOrder()">
+                            <div class="col no-padding" ng-click="startToPintuanOrder()">
                                 <img src="img/icon/pintuan_order.png" alt="">
                                 <div class="function-text">拼团记录</div>
                             </div>
@@ -102,16 +114,16 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                                 <img src="img/icon/gp.png" alt="">
                                 <div class="function-text">消费全返</div>
                             </div>-->
-                            
+
                             <div class="col no-padding" ng-click="startToSetting()">
                                 <img src="img/icon/shezhi.png" alt="">
                                 <div class="function-text">设置</div>
                             </div>
                         </div>
-                        <!--<div class="row no-padding function-box">
-                            <div class="col no-padding" ng-click="startToSetting()">
+                        <div class="row no-padding function-box">
+                            <div class="col no-padding" >
                                 <img src="img/icon/shezhi.png" alt="">
-                                <div class="function-text">设置</div>
+                                <div class="function-text">设置2</div>
                             </div>
 
                             <div class="col no-padding" >
@@ -121,15 +133,22 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
 
                             </div>
 
-                        </div>-->
-                    </div>
-                    <div class="big-img" ui-sref="activityRule({type:'pintuan'})">
+                        </div>
+                    <!--<div class="big-img" ui-sref="activityRule({type:'pintuan'})">
                         <img src="img/pintuan/pintuan_goDetail.jpg" alt="">
-                    </div>
+
+                    </div>-->
+                    <!--<div class="big-img">
+                        <img ng-click="startToInviteFriends()" src="img/account/RecommendRegister.jpg" alt="">
+                    </div>-->
+
                     <div style="height: 30px;"></div>
                 </div>
             </div>
         </div>
+            </div>
+
+
     </ion-content>
 
 </ion-view>
@@ -137,7 +156,7 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
 <div ng-if="open_luckyBag">
     <!--开启福袋个数-->
     <div id="open_luckybag_num" overflow-scroll="true">
-        透明背景
+        <!--透明背景-->
         <div id="white_bg"  ng-click="close_fdkj()">
         </div>
         <!--开启福袋个数-->

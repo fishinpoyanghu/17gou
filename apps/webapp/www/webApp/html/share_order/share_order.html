@@ -9,7 +9,7 @@
         <button ng-if="my==1" class="dp-button button-icon ion-chevron-left" ng-click="$ionicGoBack()">
         </button>
     </ion-nav-buttons>
-    <div>
+    <!--<div>
         <div id="share2" class="bar bar-subheader" style="{{inWechatB ? 'top:0;' : '' }}"  ng-click="show_aside()">
             <div class="h3_title">
             		<div class="ddd" ng-if="displayWhichItem=='init'">最新浏览记录</div>
@@ -24,76 +24,115 @@
                 <ul class="clear">
                     <li ng-if="displayWhichItem!='time'"  ng-click="changeActive('time','none')">
                         <div class="nav-item ddd">最新</div>
-                        <!--<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">最</span>-->
-                        <!--<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">新</span>-->
+                        &lt;!&ndash;<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">最</span>&ndash;&gt;
+                        &lt;!&ndash;<span class="nav-item {{order_key == 'time' ? 'active' : ''}} ">新</span>&ndash;&gt;
                     </li>
                     <li  ng-if="displayWhichItem!='weight'" ng-click="changeActive('weight','none')">
                     	<div class="nav-item ddd">最热</div>
-                        <!--<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">最</span>-->
-                        <!--<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">热</span>-->
+                        &lt;!&ndash;<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">最</span>&ndash;&gt;
+                        &lt;!&ndash;<span class="nav-item {{order_key == 'weight' ? 'active' : ''}} ">热</span>&ndash;&gt;
                     </li>
 
                     <li  ng-if="displayWhichItem!='init'" ng-click="changeActive('init','none',4)">
                     	<div class="nav-item ddd" >最新浏览记录</div>
-                        <!--<span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">二</span>
+                        &lt;!&ndash;<span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">二</span>
                         <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">人</span>
                         <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">云</span>
-                        <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">购</span>-->
+                        <span class="nav-item {{activity_type ==4 ? 'active' : ''}} ">购</span>&ndash;&gt;
                     </li>
 
                 </ul>
             </div>
         </div>
+    </div>-->
+
+    <!--晒单的顶部导航栏-->
+    <div id="shareNav" style="{{inWechatB ? 'top:0;' : '' }}">
+        <img ng-click="startToMyShareOrder()" class="share_img" src="img/share/shai.png" alt="">
+        <h3 class="title center">
+            {{pageTitle}}
+        </h3>
+        <div ng-if="my==0">
+            <img ng-show="!show.aside" class="close_img1 {{show.closeImg}}" src="img/share/1.png" alt=""  ng-click="show_aside()">
+            <img  ng-show="show.aside" class="close_img2 {{show.closeImg}}" src="img/share/1.png" alt="" ng-click="close_aside()">
+        </div>
+
+        <div class="sanjiao {{show.sanjiao}}" class=""></div>
     </div>
 
+    <div ng-show="show.aside" id="shareNavBox" style="top:{{leftBarTop}};"  ng-click="close_aside()">
+        <ul id="shareNavBoxUl" class="clearfix">
+            <li ng-click="changeActive('time','none')">
+                <!--<img src="img/share/new.png" alt="">-->
+                <span class="{{displayWhichItem == 'time' ? 'active' : ''}}">最新</span>
+            </li>
+            <li class="clear" ng-click="changeActive('weight','none')">
+                <!--<img src="img/share/hot_line.png" alt="">-->
+                <span class="{{displayWhichItem == 'weight' ? 'active' : ''}}">最热</span>
+            </li>
+            <li class="clear" ng-click="changeActive('init','none')">
+                <!--<img src="img/share/view_line.png" alt="">-->
+                <span class="{{displayWhichItem == 'init' ? 'active' : ''}}">最近浏览记录</span>
+            </li>
+        </ul>
+
+    </div>
     <!--晒单分享页面-->
-  <ion-content scrollbar-y="false" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:88px;' : 'top:88px;') }}">
+  <ion-content scrollbar-y="fatlse" style="{{inWechatB ? 'top:44px;' : (inIosApp ? 'top:88px;' : 'top:88px;') }}">
     <ion-refresher
       pulling-text="下拉刷新"
       pulling-icon="ion-arrow-down-c"
       on-refresh="doRefresh()">
     </ion-refresher>
-  <!--    <div ng-if="my==1">
-          <img src="img/share/share.jpg" alt="">
-      </div>-->
-    <div class="dp-postList__li" ng-repeat="order in orderlist">
-
-      <div class="dp-postList__link" ng-click="goToHisPage(order.uicon,order.unick,order.uid)">
-        <div class="dp-postList__user">
-          <img class="user_avatar" ng-src="{{::order.uicon}}" ng-click="goToHisPage(order.uicon,order.unick,order.uid)" />
-
-          <div class="user_info">
-            <!--<span class="user_info_time">{{order.show_time}}</span>-->
-            <h3 class="user_info_name">{{::order.unick}}</h3>
-            <span class="user_info_id">{{::order.show_time}}</span>
-          </div>
-        </div>
-        <div class="dp-postList__content">
-          <a ng-href="#/shareDetails/{{::order.show_id}}">
-              <h3 class="content_title">{{::order.show_title}}</h3>
-              <h2 style="color: #888888;"> 奖品：{{::order.goods_title}}</h2>
-              <!--<h2 style="color: #888888;"> {{order.goods_subtitle}}</h2>-->
-              <h2 style="color: #888888;"> 期号：{{::order.activity_id}}</h2>
-              <p class="content_desc">{{::order.show_desc}}</p>
-          </a>
-          
-          <view-image-list dp-data="order.show_imgs" dp-toggle="true"></view-image-list>
-          <div class="row row-center p-0">
-            <div class="col text-right" style="padding-right:20px;">
-              <button class="button button-small button-clear" style="{{order.is_zan ? 'color:#f44336;' : ''}}" ng-click="zan(order)">
-                <i class="icon iconfont-like"></i> <span>{{order.zans}}</span>
-              </button>
-              
-            </div>
-           
-            <a class="button button-small button-clear" href="#/commentDetails/{{::order.show_id}}">
-              <i class="icon iconfont-comment" style="vertical-align: middle;"></i> <span>{{::order.comments}}</span>
-            </a>
-           
-          </div>
-        </div>
+      <div ng-if="my==0">
+          <img class="display" src="img/share/luckyshai.jpg" alt="">
       </div>
+    <div id="shareList">
+        <div class="share-list clearfix" ng-repeat="order in orderlist">
+            <div class="col-25 icon_img" ng-click="goToHisPage(order.uicon,order.unick,order.uid)">
+                <!--<img src="img/ben.png" alt="">-->
+                <img class="user_avatar" ng-src="{{::order.uicon}}" ng-click="goToHisPage(order.uicon,order.unick,order.uid)" />
+            </div>
+            <div class="col-75">
+                <div class="one-row clearfix" ng-click="goToHisPage(order.uicon,order.unick,order.uid)">
+                    <h3 class="fl username">{{::order.unick}}</h3>
+                    <span class=" fr date">
+                        {{::order.show_time}}
+                    </span>
+                </div>
 
+                <div class="clearfix" ng-click="goToHisPage(order.uicon,order.unick,order.uid)">
+
+                    <h4 class="prize clear">
+                        奖品：{{::order.goods_title}}
+                    </h4>
+                    <h4 class="prize clear">
+                        期号：{{::order.activity_id}}
+                    </h4>
+                    <h2 class="content_title">
+                        {{::order.show_title}}
+                    </h2>
+                    <h5 class="content_desc">
+                        {{::order.show_desc}}
+                    </h5>
+                </div>
+
+                <view-image-list dp-data="order.show_imgs" dp-toggle="true"></view-image-list>
+
+
+                <div class="col p-0 right">
+                <a class="button button-small button-clear" href="#/commentDetails/{{::order.show_id}}" style="display: inline-block; font-size: 1.6rem;">
+                    <i class="icon iconfont-comment" style="vertical-align: middle;"></i> <span>{{::order.comments}}</span>
+                </a>
+                <div style="display: inline-block;">
+                    <button class="button button-small button-clear" style="{{order.is_zan ? 'color:#f44336;' : ''}}; font-size: 1.6rem;" ng-click="zan(order)">
+                        <i class="icon iconfont-like"></i> <span>{{order.zans}}</span>
+                    </button>
+                </div>
+            </div>
+
+            </div>
+        </div>
     </div>
 
 
@@ -104,7 +143,7 @@
     <ion-spinner icon="dots" class="dp-spinner spinner-dark" ng-hide="isLoadFinished"></ion-spinner>
 
     <!--空状态结构-->
-    <div class="dp-emptyBlock" ng-show="isDataEmpty()&&isLoadFinished" style="position:relative;">
+    <div class="dp-emptyBlock" ng-show="isDataEmpty()&&isLoadFinished" ng-if="my==1" style="position:relative;">
       <div class="dp-emptyBlock__container">
         <img src="img/ic_head3.png" width="121" height="121" class="img" alt=""/>
         <p>这里空空的什么也没留下~</p>

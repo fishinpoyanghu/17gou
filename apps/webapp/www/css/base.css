@@ -4122,8 +4122,10 @@ a {
 .balance_account2 .fudai_btn {
     position: absolute;
     right: 10.8%;
-    top: 44%;
+    top: 50%;
     display: block;
+    width: 20%;
+    transform: translateY(-50%);
 }
 .balance_account2 .fudai_btn .dp-account__btn2{
     display: block;

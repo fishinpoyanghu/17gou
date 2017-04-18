@@ -795,6 +795,7 @@ define([
           }
         })
 
+
         //关于我们
         .state('aboutUs',{
           cache:false,
@@ -1174,6 +1175,18 @@ define([
             }
           })
 
+            //小鸟游戏
+          .state('bird_game', {
+              cache:false,
+              url: '/bird_game',
+              templateUrl: function() {return 'webApp/html/active/bird_game/bird_game.html'},
+              controller: 'birdGameCtrl',
+              controllerUrl: 'html/active/bird_game/js/controller_bird_game',
+              dependencies: [],
+              onEnter: function() {
+                  writeTitle('小鸟游戏');
+              }
+          })
 
 
 
@@ -1251,10 +1264,24 @@ define([
                 writeTitle('评论');
               }
           })
+             //冒出爱心
+          .state('showlove', {
+              url: '/showlove',
+              templateUrl: function () {return 'webApp/html/showlove/showlove.html'},
+              controller: 'showLoveCtrl',
+              controllerUrl: 'html/showlove/js/showlove',
+              dependencies: [
+                  'components/view-image-list/view-image-list',
+              ],
+              onEnter: function() {
+                  writeTitle('冒出爱心');
+              }
+          })
+
 
               //沛要求先屏蔽抽奖页面
           //抽奖
-          /*.state('turntable', {
+          .state('turntable', {
               cache:false,
               url: '/turntable',
               templateUrl: function() {return 'webApp/html/turntable/turntable.html'},
@@ -1266,7 +1293,7 @@ define([
               onEnter: function() {
                 writeTitle('抽奖');
               }
-          })*/
+          })
           //抽奖2
           /*.state('turntable2', {
               cache:false,
@@ -1945,9 +1972,11 @@ define([
 
 
 				//小游戏
+					//抓娃娃
           .state('zhuawawa', {
               url: '/zhuawawa',
               templateUrl: function() {return 'webApp/html/active/zhuawawa/zhuawawa_index.html'},
+              cache: false,
               reload:true,
               controller: 'zhuawawaCtrl',
               controllerUrl: 'html/active/zhuawawa/js/zhuawawa_index',
@@ -1955,6 +1984,32 @@ define([
                   writeTitle('抓娃娃首页');
               }
           })
+          //日常任务
+          .state('dailyTask', {
+              url: '/dailyTask',
+              templateUrl: function() {return 'webApp/html/active/zhuawawa/dailyTask/dailyTask.html'},
+              cache: false,
+              reload:true,
+              controller: 'dailyTaskCtrl',
+              controllerUrl: 'html/active/zhuawawa/dailyTask/js/dailyTask',
+              onEnter: function() {
+                  writeTitle('日常任务');
+              }
+          })
+
+          //我的游戏记录
+          .state('gameRecord', {
+              cache:false,
+              url: '/gameRecord',
+              templateUrl: function() {return 'webApp/html/active/game_record/game_record.html'},
+              controller: 'GameRecordCtrl',
+              controllerUrl: 'html/active/game_record/js/controller_game_record',
+              onEnter: function() {
+                  writeTitle('游戏记录');
+              }
+          })
+          
+          
 					//
            .state('text1', { //祥测试
             cache:false,

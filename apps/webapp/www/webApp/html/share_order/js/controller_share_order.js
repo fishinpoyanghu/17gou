@@ -4,6 +4,7 @@
 
 define(
 	['app',
+        'html/common/service_user_info',
 		'models/model_app',
 		'models/model_pintuan',
 		'utils/toastUtil',
@@ -13,9 +14,9 @@ define(
 	function(app) {
 		app.controller('ShareOrderCtrl', ShowOrderCtrl);
 
-		ShowOrderCtrl.$inject = ['$scope', '$state', '$stateParams', 'AppModel', 'PintuanModel', 'ToastUtils', 'MyUrl', '$ionicHistory', 'Global', 'Global'];
+		ShowOrderCtrl.$inject = ['$scope', '$state', '$stateParams', 'userInfo', 'AppModel', 'PintuanModel', 'ToastUtils', 'MyUrl', '$ionicHistory', 'Global', '$timeout', '$ionicScrollDelegate'];
 
-		function ShowOrderCtrl($scope, $state, $stateParams, AppModel, PintuanModel, ToastUtils, MyUrl, $ionicHistory, Global) {
+		function ShowOrderCtrl($scope, $state, $stateParams, userInfo,AppModel, PintuanModel, ToastUtils, MyUrl, $ionicHistory, Global, $timeout, $ionicScrollDelegate) {
 
 			var uid = ($stateParams.uid == '所有') ? null : $stateParams.uid;
 			var goodsId = ($stateParams.goodsId == '所有') ? null : $stateParams.goodsId;
@@ -24,15 +25,15 @@ define(
 			var isDoRefreshing = false; //是否正在做刷新操作
 			$scope.isLoadFinished = false; //首次加载是否结束
 			$scope.pageTitle = $stateParams.pageTitle; //页面标题\
-			
+
 			$scope.displayWhichItem = 'time';
-			
+
 			if($scope.pageTitle == '我的晒单') {
 				$scope.my = 1;
 			} else {
 				$scope.my = 0;
 			}
-			$scope.pageTitle = $scope.pageTitle || '晒单分享';
+			$scope.pageTitle = $scope.pageTitle || '幸运晒单';
 			writeTitle($scope.pageTitle);
 			$scope.orderlist = [];
 			ToastUtils.showLoading('加载中....');
@@ -43,6 +44,16 @@ define(
 
 			/*点击最新、最热、二人云购*/
 			$scope.changeActive = function(order_key, order_type, activity_type) {
+                document.getElementById("shareNavBoxUl").style.animation="comeup .5s";
+                $scope.show.closeImg="rotate0";
+                $scope.show.sanjiao="Alpha0";
+                $timeout(function(){
+                    $scope.show.closeImg="";
+                    $scope.show.sanjiao="opacity0";
+                    $scope.show.aside=false;
+                },500);
+                /*$scope.close_aside();*/
+                $ionicScrollDelegate.scrollTop(true);
 				$scope.displayWhichItem = order_key;
 				if (order_key == 'init') {
 					return;
@@ -54,7 +65,6 @@ define(
 				/*if(activity_type==4){
 				    $scope.acitype_type=activity_type;
 				}*/
-				$scope.show_aside();
 				if(!$scope.isLoadFinished) return;
 				$scope.order_key = order_key;
 				$scope.page = 0;
@@ -70,22 +80,42 @@ define(
 
 			}
 
-			$scope.aside = false;
+			/*$scope.aside = false;
 			$scope.up_icon = false;
-			$scope.down_icon = true;
+			$scope.down_icon = true;*/
 
+            $scope.show={
+                sanjiao:'opacity0',
+                closeImg:'',
+                aside:false
+            };
 			//浏览过的商品栏
 			$scope.show_aside = function() {
-				$scope.up_icon = !$scope.up_icon;
+				/*$scope.up_icon = !$scope.up_icon;
 				$scope.down_icon = !$scope.down_icon;
-				$scope.aside = !$scope.aside;
+				$scope.aside = !$scope.aside;*/
+
+                $scope.show.closeImg="rotate45";
+                $scope.show.aside=true;
+                document.getElementById("shareNavBoxUl").style.animation="comedown .5s";
+                $scope.show.sanjiao="Alpha1";
+                $timeout(function(){
+                    $scope.show.sanjiao="opacity1";
+                    $scope.show.closeImg="";
+                },500);
 			}
+
 
 			//浏览过的商品弹框
 			$scope.close_aside = function() {
-				$scope.aside = false;
-				$scope.up_icon = true;
-				$scope.down_icon = false;
+                document.getElementById("shareNavBoxUl").style.animation="comeup .5s";
+                $scope.show.closeImg="rotate0";
+                $scope.show.sanjiao="Alpha0";
+                $timeout(function(){
+                    $scope.show.closeImg="";
+                    $scope.show.sanjiao="opacity0";
+                    $scope.show.aside=false;
+                },500);
 			}
 			getShareOrderData(true);
 			/*pintuan_data();*/
@@ -153,6 +183,23 @@ define(
 			// $scope.doRefresh();
 			$scope.goToMyAccount = function() {
 				$state.go('tab.account')
+
+			};
+            $scope.startToMyShareOrder = function() {
+                if(!MyUrl.isLogin()) {
+                    event.preventDefault();
+                    $state.go('login', { 'state': STATUS.LOGIN_ABNORMAL });
+                    ToastUtils.showWarning('请先登录！！');
+                    return;
+                }
+                else{
+                    $state.go('shareOrder', {
+                        uid: userInfo.getUserInfo().uid,
+                        goodsId: '',
+                        pageTitle: '我的晒单'
+                    });
+                }
+
 
 			};
 

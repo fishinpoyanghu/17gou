@@ -41,7 +41,7 @@ define(
 				link: function postLink(scope, elem, attrs) {
 					var unit; //参与单位，一元区为1，十元区为10，二人云购为4
 					var goods; //活动商品
-
+					console.log(1111);
 					(function init() {
 						scope.isSelectionShow = false; //控制选择框显示，默认为不显示
 

@@ -466,20 +466,73 @@
 }
 
 
+/*商品详情页的提示信息 end*/
 
+/*幸运晒单 start*/
 
+#shareList{
+   /* padding-top: 20px;
+    background: white;*/
+}
+#shareList .share-list{
+    padding: 20px 10px 5px;
+    border-bottom: 1px solid #D9D7D7;
+    background: white;
+}
+#shareList>.share-list>div{
+    float: left;
+}
 
+#shareList  .share-list .icon_img>img{
+    display: inline-block;
+    width: 80%;
+    border-radius:50%;
+    overflow: hidden;
+}
+#shareList  .share-list .username{
+    font-size: 1.6rem;
+    color:#E43A3D;
+    margin-bottom: 4px;
 
+}
+#shareList  .share-list .share-detail{
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding: 5px 10px 10px;
+    position: relative;
+}
+#shareList  .share-list .share-detail:before{
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 15px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-right: 8px solid #F0F0F0;
+    border-bottom: 8px solid transparent;
+}
 
+#shareList  .share-list .date{
+    font-size: 1.6rem;
+    color:#888888;
+}
+#shareList  .share-list .prize{
+    font-size: 1.4rem;
+    color:#0063D6;
+}
+#shareList  .share-list .content_title{
+    font-size: 1.8rem;
+    color:#3A3A3A;
+    line-height: 3rem;
+}
+#shareList  .share-list .content_desc{
+    font-size: 1.4rem;
+    color:#888888;
+    margin-bottom: 16px;
+}
+#shareList  .share-list .one-row{
+    /*margin-top: 10px;*/
+}
 
-
-
-
-
-
-
-
-
-
-
-
+/*幸运晒单 end*/

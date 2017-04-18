@@ -26,6 +26,11 @@ define(
                 var name = 'pintuan_view_indiana_record_item_' + attrs.type + '.html';
                 return (path+name);
             }
+            else if(attrs.type=='GameRecordme'||attrs.type=='GameRecordothers'){
+                var path = 'webApp/components/game_view-indiana-record-item/';
+                var name = 'game_view_indiana_record_item_' + attrs.type + '.html';
+                return (path+name);
+            }
 
 
         },

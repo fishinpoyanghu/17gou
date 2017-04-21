@@ -21,6 +21,10 @@ return array(
 		array('192.168.0.2', '17gou', 'nfjkernksdferniui'),
 	),
 	'tbl_list' => array( 
+		'user_dynamic'=>array(  //用户扩展表
+			'tbl'   => 't_user_dynamic',
+		 	'split' => 'off', // 目前都填off，表示关闭分库分表功能
+			),
 		'sys_notify'=>array(  //用户扩展表
 				'tbl'   => 't_sys_notify',
 			 	'split' => 'off', // 目前都填off，表示关闭分库分表功能

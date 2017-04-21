@@ -29,7 +29,9 @@
                         <thead>
                         <tr>
                             <th>期号</th>
+                             <th>用户ID</th>
                             <th>参与用户</th>
+                            
                             <th>参与人次</th>
                             <th>参与时间</th>
                             <?php if($_GET['type']==6) echo '<th>奇偶</th>' ; ?>      
@@ -40,6 +42,7 @@
                             <?php foreach($data['list'] as $val){?>
                                 <tr>
                                     <td><?php echo $val['activity_id']?></td>
+                                     <td><?php echo $val['uid']?></td>
                                     <td><?php echo $val['nick']?></td>
                                     <td><?php echo $val['user_num']?></td>
                                     <td><?php echo date('Y-m-d H:i:s',$val['rt']);?></td>
@@ -55,7 +58,16 @@
                                     }        
                                      ?>     
                                    
-                                    <td><a data-id="<?php echo $val['uid']?>" class="js-look">查看</a></td>
+                                    <td><a data-id="<?php echo $val['uid']?>" class="js-look">查看</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                                     <?php if($data['chosenuid']['0']['uid']==$val['uid']) {
+                                        echo "<a data-activity-id=". $val['activity_id'] ." class='js-calcle-chosenactivity' data-uid=".$val['uid']."  >取消选中</a>";
+                                     }else{
+                                         $str= "<a data-activity-id=". $val['activity_id'] ." class='js-chosenactivity' data-uid=".$val['uid']."  >选中</a>";
+                                        echo $str;
+
+                                     }         ?>                            </td>
+
                                 </tr>
                                 <tr class="hide" data-id="<?php echo $val['uid']?>">
                                     <td colspan="5"><?php echo $val['activity_num']?></td>

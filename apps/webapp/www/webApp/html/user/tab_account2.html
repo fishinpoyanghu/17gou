@@ -15,8 +15,7 @@
                     <div id="agency_header">
                         <div class="agency_title">
                             <div class="agency_content">
-                                <!--<div class="agency_user_image"  ng-click="startToUserDetail()">-->
-                                <div class="agency_user_image"  ui-sref="zhuawawa">
+                                <div class="agency_user_image" ng-click="startToUserDetail()">
                                     <div class="agency_user_image_content">
                                         <!--<img src="img/ben.png" alt="">-->
                                         <img ng-src="{{getCurrUserInfo().icon}}" />
@@ -105,6 +104,11 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                                 <img src="img/icon/pintuan_order.png" alt="">
                                 <div class="function-text">拼团记录</div>
                             </div>
+                            <div class="col no-padding" ng-click="startToGameRecord()">
+                                <img src="img/icon/gameRecord.png" alt="" style="width: 38px;height: auto;margin-top: 6px;">
+                                <div class="function-text">游戏记录</div>
+                            </div>
+
                             <div class="col no-padding" ng-click="startToPintuanCollect()">
                                 <img src="img/icon/collect_center.png" alt="">
                                 <div class="function-text">我的收藏</div>
@@ -115,15 +119,11 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                                 <div class="function-text">消费全返</div>
                             </div>-->
 
+                        </div>
+                        <div class="row no-padding function-box">
                             <div class="col no-padding" ng-click="startToSetting()">
                                 <img src="img/icon/shezhi.png" alt="">
                                 <div class="function-text">设置</div>
-                            </div>
-                        </div>
-                        <div class="row no-padding function-box">
-                            <div class="col no-padding" >
-                                <img src="img/icon/shezhi.png" alt="">
-                                <div class="function-text">设置2</div>
                             </div>
 
                             <div class="col no-padding" >
@@ -138,9 +138,9 @@ font-size: 26px;" ng-model="getCurrUserInfo().lucky_packet">
                         <img src="img/pintuan/pintuan_goDetail.jpg" alt="">
 
                     </div>-->
-                    <!--<div class="big-img">
+                    <div class="big-img">
                         <img ng-click="startToInviteFriends()" src="img/account/RecommendRegister.jpg" alt="">
-                    </div>-->
+                    </div>
 
                     <div style="height: 30px;"></div>
                 </div>

@@ -534,6 +534,10 @@ class NcPayMod extends BaseMod{
 					$whereSql = parse_where($where);
 					$sql = "update ".DATABASE.".t_user set money=money+{$money} {$whereSql}";
 					$nc_list->executeSql($sql);
+					if($money>=20){
+						$nc_game=Factory::getMod('nc_games'); 
+				    	$nc_game->updatetask($order['uid'],'task5','task5_time');
+					}
                     $insert = array(
                         'uid' => $orderInfo['uid'],
                         'desc' => '充值',

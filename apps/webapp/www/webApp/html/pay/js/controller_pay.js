@@ -126,8 +126,13 @@ define([
 					}
 					console.log($scope)
 					$timeout(function(){
+						console.log($scope.fromWhichState);
+						console.log(Storage.get('newGameBuyFuDai'));
 						if($scope.fromWhichState.slice(0, 7) == 'pintuan') {
 							$state.go('pintuan_order');
+						} else if(Storage.get('newGameBuyFuDai')=='zhuawawa') {
+							Storage.remove('newGameBuyFuDai');
+							$state.go('zhuawawa');
 						} else if($scope.fromWhichState == 'tab.account2'||$scope.fromWhichState=='chongzhi') {
 							$state.go('tab.account2');
 						} else {
@@ -523,6 +528,7 @@ define([
 						getThirdPay();
 					}
 				};
+				$scope.$on('$ionicView')
 				$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 					//游戏里购买福袋设置storage为true；
 					console.log(Storage.get('newGameBuyFuDai'));

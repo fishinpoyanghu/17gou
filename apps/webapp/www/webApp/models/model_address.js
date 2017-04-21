@@ -115,6 +115,15 @@ define(['app','utils/httpRequest'],function(app){
       httpRequest.post(requestUrl, params, onSuccess,onFail,null);
     }
 
+      function confirmGameAddress(order_num,addressId,onSuccess,onFail){
+          var requestUrl = '?c=nc_games&a=editaddress';
+          var params = {
+              address_id : addressId ,
+              order_num: order_num
+          };
+          httpRequest.post(requestUrl, params, onSuccess,onFail,null);
+      }
+
     return {
       getAddressList : getAddressList, // 收货地址列表
       addAddress : addAddress ,// 新增收货地址
@@ -123,7 +132,9 @@ define(['app','utils/httpRequest'],function(app){
       confirmAddress : confirmAddress, //确认收货地址
       confirmPinTuanAddress:confirmPinTuanAddress, //拼团确认地址
       confirmPinTuanAddress2:confirmPinTuanAddress2, //拼团确认地址
-      confirmAddressChoujiang:confirmAddressChoujiang
+      confirmAddressChoujiang:confirmAddressChoujiang,
+        //游戏确认地址
+        confirmGameAddress:confirmGameAddress
     }
 
   }]);

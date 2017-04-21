@@ -271,10 +271,11 @@ define(
 
 
         //获取快递路径
-        function getExpressQuery(logistics_id, onSuccess, onFailed) {
+        function getExpressQuery(logistics_id,type, onSuccess, onFailed) {
             var url = '?c=nc_record&a=logistic';
             var params = {
-                logistics_id: logistics_id
+                logistics_id: logistics_id,
+                type: type
             };
             return httpRequest.post(url, params, onSuccess, onFailed);
         }

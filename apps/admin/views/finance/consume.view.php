@@ -68,7 +68,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr><td class="red">合计：<?php echo $data['total_money']?></td><td colspan="5"></td></tr>
+                        <tr><td class="red totalheji">合计：计算中</td><td colspan="5"></td></tr>
                         <?php foreach($data['list'] as $val){?>
                             <tr>
                                 <td><?php echo $val['title']?></td>

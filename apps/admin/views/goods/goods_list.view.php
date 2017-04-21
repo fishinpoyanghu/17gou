@@ -26,6 +26,16 @@
                     <div class="right-item vercenter-wrap">
                         <div class="item dib vercenter">
                             <!-- 如果$category_list有内容，显示搜索目录框 -->
+                            <select class="dp-select" name="rate_percent"> <!--3是限购-->
+                                    <option value="0" >请选择分润比</option> 
+                                    <option value="20" <?php if($data['rate_percent']==20) echo 'selected'?>>20%</option> 
+                                    <option value="30" <?php if($data['rate_percent']==30) echo 'selected'?>>30%</option>
+                                    <option value="40" <?php if($data['rate_percent']==40) echo 'selected'?>>40%</option>
+                                    <option value="50" <?php if($data['rate_percent']==50) echo 'selected'?>>50%</option>
+                                     
+                            </select>
+
+
                             <select class="dp-select" name="activity_type"> <!--3是限购-->
                                     <option value="0" >请选择专区</option> 
                                     <option value="1" <?php if($data['activity_type']==1) echo 'selected'?>>一元专区</option> 

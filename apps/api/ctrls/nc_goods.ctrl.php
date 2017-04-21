@@ -269,6 +269,9 @@ class NcGoodsCtrl extends BaseCtrl {
 		if (!$activity) {
 			api_result(2, '云客活动不存在');
 		}
+		if($activity['flag']==4){
+			api_result(0, '数据为空');
+		}
 		
 		// 获得参与记录
 		$where = array(

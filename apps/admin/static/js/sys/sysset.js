@@ -9,6 +9,7 @@ define(function(require, exports, module) {
 			width: '150px',
 			okValue: "确定",
 			ok: function() {
+				window.location.href=window.location.href;
 				this.close().remove();
 				if(typeof callback === 'function'){
 					callback();

@@ -325,9 +325,15 @@ class NcOrderMod extends BaseMod{
         	$resultlist[]= $datainfo;
 
         }*/
-         
-        $resultinfo['show']=$percent==2?2:1;
-        $resultinfo['show']=($num==$ipt_list['num'])?0:$resultinfo['show'];
+         if($percent>=1.3){
+        	$resultinfo['show']=2;
+        }else if($percent >=0.7){
+        	$resultinfo['show']=1;
+        }else{
+        	$resultinfo['show']=0;
+        }
+     /*   $resultinfo['show']=$percent==2?2:1;
+        $resultinfo['show']=($num==$ipt_list['num'])?0:$resultinfo['show'];*/
         $resultinfo['percent']=$percent;
         $resultinfo['list']=$resultlist; 
         $resultinfo['luckynum']=$num;  //开福袋中奖数量sss
@@ -394,6 +400,8 @@ class NcOrderMod extends BaseMod{
 		    $nc_list_mod->setDbConf('shop', 'task'); 
 			$nc_list_mod->insertData($data);  
 			$nc_list_mod->executeSql('COMMIT');
+			$order_mod = Factory::getMod('nc_games');
+        	 $order_mod->updatetask($login_user['uid'],'task1','task1_time');
 		}catch(Exception $e){
 			$nc_list_mod->executeSql('ROLLBACK');
 			api_result(1, '提交失败');

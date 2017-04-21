@@ -2,9 +2,9 @@
 <ion-view view-title="抓娃娃" hide-nav-bar="true">
 
 	<style type="text/css">
-		@-webkit-keyframes rolling-0 {
+		/*@-webkit-keyframes rolling-0 {
 			0% {
-				transform: translate3d( {{largeDollListHeight}}, 0, 0);
+				transform: translate3d(-372px, 0, 0);
 			}
 			100% {
 				transform: translate3d(0, 0, 0);
@@ -13,138 +13,28 @@
 		
 		@keyframes rolling-0 {
 			0% {
-				transform: translate3d( {{largeDollListHeight}}, 0, 0);
+				transform: translate3d(-1372px, 0, 0);
 			}
 			100% {
 				transform: translate3d(0, 0, 0)
 			}
-		}
+		}*/
 		
 		.rolling-0-animation {
-			-webkit-animation: rolling-0 34.279199999999996s linear infinite;
-			animation: rolling-0 5.279199999999996s linear infinite;
-		}
-		
-		@-webkit-keyframes sm_rolling-0 {
-			100% {
-				transform: translate3d(-1713.96px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-		
-		@keyframes sm_rolling-0 {
-			100% {
-				transform: translate3d(-1713.96px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0)
-			}
-		}
-		
-		.sm-rolling-0-animation {
-			-webkit-animation: sm_rolling-0 51.4188s linear infinite;
-			animation: sm_rolling-0 51.4188s linear infinite;
-		}
-		
-		@-webkit-keyframes rolling-1 {
-			0% {
-				transform: translate3d(-1015.68px, 0, 0);
-			}
-			100% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-		
-		@keyframes rolling-1 {
-			0% {
-				transform: translate3d(-1015.68px, 0, 0);
-			}
-			100% {
-				transform: translate3d(0, 0, 0)
-			}
-		}
-		
-		.rolling-1-animation {
-			-webkit-animation: rolling-1 30.470399999999998s linear infinite;
-			animation: rolling-1 30.470399999999998s linear infinite;
-		}
-		
-		@-webkit-keyframes sm_rolling-1 {
-			100% {
-				transform: translate3d(-1523.52px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-		
-		@keyframes sm_rolling-1 {
-			100% {
-				transform: translate3d(-1523.52px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0)
-			}
-		}
-		
-		.sm-rolling-1-animation {
-			-webkit-animation: sm_rolling-1 45.7056s linear infinite;
-			animation: sm_rolling-1 45.7056s linear infinite;
-		}
-		
-		@-webkit-keyframes rolling-2 {
-			0% {
-				transform: translate3d(-1015.68px, 0, 0);
-			}
-			100% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-		
-		@keyframes rolling-2 {
-			0% {
-				transform: translate3d(-1015.68px, 0, 0);
-			}
-			100% {
-				transform: translate3d(0, 0, 0)
-			}
-		}
-		
-		.rolling-2-animation {
-			-webkit-animation: rolling-2 30.470399999999998s linear infinite;
-			animation: rolling-2 30.470399999999998s linear infinite;
-		}
-		
-		@-webkit-keyframes sm_rolling-2 {
-			100% {
-				transform: translate3d(-1523.52px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0);
-			}
-		}
-		
-		@keyframes sm_rolling-2 {
-			100% {
-				transform: translate3d(-1523.52px, 0, 0);
-			}
-			0% {
-				transform: translate3d(0, 0, 0)
-			}
-		}
-		
-		.sm-rolling-2-animation {
-			-webkit-animation: sm_rolling-2 45.7056s linear infinite;
-			animation: sm_rolling-2 45.7056s linear infinite;
+			-webkit-animation: rolling-0 10.279199999999996s linear infinite;
+			/*-webkit-animation: rolling-0 10 linear infinite;*/
+			animation: rolling-0 10.279199999999996s linear infinite;
+			/*animation: rolling-0 10 linear infinite;*/
 		}
 	</style>
-
 	<ion-content class="zhuawawa">
+		<style type="text/css" id="animateCss">
+
+		</style>
 		<main class="zhuawawa_main">
 			<nav>
 				<div class="zhuanww_left" ng-click="buyFudai()">
+					<strong>-{{config.costNum[config.gameLevel]}}</strong>
 					<i class="icon-doll"></i>
 					<span class="bean_total jsBalance">{{userInfo.lucky_packet}}</span>
 					<span class="btn_add jsPay"></span>
@@ -153,8 +43,9 @@
 					<span class="doll-tool-item jsHelpBtn" ng-click="openElem('gameRule')">
 						<span class="icon-tool icon-help"></span>
 					</span>
+					<br />
 					<span class="doll-tool-item new-item jsTarget">
-						<span  ui-sref="gameRecord" id="jsRecordBtn" class="icon-tool icon-record"></span> 
+						<span  ui-sref="gameRecord" id="jsRecordBtn" class="icon-tool icon-record"></span>
 						<span class="reddot" style="display: none; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
 							
 						</span>
@@ -191,21 +82,29 @@
 							<img ng-if="config.gameLevel==1" class="machine-origin" src="img/weiGame/zhuaww/bg_low/low_center.png" alt="" />
 							<img ng-if="config.gameLevel==2" class="machine-origin" src="img/weiGame/zhuaww/bg_middle/middle_center.png" alt="" />
 							<img ng-if="config.gameLevel==3" class="machine-origin" src="img/weiGame/zhuaww/bg_high/high_center.png" alt="" />
-							
+
 							<!--<span class="machine-origin"></span>-->
 							<span class="machine-arm machine-arm-left"></span>
 							<span class="machine-arm machine-arm-right"></span>
 						</div>
 						<ul class="doll-hold jsHoldSuc">
-
+							<li  class="doll-item" data-id="{{jsHoldSuccess.game_goods_id}}">
+								<!--<span class="doll doll-cy bg_{{1}}"></span>
+								<span class="doll-card doll-gift">
+									<span id="succHoldText" class="doll-card-txt">
+										<p>{{jsHoldSuccess.sub_title}}</p>
+										<p>{{jsHoldSuccess.title}}</p>
+									</span>
+								</span>-->
+							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="zhuanww_item doll-box doll-box-large">
 					<div class="doll-cont">
-						<ul id="largeDollList" class="doll-list rolling-0-animation">
+						<ul id="largeDollList" class="doll-list">
 							<!--<ul id="largeDollList" class="doll-list">-->
-							<li class="doll-item " ng-repeat="awards in awardList" data-id = "{{awards.game_goods_id}}">
+							<li class="doll-item " ng-repeat="awards in awardList" data-id="{{awards.game_goods_id}}">
 								<!--<img class="doll" src="img/weiGame/zhuaww/bg/doll-item_1.png"/>-->
 								<span class="doll doll-cy bg_{{$index%5+1}}"></span>
 								<span class="doll-card doll-gift">
@@ -216,7 +115,7 @@
 									</span>
 								</span>
 							</li>
-							<li class="doll-item " ng-repeat="awards in awardListInxThree" data-id = "{{awards.game_goods_id}}">
+							<li class="doll-item " ng-repeat="awards in awardListInxThree" data-id="{{awards.game_goods_id}}">
 								<!--<img class="doll" src="img/weiGame/zhuaww/bg/doll-item_1.png"/>-->
 								<span class="doll doll-cy bg_{{$index%5+1}}"></span>
 								<span class="doll-card doll-gift">
@@ -237,7 +136,7 @@
 		</main>
 
 		<div id="catch_succ" class="panel-mask" style="z-index: 1000;" ng-if="catchResult.display">
-			<div class="panel panel-suc-primary">
+			<div class="panel panel-suc-primary" data-msg="{{notFirstComZhuawawa}}">
 				<div class="panel-suc-hd">
 					<h2>{{catchResult.title}}</h2></div>
 				<div class="panel-suc-bd">
@@ -260,8 +159,11 @@
 						<!---->
 						<p>{{popUpBox.content}}</p>
 					</div>
-					<ul class="btn-wrap" ng-click="closeElem('popUpBox')">
-						<li><span class="btn btn-red jsContinue">{{popUpBox.btnText}}</span></li>
+					<ul class="btn-wrap" >
+						<li>
+							<span ng-click="closeElem('popUpBox')" ng-if="popUpBox.btnText1" class="btn btn-red jsContinue">{{popUpBox.btnText1}}</span>
+							<span ng-click="buyFudai()" ng-if="popUpBox.btnText2" class="btn btn-red jsContinue">{{popUpBox.btnText2}}</span>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -269,13 +171,13 @@
 
 		<footer>
 			<div class="doll_notice">
-				<!--<view-text-scoll interval="3000" scoller-height="24" text-list={{getLuckyData}} ng-if="getLuckyData.length > 0"></view-text-scoll>-->
-				<ul class="notice_list">
+				<view-text-scoll interval="3000" scoller-height="24" text-list={{gameNoticeList}} ng-if="gameNoticeList.length > 0"></view-text-scoll>
+				<!--<ul class="notice_list">
 					<li>
 						<i class="icon_notice">公告</i>
 						<a><span>微信P2c**ih</span>获得了<span>iPhone7 plus128G</span></a>
 					</li>
-				</ul>
+				</ul>-->
 			</div>
 			<div class="doll-bets">
 				<div class="doll_bet_bean">
@@ -292,70 +194,47 @@
 					</span>
 				</div>
 				<div class="doll-btn" ng-click="startZhuaww()">
-					<a class="btn-start jsBetBtn"></a>
+					<a ng-if="notFirstComZhuawawa" class="btn-start jsBetBtn"></a>
+					<a ng-if="!notFirstComZhuawawa" class="btn-start jsBetBtn demo"></a>
 				</div>
 			</div>
 			</div>
 		</footer>
-		<div class="panel-mask" ng-if="config.displayRule">
-			<div class="panel-doll-rule">
-				<!--<div class="rule-hd">
-					<h2>游戏规则</h2>
-				</div>-->
-				<div class="rule-bd">
-					<div class="rule-cont">
-						<h3><b>一、玩法说明</b></h3>
-						<p>1.玩家首先选择每次夹娃娃需要花费的幸运豆数，然后点击开始便可伸出夹子去夹取相应的奖品；</p>
-						<p>2.能否夹起娃娃取决于玩家出手的时机，夹起娃娃后能否夹中则取决于奖品的概率。</p>
-						<h3><b>二、奖品说明</b></h3>
-						<p>1、获得奖品后请在30日内填写信息，逾期将取消中奖资格；话费充值请填写充值手机号码，京东E卡与实物奖品请填写收货人信息；</p>
-						<p>2、平台将在1-2个工作日内进行处理；若部分地区无法正常派发，我们将会及时通知用户，可退还价值等额的幸运豆；实物奖品颜色随机派发。</p>
-						<h3><b>三、其他说明</b></h3>
-						<p>1.用户不得利用外挂、爬虫软件或其它恶意手段获得奖励，一经发现，我们有权对所有使用非法手段的账号进行不予发奖、冻结、查封等操作；</p>
-						<p>2.受网络影响，游戏动画表现可能存在误差，最终中奖结果请以订单详情中的结果为准。</p>
-					</div>
-					<div class="rule-btn">
-						<a ng-click="closeElem('gameRule')" class="btn btn-red jsClose"></a>
-					</div>
-				</div>
+		<div id="zhuawawa_guide" ng-if="!notFirstComZhuawawa">
+			<div class="guide_img"></div>
+			<div class="guide_btn">
+				<span class="jumpOverBtn" ng-click="jumpOver()"></span>
+				<span class="demoBtn" ng-click="demoShow()"></span>
 			</div>
+			<div class="zhauwwmask"></div>
 		</div>
-		
-		<view-buy-fudai></view-buy-fudai>
+		<!--<view-buy-fudai></view-buy-fudai>-->
 	</ion-content>
 
 </ion-view>
+<div ng-if="config.displayRule">
+	<div id="gamePop">
+		<!--灰色背景-->
+		<div class="model_layer"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		<!--游戏规则-->
+		<div class="panel-doll-rule">
+			<img src="img/weiGame/zhuaww/gameRule_bg.png" alt="">
+			<div class="rule-bd">
+				<h3><b>一、玩法说明</b></h3>
+				<p>1、玩家首先选择每次夹娃娃需要花费的福袋个数，然后点击开始便可伸出夹子去夹取相应的奖品；</p>
+				<p>2、能否夹起娃娃取决于玩家出手的时机，夹起娃娃后能否夹中则取决于奖品的概率。</p>
+				<h3><b>二、奖品说明</b></h3>
+				<p>1、实物商品：全部为原厂正品，夹中后请在待领奖中领奖并填写收货信息，我们将在1—3个工作日发货。</p>
+				<p>2、充值卡：以卡密形式自动发放，请夹中充值卡后在待领奖中领奖。</p>
+				<h3><b>三、其他说明</b></h3>
+				<p>1、用户不得已机器人软件、蜘蛛软件、爬虫软件、刷屏软件等自动访问方式或其他作弊行为参与本游戏，一经发现，我么你有权对所有使用非法手段的账号进行不予发奖、冻结、查封等操作。</p>
+				<p>2、因网络波动影响，夹娃娃动画表现可能存在误差，最终结果以参与记录中的结果为准。</p>
+				<p>3、请在中奖后的30天内填写收货信息，逾期默认自动放弃中奖资格。</p>
+				<p>4、均有任何疑问请拨打客服热线：400-8253-551</p>
+			</div>
+			<!--返回游戏按钮-->
+			<img ng-click="closeElem('gameRule')" class="return_game_btn" src="img/weiGame/zhuaww/return_game.png" alt="">
+		</div>
+	</div>
+</div>

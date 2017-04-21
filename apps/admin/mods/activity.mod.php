@@ -12,8 +12,8 @@ class ActivityMod extends BaseMod{
      * @param string $num
      * @return mixed
      */
-    public function activity($type,$page=1,$num=''){
-        $info = $this->data->activity($type,$page,$num);
+    public function activity($type,$page=1,$num,$keyword){
+        $info = $this->data->activity($type,$page,$num,$keyword);
 
         $flag = array('进行中','即将揭晓','已揭晓',4 => '活动结束');
         foreach($info['list'] as &$val){
@@ -27,6 +27,17 @@ class ActivityMod extends BaseMod{
             $val['flag'] = $flag[$val['flag']];
         }
         return $info;
+    }
+    public function sharelist($type,$page=1,$num,$keyword){
+         $info = $this->data->sharelist($type,$page,$num,$keyword);
+           $flag = array('进行中','即将揭晓','已揭晓',4 => '活动结束');
+            foreach($info['list'] as &$val){ 
+                $val['ut'] = $val['ut'] ? date('Y-m-d H:i:s',$val['ut']) : '-';
+                $val['end_time'] = $val['end_time'] ? date('Y-m-d H:i:s',$val['end_time']) : '-';
+                $val['lucky'] = $val['lucky_num']&&$val['nick'] ? $val['lucky_num'].'（'.$val['nick'].'）' : '-';  
+                $val['flag'] = $flag[$val['flag']];
+            }
+         return $info;
     }
 
     /**
@@ -282,10 +293,11 @@ class ActivityMod extends BaseMod{
                 'appid' => APP_ID,
                 'name' => $user,
                 'nick' => $nick,
+                'type'=>-1,
                 'password' => md5($pwd),
                 'rt' => time(),
                 'ip' => ip2long(PubUtil::rand_ip()),
-                'icon' => mt_rand(1,12).'.png',
+                'icon' => mt_rand(1,500).'.jpg',
             );
             $res = $this->data->addUser($user_info);
             if($res){
@@ -616,6 +628,77 @@ class ActivityMod extends BaseMod{
         $desc = implode(':',$tmp);
         $state = $this->data->modifyCash($id,$desc);
         return array('state' => $state?1:0);
+    }
+
+    public function savedoshare($data, $id){
+        $nc_list_mod = Factory::getMod('nc_list'); 
+        $where = array( 
+            'activity_id' => $data['activity_id'],
+             
+        );
+
+        if(empty($data['show_title']) || empty($data['show_desc']) || empty($data['img']) || empty($data['activity_id']) || empty($data['rt']) ){
+             return array('state' => 0,'msg' => '数据不完整,请填写好所有数据！');
+        }
+        if($data['rt']>date('Y-m-d')){
+             return array('state' => 0,'msg' => '时间不能大于今天！');
+        }
+
+        $column = array(
+             'goods_id','uid','ut'
+        );
+        $nc_list_mod->setDbConf('shop', 'lucky_num');
+        $goodsInfo = $nc_list_mod->getDataList($where, $column, array(), array(), false);
+        if(strtotime($data['rt'])<$goodsInfo[0]['ut']+3*24*3600){
+             return array('state' => 0,'msg' => '晒单时间必须是中奖的3天后');
+        }
+        
+       // echo $nc_list_mod->getlastsql();exit;
+        if(empty($goodsInfo) || $goodsInfo[0]['uid']==0){
+           return array('state' => 0,'msg' => '当前订单没开奖');
+        }
+
+        $nc_list_mod->setDbConf('main', 'user');
+        $ret = $nc_list_mod->getDataOne(array('uid'=>$goodsInfo[0]['uid']), array('type'), array(), array(), false);
+       
+        if($ret['type']!='-1'){
+            return array('state' => 0,'msg' => '当前订单不是正常用户中奖！');
+        } 
+
+        $goods_id = $goodsInfo[0]['goods_id'];
+        //查看用户是否已经分享
+        $where = array( 
+            'activity_id' => $data['activity_id'],
+        );
+        $column = array(
+            'show_id'
+        );  
+        $nc_list_mod->setDbConf('shop', 'show');
+        $showInfo = $nc_list_mod->getDataList($where, $column, array(), array(), false);
+        if(!empty($showInfo)){ 
+             $data['ut']=$data['rt']=strtotime($data['rt']); 
+             $nc_list_mod->updateData($where, $data); //var_dump($data); 
+             return array('state' => 1,'msg' => '保存成功');
+            //保存api_result(1, '一期活动只能分享一次');
+        }
+
+        //执行分享
+        $time = time();
+        $data = array(
+            'appid' =>10002,
+            'goods_id' => $goods_id,
+            'activity_id' => $data['activity_id'],
+            'uid' => $goodsInfo[0]['uid'],
+            'show_title' => $data['show_title'],
+            'show_desc' => $data['show_desc'],
+            'img' => $data['img'],
+            'stat' => 2,
+            'rt' => strtotime($data['rt']),
+            'ut' =>strtotime($data['rt'])
+        );
+        $ret = $nc_list_mod->insertData($data);
+        return array('state' => $ret,'msg' => '添加成功');
+        
     }
 
 }

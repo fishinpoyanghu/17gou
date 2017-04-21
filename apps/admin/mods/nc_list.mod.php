@@ -232,4 +232,10 @@ class NcListMod extends BaseMod{
 		}
 		return $data;
 	}
+
+	public function getlastsql(){
+		if(empty($this->dbConf)) return array();
+		$db_op = DbOp::getInstance($this->dbConf); 
+		return $db_op->getLastSql();
+	}
 }

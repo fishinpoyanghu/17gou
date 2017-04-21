@@ -116,6 +116,7 @@ class NcRecordCtrl extends BaseCtrl{
 			'activity_id' => array(
 				'api_v_numeric|1||activity_id不合法',
 			),*/
+			  'type'=>array(),
 			  'logistics_id' => array(
 				'api_v_numeric|1||logistics_id 不合法',
 			),
@@ -132,7 +133,12 @@ class NcRecordCtrl extends BaseCtrl{
 		); 
 		 
 		$nc_list= Factory::getMod('nc_list');
-	    $nc_list->setDbConf('shop', 'logistics'); 
+		if($ipt_list['type']=='game'){
+			$nc_list->setDbConf('game', 'game_logistics'); 
+		}else{
+			$nc_list->setDbConf('shop', 'logistics'); 
+		}
+	     
 		$ret = $nc_list->getDataOne($where, array(), array(), array(), false); 
 		if(empty($ret)){
 			api_result(1, '物流单号错误!');

@@ -97,10 +97,11 @@
             <li>
                 <a href="?c=custom" <?php if($data['menu']=='custom'){?>class="current"<?php }?>><span class="link-txt">订单设置</span><span class="pointing">&gt;</span></a>
             </li>
+             
             
         </ul>
 
-          
+            <?php  }?>
         <h4 class="title">
             <span class="tit-txt">订单管理</span>
         </h4>
@@ -111,6 +112,10 @@
             <li>
                 <a href="?c=team&a=order" <?php if($data['menu']=='teamorder'){?>class="current"<?php }?>><span class="link-txt">团购订单列表</span><span class="pointing">&gt;</span></a>
             </li>
+              <li>
+                <a href="?c=activity&a=sharelist" <?php if($data['menu']=='sharelist'){?>class="current"<?php }?>><span class="link-txt">已开奖列表</span><span class="pointing">&gt;</span></a>
+            </li>
+             <?php if($data['login_user']['is_super']){?>
             <li>
                 <a href="?c=team&a=baituanorder" <?php if($data['menu']=='baituan'){?>class="current"<?php }?>><span class="link-txt">旧百团订单列表</span><span class="pointing">&gt;</span></a>
             </li>
@@ -120,9 +125,9 @@
             </li>
             <li>
                 <a href="?c=activity&a=comment" <?php if($data['menu']=='comment'){?>class="current"<?php }?>><span class="link-txt">评论审核</span><span class="pointing">&gt;</span></a>
-            </li>
+            </li> <?php  }?>
         </ul>
-        <?php  }?>
+       
           <?php if($data['login_user']['is_super']){?>
         <h4 class="title">
             <span class="tit-txt">师徒关系管理</span>

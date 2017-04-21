@@ -18,7 +18,29 @@ define(function(require, exports, module) {
 		search +=  key ? "&keyword="+key : "";
 		location.href = "?c=finance&a=consume"+search;
 	});
+	$(function(){
 
+		var key = $('input[name=keyword]').val();
+		var start = $('input[name=start]').val();
+		var end = $('input[name=end]').val();
+		var search = "";
+		search += start ? "&start="+start :"";
+		search += end ? "&end="+end :"";
+		search +=  key ? "&keyword="+key : "";
+ 
+		$.ajax({ 
+			type: "POST",
+		    url: '?c=finance&a=ajaxtotal'+search, 
+			dataType: 'json', 
+			//data:{'uid':people,'start':start,'end':end},
+			success: function(r) { 
+			    $('.totalheji').html('合计:'+r.total);
+		 }
+		});
+
+
+
+	})
 	$('.js-export').on('click',function(){
 		var start = $('input[name=start]').val();
 		var end = $('input[name=end]').val();

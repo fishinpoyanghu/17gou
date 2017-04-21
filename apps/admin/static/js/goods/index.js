@@ -127,14 +127,14 @@ define(function(require, exports, module) {
 		$.post("?c=goods&a=saveGoods",{"data":data,"id":id},function(re){
 			if(re.code > 0){
 				altDialog(re.msg,function(){
-					location.href = "?c=goods&a=goodsList";
+					location.href = document.referrer;
 				});
 			}else{
 				altDialog(re.msg);
 			}
 		},'json');
 	});
-
+ 
 	//提示
 	function altDialog(content,callback){
 		dialog({

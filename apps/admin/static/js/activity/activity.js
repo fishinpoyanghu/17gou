@@ -121,7 +121,7 @@ define(function(require, exports, module) {
 				$.post('?c=activity&a=multiAssign',{"id":id},function(re){
 					if(re.code > 0){
 						altDialog('操作成功',function(){
-							location.reload();
+							window.location.href=window.location.href;
 						});
 					}else{
 						altDialog('操作失败');
@@ -133,9 +133,62 @@ define(function(require, exports, module) {
 
 
 	//参与记录查看夺宝号
-	$('.js-look').on('click',function(){
+	$('.js-look').on('click',function(){   
 		var uid = $(this).attr('data-id');
 		$("tr[data-id="+uid+"]").toggleClass('hide');
 	});
+	$('.js-chosenactivity').on('click',function(){
+		var activity_id = $(this).attr('data-activity-id');
+		var uid = $(this).attr('data-uid');  
+		dialog({
+			content:'确定选中此人吗？',
+			width: '150px',
+			okValue: "确定",
+			cancelValue: '取消',
+			cancel: true,
+			quickClose: true,
+			follow: this,
+			ok: function() {
+				this.close().remove();
+				$.post('?c=activity&a=choseactivity',{"uid":uid,"activity_id":activity_id},function(re){
+					if(re.code > 0){
+						 altDialog('操作成功',function(){
+							window.location.href=window.location.href;
+						});
+					}else{
+						 altDialog('操作失败');
+					}
+				},'json');
+			}
+		}).show();
+	});  
+	$('.js-calcle-chosenactivity').on('click',function(){
+		var activity_id = $(this).attr('data-activity-id');
+		var uid = $(this).attr('data-uid');  
+		dialog({
+			content:'确定取消选中吗？',
+			width: '150px',
+			okValue: "确定",
+			cancelValue: '取消',
+			cancel: true,
+			quickClose: true,
+			follow: this,
+			ok: function() {
+				this.close().remove();
+				$.post('?c=activity&a=choseactivity',{"uid":uid,"activity_id":activity_id,"cancel":1},function(re){
+					if(re.code > 0){
+						 altDialog('操作成功',function(){
+							window.location.href=window.location.href;
+						});
+					}else{
+						 altDialog('操作失败');
+					}
+				},'json');
+			}
+		}).show();
+	});
 
+
+ 
+ 
 });

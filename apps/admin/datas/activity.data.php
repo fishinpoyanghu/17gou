@@ -11,13 +11,13 @@ class ActivityData extends BaseData {
 	 * @param $num
 	 * @return array
 	 */
-	public function activity($type,$page,$num){
+	public function activity($type,$page,$num,$keyword){
 		$type = safe_db_data($type);
 		$page = safe_db_data($page);
 		$num = safe_db_data($num);
 		$limit = $num ? "limit ".($page-1)*$num.",$num" : '';
 
-		$res = $this->getActivitySql($type,$limit);
+		$res = $this->getActivitySql($type,$limit,$keyword);
 
 		$db_op = DbOp::getInstance($res['db_cfg']);
 		$count = $db_op->queryRow($res['c_sql']);
@@ -34,7 +34,7 @@ class ActivityData extends BaseData {
 	 * @param $limit
 	 * @return array
 	 */
-	private function getActivitySql($type,$limit){
+	private function getActivitySql($type,$limit,$keyword){
 		$and = " and a.`stat` = 0 ";
 		//红包中奖记录 
 		if(0){ //状态4已改为二人购
@@ -44,7 +44,11 @@ class ActivityData extends BaseData {
 			$table .= " left join ".DATABASE.".`t_user` as c on a.`result_uid` = c.`uid` ";
 			$sql = "select a.*,a.`result_num` as lucky_num,b.`title`,c.`nick` from {$table} where 1 {$and} order by a.`flag` asc,a.`ut` desc {$limit}";
 		}else{
+			if($keyword){
+				$and .= " and a.`activity_id` = '$keyword'";
+			}else{
 			$and .= " and b.`activity_type` = {$type}";
+			} 
 			$db_cfg = load_db_cfg($this->cfg_name, $this->tbl_alias, '', 'r');
 			$table = " {$db_cfg['tbl']} as a left join ".DATABASE.".`t_goods` as b on a.`goods_id` = b.`goods_id` ";
 			$table .= " left join ".DATABASE.".`t_lucky_num` as c on a.`activity_id` = c.`activity_id` ";
@@ -56,7 +60,37 @@ class ActivityData extends BaseData {
 		return array('sql' => $sql,'c_sql' => $c_sql,'db_cfg' => $db_cfg);
 	}
 
+	public function sharelist($type,$page,$num,$keyword){
+		$type = safe_db_data($type);
+		$page = safe_db_data($page);
+		$num = safe_db_data($num);
+		$limit = $num ? "limit ".($page-1)*$num.",$num" : ''; 
+		$time=time()-7*24*3600;
+		$and = " and a.`stat` = 0 and a.flag=2 and d.type=-1 and a.publish_time < $time";
+		if($keyword){
+			$and .= " and a.`activity_id` = '$keyword'";
+		}else{
+			$and .= " and b.`activity_type` = {$type}";
+		} 
+		$db_cfg = load_db_cfg($this->cfg_name, $this->tbl_alias, '', 'r');
+		$table = " {$db_cfg['tbl']} as a left join ".DATABASE.".`t_goods` as b on a.`goods_id` = b.`goods_id` ";
+		$table .= " left join ".DATABASE.".`t_lucky_num` as c on a.`activity_id` = c.`activity_id` ";
+		$table .= " left join ".DATABASE.".`t_user` as d on c.`uid` = d.`uid` ";
+		$table .= " left join ".DATABASE.".`t_show` as s on s.`activity_id` = a.`activity_id` ";
+		$sql = "select a.publish_time ut,a.rt,a.activity_id, a.end_time,b.`title`,c.`lucky_num`,d.`nick`,s.show_id from {$table} where 1 {$and} order by a.`flag` asc,a.`ut`  desc {$limit}";
 
+
+		$c_sql = "select count(*) as total from {$table} where 1 {$and}";
+	    $res= array('sql' => $sql,'c_sql' => $c_sql,'db_cfg' => $db_cfg);
+
+		$db_op = DbOp::getInstance($res['db_cfg']);
+		$count = $db_op->queryRow($res['c_sql']);
+		if($count['total']==0) return array();
+		return array(
+			'list' => $db_op->queryList($res['sql']),
+			'total' => $count['total']
+		);
+	}
 	/**
 	 * 指定中奖or取消指定
 	 * @param $id

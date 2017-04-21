@@ -43,7 +43,7 @@
                             <li style="float:right;">
                               <span class="dp-search-item item vercenter">
                               <div class="input-group dp-input" style="float:left;">
-                                <input class="form-control input-sm" name="keyword" data-type="search" type="text" placeholder="按商品名搜索" value="<?php echo $data['keyword']?>" />
+                                <input class="form-control input-sm" name="keyword" data-type="search" type="text" placeholder="按期号搜索" value="<?php echo $data['keyword']?>" />
                                  <input type="hidden" id='type_id' value='<?php  echo $data["type"];?>'>
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" id="search"><i class="icon-search"></i></button>

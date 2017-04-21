@@ -1386,15 +1386,14 @@ class NcUserCtrl extends BaseCtrl {
             api_result(8, '验证码已失效');
         }  
 		if ($mcode != $cache_ary['code']) {
-			api_result(8, '验证码错误');
+			  api_result(8, '验证码错误');
 		} 
 		// 删除手机验证码缓存
 		do_cache('delete', 'mcode', $ipt_list['phone']);  
 		$login_user = app_get_login_user($base['sessid'], $base['appid'], true);
 		$nc_list = Factory::getMod('nc_list'); 
         $nc_list->setDbConf('main', 'user');
-        $sql = "update {$nc_list->dbConf['tbl']} set `phone`={$ipt_list['phone']} where `uid`={$login_user['uid']}"; 
-        $result=$nc_list->executeSql($sql); 
+        $packstr='';
         if($login_user['rebate_uid'] && $login_user['type']==1){ //微信用户才有
         	$sql = "update {$nc_list->dbConf['tbl']} set `lucky_packet`=`lucky_packet`+1 where `uid`={$login_user['rebate_uid']}"; 
         	$result=$nc_list->executeSql($sql);  
@@ -1402,6 +1401,28 @@ class NcUserCtrl extends BaseCtrl {
 	        $content=json_encode(array('invite_nick'=> $login_user['nick'],'goods_name'=>''));
 	        $msg_mod->sendPacketNotify($login_user['rebate_uid'],1,1,$content,'','','',$login_user['uid']);
         }
+        if($login_user['type']==1 &&  !api_v_mobile($login_user['phone'])){ 
+        	$user_show=Factory::getMod('nc_user_show'); 
+        	$user_extend=$user_show->getuserextend($login_user['uid']); 
+        	if(!$user_extend['bind_phone']){
+        		$packetnum=rand(3,30)/10; //绑定手机送福袋
+        		$packstr="  ,`lucky_packet`=`lucky_packet`+{$packetnum} ";
+        		$sql = "update ".DATABASE.".t_user_extend set `bind_phone`=1  where `uid`={$login_user['uid']}    "; 
+			    $result1=$nc_list->executeSql($sql); 
+			   /* if($result1){
+			    	$sql = "update ".DATABASE.".t_user set `money`=`money`+1   where `uid`={$login_user['uid']}    "; 
+				    $nc_list->executeSql($sql); 
+				    $msg_mod = Factory::getMod('msg'); 
+				    $msg_mod->sendNotify(10002, $login_user['uid'], 10002, 8, 0, 8, '绑定手机号赠送1元,祝你购物愉快!');
+			    }*/
+        		 
+        	}
+             
+        }
+        $nc_list->setDbConf('main', 'user');
+        $sql = "update {$nc_list->dbConf['tbl']} set `phone`={$ipt_list['phone']} $packstr where `uid`={$login_user['uid']}"; 
+        
+        $result=$nc_list->executeSql($sql); 
         //判断是否送福袋
 
         if (!$result) {
@@ -1445,7 +1466,7 @@ class NcUserCtrl extends BaseCtrl {
 	        	require COMMON_PATH.'libs/wxpay/Wx.Api.php';	
 			    $wxApi = new WxApi();     
 			    $wxmsg = $wxApi->getsubscribe($ret['wx_openid']);
-			    $status=json_decode($wxmsg,true);
+			   // $status=json_decode($wxmsg,true);
 
 			    if(isset($status['errcode'])){
 			    	api_result(1,'当前用户不是微信用户');
@@ -1614,6 +1635,34 @@ class NcUserCtrl extends BaseCtrl {
        
 	    }
 		api_result(0, 'succ');
+    }
+
+   public function userdynamic(){
+    	$base = api_check_base(); 
+    	$login_user = app_get_login_user($base['sessid'], $base['appid'],true); 
+    	$validate_cfg = array(
+				'type' => array(
+						'api_v_numeric|1||类型不合法',
+				),
+				 
+		);
+		$ipt_list = api_get_posts($base['appid'], $validate_cfg);
+		$nc_list = Factory::getMod('nc_list');   
+	    $nc_list->setDbConf('main', 'user_dynamic');
+        $point = $ret2['point'];
+        $nc_list->insertData(array(
+            'uid' => $login_user['uid'], 
+            'type' => $ipt_list['type'],
+            'rt' => time(),
+        ));
+        //1 搜索页 2 分类 3即将揭晓 4互动专区 5福袋 6晒单详细  7 他购买过的商品 8他的晒单 9充值 10 福袋 11邀请注册 12 我的收藏 13 返回首页按钮14 回到商城按钮 15开福袋按钮  9到12为个人中心
+ 		 
+ 		 
+    	$msg[$ipt_list['type']]=array('count'=>1);
+		$nc_list = Factory::getMod('nc_record');   
+		$nc_list->userrecord($login_user,$msg) ;
+        api_result(0, '记录成功！');
+
     }
 
 }

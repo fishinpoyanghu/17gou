@@ -30,7 +30,8 @@ define(
                 $scope.activity_id = $stateParams.activity_id;//商品id
                 $scope.logistics_num = $stateParams.logistics_num;//订单号码
                 $scope.logistics_id = $stateParams.logistics_id;//订单号码
-
+                $scope.type=$stateParams.type;
+                console.log($scope.type);
 				$scope.isLoading = true;
 				/*$scope.refresh = refresh;
 				refresh();*/
@@ -176,7 +177,7 @@ define(
                     $scope.firstInIsGoodsPage = false;
                 }
                 //获取快递路径---接口
-                GoodsModel.getExpressQuery($scope.logistics_id, onSuccess, onFailed, onFinal);
+                GoodsModel.getExpressQuery($scope.logistics_id,$scope.type, onSuccess, onFailed, onFinal);
                 //refresh();
             });
 		}

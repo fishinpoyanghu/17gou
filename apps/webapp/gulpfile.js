@@ -8,13 +8,13 @@ var paths = {
 };
 
 gulp.task('less', function () {
-    gulp.src('www/css/*.less') 
+    gulp.src('www/css/**/*.less') 
         .pipe(less())
         .pipe(cssmin())
         .pipe(gulp.dest('www/css/')); 
 });
 
 gulp.task('watch', function () {
-    gulp.watch('www/css/*.less', ['less']);
+    gulp.watch('www/css/**/*.less', ['less']);
 });
 gulp.task('default',['less'])

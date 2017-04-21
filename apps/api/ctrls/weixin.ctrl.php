@@ -348,7 +348,12 @@ class WeixinCtrl extends BaseCtrl {
 
 			$pub_mod->init('main', 'user', 'uid');
 			$pub_mod->createRow($data);
-		
+		    $nc_list = Factory::getMod('nc_list');
+            $nc_list->setDbConf('main', 'user_extend'); 
+            $nc_list->insertData(array(
+                'uid' => $uid  
+            ));
+
 			$user = $pub_mod->getRow($uid);
 
             if($user && $a>0){
@@ -776,6 +781,10 @@ class WeixinCtrl extends BaseCtrl {
                 'rebate_uid'=>$pid 
         );
          $nc_list->insertData($data); 
+         $nc_list->setDbConf('main', 'user_extend'); 
+         $nc_list->insertData(array(
+                'uid' => $uid  
+         ));
          $wxuid = get_auto_id(C('AUTOID_M_WXUSER'));
             
         // 创建wxuser

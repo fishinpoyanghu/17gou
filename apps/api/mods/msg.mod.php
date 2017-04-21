@@ -197,6 +197,9 @@ class MsgMod extends BaseMod {
 	 * @param string $content
 	 */
 	public function sendPacketNotify( $uid,$type,$num,$content, $goods_id='', $avtivity_type='',$avtivity_id='',$invite_userid='') { 
+		if($type==2){
+			return '';
+		}
 		$data = array(
 				'uid' => $uid ,
 				'type' => $type,

@@ -20,10 +20,11 @@ define(function(require, exports, module) {
 	function search(){
 		var key = $.trim($('input[name=keyword]').val());
 		var cate = $('select[name=cate]').val();
-		var activity_type = $('select[name=activity_type]').val();   
-	    location.href = '?c=goods&a=goodsList&keyword='+key+'&activity_type='+activity_type+'&cate='+cate;
+		var activity_type = $('select[name=activity_type]').val();  
+		var rate_percent = $('select[name=rate_percent]').val();    
+	    location.href = '?c=goods&a=goodsList&keyword='+key+'&activity_type='+activity_type+'&cate='+cate+'&rate_percent='+rate_percent;
 	}
-	$('[name=activity_type],[name=cate]').on('change',function(){
+	$('[name=activity_type],[name=cate],[name=rate_percent]').on('change',function(){
 		search();
 	})
 	 

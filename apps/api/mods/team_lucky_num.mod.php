@@ -2,17 +2,8 @@
 /**
  * @since 2016-01-22
  */
-class TeamLuckyNumMod extends BaseMod{
-
-    private function getLottery(){
-        $url = 'http://f.apiplus.cn/cqssc-1.json';
-        $result = file_get_contents($url);
-        file_put_contents('/tmp/falseteam2.log','lottery'.$result,FILE_APPEND);
-        $res = json_decode($result,true);
-        $num = $res['data'][0]['opencode'];
-        $num = str_replace(',','',$num);
-        return (int) $num;
-    }
+class TeamLuckyNumMod extends BaseMod{ 
+    
 	
 	public function run(){
 		$nc_list = Factory::getMod('nc_list'); 
@@ -30,13 +21,13 @@ class TeamLuckyNumMod extends BaseMod{
             );
             $data = $nc_list->getDataList($where, $column, $order,array(),false);
             
-            //获取时彩号
-            $lottery_num = $this->getLottery();
+           
 
             $currentTime = time();
 
             $msg_mod = Factory::getMod('msg');
-            if(empty($data)) continue;
+            if(empty($data)) continue; 
+             
             foreach($data as $val){
                if($val['publish_time']>=time()+5) continue;
                 $activity_id = $val['teamwar_id'];
@@ -50,6 +41,8 @@ class TeamLuckyNumMod extends BaseMod{
                 $time_sum = $nc_list->getDataOne($where, $column, array(), array(), false);
             
                 if(empty($time_sum)) continue;
+                $nc_lucky_num = Factory::getMod('nc_lucky_num');
+                $lottery_num = $nc_lucky_num->getLottery();
                 $sum = bcadd($time_sum['time_sum'],$lottery_num);
                 $changeNum = bcmod($sum,$val['need_num']);
                 //幸运号

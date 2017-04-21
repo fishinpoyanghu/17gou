@@ -24,6 +24,7 @@ class GoodsCtrl extends BaseCtrl{
         $num = 10;
         $keyword = gstr('keyword');
         $activity_type = gstr('activity_type')+0;
+        $rate_percent = gstr('rate_percent')+0;
         $cate = gstr('cate')+0;
         clean_xss($keyword);
         $search = "";
@@ -31,8 +32,11 @@ class GoodsCtrl extends BaseCtrl{
             $search = "&keyword={$keyword}";
         }
         $search.=$activity_type?'&activity_type='.$activity_type:'';
+        $search.=$rate_percent?'&rate_percent='.$rate_percent:'';
+
         $search.=$cate?'&cate='.$cate:''; 
         $sarchArr['activity_type']=$activity_type;
+        $sarchArr['rate_percent']=$rate_percent;
         $sarchArr['cate']=$cate;
         $sarchArr['keyword']=$keyword;
         $type = $mod->goodsType();

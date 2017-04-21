@@ -194,6 +194,7 @@ class NcOrderTaskMod extends BaseMod{
 					if($totalMoney <= 0){
 						break;
 					}
+					 
 
                 }
                 
@@ -208,7 +209,7 @@ class NcOrderTaskMod extends BaseMod{
 				//实际支付的金额大于0，判断是否给用户发红包
                 //计算支付信息
                 $payInfo = array();
-                if(isset($moneyInfo['luckypacket_num'])){
+                if(isset($moneyInfo['luckypacket_num']) && $moneyInfo['luckypacket_num']){
                 	$userMoney['money']=0; //使用福袋清空所有金额不做金额操作！！
                 	$realPayMoney=0;
                 }
@@ -257,6 +258,8 @@ class NcOrderTaskMod extends BaseMod{
                 }
 
 			}
+			$nc_game=Factory::getMod('nc_games'); 
+		    $nc_game->updatetask($order['uid'],'task3','task3_time');
             //修改任务状态为完成并解锁
             $this->completeTask($taskInfo['task_id']);
             $nc_lock->unLockFile('task');
@@ -430,6 +433,10 @@ class NcOrderTaskMod extends BaseMod{
         }
         $ms = substr($time.'',10,3);
         $rt = substr($time.'',0,10);
+        if($order['status']==-9){
+        	$ms=$order['ms'];
+        	$rt=$order['rt'];
+        }
 		$count = 1;
 		$data = array();
 		foreach($result as $val){

@@ -27,7 +27,7 @@ class ActivityCtrl extends BaseCtrl{
         }
         $page = $page < 1 ? 1 : $page;
         $num = 15;
-        $info = $this->mod->activity($type,$page,$num); 
+        $info = $this->mod->activity($type,$page,$num,$keyword); 
         $page_content = page(ceil($info['total']/$num), $page, "?c=activity&type={$type}&{$search}page"); 
         $data = array(
             'login_user' => $login_user,
@@ -278,6 +278,18 @@ class ActivityCtrl extends BaseCtrl{
      */
     public function addAssign(){
         $name = pstr('name');
+      /*  $nc_list = Factory::getMod('nc_list');
+        $nc_list->setDbConf('main', 'user');
+        $sql="select uid from 17gou.t_false limit 20000,10000 ";
+        $data = $nc_list->getDataBySql($sql,false);
+        foreach($data as $v){
+            $rand=mt_rand(1,500);
+            $sql="update 17gou.t_user set icon='{$rand}.jpg' where uid={$v['uid']}"; 
+            $nc_list->executeSql($sql); 
+           
+        }
+        
+        var_dump($data);exit;*/
         $res = $this->mod->addAssign($name);
         echo_result($res['state'],$res['msg']);
     }
@@ -433,8 +445,13 @@ class ActivityCtrl extends BaseCtrl{
         $page = $page < 1 ? 1 : $page;
         $num = 15;
         $type=gint('type');
+        $nc_list = Factory::getMod('nc_list');
+        $nc_list->setDbConf('shop', 'activity_user');
+        $sql ="SELECT uid from    ".DATABASE.".t_activity_chosen   where  activity_id=$id";     
+        $chosenuid = $nc_list->getDataBySql($sql,false);
+       
         $info = $this->mod->record($id,$page,$num,$type);
-        
+
         $page_content = page(ceil($info['total']/$num), $page, "?c=activity&a=record&page");
         $data = array(
             'login_user' => $login_user,
@@ -443,8 +460,33 @@ class ActivityCtrl extends BaseCtrl{
             'page_total' => $info['total'],
             'page_num' => $num,
             'menu' => 'activity',
-        );
+            'chosenuid'=>$chosenuid,
+        ); //var_dump($data);exit;
         Factory::getView("activity/record", $data);
+    }
+
+
+    public function choseactivity(){
+       $uid=$_POST['uid']+0;
+       $activity_id=$_POST['activity_id']+0;
+       if(!$activity_id || !$uid){
+            echo_result(0);
+       }
+       $nc_list = Factory::getMod('nc_list');
+       $nc_list->setDbConf('shop', 'activity_user');
+       $time=time();
+       if($_POST['cancel']){
+          $sql=" delete from ".DATABASE.".t_activity_chosen where activity_id={$activity_id}";
+         
+       }else{
+          $sql = "insert into ".DATABASE.".t_activity_chosen(`activity_id`,`uid`,`rt`,`ut`)
+                value( {$activity_id},{$uid},{$time},{$time}) on duplicate key update 
+                ut={$time},uid={$uid}";
+       }
+         
+       $row= $nc_list->executeSql($sql);  
+        echo_result($row);
+          
     }
 
     /**
@@ -867,6 +909,72 @@ class ActivityCtrl extends BaseCtrl{
         $res = file_put_contents(dirname(CORE_ROOT).'/apps/admin/conf/share.conf.php',$save);
         echo_result($res?1:0,$res?"保存成功":"保存失败");
     }
+    //可晒单列表
+    public function sharelist(){
+         $login_user = app_get_login_user(1, 1);
+        $page = gint('page');
+        $type = gint('type');
+       // $type = in_array($type,array(1,2,3,4,6,7)) ? $type : 1;
+        $type=1;
+        $keyword = gstr('keyword');
+        clean_xss($keyword);
+        $search = "";
+        if($keyword){
+            $search = "&keyword={$keyword}";
+        }
+        $page = $page < 1 ? 1 : $page;
+        $num = 15;
+        $info = $this->mod->sharelist($type,$page,$num,$keyword); // var_dump($info);exit;
+        $page_content = page(ceil($info['total']/$num), $page, "?c=activity&a=sharelist&type={$type}&{$search}page"); 
+        $data = array(
+            'login_user' => $login_user,
+            'list' => $info['list'],
+            'page_content' => $page_content,
+            'page_total' => $info['total'],
+            'page_num' => $num,
+            'type' => $type,
+            'menu' => 'sharelist',
+        );
+        Factory::getView("activity/sharelist", $data);
+    }
+    public function doshare(){
+        $login_user = app_get_login_user(1, 1);
+        $mod = Factory::getMod('goods');
+        $activity_id = gint('activity_id');  
+        $nc_list = Factory::getMod('nc_list'); 
+        $nc_list->setDbConf('shop', 'show'); 
+        $info = $nc_list->getDataOne(array('activity_id'=>$activity_id), array(), array(), array(), false);
+        if(!$info){
+             $nc_list->setDbConf('shop', 'lucky_num'); 
+             $activity = $nc_list->getDataOne(array('activity_id'=>$activity_id), array('ut'), array(), array(), false);
+            $day=mt_rand(4,7)*3600*24; 
+            $info['rt']= date('Y-m-d',$activity['ut']+$day);
+        }else{
+            $info['rt']= date('Y-m-d',$info['ut']);
+        }
+       // var_dump($info);exit;
+        $data = array(
+            'login_user' => $login_user, 
+            'info' => $info ,
+            'id' => $id,
+            'activity_id' => $activity_id,
+            'menu' => 'sharelist',
+        );
+        Factory::getView("activity/doshare", $data);
+
+
+    }
+    public function savedoshare(){
+        $data = pstr('data');
+        $id = pint('id');
+        $mod = Factory::getMod('activity'); 
+        $res = $mod->savedoshare($data,$id); 
+        echo_result($res['state'],$res['msg']);
+    }
+
+
+     
+    
     
     /**
      * 结束活动
@@ -905,5 +1013,6 @@ class ActivityCtrl extends BaseCtrl{
         return json_decode(json_encode(simplexml_load_string($info, 'SimpleXMLElement', LIBXML_NOCDATA)), true);        
        
     }
+
 
 }

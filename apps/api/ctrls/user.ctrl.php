@@ -370,7 +370,11 @@ class UserCtrl extends BaseCtrl {
 		if (!$ret) {
 			api_result(1, '数据库错误，请重试');
 		}
-	 
+	 	$nc_list = Factory::getMod('nc_list');
+		$nc_list->setDbConf('main', 'user_extend'); 
+	    $nc_list->insertData(array(
+                'uid' => $data['uid']  
+        ));
         //注册送积分
         $point_mod = Factory::getMod('nc_point');
         $point_mod->createRegPoint($data);

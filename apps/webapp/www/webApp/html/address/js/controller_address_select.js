@@ -82,7 +82,30 @@ define([
 			                    //onFail
 			                    ToastUtils.showError('请检查网络,状态码：' + response.status);
 			                })
+                        }else if (type == 'game') {
+                        	addressModel.confirmGameAddress(activity_id, addr.address_id, function(response) {
+			                    //onSuccess
+			                    var code = response.data.code;
+			                    var msg = response.data.msg;
+			                    switch (code) {
+			                        case 0:
+			                            var address = response.data.data.address;
+			                            back();
+			                            break;
+			                        case 6:
+			                            ToastUtils.showWarning(msg);
+			                            $state.go('login');
+			                            break;
+			                        default:
+			                            ToastUtils.showError(msg);
+			                            break;
+			                    }
+			                }, function(response) {
+			                    //onFail
+			                    ToastUtils.showError('请检查网络,状态码：' + response.status);
+			                })
                         }
+
                         else{
                            addressModel.confirmAddressChoujiang(activity_id, addr.province+addr.city+addr.area+'  '+addr.detail,addr.name,addr.mobile, function(response) {
                                 //onSuccess

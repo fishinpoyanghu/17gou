@@ -54,6 +54,12 @@ class FinanceMod extends BaseMod{
         $info['total_money'] = empty($info['total_money']) ? 0 : $info['total_money'];
         return $info;
     }
+    public function ajaxtotal($start,$end,$page=1,$num='',$keyword=''){
+        $start = empty($start) ? strtotime(date('Y-m-01')) : strtotime($start);
+        $end = empty($end) ? time() : strtotime($end.'23:59:59');
+        $info = $this->data->ajaxtotal($start,$end,$page,$num,$keyword);
+        
+    }
 
     /**
      * 充值记录

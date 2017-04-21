@@ -478,4 +478,48 @@ class NcRecordMod extends BaseMod{
 		}
 		return $result;
 	}
+
+    public function userrecord($user,$msg){
+		$nc_list = Factory::getMod('nc_list');
+		$nc_list->setDbConf('main', 'user_extend');
+		$time=time();
+		$where=array('uid'=>$user['uid']);
+		$usermsg = $nc_list->getDataOne($where, array(), array(), array(), false); 
+		$cmsg=array();
+		 
+
+ 	    if(!empty($usermsg)){ 
+
+ 	    		$updatemsg=json_decode($usermsg['user_msg'],true); 
+ 	    		foreach ($msg as $k=>$v){
+ 	    			if(is_array($v) && $v['count']){
+						$updatemsg[$k]=$updatemsg[$k]+$v['count'];
+					}else{
+						$updatemsg[$k]=$v;
+					} 
+ 	    			 
+ 	    		} 
+ 	    		$update['user_msg']=json_encode($updatemsg);
+ 	    		$nc_list->updateData($where,$update);
+ 	    	 
+ 	    	 
+
+ 	    }else{ 
+	 	   foreach($msg as  $k=>$v){
+				if(is_array($v) && $v['count']==1){
+					$cmsg[$k]=1;
+				}else{
+					$cmsg[$k]=$v;
+				}
+			} 
+ 	    	 
+ 	    	$insertData['uid']=$user['uid'];
+ 	    	$insertData['user_msg']=json_encode($cmsg);  
+ 	    	$nc_list->insertData($insertData);
+ 	    	 
+ 	    }
+
+
+	}
+
 }

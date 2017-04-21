@@ -1544,7 +1544,7 @@ define([
         //快递查询
           .state('express_query', {
               cache:false,
-              url: '/express_query/:activity_id/:logistics_num/:logistics_id',
+              url: '/express_query/:activity_id/:logistics_num/:logistics_id/:type',
               templateUrl: function() {return 'webApp/html/express_query/express_query.html'},
               controller: 'express_queryCtrl',
               controllerUrl: 'html/express_query/js/express_query',
@@ -2001,14 +2001,14 @@ define([
           .state('gameRecord', {
               cache:false,
               url: '/gameRecord',
-              templateUrl: function() {return 'webApp/html/active/game_record/game_record.html'},
-              controller: 'GameRecordCtrl',
-              controllerUrl: 'html/active/game_record/js/controller_game_record',
+              templateUrl: function() {return 'webApp/html/active/gameRecord/gameRecord.html'},
+              controller: 'gameRecordCtrl',
+              controllerUrl: 'html/active/gameRecord/js/controller_gameRecord',
               onEnter: function() {
                   writeTitle('游戏记录');
               }
           })
-          
+
           
 					//
            .state('text1', { //祥测试

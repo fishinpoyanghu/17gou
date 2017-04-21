@@ -599,11 +599,23 @@ class NcUserShowMod extends BaseMod{
             $sql="delete from ".DATABASE.".t_follow_goods where uid={$login_user['uid']} order by ut desc limit $limit";
             $nc_list->executeSql($sql); 
        }
-      return  $resultArr;
+      return  $resultArr; 
+
+    }
+    public function getuserextend($uid){
+        $nc_list = Factory::getMod('nc_list');
+        $nc_list->setDbConf('main', 'user_extend'); 
+        $ret = $nc_list->getDataOne(array('uid'=>$uid), array(), array(), array(), false);
+        if($ret){
+            $ret['user_msg']=json_decode($ret['user_msg'],true);
+            return $ret;
+        }
+        $nc_list->insertData(array(
+                'uid' => $uid  
+            ));
+       
+        return '';
          
-
-
-
     }
 
   

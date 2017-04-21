@@ -31,6 +31,9 @@ class FinanceCtrl extends BaseCtrl{
     }
 
     public function consume(){
+        error_reporting(E_ALL);
+        set_time_limit(0);
+        ini_set('max_execution_time',0);
         $login_user = app_get_login_user(1, 1);
         $start = gstr('start');
         $end = gstr('end');
@@ -54,7 +57,7 @@ class FinanceCtrl extends BaseCtrl{
             'page_content' => $page_content,
             'page_total' => $info['total'],
             'page_num' => $num,
-            'total_money' => $info['total_money'],
+           // 'total_money' => $info['total_money'],
             'start' => $info['start'],
             'end' => $info['end'],
             'keyword' => $keyword,
@@ -62,7 +65,24 @@ class FinanceCtrl extends BaseCtrl{
         );
         Factory::getView("finance/consume", $data);
     }
-
+    public function ajaxtotal(){
+        $login_user = app_get_login_user(1, 1);
+        $start = gstr('start');
+        $end = gstr('end');
+        $keyword = gstr('keyword');
+        clean_xss($start);
+        clean_xss($end);
+        clean_xss($keyword);
+        $page = gint('page');
+        $page = $page < 1 ? 1 : $page;
+        $num = 15;
+        $search = "";
+        if($start) $search .= "&start={$start}";
+        if($end) $search .= "&end={$end}";
+        if($keyword) $search .= "&keyword={$keyword}";
+        $info = $this->mod->ajaxtotal($start,$end,$page,$num,$keyword);
+        
+    }
     /**
      * 充值记录
      */

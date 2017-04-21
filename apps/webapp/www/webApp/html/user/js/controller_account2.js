@@ -211,6 +211,15 @@ define(['app',
 			};
 
             /**
+			 * 跳转到游戏记录页面
+			 */
+			$scope.startToGameRecord = function() {
+				$state.go('gameRecord');
+			};
+
+
+
+            /**
 			 * 跳转到邀请注册页面
 			 */
 			$scope.startToInviteFriends = function() {

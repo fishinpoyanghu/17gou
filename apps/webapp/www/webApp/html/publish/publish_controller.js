@@ -50,6 +50,7 @@ define(
       var activity = getActivityById(activityId) || {};
       var getNewActivity = function(response, data) {
         var newActivity = data.data;
+        console.log(newActivity)
         if(newActivity.lucky_num) {
           $timeout(function() {
             activity.status = newActivity.status;

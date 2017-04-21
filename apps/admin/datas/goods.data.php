@@ -93,6 +93,7 @@ class GoodsData extends BaseData {
 		 
 		$and .= $searchArr['cate']?" and b.`goods_type_id` ={$searchArr['cate']}":'';
 	 	$and .= $searchArr['activity_type']?" and a.`activity_type`={$searchArr['activity_type']}":''; 
+	 	$and .= $searchArr['rate_percent']?" and a.`rate_percent`={$searchArr['rate_percent']}":''; 
 	 	 
 		$sql = "select a.*,b.`name` from {$db_cfg['tbl']} as a,".DATABASE.".`t_goods_type` as b where 1 {$and} order by a.`rt` desc {$limit}";
 
